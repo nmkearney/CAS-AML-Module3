@@ -206,7 +206,7 @@ The first draft of the schema and vocabularies, built from the 2025–2028 strat
 
 Two developers work in parallel, split between building the data and using it. They meet at the shared data formats in `src/chatcde/schemas.py`, agreed on day 1 together with a small set of test fixtures, so Track B can build tools before the real data exists.
 
-| | Track A: Data (Norman) | Track B: Assistant (colleague) |
+| | Track A: Data (Norman) | Track B: Assistant (Simon) |
 | --- | --- | --- |
 | Owns | Harvest, parsing, vocabulary, tagging, data bundles | Chunking, embeddings, search, tools, agent, workflows |
 | Build steps | 2 and 3 | 4 |
