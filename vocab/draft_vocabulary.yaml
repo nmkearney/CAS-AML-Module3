@@ -1,0 +1,198 @@
+# Draft controlled vocabulary for the CDE catalogue (v0.1, 2026-10-27)
+# Sources: CDE Strategy 2025-2028 (sections 1.3, 1.4, 2.2, 3, Table 1),
+# cde.unibe.ch pages; terms marked `proposed: true` are not from a CDE source.
+# To be revised in the schema workshop and tested on a 200-300 record sample.
+
+version: 0.1
+
+impact_area:
+  - {code: JE, label: Just economies and human well-being, boris_unit: "Just Economies & Human Well Being"}
+  - {code: SL, label: Sustainable land systems, boris_unit: "Sustainable Land Systems"}
+  - {code: SG, label: Sustainability governance, boris_unit: "Sustainable Governance"}
+  - {code: TE, label: Transformative education and science, boris_unit: "Transformative Education & Science"}
+
+sub_area:
+  - code: JE-a
+    label: Human well-being on a healthy planet
+    scope: Quality of life versus planetary boundaries; social-ecological interactions in mountains, nature parks and protected areas.
+  - code: JE-b
+    label: Just societies on global and local levels
+    scope: Justice and inequality in transitions; distribution of scarce resources; concepts of well-being and prosperity.
+  - code: JE-c
+    label: Deliberation of future economies
+    scope: Solidarity-based, growth-independent and regenerative economies; work, care, social security; visioning, scenarios, deliberative formats.
+  - code: JE-d
+    label: Pathways towards just and regenerative production and consumption systems
+    scope: Real-world labs, incubators, start-ups, grassroots and urban-commons initiatives; niche innovations and scaling.
+  - code: SL-a
+    label: Sustainable land use
+    scope: Cropland, grazing land, forests, wetlands, waterbodies; sustainable land management practices; WOCAT; land degradation neutrality.
+  - code: SL-b
+    label: Biodiversity and ecosystem services
+    scope: Synergies and trade-offs; ecosystem service values and value pluralism; agroecology; land-use policy.
+  - code: SL-c
+    label: Multifunctional landscapes
+    scope: Integrated landscape planning across sectors; participatory visioning; blended, private-sector and impact finance.
+  - code: SL-d
+    label: Catalysts of land system change
+    scope: Tenure security, gender, power asymmetries, telecoupling; change agents and social learning.
+  - code: SG-a
+    label: Public governance of sustainable economy, including trade and finance
+    scope: Trade rules, model rules for agricultural trade; international and illicit financial flows; due diligence regulation.
+  - code: SG-b
+    label: Sustainability governance in the private sector
+    scope: Certification, corporate sustainability programmes, social enterprises, cooperatives, direct trade; greenwashing; pricing and procurement.
+  - code: SG-c
+    label: Transparency and accountability mechanisms
+    scope: Land Matrix and large-scale land investments; multi-stakeholder platforms (cocoa, coffee, seafood); monitoring, evaluation and learning.
+  - code: SG-d
+    label: Community-based and collaborative governance
+    scope: Indigenous and local knowledge; self-organised governance of fisheries, agroecology, housing, green spaces; mega-infrastructure.
+  - code: TE-a
+    label: Transformative learning and teaching for change
+    scope: Curricula, competencies, change agency; BSc/MSc/PhD/CAS programmes; decolonisation and inclusive education.
+  - code: TE-b
+    label: Spaces for science-society collaboration
+    scope: Living labs, forums, knowledge and stakeholder platforms; joint-learning methods; student-led innovation.
+  - code: TE-c
+    label: Higher education for sustainable development
+    scope: Whole-institution approach at UniBe; sustainability-oriented universities; summer schools; training of trainers.
+  - code: TE-d
+    label: Science-policy engagement for sustainability transformations
+    scope: Policy forums, scientific assessments, research funding schemes; networks such as GLP, WOCAT, MRI, Earth System Governance.
+
+objective:
+  - {code: O1, label: Ecosystem regeneration for sustainable livelihoods}
+  - {code: O2, label: Sustainable food systems and land investments}
+  - {code: O3, label: Just and resource-light economies}
+  - {code: O4, label: Institutions for sustainability}
+  - {code: O5, label: Competencies for sustainability transformations}
+
+pathway:  # tag only when explicit in the text
+  - {code: P1, label: Knowledge-informed decision-making, rule: "Evidence meant to inform policy or practice decisions, incl. syntheses and assessments"}
+  - {code: P2, label: Transformative literacy, rule: "Builds capacity to understand and take part in transformation: teaching, training, public communication"}
+  - {code: P3, label: Institutional work, rule: "Shapes strategies, rules or norms; convenes multi-stakeholder or science-policy processes"}
+  - {code: P4, label: Social and technological innovations, rule: "Pilots, scales or analyses new practices, tools or technologies"}
+  - {code: P5, label: Partnerships in regions, rule: "Built on or explicitly strengthens long-term regional partnerships"}
+
+research_mode:
+  - {code: M1, label: Transformative research, definition: "Researchers take part in the processes they study and co-create solutions in specific contexts"}
+  - {code: M2, label: Transformation research, definition: "Analyses conditions, characteristics and drivers of societal and environmental change; theory development"}
+  - {code: M3, label: Transformative education, definition: "Reshapes education systems and curricula to build competencies for transformation"}
+  - {code: M4, label: Transformation education, definition: "Investigates how sustainability competencies can be fostered and assessed"}
+
+method:  # proposed seed list, 34 terms in 8 groups
+  participatory_transdisciplinary:
+    - Knowledge co-production
+    - Participatory action research
+    - Living labs and real-world labs
+    - Multi-stakeholder processes
+    - Futures methods (visioning, scenarios, futures workshops)
+    - Deliberative formats
+  qualitative_social_science:
+    - Interviews and focus groups
+    - Ethnography and participant observation
+    - Case study
+    - Document and policy analysis
+    - Discourse and narrative analysis
+    - Legal analysis
+  quantitative_social_science:
+    - Household and other surveys
+    - Econometrics
+    - Impact evaluation
+    - Poverty and well-being measurement
+    - Pilots and field experiments
+  institutional_political_analysis:
+    - Power-sensitive institutional analysis
+    - Stakeholder and actor analysis
+    - Value chain analysis
+  geospatial_land:
+    - Remote sensing
+    - GIS and spatial analysis
+    - Land-use and land-cover change mapping
+    - Database development
+  biophysical:
+    - Soil and water assessment
+    - Biodiversity field survey
+    - Ecosystem service assessment and valuation
+  systems_assessment_evaluation:
+    - Systems analysis
+    - Modelling and simulation
+    - Impact and sustainability assessment
+    - Monitoring, evaluation and learning
+  synthesis_theory:
+    - Literature and systematic review
+    - Scientific assessment contributions (IPCC, IPBES, GEO)
+    - Conceptual and theoretical work
+
+data_type:  # proposed
+  - Primary qualitative
+  - Primary quantitative
+  - Primary geospatial
+  - Secondary statistics
+  - Secondary geospatial
+  - Documents and policies
+  - Curated databases
+  - None (conceptual)
+
+country: {standard: ISO 3166-1 alpha-3, extra_flag: global_or_multi_country}
+
+region:
+  world: UN M49 sub-regions (derived from country)
+  cde_partner_region:  # DRAFT mapping, to confirm (four vs five regions)
+    Eastern Africa and Horn of Africa: [KEN, ETH]
+    Madagascar: [MDG]
+    Mainland Southeast Asia: [LAO, MMR]
+    South Asia and Himalaya: [NPL]
+    South America and central Andes: [BOL, PER]
+    Europe and Switzerland: [CHE]
+
+setting:  # proposed
+  - Mountains
+  - Drylands and rangelands
+  - Humid tropics and forest frontiers
+  - Coastal and marine
+  - Rural lowlands
+  - Peri-urban
+  - Urban
+
+scale:  # proposed
+  - Household or individual
+  - Community or village
+  - Landscape or watershed
+  - Subnational
+  - National
+  - Transboundary or regional
+  - Global
+  - Cross-scale (incl. telecoupling)
+
+system:
+  land_and_ecosystems: [Cropland, Grazing land and rangelands, Forests, Wetlands, Freshwater and waterbodies, Protected areas]
+  food_and_commodities: [Food systems and agriculture, Commodity value chains, Large-scale land investments]
+  economy_and_finance: [Trade, Finance and investment, Extractives and mining, Energy, Infrastructure]
+  settlements_and_society: [Urban areas and housing, Livelihoods and labour, Social security and care]
+  knowledge_and_education: [Higher education, Science systems and funding, Science-policy interfaces]
+
+actors:
+  roles: [studied, co_producer, audience]
+  groups:
+    land_users_and_communities: [Smallholders and land users, Pastoralists, Indigenous peoples and local communities, Grassroots and urban-commons initiatives]
+    justice_groups: [Women, Displaced persons, Human rights and environmental defenders, Youth and students]
+    state_and_international: [National and local government, Extension services, International organisations and UN conventions]
+    private_sector: [Companies and investors, Social enterprises and cooperatives, Standard-setters, Financial sector]
+    civil_society_and_science: [NGOs and civil society, Researchers and universities]
+
+justice_lens:
+  - Distributive
+  - Procedural
+  - Recognition
+  - Gender
+  - Power
+  - Decolonial
+  - None explicit
+
+sdg: {standard: UN SDGs 1-17, max_per_record: 3}
+
+output_type:
+  boris_type: from metadata (dc.type)
+  audience: [Academic, Policy, Practitioner, Public]  # proposed
