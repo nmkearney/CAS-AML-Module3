@@ -2,7 +2,7 @@
 
 Exported 2026-10-27 from the planning doc's "Draft schema and vocabulary" tab. The machine-readable version is `vocab/draft_vocabulary.yaml`; keep the two in sync.
 
-This draft proposes 16 dimensions. Five are taken directly from the 2025–2028 strategy (impact area, sub-area, objective, pathway to impact and research mode), so CDE's own categories become the backbone of the gap analysis. The rest cover the methods, places, systems and actors the strategy mentions without listing them. It's a starting point for the schema workshop: strike, merge or add terms, then test the result on the 200–300 document sample. The schema table shows where each set of terms comes from; anything not taken from a CDE source is a proposal.
+This draft proposes 17 dimensions. Five are taken directly from the 2025–2028 strategy (impact area, sub-area, objective, pathway to impact and research mode), so CDE's own categories become the backbone of the gap analysis. The rest cover the methods, places, systems and actors the strategy mentions without listing them. It's the starting point for curation: the terms are tested on the 200–300 record sample, and every change is logged. The schema table shows where each set of terms comes from; anything not taken from a CDE source is a proposal.
 
 ## Schema
 
@@ -26,6 +26,7 @@ All dimensions except output type allow several values per record. Free-text key
 | 14 | Justice lens | Which justice, equity or power dimensions are addressed | Strategy, sections 1.4, 3.1 and 3.3 | LLM, closed list |
 | 15 | SDG | Up to three Sustainable Development Goals | UN, 17 goals | LLM, closed list |
 | 16 | Output type | Publication type and main audience | BORIS type; proposed audiences | Metadata; audience by LLM |
+| 17 | Transformative aspiration | The stance the work takes towards existing systems: collaborate, challenge or disrupt | Westerink et al. 2026; see decision 0005 | LLM, closed list |
 
 Dimensions 1–5 use the current strategy's categories for all years. Older work will be tagged against categories that didn't exist when it was written; see the workshop questions.
 
@@ -102,6 +103,8 @@ Research mode uses the strategy's four definitions. Methods are a proposed seed 
 
 **Data type:** primary qualitative · primary quantitative · primary geospatial · secondary statistics · secondary geospatial (e.g. satellite products) · documents and policies · curated databases · none (conceptual work).
 
+## Transformation aspirations
+
 ## Regions, setting and scale
 
 Country is the base unit. Both region layers are derived from it in code, so the LLM never assigns a region directly.
@@ -143,9 +146,11 @@ These three dimensions make gaps specific. Combined with methods, they answer qu
 
 Each actor tag also records a **role**: *studied*, *engaged as co-producer* or *audience*. This is how the catalogue shows how transdisciplinary the work really is.
 
-## Questions for the workshop
+## Design decisions to record
 
-- [ ] **Older work.** Should all publications be tagged with the 2025–2028 categories, or should earlier strategy categories be mapped across too? Earlier areas included land resources, socio-economic transitions and education for sustainable development. Proposal: tag everything with the current categories and keep the BORIS unit as recorded, so historical shifts stay visible.
+Each item becomes a file in `docs/decisions/` once decided.
+
+- [ ] **Older work.** Should all publications be tagged with the 2025–2028 categories, or should earlier strategy categories be mapped across too? Earlier areas included land resources, socio-economic transitions and education for sustainable development. Proposal: tag everything with the current categories and keep the BORIS unit as recorded, so historical shifts stay visible. This affects nearly the whole corpus: only about 250 publications date from 2025 or later, and about 270 predate 2010.
 - [ ] **Partner regions.** Are there four or five, and which countries belong to each?
 - [ ] **Objectives and pathways.** Can these be tagged reliably from publication text, or are they better recorded at project level from BORIS project records?
 - [ ] **Method granularity.** Are 34 terms in eight groups the right level of detail, or should gap counts use the eight groups and keep terms for drill-down?
@@ -163,3 +168,4 @@ Each actor tag also records a **role**: *studied*, *engaged as co-producer* or *
 - [CDE Annual Report 2020: key partner regions](https://annualreport2020.cde.unibe.ch/pages/key-partner-regions/detailstory.html)
 - [Centre for Development and Environment (Wikipedia)](<https://en.wikipedia.org/wiki/Centre_for_Development_and_Environment_(Switzerland)>), for earlier research areas
 - BORIS Portal unit pages, e.g. [CDE – Sustainable Land Systems](https://boris-portal.unibe.ch/handle/20.500.12422/30981) and [CDE – Sustainable Governance](https://boris-portal.unibe.ch/handle/20.500.12422/30635)
+- [Transformative pathways for social networks to navigate towards a nature-positive society: collaborate, challenge, and disrupt](https://www.sciencedirect.com/science/article/pii/S1877343526000138)

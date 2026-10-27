@@ -1,0 +1,63 @@
+# ChatCDE default configuration.
+# Users override values in a local file (e.g. ~/.config/chatcde/config.yaml);
+# never commit secrets such as API keys. Values marked TODO are placeholders.
+
+version: 1
+
+# --- Local LLM endpoint (OpenAI-compatible: GPUStack, vLLM or Ollama) --------
+llm:
+  base_url: "https://gpustack.example.unibe.ch/v1"   # TODO: real GPUStack URL
+  api_key_env: "CHATCDE_LLM_API_KEY"                 # read from this env variable
+  timeout_s: 120
+  max_concurrency: 4                                 # TODO: confirm GPUStack limit
+
+# Models by role; candidates are compared with `chatcde evaluate`.
+# See docs/decisions/0003-models-by-role.md.
+models:
+  agent: "gpt-oss-120b"                  # alternative: minimax-m2.7
+  tagging: "qwen3.8-27b"                 # alternative: lfm2.5-24b-a2b
+  embedding: "qwen3-embedding-4b"        # alternative: granite-embedding-107m-multilingual
+  reranker: "jina-reranker-v2-base-multilingual"
+  vision: "qwen3-vl-30b-a3b-instruct"    # scanned pages, figures; alternative: internvl3-8b-instruct
+  speech: "faster-whisper-large-v3"      # optional: audiovisual records
+
+# --- Sources -------------------------------------------------------------
+boris:
+  api_base: "https://boris-portal.unibe.ch/server/api"  # UniBe network / VPN only
+  cde_query: '"Centre for Development and Environment"'
+  request_delay_s: 0.3
+openalex:
+  api_base: "https://api.openalex.org"
+  mailto: ""                                         # TODO: contact email for the polite pool
+
+# --- Data bundles (see docs/decisions/0004-two-data-editions.md) ----------
+data:
+  dir: "data"
+  editions:
+    full:
+      # Hosted on CDE's server, reachable only from the UniBe network / VPN.
+      url: "https://cde-server.example.unibe.ch/chatcde/bundles/"  # TODO: real location
+      probe_timeout_s: 5
+    open:
+      url: "https://github.com/nmkearney/CAS-AML-Module3/releases/download/"  # TODO: confirm
+  default_edition: "auto"        # auto = try full, fall back to open
+
+# --- Vocabulary and prompts ---------------------------------------------
+vocab:
+  file: "vocab/draft_vocabulary.yaml"
+  version: "0.1"
+prompts:
+  dir: "src/chatcde/prompts"
+
+# --- Retrieval ------------------------------------------------------------
+retrieval:
+  chunk_tokens: 500              # fits the reranker's 1K context
+  chunk_overlap_tokens: 50
+  top_k: 40                      # candidates before reranking
+  top_n: 8                       # passages passed to the agent
+
+# --- Evaluation -----------------------------------------------------------
+evaluation:
+  reference_set: "data/reference/reference_tags.yaml"
+  questions: "tests/questions.yaml"
+  min_precision: 0.7             # TODO: set and justify in a decision record

@@ -3,7 +3,7 @@
 # cde.unibe.ch pages; terms marked `proposed: true` are not from a CDE source.
 # To be revised in the schema workshop and tested on a 200-300 record sample.
 
-version: 0.1
+version: 0.2
 
 impact_area:
   - {code: JE, label: Just economies and human well-being, boris_unit: "Just Economies & Human Well Being"}
@@ -80,6 +80,23 @@ research_mode:
   - {code: M2, label: Transformation research, definition: "Analyses conditions, characteristics and drivers of societal and environmental change; theory development"}
   - {code: M3, label: Transformative education, definition: "Reshapes education systems and curricula to build competencies for transformation"}
   - {code: M4, label: Transformation education, definition: "Investigates how sustainability competencies can be fostered and assessed"}
+
+transformative_aspiration:  # Westerink et al. 2026; multi-valued, tag only when clear
+  - code: TA1
+    label: Collaborate
+    definition: "Works within existing systems, building trust and coalitions of the willing to change them from the inside."
+    examples: "Sector standards, public-private partnerships, community-based resource management, living labs, capacity building"
+  - code: TA2
+    label: Challenge
+    definition: "Critically and constructively confronts the politics behind unsustainable or inequitable practices, holding powerful actors responsible while still engaging them."
+    examples: "Tracing impact chains to responsible actors, pushing for stronger regulation, open letters to governments, centring marginalised groups"
+  - code: TA3
+    label: Disrupt
+    definition: "Seeks to break down system elements that block sustainability (phasing out) and reconfigure them (phasing in), radically altering or replacing existing structures."
+    examples: "Evidence for litigation, science support for social movements, nonviolent efforts to halt harmful production or perverse incentives"
+  - code: TA0
+    label: None explicit
+    definition: "The work states no aspiration to change the systems it studies, as in much purely analytical research."
 
 method:  # proposed seed list, 34 terms in 8 groups
   participatory_transdisciplinary:

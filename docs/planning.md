@@ -1,11 +1,11 @@
-# CDE Research Assistant: MCP Tools and Use Cases
+# ChatCDE: Tools and Use Cases (prototype)
 
 Exported 2026-10-27 from the planning doc (https://claude.ai/artifact/93ZrZB6GgHHQDUUsyCtKvi).
 For the build, this repo copy is the reference; discussion happens in the doc. Re-export when the doc changes in substance.
 
 ## Purpose and architecture
 
-An MCP server sits between a local LLM and five local stores built from BORIS and related sources. The model handles the questions, and the tools supply the evidence, counts and citations. Nothing leaves UniBe infrastructure: Ubelix/GPUStack or a CDE workstation.
+ChatCDE is a prototype: a Python package with a command-line interface that answers questions about CDE's publications. Its tools query five local stores built from BORIS and related sources, and a local LLM, reached through an OpenAI-compatible endpoint, answers questions by calling those tools. The publications are public, so the build has no privacy constraints. Every LLM call, both in the pipeline and when researchers ask questions, goes to a local model on Ubelix/GPUStack or a CDE workstation.
 
 - **Text index:** full text and abstracts, chunked and embedded with a multilingual model such as bge-m3, searched by vectors and keywords together.
 - **Catalogue:** one row per publication, holding the BORIS metadata plus extracted fields (themes, methods, regions, scale, data types, SDGs, stakeholder groups) mapped to a controlled vocabulary.
@@ -27,17 +27,50 @@ An MCP server sits between a local LLM and five local stores built from BORIS an
   Text index | Catalogue | Field corpus | Geodata | People graph
         |
         v
-  MCP server: 19 tools in six groups
+  Tool layer: 19 Python functions in six groups
   (search, gap analysis, field comparison, people and projects, geodata, curation)
         ^  tool calls and results
         v
-  Local LLM and chat client (answers with counts and BORIS citations)
+  chatcde command line + local LLM (answers with counts and BORIS citations)
         ^  questions and cited answers
         v
   CDE researchers
 ```
 
-Only the harvest reaches outside the university. The pipeline, stores, MCP server, model and every question stay on UniBe machines.
+Only the harvest reaches outside the university. The pipeline, stores, tools, model and every question stay on UniBe machines.
+
+## Interface and distribution
+
+Researchers use ChatCDE from the command line. The tools are plain Python functions, so a web app or an MCP server can be added later without rewriting them.
+
+| Command | What it does |
+| --- | --- |
+| `chatcde ask "…"` | Free question; the local LLM chooses and calls the tools, then answers with citations |
+| `chatcde chat` | Interactive session in the terminal, keeping context between questions |
+| `chatcde gaps`, `chatcde frontier`, `chatcde brief`, `chatcde experts` | Fixed workflows with a set tool chain and output format |
+| `chatcde search`, `chatcde count`, `chatcde vocab`, `chatcde coverage` | Direct tool calls, without the LLM |
+| `chatcde harvest`, `parse`, `tag`, `index`, `evaluate` | Build pipeline stages, each resumable and logged |
+| `chatcde fetch-data` | Download a prebuilt data bundle instead of running the pipeline |
+
+The code and the data are distributed separately:
+
+- **Package:** installed with `pip install git+https://github.com/nmkearney/CAS-AML-Module3`, built from `pyproject.toml`, with `chatcde` as its command.
+- **Data bundles:** the catalogue, search index and vocabulary as a versioned archive, in two editions built from the same index:
+  - **Full:** all full texts. Hosted on CDE's server, reachable only from the UniBe network or VPN (location to be confirmed).
+  - **Open:** full text only for open-access records; metadata and abstracts for the rest. Hosted publicly.
+  - `chatcde fetch-data` tries the full edition and falls back to the open one; `chatcde info` shows which edition is in use. If restricted texts may not be copied to staff machines, users get the open edition and run `chatcde fetch-data --top-up` on the VPN to fetch the remaining PDFs from BORIS themselves.
+- **Configuration:** `config/default.yaml` sets the LLM endpoint, the model for each role, paths, bundle locations and the vocabulary version. The same code runs against GPUStack, vLLM or Ollama without changes.
+
+**Models by role** (GPUStack; compared with `chatcde evaluate`):
+
+| Role | First choice | Alternative |
+| --- | --- | --- |
+| Agent (tool calling, answers) | gpt-oss-120b | minimax-m2.7 |
+| Bulk tagging (JSON output) | qwen3.8-27b | lfm2.5-24b-a2b |
+| Embeddings | qwen3-embedding-4b | granite-embedding-107m-multilingual |
+| Reranking | jina-reranker-v2-base-multilingual | — |
+| Scanned pages and figures | qwen3-vl-30b-a3b-instruct | internvl3-8b-instruct |
+| Audiovisual records (optional) | faster-whisper-large-v3 | — |
 
 ## Design principles
 
@@ -47,12 +80,15 @@ The tools do the counting and the model does the interpreting.
 2. **Every claim is traceable.** Tools return BORIS handles or DOIs with each result, and answers cite them.
 3. **No absence claims without a query.** Calling something "rare" or "missing" requires a catalogue count and its denominator, not the absence of search hits.
 4. **Coverage is disclosed.** Tools report how many records lack full text or reliable tags, so missing data isn't mistaken for a research gap.
-5. **Read-only by default.** No tool writes to BORIS or changes the vocabulary. Only `report_issue` writes, and it writes to a local curation log that people review.
-6. **Few, clear tools.** Mid-sized local models choose tools less reliably than frontier models. Start with the core tools of phase 1, give each one plain arguments and a precise description, and add others only when a use case needs them.
+5. **Read-only by default.** No tool writes to BORIS or changes the vocabulary. Only `report_issue` writes, to a local curation log.
+6. **Few, clear tools.** Mid-sized local models choose tools less reliably than frontier models. Start with the phase 1 tools, give each one plain arguments and a precise docstring, and add others only when a use case needs them.
+7. **Everything is reviewable code.** Each step is a documented command or function, with type hints, docstrings, a README and tests. Notebooks are for exploring only, never part of the pipeline.
+8. **Reproducible outputs.** Every output records the vocabulary version, prompt version and model that produced it, and every design choice is logged in `docs/decisions/`.
+9. **Local LLM only.** All model calls go to a configurable OpenAI-compatible endpoint on UniBe hardware, with structured JSON output for tagging.
 
 ## Tool catalogue
 
-The catalogue has 19 tools in six groups. Seven are needed for the phase 1 pilot. All filters share one set: year range, CDE unit, publication type, language, region, theme, method and SDG.
+The catalogue has 19 tools in six groups, seven of them needed for the first prototype. Each tool is a typed, documented Python function in `chatcde.tools`. The command line exposes it as a subcommand, and the LLM agent receives it as a function definition generated from its signature and docstring. All filters share one set: year range, CDE unit, publication type, language, region, theme, method and SDG.
 
 ### Search and reading
 
@@ -122,71 +158,87 @@ The two core uses, gaps and frontiers, rely on catalogue and field tools for the
 | Reporting | How do our 2025 outputs map to the SDGs? | `count_by` (SDG × year) → `trend` | Draft text for the annual report |
 | Data discovery | Which CDE datasets cover land use in Myanmar? | `find_datasets` → `spatial_footprint` | Explains access conditions and the linked publications |
 
-## Prompts and resources
+## Workflows and reference data
 
-MCP prompts script the core workflows, so a mid-sized model follows the same tool chain and output format every time. Resources give the model reference material without a tool call.
+Fixed workflows script the core uses, so a mid-sized local model follows the same tool chain and output format every time. Each is a command with its own prompt template in `src/chatcde/prompts/`, versioned like the vocabulary. They map one-to-one to MCP prompts if an MCP server is added later.
 
-**Prompts** (each one fixes the tool chain and ends with an evidence table plus caveats):
+| Command | Tool chain and output |
+| --- | --- |
+| `chatcde gaps --scope … --dims theme,method` | The method and topic gap workflow for a unit, theme or region; ends with an evidence table and coverage caveats |
+| `chatcde frontier --strength …` | CDE's record in an area, how the field is moving, and two or three candidate directions |
+| `chatcde brief --topic … [--region …]` | A cited synthesis of CDE findings |
+| `chatcde experts --topic …` | People, units and projects, with reasons |
 
-- `gap_scan(scope, dimensions)`: runs the method and topic gap workflow for a unit, theme or region.
-- `frontier_brief(strength)`: CDE's record in an area, how the field is moving, and two or three candidate directions.
-- `literature_brief(topic, region?)`: a cited synthesis of CDE findings.
-- `expertise_lookup(topic)`: people, units and projects, with reasons.
-- `proposal_background(call_text)`: relevant prior work and a track-record paragraph.
+Reference data is available both to the agent and on the command line:
 
-**Resources:**
-
-- `vocab://{dimension}`: the controlled vocabulary with definitions.
-- `schema://catalogue`: what each extracted field means and how it was tagged.
-- `stats://coverage`: a corpus snapshot by year, type, language and full-text availability.
-- `cde://units` and `cde://glossary`: CDE's structure and key concepts.
-- `field://definition`: the OpenAlex queries that built the field corpus.
-- `log://harvests`: the date and scope of each harvest, so answers can state how current they are.
+- `chatcde vocab [dimension]`: the controlled vocabulary with definitions.
+- `chatcde schema`: what each catalogue field means and how it was tagged.
+- `chatcde coverage`: a corpus snapshot by year, type, language and full-text availability.
+- `chatcde info`: data bundle version, harvest date, models and vocabulary version in use.
 
 ## Schema and vocabulary
 
-People set the schema by hand. The LLM helps build each vocabulary, and people have the final say on it.
+In the prototype, the developer sets the schema and curates the vocabularies, and the local LLM drafts them from the corpus. Each choice is recorded in `docs/decisions/`, so a later phase can revisit it with CDE staff.
 
 | Layer | What it is | Who builds it |
 | --- | --- | --- |
-| Schema | The dimensions (themes, methods, region, scale, data type, SDGs, stakeholders), each with a definition, whether a record can carry several values, and its granularity | Senior researchers, in a workshop of about two hours |
-| Standard vocabularies | Region (ISO 3166 codes, UN M49 regions), SDGs, publication type (from BORIS) | Taken as they are; the LLM tags against them directly |
-| Interpretive vocabularies | Themes, methods, transdisciplinary approach and similar | Drafted by the LLM from the corpus, curated by people |
+| Schema | The 17 dimensions, each with a definition, whether a record can carry several values, and its granularity | Developer, from the 2025–2028 strategy; choices logged as decision records |
+| Standard vocabularies | Country (ISO 3166), region (UN M49), SDGs, publication type (from BORIS) | Taken as they are; the LLM tags against them directly |
+| Interpretive vocabularies | Sub-areas, methods, systems, actors and similar | Drafted by the local LLM from the corpus, curated by the developer |
 
 Granularity is the main schema decision. A vocabulary that's too fine creates gaps that aren't real, and one that's too coarse hides the real ones.
 
 **Building an interpretive vocabulary:**
 
-1. **Seed (people).** Start from CDE's units and research clusters, terms already in use such as WOCAT categories, and OpenAlex's topic hierarchy as an outside reference.
-2. **Open extraction (LLM).** On a stratified sample of 200–300 documents across units, decades and languages, the LLM writes free-text labels for methods and themes, without a fixed list.
-3. **Draft terms (LLM).** Cluster the labels by embedding, then have the LLM propose candidate terms, definitions and merges.
-4. **Curate (people).** Accept, merge, split or rename terms, and write a definition and an inclusion rule for each. Aim for 15–40 terms per dimension, with at most two levels.
-5. **Tag the corpus (LLM).** Tag against the closed list, recording a confidence score and a short supporting quote per tag, with an "other: …" option when nothing fits.
-6. **Validate (people).** Two people independently tag about 100 documents. Compare them with each other and with the LLM. Where agreement is low, revise the definition.
-7. **Maintain (both).** Review the "other" bucket periodically, version every vocabulary change, and re-tag only the dimensions that change.
+1. **Seed (code).** Start from `vocab/draft_vocabulary.yaml`, derived from the strategy, with OpenAlex's topic hierarchy as an outside reference.
+2. **Open extraction (LLM).** On a stratified sample of 200–300 records across units, decades and languages (at least English and German), the LLM writes free-text labels for methods and themes: `chatcde vocab extract`.
+3. **Draft terms (LLM).** Cluster the labels by embedding and have the LLM propose terms, definitions and merges into `vocab/candidates.yaml`.
+4. **Curate (developer).** Accept, merge, split or rename terms in the YAML, then commit with a changelog entry. Aim for 15–40 terms per dimension, with at most two levels.
+5. **Tag the corpus (LLM).** `chatcde tag` tags against the closed list using structured JSON output, recording a confidence score and a short supporting quote per tag, with an "other: …" option.
+6. **Validate (developer and code).** The developer hand-tags a reference set of about 50 records. `chatcde evaluate` reports precision and recall per dimension against it, plus agreement between two LLM runs. Definitions with low scores are revised.
+7. **Maintain.** Review the "other" bucket, version every vocabulary change, and re-tag only the dimensions that change.
 
-Neither extreme works. LLM-only categories drift between runs, reflect how the wider field frames things rather than CDE, and have no owner. Manual-only vocabularies are slow, miss what the corpus contains, and encode assumptions about CDE that the gap analysis should be testing.
-
-**Pilot effort:** about two workshop sessions plus a few days of curation and gold-standard tagging, shared among two or three people. The LLM steps run overnight.
+**Prototype effort:** a few days of curation and reference tagging by the developer; the LLM steps run overnight. If the prototype goes further, staff review replaces developer review and the reference set grows.
 
 The first draft of the schema and vocabularies, built from the 2025–2028 strategy, is in [schema_draft.md](schema_draft.md); the machine-readable version is `vocab/draft_vocabulary.yaml`.
 
+## Team and workflow
+
+Two developers work in parallel, split between building the data and using it. They meet at the shared data formats in `src/chatcde/schemas.py`, agreed on day 1 together with a small set of test fixtures, so Track B can build tools before the real data exists.
+
+| | Track A: Data (Norman) | Track B: Assistant (colleague) |
+| --- | --- | --- |
+| Owns | Harvest, parsing, vocabulary, tagging, data bundles | Chunking, embeddings, search, tools, agent, workflows |
+| Build steps | 2 and 3 | 4 |
+| Cross-check of the other track | Writes the 20–30 test questions | Hand-tags part of the reference set |
+
+Steps 1 and 5 are joint. All work goes through branches and pull requests approved by the other developer, tracked as GitHub issues by milestone (one per build step). `CONTRIBUTING.md` has the workflow and the GitHub setup steps; `scripts/create_github_issues.py` creates the labels, milestones and 29 issues from `scripts/issues.yaml`.
+
 ## Build order and open questions
 
-The build runs in three phases. Each phase moves on only once its gate is passed.
+The prototype covers all 2,507 CDE publications and is built in five steps, each ending with a check that can be run as a command.
 
-1. **Pilot, one CDE unit.** Harvest, parse and tag that unit's publications, then build the seven phase 1 tools and the `gap_scan` prompt.
-   - Gate: the unit agrees the gap tables are accurate, and the system passes 20–30 test questions with known answers.
-2. **All of CDE, plus frontiers.** Extend to the full corpus and add the field corpus, trends, people and projects, spatial footprints and `report_issue`.
-   - Gate: leadership agrees how gap and expertise results are framed and who can see them.
-3. **Extras.** Add `collaboration_network`, `find_datasets` and `query_layer`, and schedule re-harvests.
+1. **Package skeleton.** `pyproject.toml`, `config.yaml`, the `chatcde` command, logging, linting (ruff) and a test suite (pytest).
+   - Check: `pip install -e .` works, `chatcde --help` lists the commands, tests pass.
+2. **Harvest and parse.** BORIS metadata for every record, PDFs where available, OpenAlex abstracts for DOIs without one, then parsing with OCR for scans. A manifest records each record's status.
+   - Check: `chatcde coverage` shows the full-text and abstract shares by year, type and language.
+3. **Vocabulary and tagging.** Seed, extract, curate and tag as above, plus the reference set.
+   - Check: `chatcde evaluate` meets the precision threshold set in a decision record.
+4. **Tools, agent and command line.** The seven phase 1 tools, the agent loop and `chatcde gaps`.
+   - Check: the system passes 20–30 test questions with known answers, kept in `tests/questions.yaml`.
+5. **Demonstration.** Add `trend`, `find_expertise` and the field comparison if time allows; build the data bundle; write a README walkthrough and a demo script.
+
+If the prototype succeeds, later work adds a web app or MCP server, staff review of the vocabulary, the geodata tools and scheduled re-harvests.
 
 **Open questions:**
 
-- [x] What do the inventory results show? Answered 2026-10-27: 2,507 publications, ~70% with files attached, ~15 datasets (see CLAUDE.md).
-- [ ] Which models does Ubelix/GPUStack serve with tool calling, and at what context length and concurrency?
-- [ ] Which chat client will host the MCP server, and does it support MCP prompts and resources as well as tools?
-- [ ] Who owns the controlled vocabulary and approves changes to it?
-- [ ] Does the University Library confirm that restricted publisher PDFs may be indexed internally?
-- [ ] Where is CDE's geodata held outside BORIS?
-- [ ] Should staff be told about, or opt into, the expertise and collaboration tools?
+- [x] What do the inventory results show? 2,507 publications, about 70% with files attached, about 15 datasets.
+- [x] How will researchers use it? Command line first; web app or MCP server later.
+- [x] May the build use cloud models? No: every LLM call stays local.
+- [x] Which models are available? GPUStack's list; roles assigned above.
+- [ ] Are tool calling and JSON-schema output enabled on GPUStack for gpt-oss-120b and qwen3.8-27b, and what is the concurrency limit?
+- [ ] Exact location of the full edition on CDE's server.
+- [ ] Does the University Library confirm that restricted publisher texts may be copied to staff machines? If not, use `--top-up`.
+- [ ] Can files marked "restricted" in BORIS be downloaded on the VPN?
+- [ ] Where is CDE's geodata held outside BORIS? (Deferred until after the prototype.)
+- [ ] If the prototype continues, who reviews the vocabulary, and should staff be told about the expertise tools?

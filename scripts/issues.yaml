@@ -1,0 +1,172 @@
+# GitHub labels, milestones and issues for the ChatCDE prototype.
+# Create them with: python scripts/create_github_issues.py --dry-run   (check)
+#                   python scripts/create_github_issues.py             (create)
+# Milestones follow the build steps in docs/planning.md.
+
+labels:
+  - {name: "track:A-data", color: "1f6feb", description: "Harvest, parse, vocabulary, tagging, bundles"}
+  - {name: "track:B-assistant", color: "8957e5", description: "Index, search, tools, agent, CLI"}
+  - {name: "joint", color: "d29922", description: "Both developers"}
+  - {name: "schemas", color: "cf222e", description: "Changes shared formats; needs both approvals"}
+  - {name: "decision", color: "57606a", description: "Needs a record in docs/decisions/"}
+  - {name: "cross-check", color: "2da44e", description: "Independent check of the other track's work"}
+
+milestones:
+  - "Step 1: Package skeleton"
+  - "Step 2: Harvest and parse"
+  - "Step 3: Vocabulary and tagging"
+  - "Step 4: Tools, agent and CLI"
+  - "Step 5: Demonstration"
+
+issues:
+  # ---------------- Joint ----------------
+  - title: "Package skeleton: pyproject, chatcde CLI, config loader, logging"
+    labels: [joint]
+    milestone: "Step 1: Package skeleton"
+    body: |
+      Build step 1 (docs/planning.md). `pyproject.toml` (src layout, console script `chatcde`),
+      `config.py` loading `config/default.yaml` plus a local override, logging setup, ruff and pytest config.
+      Each subpackage registers its own Typer sub-app; `cli.py` only assembles them.
+      Done when: `pip install -e ".[dev]"` works, `chatcde --help` lists command groups, CI is green.
+  - title: "Agree shared formats in schemas.py and tool signatures"
+    labels: [joint, schemas]
+    milestone: "Step 1: Package skeleton"
+    body: |
+      Review the draft `src/chatcde/schemas.py` and `src/chatcde/tools/core.py` together and agree on them.
+      From then on, changes need a PR approved by both (CONTRIBUTING.md).
+  - title: "Test fixtures: about 30 real records with hand-made tags and pages"
+    labels: [joint]
+    milestone: "Step 1: Package skeleton"
+    body: |
+      `tests/fixtures/`: about 30 records from `cde_records.csv` across units, years and languages, with
+      hand-made tags, a few PageText objects, and a fixture DuckDB built from them.
+      Lets Track B build and test tools before the real pipeline exists.
+  - title: "Check GPUStack: tool calling, JSON-schema output, concurrency, base URL"
+    labels: [joint, decision]
+    milestone: "Step 1: Package skeleton"
+    body: |
+      Small script in `scripts/` that calls each configured model through the OpenAI-compatible API:
+      a tool call (gpt-oss-120b, minimax-m2.7), a `response_format` JSON-schema request
+      (qwen3.8-27b, lfm2.5-24b-a2b), an embedding and a rerank request. Record results in
+      docs/decisions/0003-models-by-role.md and fill the TODOs in config/default.yaml.
+  - title: "Integration on the real catalogue"
+    labels: [joint]
+    milestone: "Step 5: Demonstration"
+    body: Run Track B's tools and agent on Track A's real catalogue; fix what breaks.
+  - title: "Demo script and README walkthrough"
+    labels: [joint]
+    milestone: "Step 5: Demonstration"
+    body: A README section from install to first answer, and a scripted demo (5-6 questions) for the presentation.
+
+  # ---------------- Track A ----------------
+  - title: "A1 Harvest BORIS metadata into the catalogue"
+    labels: ["track:A-data"]
+    milestone: "Step 2: Harvest and parse"
+    body: |
+      Port `scripts/boris_cde_inventory.py` into `chatcde.harvest` (`chatcde harvest metadata`).
+      Fix field names from `data/cde_fields.txt` first. Write `Record` and `Author` rows.
+      Resumable; ~0.3 s between requests; fail clearly when not on the VPN.
+  - title: "A2 Download PDFs with a download manifest"
+    labels: ["track:A-data"]
+    milestone: "Step 2: Harvest and parse"
+    body: |
+      `chatcde harvest files`: ORIGINAL bundle bitstreams to `data/raw/`, one `ManifestEntry` per record
+      (downloaded / restricted / no_file / error, sha256). Report how many "restricted" files actually
+      downloaded on the VPN (open question in CLAUDE.md).
+  - title: "A3 OpenAlex enrichment: abstracts for DOIs without one"
+    labels: ["track:A-data"]
+    milestone: "Step 2: Harvest and parse"
+    body: "`chatcde harvest openalex`: fill `abstract` (source `abstract_openalex`) and note OA PDF links. Use the polite pool (mailto in config)."
+  - title: "A4 Parse PDFs to PageText, with OCR for scans"
+    labels: ["track:A-data", decision]
+    milestone: "Step 2: Harvest and parse"
+    body: |
+      `chatcde parse`: PDF -> one `PageText` per page. Detect pages without a text layer and send them to the
+      vision model (config role `vision`). Record the parser choice as a decision.
+  - title: "A5 chatcde coverage command"
+    labels: ["track:A-data"]
+    milestone: "Step 2: Harvest and parse"
+    body: Report full-text / abstract-only / metadata-only shares by year, type, language and access rights.
+  - title: "A6 Decisions: older work, partner regions, conference items"
+    labels: ["track:A-data", decision]
+    milestone: "Step 3: Vocabulary and tagging"
+    body: |
+      Decision records for: tagging pre-2025 work with 2025-2028 categories; the CDE partner-region mapping;
+      how conference items (564) count in gap analysis.
+  - title: "A7 Open extraction on a stratified sample"
+    labels: ["track:A-data"]
+    milestone: "Step 3: Vocabulary and tagging"
+    body: "`chatcde vocab extract`: 200-300 records stratified by unit, decade and language; free-text method and theme labels; cluster and propose terms into `vocab/candidates.yaml`."
+  - title: "A8 Curate vocabulary v0.2"
+    labels: ["track:A-data"]
+    milestone: "Step 3: Vocabulary and tagging"
+    body: Edit `vocab/draft_vocabulary.yaml` from the candidates; add `vocab/CHANGELOG.md`; keep docs/schema_draft.md in sync.
+  - title: "A9 Tag the corpus"
+    labels: ["track:A-data"]
+    milestone: "Step 3: Vocabulary and tagging"
+    body: |
+      `chatcde tag`: closed-list tagging with JSON-schema output, one `Tag` per term with confidence,
+      evidence quote and provenance. Resumable; respects GPUStack concurrency. Country -> region derived in code.
+  - title: "A10 Reference set and chatcde evaluate (tagging)"
+    labels: ["track:A-data", decision]
+    milestone: "Step 3: Vocabulary and tagging"
+    body: |
+      About 50 hand-tagged records in `data/reference/` (Track B tags part of them, see cross-check issue).
+      `chatcde evaluate tagging`: precision/recall per dimension, agreement between two runs, and
+      first-choice vs alternative model. Record the threshold and results as decisions.
+  - title: "A11 chatcde export: full and open editions"
+    labels: ["track:A-data"]
+    milestone: "Step 5: Demonstration"
+    body: Build both bundles with `BundleManifest`; open edition keeps full text only for `access == open`.
+  - title: "A12 chatcde fetch-data (auto edition, --top-up)"
+    labels: ["track:A-data"]
+    milestone: "Step 5: Demonstration"
+    body: Probe the full-edition URL (placeholder in config), fall back to open; verify checksums; `--top-up` fallback.
+  - title: "Cross-check: write 20-30 test questions with known answers"
+    labels: ["track:A-data", cross-check]
+    milestone: "Step 4: Tools, agent and CLI"
+    body: |
+      `tests/questions.yaml`: questions about CDE's work whose answers you can verify (expected records,
+      counts or facts), covering search, counts, gaps and synthesis. Written by Track A, used to test Track B.
+
+  # ---------------- Track B ----------------
+  - title: "B1 Chunking from PageText and abstracts"
+    labels: ["track:B-assistant"]
+    milestone: "Step 4: Tools, agent and CLI"
+    body: "`chatcde index chunk`: ~500-token chunks with overlap (config), `Chunk` rows; abstracts and metadata-only records get chunks too."
+  - title: "B2 Embeddings and vector index"
+    labels: ["track:B-assistant", decision]
+    milestone: "Step 4: Tools, agent and CLI"
+    body: "`chatcde index embed` with the `embedding` role model; choose and record the vector store (e.g. DuckDB VSS, LanceDB, FAISS)."
+  - title: "B3 Hybrid search and reranking"
+    labels: ["track:B-assistant"]
+    milestone: "Step 4: Tools, agent and CLI"
+    body: BM25 + vector search, merged, then reranked with the `reranker` role model; applies `Filters`.
+  - title: "B4 Tools: search_publications, get_publication, read_section"
+    labels: ["track:B-assistant"]
+    milestone: "Step 4: Tools, agent and CLI"
+    body: Implement against the fixtures first; unit tests in `tests/`.
+  - title: "B5 Tools: list_vocabulary, count_by, find_gaps, coverage_report"
+    labels: ["track:B-assistant"]
+    milestone: "Step 4: Tools, agent and CLI"
+    body: SQL over the catalogue; every count with its denominator and record IDs; unit tests on the fixtures.
+  - title: "B6 Agent loop over the OpenAI-compatible API"
+    labels: ["track:B-assistant"]
+    milestone: "Step 4: Tools, agent and CLI"
+    body: Tool definitions generated from signatures and docstrings; citation format; max tool-call budget; `agent` role model.
+  - title: "B7 chatcde ask and chatcde chat"
+    labels: ["track:B-assistant"]
+    milestone: "Step 4: Tools, agent and CLI"
+    body: Rich output with citations (BORIS links) and the edition/coverage note.
+  - title: "B8 chatcde gaps workflow and prompt"
+    labels: ["track:B-assistant"]
+    milestone: "Step 4: Tools, agent and CLI"
+    body: Fixed tool chain and output format; versioned prompt in `src/chatcde/prompts/`.
+  - title: "B9 chatcde evaluate questions"
+    labels: ["track:B-assistant"]
+    milestone: "Step 4: Tools, agent and CLI"
+    body: Run `tests/questions.yaml` through the agent and score answers; compare agent models.
+  - title: "Cross-check: hand-tag part of the reference set"
+    labels: ["track:B-assistant", cross-check]
+    milestone: "Step 3: Vocabulary and tagging"
+    body: Independently tag 20-25 of the reference records so tagging is not scored only by its designer.

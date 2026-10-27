@@ -14,29 +14,32 @@ Outputs:
                          plus the most common subject keywords
     cde_fields.txt       which metadata fields BORIS uses on CDE records
 """
+
 import argparse
 import collections
 import csv
 import json
 import random
 import re
+import ssl
 import sys
 import time
 import urllib.parse
 import urllib.request
 
-import ssl
-
 try:  # python.org builds on macOS ship without root certificates
     import certifi
+
     SSL_CTX = ssl.create_default_context(cafile=certifi.where())
 except ImportError:
     SSL_CTX = ssl.create_default_context()
 
 BASE = "https://boris-portal.unibe.ch/server/api"
 CDE = "Centre for Development and Environment"
-UA = {"User-Agent": "CDE-RAG-feasibility/0.1 (internal inventory)",
-      "Accept": "application/json"}
+UA = {
+    "User-Agent": "CDE-RAG-feasibility/0.1 (internal inventory)",
+    "Accept": "application/json",
+}
 
 
 def get_json(url):
@@ -44,18 +47,22 @@ def get_json(url):
     with urllib.request.urlopen(req, timeout=60, context=SSL_CTX) as r:
         body = r.read().decode("utf-8", "replace")
     if body.lstrip().startswith("<"):
-        sys.exit("Got an HTML page instead of JSON. Are you on the UniBe VPN? "
-                 "(The API returns a 'Temporary Access Restriction' page otherwise.)")
+        sys.exit(
+            "Got an HTML page instead of JSON. Are you on the UniBe VPN? "
+            "(The API returns a 'Temporary Access Restriction' page otherwise.)"
+        )
     return json.loads(body)
 
 
 def search_page(page, size=100):
-    q = urllib.parse.urlencode({
-        "query": f'"{CDE}"',
-        "dsoType": "ITEM",
-        "size": size,
-        "page": page,
-    })
+    q = urllib.parse.urlencode(
+        {
+            "query": f'"{CDE}"',
+            "dsoType": "ITEM",
+            "size": size,
+            "page": page,
+        }
+    )
     return get_json(f"{BASE}/discover/search/objects?{q}")
 
 
@@ -101,10 +108,18 @@ def is_cde(md):
     """True if any affiliation/organisation-like field mentions CDE."""
     for k, vs in md.items():
         kl = k.lower()
-        if any(n in kl for n in ("affiliation", "orgunit", "department",
-                                  "contributor", "credit", "publisher")):
-            if any(CDE in v.get("value", "") for v in vs):
-                return True
+        if any(
+            n in kl
+            for n in (
+                "affiliation",
+                "orgunit",
+                "department",
+                "contributor",
+                "credit",
+                "publisher",
+            )
+        ) and any(CDE in v.get("value", "") for v in vs):
+            return True
     return False
 
 
@@ -130,18 +145,25 @@ def has_original_files(item_uuid):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--check-files", type=int, default=0,
-                    help="sample N records and check for attached files")
-    ap.add_argument("--delay", type=float, default=0.3,
-                    help="seconds between requests (be gentle)")
+    ap.add_argument(
+        "--check-files",
+        type=int,
+        default=0,
+        help="sample N records and check for attached files",
+    )
+    ap.add_argument(
+        "--delay", type=float, default=0.3, help="seconds between requests (be gentle)"
+    )
     args = ap.parse_args()
 
     first_page = search_page(0, size=100)
     sr = first_page["_embedded"]["searchResult"]
     total_hits = sr["page"]["totalElements"]
     total_pages = sr["page"]["totalPages"]
-    print(f"Search hits mentioning CDE (upper bound): {total_hits} "
-          f"across {total_pages} pages")
+    print(
+        f"Search hits mentioning CDE (upper bound): {total_hits} "
+        f"across {total_pages} pages"
+    )
 
     rows = []
     field_census = collections.Counter()
@@ -151,22 +173,28 @@ def main():
         for o in objs:
             item = o["_embedded"]["indexableObject"]
             md = item.get("metadata", {})
-            rows.append({
-                "uuid": item.get("uuid", ""),
-                "entity_type": first(md, "dspace.entity.type"),
-                "is_cde": is_cde(md),
-                "title": first(md, "dc.title"),
-                "year": first(md, "dc.date.issued")[:4],
-                "type": first(md, "dc.type"),
-                "language": "; ".join(values(md, "dc.language.iso")),
-                "access": "; ".join(sorted(set(keys_like(md, "rights", "access")))),
-                "doi": first(md, "dc.identifier.doi"),
-                "cde_units": "; ".join(sorted(cde_units(md))),
-                "has_abstract": bool(values(md, "dc.description.abstract")),
-                "keywords": "; ".join(clean(k) for k in keys_prefixed(md, "dc.subject")),
-                "container": first(md, "dc.relation.ispartof", "dc.relation.ispartofseries"),
-                "abstract": clean(first(md, "dc.description.abstract")),
-            })
+            rows.append(
+                {
+                    "uuid": item.get("uuid", ""),
+                    "entity_type": first(md, "dspace.entity.type"),
+                    "is_cde": is_cde(md),
+                    "title": first(md, "dc.title"),
+                    "year": first(md, "dc.date.issued")[:4],
+                    "type": first(md, "dc.type"),
+                    "language": "; ".join(values(md, "dc.language.iso")),
+                    "access": "; ".join(sorted(set(keys_like(md, "rights", "access")))),
+                    "doi": first(md, "dc.identifier.doi"),
+                    "cde_units": "; ".join(sorted(cde_units(md))),
+                    "has_abstract": bool(values(md, "dc.description.abstract")),
+                    "keywords": "; ".join(
+                        clean(k) for k in keys_prefixed(md, "dc.subject")
+                    ),
+                    "container": first(
+                        md, "dc.relation.ispartof", "dc.relation.ispartofseries"
+                    ),
+                    "abstract": clean(first(md, "dc.description.abstract")),
+                }
+            )
             if rows[-1]["is_cde"]:
                 field_census.update(md.keys())
         print(f"  page {p + 1}/{total_pages}", end="\r", flush=True)
@@ -198,21 +226,39 @@ def main():
         f"  with a DOI: {sum(bool(r['doi']) for r in pubs)}",
         f"  without abstract but with DOI (OpenAlex can fill): {no_abs_doi}",
         f"  with subject keywords: {sum(bool(r['keywords']) for r in pubs)}",
-        table("Entity type (all CDE records)", collections.Counter(r["entity_type"] for r in cde)),
+        table(
+            "Entity type (all CDE records)",
+            collections.Counter(r["entity_type"] for r in cde),
+        ),
         table("Publication type", collections.Counter(r["type"].lower() for r in pubs)),
         table("Access rights", collections.Counter(r["access"] for r in pubs)),
         table("Language", collections.Counter(r["language"] for r in pubs)),
-        table("CDE unit", collections.Counter(
-            u for r in pubs for u in (r["cde_units"].split("; ") if r["cde_units"] else ["(none listed)"]))),
+        table(
+            "CDE unit",
+            collections.Counter(
+                u
+                for r in pubs
+                for u in (
+                    r["cde_units"].split("; ") if r["cde_units"] else ["(none listed)"]
+                )
+            ),
+        ),
         table("Year", collections.Counter(r["year"] for r in pubs), top=80),
-        table("Top 60 subject keywords", collections.Counter(
-            k.strip().lower() for r in pubs for k in r["keywords"].split(";") if k.strip()), top=60),
+        table(
+            "Top 60 subject keywords",
+            collections.Counter(
+                k.strip().lower()
+                for r in pubs
+                for k in r["keywords"].split(";")
+                if k.strip()
+            ),
+            top=60,
+        ),
     ]
 
     with open("cde_fields.txt", "w", encoding="utf-8") as f:
         f.write("Metadata fields on CDE records (count of records using each)\n")
-        for k, v in sorted(field_census.items()):
-            f.write(f"  {v:6d}  {k}\n")
+        f.writelines(f"  {v:6d}  {k}\n" for k, v in sorted(field_census.items()))
 
     if args.check_files and pubs:
         sample = random.sample(pubs, min(args.check_files, len(pubs)))
@@ -226,9 +272,11 @@ def main():
             print(f"  file check {i}/{len(sample)}", end="\r", flush=True)
             time.sleep(args.delay)
         print()
-        out.append(f"\nFile sample: {with_files}/{len(sample)} sampled records "
-                   f"have files in the ORIGINAL bundle "
-                   f"(~{100 * with_files / len(sample):.0f}%)")
+        out.append(
+            f"\nFile sample: {with_files}/{len(sample)} sampled records "
+            f"have files in the ORIGINAL bundle "
+            f"(~{100 * with_files / len(sample):.0f}%)"
+        )
 
     summary = "\n".join(out)
     with open("cde_summary.txt", "w", encoding="utf-8") as f:

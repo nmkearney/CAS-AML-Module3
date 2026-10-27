@@ -1,42 +1,77 @@
-# CDE Research Assistant (local RAG + MCP over CDE's BORIS publications)
+# ChatCDE: a local research assistant over CDE's publications (prototype)
 
 ## What this project is
 
-A local research assistant for the Centre for Development and Environment (CDE),
-University of Bern. It indexes CDE's publications from BORIS Portal and lets
-researchers ask a local LLM, via an MCP server, about:
+A prototype Python package, `chatcde`, used from the command line. It indexes
+the publications of the Centre for Development and Environment (CDE), University
+of Bern, from BORIS Portal and lets researchers ask a local LLM about:
 
 1. **Gaps**: themes, methods, regions or actors CDE has rarely covered.
 2. **Frontiers**: directions that build on CDE's strengths, compared with the wider field.
 3. Other uses: literature synthesis, cross-country lessons, expertise finder,
-   collaboration opportunities, proposal support, onboarding, SDG reporting.
+   proposal support, onboarding, SDG reporting.
 
-Everything that touches full texts, prompts or answers runs **locally**: on UniBe's
-Ubelix/GPUStack or a CDE workstation. Nothing is sent to external LLM APIs.
+It is a prototype for a demonstration. There are no staff workshops: the developer
+makes and records the design choices, so a later phase can revisit them.
 
-This file is the working summary. Details live in:
-- `docs/planning.md`: architecture, design principles, each tool's inputs and
-  outputs, use cases with tool chains, MCP prompts and resources, build phases.
-  Read it before designing or changing any MCP tool.
-- `docs/schema_draft.md`: the 16-dimension schema with scope notes and the
-  workshop questions. `vocab/draft_vocabulary.yaml` is its machine-readable twin;
-  keep them in sync.
-For the build, these repo files are the reference. The original planning doc
+Details live in:
+- `docs/planning.md`: architecture, interface, each tool's inputs and outputs,
+  use cases with tool chains, workflows, build steps. Read it before designing or
+  changing any tool or command.
+- `docs/schema_draft.md`: the 17-dimension schema with scope notes and the
+  design decisions still to record. `vocab/draft_vocabulary.yaml` is its
+  machine-readable twin; keep them in sync.
+- `docs/decisions/`: one short markdown file per design decision (context,
+  decision, consequences, what to revisit later). Add one whenever a choice
+  isn't obvious from the code.
+
+These repo files are the reference for the build. The original planning doc
 (https://claude.ai/artifact/93ZrZB6GgHHQDUUsyCtKvi) is for discussion and is
 re-exported here when it changes in substance.
 
+## Team and tracks
+
+Two developers work in parallel; see `CONTRIBUTING.md` for the full workflow.
+- **Track A (Data), Norman Kearney:** `harvest/`, `parse/`, `tag/`, `vocab/`,
+  `chatcde export` / `fetch-data`. Writes the `records`, `authors`, `tags`,
+  `pages` and `downloads` tables.
+- **Track B (Assistant), Simon Bader:** `store/`, `tools/`, `agent.py`,
+  `workflows/`, `prompts/`, query commands. Writes `chunks` and the search index.
+- **Shared contract:** `src/chatcde/schemas.py` and the tool signatures in
+  `src/chatcde/tools/core.py` (drafts, to be agreed on day 1). Do not change them
+  as a side effect; propose changes in an issue labelled `schemas`.
+- At the start of a session the developer says which track they work on.
+  Stay within that track's folders; suggest an issue for anything outside them.
+- Work on a branch `a/<issue>-name` or `b/<issue>-name`, never on `main`;
+  PR descriptions say `Closes #<issue>`.
+- Build and test Track B against `tests/fixtures/` until Track A's real catalogue exists.
+
 ## Hard rules
 
-- **Privacy:** do not read full-text PDFs, extracted text, embeddings or RAG
-  conversation logs into your context. Write code that processes them; inspect
-  only counts, schemas, sample *metadata*, and errors. Public BORIS metadata
-  (titles, abstracts, keywords) is fine to look at.
+- **Python only**, packaged with `pyproject.toml` (src layout); the console
+  script is `chatcde`.
+- **Everything is reviewable, documented code.** Every step is a CLI command or
+  a function with type hints and a docstring explaining what it does and why.
+  No logic lives only in notebooks; notebooks are for exploring only.
+  Update the README and docs when behaviour changes.
+- **Every LLM call goes to a local, OpenAI-compatible endpoint** (GPUStack,
+  vLLM or Ollama), set in `config.yaml`. Never call a cloud LLM API from the
+  code. Use structured JSON output (a JSON schema) for tagging.
+- **No hard-coded settings.** Endpoints, model names, paths, vocabulary version
+  and thresholds go in `config/default.yaml`, which users override locally.
+- **Reproducibility.** Every pipeline output records the code version, vocabulary
+  version, prompt version and model name that produced it. Prompts live as
+  versioned files in `src/chatcde/prompts/`.
+- **Pipeline stages are resumable and idempotent**, and log what they did.
+  Re-running a stage skips finished work unless `--force` is given.
 - **Counts come from code, never from the LLM.** Any claim that something is
   rare or missing must come from a catalogue query with its denominator.
-- **Every answer is traceable** to BORIS IDs or DOIs.
-- **Read-only towards BORIS.** Be gentle: about 0.3 s between requests, no parallel hammering.
-- Never disable TLS verification. On macOS python.org builds, use `certifi`
-  (already done in `scripts/boris_cde_inventory.py`).
+  Every answer is traceable to BORIS IDs or DOIs.
+- **Be gentle with BORIS:** about 0.3 s between requests, no parallel hammering. Read-only.
+- **Never disable TLS verification.** Use `certifi` (python.org builds on macOS lack root certificates).
+- **Data stays out of git.** `data/` is gitignored; never commit PDFs, extracted text or indices.
+- The publications are public, so there are no privacy limits on reading them
+  during development. Licences still apply: see the two data editions below.
 
 ## Data source facts (verified 2026-10-27)
 
@@ -46,8 +81,8 @@ re-exported here when it changes in substance.
     Restriction" page with HTTP 200, so always check that the response is JSON.
   - OAI-PMH: `https://boris-portal.unibe.ch/server/oai/request` (public, but sets
     follow collections, not org units, so don't use it for CDE filtering).
-  - Search: `/discover/search/objects?query="Centre for Development and Environment"&dsoType=ITEM`
-    and then keep records whose affiliation/credit fields contain the CDE name.
+  - Search: `/discover/search/objects?query="Centre for Development and Environment"&dsoType=ITEM`,
+    then keep records whose affiliation/credit fields contain the CDE name.
   - Files: `/core/items/{uuid}/bundles` → bundle `ORIGINAL` → bitstreams.
 - Field names are partly guessed (`dc.title`, `dc.date.issued`, `dc.type`,
   `dc.language.iso`, `dc.identifier.doi`, `dc.description.abstract`, `dc.subject*`,
@@ -66,29 +101,65 @@ re-exported here when it changes in substance.
 - **~70% of a 60-record sample have a file attached** (±12 points). Whether the
   files can actually be downloaded is not yet confirmed.
 - Language: en 1,935, de 432, es 55, fr 54; "me" (44) and "an" (2) are likely
-  miscoded. A multilingual pipeline is required (at least EN + DE).
+  miscoded. The pipeline must be multilingual (at least EN + DE).
 - **Only about 600 publications carry a CDE unit** (232 Just Economies & Human Well Being,
   214 Sustainable Governance, 188 Sustainable Land Systems, 81 Transformative
-  Education & Science, 45 Services). The rest have none.
-- Years: most output 2012–2025; about 270 publications before 2010.
+  Education & Science, 45 Services).
+- Years: most output 2012–2025; about 270 before 2010; about 250 from 2025 on.
 - Known bug in the first run: access rights were merged with `dc.date.accessioned`.
-  This is fixed in v3 of the script; re-run to get clean access counts.
+  This is fixed in v3 of `scripts/boris_cde_inventory.py`; re-run it for clean counts.
 
 ## Architecture
 
 ```
-BORIS / OpenAlex / other CDE sources
-  → pipeline (harvest → parse + OCR → extract fields → normalise vocabulary → embed)
-  → stores: text index | catalogue (SQLite/DuckDB) | field corpus | geodata | people graph
-  → MCP server (tools, prompts, resources)
-  → local LLM + chat client → CDE researchers
+BORIS / OpenAlex
+  → pipeline: chatcde harvest → parse (+OCR) → tag → index → evaluate
+  → stores in data/: catalogue (DuckDB) | text index (vectors + BM25) | field corpus
+  → chatcde.tools: plain typed Python functions (the core)
+  → interfaces: chatcde CLI (now); web app or MCP server (later, same functions)
+  → agent: local LLM via an OpenAI-compatible API, tool definitions generated
+    from the tool functions' signatures and docstrings
 ```
 
-Suggested stack (open to change): Python 3.12+, `httpx`, DuckDB or SQLite for the
-catalogue, a multilingual embedding model (bge-m3 or multilingual-e5), hybrid search
-(vectors + BM25), PDF parsing with docling or PyMuPDF plus OCR for scans, the
-official MCP Python SDK for the server. The LLM is served by GPUStack/Ubelix or a
-local runtime; check which models support tool calling.
+Suggested stack (open to change; record changes as decisions): Typer + Rich for
+the CLI, `httpx`, DuckDB for the catalogue, a multilingual embedding model
+(bge-m3 or multilingual-e5) run locally, hybrid search (vectors + BM25), PyMuPDF
+or docling for PDFs plus OCR for scans, the `openai` client pointed at the local
+endpoint, pydantic for schemas and config, pytest, ruff.
+
+## Models (GPUStack, OpenAI-compatible)
+
+Set by role in `config/default.yaml`; see `docs/decisions/0003-models-by-role.md`.
+Agent: gpt-oss-120b (alt. minimax-m2.7). Tagging: qwen3.8-27b (alt. lfm2.5-24b-a2b).
+Embeddings: qwen3-embedding-4b (alt. granite-embedding-107m-multilingual).
+Reranker: jina-reranker-v2-base-multilingual (1K context → ~500-token chunks).
+Vision for scans/figures: qwen3-vl-30b-a3b-instruct. Optional speech: faster-whisper-large-v3.
+Code must never hard-code a model name; always read the role from config.
+
+## Data editions
+
+See `docs/decisions/0004-two-data-editions.md`. One build, two exports:
+- **full**: all full texts; hosted on CDE's server, reachable only from the UniBe
+  network/VPN. URL is a **placeholder** in `config/default.yaml` (TODO).
+- **open**: full text only for open-access records, metadata + abstracts for the rest;
+  hosted publicly.
+`chatcde fetch-data` probes the full URL (short timeout) and falls back to open;
+`--edition full|open` overrides; `--top-up` (fallback design) downloads remaining
+PDFs from BORIS under the user's own access and indexes them locally.
+Each bundle carries a manifest (edition, version, build date, vocab/model versions,
+counts, checksums); `chatcde info` and `coverage_report` report the edition.
+
+## Command line (target)
+
+| Command | What it does |
+|---|---|
+| `chatcde ask "…"` / `chatcde chat` | Free questions; the agent calls tools and answers with citations |
+| `chatcde gaps`, `frontier`, `brief`, `experts` | Fixed workflows with a set tool chain and output format |
+| `chatcde search`, `count`, `vocab`, `schema`, `coverage`, `info` | Direct tool calls, no LLM |
+| `chatcde harvest`, `parse`, `tag`, `index`, `evaluate` | Pipeline stages |
+| `chatcde vocab extract` | Open extraction on the sample, for vocabulary drafting |
+| `chatcde fetch-data [--edition full\|open] [--top-up]` | Download a prebuilt data bundle (full on VPN, else open) |
+| `chatcde export --edition full\|open` | Build a distributable bundle from the local index |
 
 ## Schema (16 dimensions, draft)
 
@@ -112,62 +183,72 @@ Full definitions and scope notes are in `docs/schema_draft.md` and `vocab/draft_
 | 14 | justice_lens | strategy-derived |
 | 15 | sdg | UN 17 goals, max 3 |
 | 16 | output_type | BORIS type + audience |
+| 17 | transformative_aspiration | Westerink et al. 2026 |
 
-Vocabulary process: people set the schema; the LLM does open extraction on a
-stratified sample of 200–300 records (by unit, decade and language), people curate, the LLM
-does closed-set tagging with confidence + evidence quote, and people validate on
-about 100 gold records.
+Vocabulary process (no workshops): seed from the YAML; the local LLM does open
+extraction on a stratified sample of 200–300 records (by unit, decade and language); the developer
+curates the YAML and commits with a changelog; the LLM tags with
+confidence + evidence quote; the developer hand-tags a reference set of about 50
+records; `chatcde evaluate` reports precision/recall against it and agreement
+between two LLM runs.
 
-## MCP tools (19, by phase)
+## Tools (19, by phase)
 
-- **Phase 1 (pilot):** `search_publications`, `get_publication`, `read_section`,
+- **Prototype core:** `search_publications`, `get_publication`, `read_section`,
   `list_vocabulary`, `count_by`, `find_gaps`, `coverage_report`
-- **Phase 2:** `find_similar`, `trend`, `search_field`, `compare_with_field`,
-  `emerging_topics`, `find_expertise`, `get_project`, `spatial_footprint`,
-  `report_issue`
-- **Phase 3:** `collaboration_network`, `find_datasets`, `query_layer`
+- **If time allows for the demonstration:** `trend`, `find_expertise`, `search_field`,
+  `compare_with_field`
+- **Later:** `find_similar`, `emerging_topics`, `get_project`, `spatial_footprint`,
+  `report_issue`, `collaboration_network`, `find_datasets`, `query_layer`
 
-Prompts: `gap_scan`, `frontier_brief`, `literature_brief`, `expertise_lookup`,
-`proposal_background`. Resources: `vocab://{dimension}`, `schema://catalogue`,
-`stats://coverage`, `cde://units`, `cde://glossary`, `field://definition`, `log://harvests`.
-
-## Suggested layout
+## Layout
 
 ```
-docs/           planning.md, schema_draft.md
-scripts/        one-off scripts (boris_cde_inventory.py lives here)
-src/cde_rag/
-  harvest/      BORIS REST client, OpenAlex enrichment, PDF download
-  parse/        PDF → text (+ OCR), chunking
-  tag/          LLM extraction + vocabulary normalisation
-  store/        catalogue DB, vector index
-  mcp_server/   tools, prompts, resources
-vocab/          versioned vocabularies (YAML)
-data/           local only; gitignored (raw/, text/, index/)
-tests/
+CONTRIBUTING.md       tracks, git/GitHub workflow, setup how-tos
+.github/              CODEOWNERS, PR template, CI (ruff + pytest)
+pyproject.toml
+config/default.yaml   all settings; placeholders marked TODO
+src/chatcde/
+  cli.py          Typer app; thin wrappers around the modules below
+  config.py       loads and validates config (pydantic)
+  schemas.py      shared data formats: the contract between tracks (DRAFT)
+  harvest/        BORIS REST client, OpenAlex enrichment, PDF download, manifest
+  parse/          PDF → text (+ OCR), chunking
+  tag/            LLM extraction against the vocabulary; vocab drafting
+  store/          catalogue (DuckDB), text index
+  tools/          the tool functions (core logic, no CLI or LLM code); core.py = signatures
+  agent.py        LLM loop over the OpenAI-compatible API
+  workflows/      gaps, frontier, brief, experts
+  prompts/        versioned prompt templates
+vocab/            versioned vocabularies (YAML) + CHANGELOG.md
+docs/             planning.md, schema_draft.md, decisions/
+tests/            unit tests + questions.yaml (test questions with known answers)
+scripts/          one-off scripts: boris_cde_inventory.py, create_github_issues.py + issues.yaml
+data/             local only; gitignored (raw/, text/, index/, catalogue.duckdb)
 ```
 
-`data/` must be in `.gitignore`. Never commit PDFs, extracted text or indices.
+## Build steps
 
-## Next steps
+1. **Package skeleton:** pyproject, config, CLI, logging, ruff, pytest.
+   Check: `pip install -e .` works and `chatcde --help` lists the commands.
+2. **Harvest and parse:** port `scripts/boris_cde_inventory.py` into
+   `chatcde.harvest` (fix field names from `data/cde_fields.txt` first); download
+   PDFs with a manifest (downloaded / restricted / missing); OpenAlex abstracts;
+   parse + OCR. Check: `chatcde coverage`.
+3. **Vocabulary and tagging:** see above. Check: `chatcde evaluate` meets the
+   threshold recorded in a decision file.
+4. **Tools, agent, CLI:** the core tools, the agent loop, `chatcde gaps`.
+   Check: passes 20–30 questions in `tests/questions.yaml`.
+5. **Demonstration:** extra tools if time allows, `chatcde export` for both editions,
+   `chatcde fetch-data`, README walkthrough, demo script.
 
-1. Re-run `scripts/boris_cde_inventory.py` (v3, no `--check-files`) on VPN →
-   `cde_records.csv`, `cde_summary.txt`, `cde_fields.txt`. Fix field names from
-   `cde_fields.txt`.
-2. Test the draft vocabulary against titles, abstracts and keywords: hit counts per
-   term, terms that never match, frequent keywords that match no term.
-3. Build the harvester: full metadata + PDF download for the pilot set, resumable,
-   with a manifest recording downloaded / restricted / missing for each record.
-4. OpenAlex enrichment for DOIs without abstracts (and open-access PDF links).
-5. Pilot scope: the ~600 publications with a CDE unit (the unit gives impact-area
-   tags something to check against), or one unit only.
-6. Parse → chunk → embed; catalogue tagging on the pilot; phase 1 MCP tools.
+## Open questions
 
-## Open questions (owner: project lead)
-
-- Which models does Ubelix/GPUStack serve with tool calling, and at what context length?
-- Which chat client hosts the MCP server, and does it support prompts and resources?
-- Does the University Library allow indexing restricted publisher PDFs internally?
-- Are there four or five CDE partner regions, and which countries belong to each?
-- Should older work be tagged with 2025–2028 categories? (Proposal: yes, keeping the BORIS unit as recorded.)
-- Where is CDE's geodata held outside BORIS?
+- GPUStack: are tool calling and JSON-schema output enabled for gpt-oss-120b and
+  qwen3.8-27b? What is the concurrency limit? What is the base URL?
+- Exact location of the full edition on CDE's server (placeholder in config).
+- Does the University Library confirm that restricted publisher texts may be
+  copied to staff machines (full edition)? If not, use `--top-up`.
+- Can files marked "restricted" in BORIS be downloaded on the VPN?
+- Older work: tag with 2025–2028 categories? (Proposal: yes, keeping the BORIS unit as recorded. Record as a decision.)
+- Are there four or five CDE partner regions, and which countries belong to each? (Record as a decision.)
