@@ -161,7 +161,7 @@ counts, checksums); `chatcde info` and `coverage_report` report the edition.
 | `chatcde fetch-data [--edition full\|open] [--top-up]` | Download a prebuilt data bundle (full on VPN, else open) |
 | `chatcde export --edition full\|open` | Build a distributable bundle from the local index |
 
-## Schema (16 dimensions, draft)
+## Schema (17 dimensions, draft)
 
 Full definitions and scope notes are in `docs/schema_draft.md` and `vocab/draft_vocabulary.yaml`.
 
@@ -172,18 +172,18 @@ Full definitions and scope notes are in `docs/schema_draft.md` and `vocab/draft_
 | 3 | objective | Strategy 1.4 (O1–O5) |
 | 4 | pathway | Strategy 2.2 (P1–P5), only when explicit |
 | 5 | research_mode | Strategy 1.3 (M1–M4) |
-| 6 | method | proposed 34 terms in 8 groups |
-| 7 | data_type | proposed |
-| 8 | country | ISO 3166-1 alpha-3 |
-| 9 | region | derived: UN M49 + CDE partner regions |
-| 10 | setting | proposed (mountains, drylands, …) |
-| 11 | scale | proposed |
-| 12 | system | proposed + strategy terms |
-| 13 | actors | proposed + strategy terms, each with a role: studied / co-producer / audience |
-| 14 | justice_lens | strategy-derived |
-| 15 | sdg | UN 17 goals, max 3 |
-| 16 | output_type | BORIS type + audience |
-| 17 | transformative_aspiration | Westerink et al. 2026 |
+| 6 | transformative_aspiration | Westerink et al. 2026 |
+| 7 | method | proposed 34 terms in 8 groups |
+| 8 | data_type | proposed |
+| 9 | country | ISO 3166-1 alpha-3 |
+| 10 | region | derived: UN M49 + CDE partner regions |
+| 11 | setting | proposed (mountains, drylands, …) |
+| 12 | scale | proposed |
+| 13 | system | proposed + strategy terms |
+| 14 | actors | proposed + strategy terms, each with a role: studied / co-producer / audience |
+| 15 | justice_lens | strategy-derived |
+| 16 | sdg | UN 17 goals, max 3 |
+| 17 | output_type | BORIS type + audience |
 
 Vocabulary process (no workshops): seed from the YAML; the local LLM does open
 extraction on a stratified sample of 200–300 records (by unit, decade and language); the developer
