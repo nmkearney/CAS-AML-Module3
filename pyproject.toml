@@ -35,6 +35,9 @@ packages = ["src/chatcde"]
 target-version = "py312"
 line-length = 88
 src = ["src", "tests"]
+# TODO(#2): schemas.py is the draft contract; issue #2 formats it, settles
+# str+Enum vs StrEnum (UP042) and removes this exclusion.
+extend-exclude = ["src/chatcde/schemas.py"]
 
 [tool.ruff.lint]
 select = ["E", "F", "W", "I", "UP", "B", "D"]

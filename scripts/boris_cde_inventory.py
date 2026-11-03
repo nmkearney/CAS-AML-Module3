@@ -6,7 +6,7 @@ Run on a machine that is on the UniBe network or VPN (the REST API is
 currently closed to outside traffic). Uses only the Python standard library.
 
     python3 boris_cde_inventory.py                  # count + summary + CSV
-    python3 boris_cde_inventory.py --check-files 60 # also sample items for attached PDFs
+    python3 boris_cde_inventory.py --check-files 60 # also sample items for PDFs
 
 Outputs:
     cde_records.csv      one row per matched record: metadata, keywords, abstract
