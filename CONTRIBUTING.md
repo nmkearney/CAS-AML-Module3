@@ -29,6 +29,17 @@ Steps 1 and 5 are done together.
 5. Build `tests/fixtures/`: about 30 real records with hand-made tags and a few pages of text,
    so Track B can work without waiting for the real pipeline.
 
+## Virtual environment
+Create a virtual environment in the local project folder. .venv is already added to .gitignore.
+
+cd [project path on your device]
+python3 -m venv .venv
+source .venv/bin/activate
+
+yaml is needed, so install it within the VE:
+
+pip install pyyaml
+
 ## Everyday workflow
 
 Never commit directly to `main`. Every change goes through a branch and a pull request (PR).
