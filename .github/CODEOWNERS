@@ -1,0 +1,7 @@
+# Code owners: GitHub automatically requests a review from a code owner on every
+# pull request, and (with "Require review from Code Owners" in the ruleset) one
+# code owner other than the author must approve. With two developers, that
+# means every PR is approved by the other person.
+# Track ownership is described in CONTRIBUTING.md, not here.
+
+*       @nmkearney @krybad

@@ -133,9 +133,8 @@ open an issue instead of editing it.
 
 ### 1. Add your colleague
 
-**Settings → Collaborators → Add people** → enter their GitHub login. They accept the email
-invitation. Then fill in their login in this file, in `.github/CODEOWNERS` (remove the `# `
-at the start of each line to activate it) and in the `--assign-b` command above.
+**Settings → Collaborators → Add people** → enter their GitHub login. They accept the email invitation. 
+.github/CODEOWNERS lists both developers on one line (* @nmkearney @krybad), so every pull request requests the other person’s review. Don’t add per-folder owners: GitHub uses the last matching line, and a folder owned only by its author could never get a code-owner approval.
 
 ### 2. Protect `main`
 
