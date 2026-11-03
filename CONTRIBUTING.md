@@ -9,7 +9,7 @@ workflow, and the one-time GitHub setup.
 | | Track A: Data | Track B: Assistant |
 |---|---|---|
 | Developer | Norman Kearney (`@nmkearney`) | Simon Bader (`@krybad`) |
-| Owns | `harvest/`, `parse/`, `tag/`, `vocab/`, `chatcde export`, `chatcde fetch-data` | `store/` (chunks, embeddings, search, reranking), `tools/`, `agent.py`, `workflows/`, `prompts/`, query commands |
+| Owns | `harvest/`, `parse/`, `tag/`, `vocab/`, `bundle/` (`chatcde export`, `fetch-data`, `info`) | `store/` (chunks, embeddings, search, reranking), `tools/`, `agent.py`, `workflows/`, `prompts/`, query commands |
 | Build steps | 2 (harvest and parse), 3 (vocabulary and tagging) | 4 (tools, agent and CLI) |
 | Writes | `records`, `authors`, `tags`, `pages`, `downloads` tables; data bundles | `chunks` table; search index |
 | Checks | `chatcde coverage`, `chatcde evaluate tagging` | unit tests on fixtures, `chatcde evaluate questions` |
