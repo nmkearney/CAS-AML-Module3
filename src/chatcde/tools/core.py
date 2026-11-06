@@ -70,7 +70,7 @@ def list_vocabulary(dimension: Dimension) -> list[VocabTerm]:
     """List the controlled-vocabulary terms of one dimension with record counts.
 
     Args:
-        dimension: One of the 16 schema dimensions.
+        dimension: One of the 17 schema dimensions.
     """
     raise NotImplementedError
 
