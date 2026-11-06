@@ -34,7 +34,8 @@ def test_version():
 @pytest.mark.parametrize(
     "args",
     [
-        ["harvest"],
+        ["harvest", "files"],
+        ["harvest", "openalex"],
         ["search", "land use"],
         ["vocab"],
         ["vocab", "extract"],

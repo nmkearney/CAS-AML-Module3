@@ -35,7 +35,11 @@ model_alternatives:
 boris:
   api_base: "https://boris-portal.unibe.ch/server/api"  # UniBe network / VPN only
   cde_query: '"Centre for Development and Environment"'
-  request_delay_s: 0.3
+  request_delay_s: 0.3          # pause before every request; never parallel
+  page_size: 100                # search results per page
+  sort: "dc.date.accessioned,ASC"  # fixed order so pages stay stable while resuming
+  timeout_s: 60
+  max_retries: 3                # on timeouts and 5xx, with growing back-off
 openalex:
   api_base: "https://api.openalex.org"
   mailto: ""                                         # TODO: contact email for the polite pool
@@ -43,6 +47,8 @@ openalex:
 # --- Data bundles (see docs/decisions/0004-two-data-editions.md) ----------
 data:
   dir: "data"
+  raw_dir: "data/raw"            # cached source JSON and files (harvest)
+  catalogue: "data/catalogue.duckdb"
   editions:
     full:
       # Hosted on CDE's server, reachable only from the UniBe network / VPN.

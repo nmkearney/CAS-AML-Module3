@@ -51,9 +51,10 @@ choices that the real pipeline will meet again.
   in UTC. `TIMESTAMPTZ` was avoided because reading it into Python needs `pytz`.
   Optional fields are nullable; all others are `NOT NULL`.
 - **BORIS field mapping**, checked against live items on 2026-11-06:
-  `#PLACEHOLDER_PARENT_METADATA_VALUE#` means empty. `dc.contributor.author`,
-  `cris.virtual.orcid` and `oairecerif.author.affiliation{,2,3,4}` are aligned by
-  position. Access is in `datacite.rights` (`open.access`, `restricted`,
+  `#PLACEHOLDER_PARENT_METADATA_VALUE#` means empty. `dc.contributor.author` and
+  `oairecerif.author.affiliation{,2,3,4}` are aligned by position.
+  (Corrected in 0008: `cris.virtual.orcid` is *not* aligned with the authors; it
+  follows `cris.virtualsource.orcid`, the person entity of each author.) Access is in `datacite.rights` (`open.access`, `restricted`,
   `metadata.only`, `embargoed.access`). Keywords come from `dc.subject` and
   `dc.subject.keywords`; `dc.subject.ddc` (Dewey classes) is left out. The container
   is the first of `dc.relation.ispartof`, `…ispartofbook`, `…ispartofseries` and
