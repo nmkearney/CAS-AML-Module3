@@ -70,6 +70,8 @@ Two developers work in parallel; see `CONTRIBUTING.md` for the full workflow.
 - **Be gentle with BORIS:** about 0.3 s between requests, no parallel hammering. Read-only.
 - **Never disable TLS verification.** Use `certifi` (python.org builds on macOS lack root certificates).
 - **Data stays out of git.** `data/` is gitignored; never commit PDFs, extracted text or indices.
+  The one exception is `tests/fixtures/`: up to 6 pages of text each from 30 openly
+  licensed records, credited in its README (decision 0007).
 - The publications are public, so there are no privacy limits on reading them
   during development. Licences still apply: see the two data editions below.
 

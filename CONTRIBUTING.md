@@ -125,11 +125,15 @@ between the tracks.
 - Python 3.12+. Type hints on all functions. Google-style docstrings that say what and why.
 - `ruff check .` and `ruff format .` before committing. CI runs both, plus `pytest`.
 - Tests next to the code they test, in `tests/`, using the fixtures. No network in unit tests.
+  For catalogue queries use the `fixture_db` pytest fixture (a DuckDB built from
+  `tests/fixtures/`; see its README).
 - Settings in `config/default.yaml`. Personal settings (GPUStack key, local paths) in
   `~/.config/chatcde/config.yaml` or environment variables, never committed.
 - Notebooks are for exploring only; anything that matters becomes a function or command.
 - A non-obvious choice gets a short record in `docs/decisions/` (template in its README).
 - Never commit `data/`, PDFs, extracted text or indices (`.gitignore` covers them).
+  The one exception is `tests/fixtures/`: up to 6 pages each of 30 openly licensed
+  records, credited in its README (decision 0007).
 
 ## Working with Claude Code
 

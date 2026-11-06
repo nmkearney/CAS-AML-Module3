@@ -1,0 +1,93 @@
+[
+ {
+  "_links": {
+   "accessStatus": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/6c57c38e-4f7c-4d79-9345-f981511b3126/accessStatus"
+   },
+   "bundle": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/6c57c38e-4f7c-4d79-9345-f981511b3126/bundle"
+   },
+   "content": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/6c57c38e-4f7c-4d79-9345-f981511b3126/content"
+   },
+   "format": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/6c57c38e-4f7c-4d79-9345-f981511b3126/format"
+   },
+   "self": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/6c57c38e-4f7c-4d79-9345-f981511b3126"
+   },
+   "thumbnail": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/6c57c38e-4f7c-4d79-9345-f981511b3126/thumbnail"
+   }
+  },
+  "bundleName": "ORIGINAL",
+  "checkSum": {
+   "checkSumAlgorithm": "MD5",
+   "value": "c800b0ff041ffd1cd03366dc4e45dfcd"
+  },
+  "handle": null,
+  "id": "6c57c38e-4f7c-4d79-9345-f981511b3126",
+  "metadata": {
+   "datacite.rights": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "open.access"
+    }
+   ],
+   "dc.description": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "Wohlbefinden und Ökologie durch mehr Zeit?"
+    }
+   ],
+   "dc.rights.uri": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "https://creativecommons.org/licenses/by/4.0"
+    }
+   ],
+   "dc.title": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "CDE_Working_Paper_08_Moser_Gurtner_Bezzola_Neubert.pdf"
+    }
+   ],
+   "dc.type": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "text"
+    }
+   ],
+   "unibe.content": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "published"
+    }
+   ]
+  },
+  "name": "CDE_Working_Paper_08_Moser_Gurtner_Bezzola_Neubert.pdf",
+  "sequenceId": 1,
+  "sizeBytes": 7556176,
+  "type": "bitstream",
+  "uniqueType": "core.bitstream",
+  "uuid": "6c57c38e-4f7c-4d79-9345-f981511b3126"
+ }
+]

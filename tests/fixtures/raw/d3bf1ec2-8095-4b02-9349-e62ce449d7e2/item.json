@@ -1,0 +1,1119 @@
+{
+ "_links": {
+  "accessStatus": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/d3bf1ec2-8095-4b02-9349-e62ce449d7e2/accessStatus"
+  },
+  "bundles": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/d3bf1ec2-8095-4b02-9349-e62ce449d7e2/bundles"
+  },
+  "identifiers": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/d3bf1ec2-8095-4b02-9349-e62ce449d7e2/identifiers"
+  },
+  "mappedCollections": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/d3bf1ec2-8095-4b02-9349-e62ce449d7e2/mappedCollections"
+  },
+  "metrics": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/d3bf1ec2-8095-4b02-9349-e62ce449d7e2/metrics"
+  },
+  "owningCollection": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/d3bf1ec2-8095-4b02-9349-e62ce449d7e2/owningCollection"
+  },
+  "relationships": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/d3bf1ec2-8095-4b02-9349-e62ce449d7e2/relationships"
+  },
+  "self": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/d3bf1ec2-8095-4b02-9349-e62ce449d7e2"
+  },
+  "submitter": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/d3bf1ec2-8095-4b02-9349-e62ce449d7e2/submitter"
+  },
+  "templateItemOf": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/d3bf1ec2-8095-4b02-9349-e62ce449d7e2/templateItemOf"
+  },
+  "thumbnail": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/d3bf1ec2-8095-4b02-9349-e62ce449d7e2/thumbnail"
+  },
+  "version": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/d3bf1ec2-8095-4b02-9349-e62ce449d7e2/version"
+  }
+ },
+ "discoverable": true,
+ "entityType": "Publication",
+ "handle": "20.500.12422/212352",
+ "id": "d3bf1ec2-8095-4b02-9349-e62ce449d7e2",
+ "inArchive": true,
+ "lastModified": "2026-09-07T09:41:06.753781Z",
+ "metadata": {
+  "cris.virtual.orcid": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "0000-0002-3253-5128"
+   }
+  ],
+  "cris.virtualsource.orcid": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "76c96faf-c3a5-43ba-aa8f-a0d20c5b9223"
+   }
+  ],
+  "datacite.rights": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "open.access"
+   }
+  ],
+  "dc.contributor.author": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "Carmenta, Rachel"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "securityLevel": 0,
+    "value": "Bastos Lima, Mairon"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "securityLevel": 0,
+    "value": "Choiruzzad, Shofwan A. B."
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 3,
+    "value": "Dawson, Neil"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 4,
+    "value": "Estrada-Carmona, Natalia"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 5,
+    "securityLevel": 0,
+    "value": "Hicks, Christina"
+   },
+   {
+    "authority": "will be referenced::ORCID::0000-0003-0688-9552",
+    "confidence": -1,
+    "language": null,
+    "place": 6,
+    "securityLevel": 0,
+    "value": "Kallis, Giorgos"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 7,
+    "securityLevel": 0,
+    "value": "Nana, Eric Djomo"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 8,
+    "securityLevel": 0,
+    "value": "Killick, Evan"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 9,
+    "securityLevel": 0,
+    "value": "Lees, Alexander"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 10,
+    "securityLevel": 0,
+    "value": "Martin, Adrian"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 11,
+    "securityLevel": 0,
+    "value": "Pascual, Unai"
+   },
+   {
+    "authority": "will be referenced::ORCID::0000-0002-1594-6208",
+    "confidence": -1,
+    "language": null,
+    "place": 12,
+    "securityLevel": 0,
+    "value": "Pettorelli, Nathalie"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 13,
+    "value": "Reed, James"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 14,
+    "securityLevel": 0,
+    "value": "Turnhout, Esther"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 15,
+    "value": "Vira, Bhaskar"
+   },
+   {
+    "authority": "76c96faf-c3a5-43ba-aa8f-a0d20c5b9223",
+    "confidence": 600,
+    "language": null,
+    "place": 16,
+    "securityLevel": 0,
+    "value": "Zaehringer, Julie G."
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 17,
+    "value": "Barlow, Jos"
+   }
+  ],
+  "dc.date.accessioned": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "2025-06-23T10:37:16Z"
+   }
+  ],
+  "dc.date.issued": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "2025-06"
+   }
+  ],
+  "dc.description.abstract": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "This paper reflects on the continued persistence of the idea in conservation research and practice that poverty drives biodiversity loss (the poverty-biodiversity loss association [PBLA]). We draw on evidence to show how the PBLA has proven resistant to counter-evidence and is particularly visible at local-level implementation, and is often implicit in conservation strategies. We untangle three underlying reasons that help to explain why the PBLA has persisted under a verisimilitude (seeming truth) that can leave it hiding in plain sight. In doing so, we offer conservation science and practice the means to recognise and thereby remedy this thinking where it exists, and in so doing, advance conservation towards its aims of equitable and effective delivery. We outline how the Connected Conservation model may be better equipped to challenge the disproportionate role of wealth in biodiversity decline whilst empowering biodiversity stewards and their plural knowledge, values and governance systems."
+   }
+  ],
+  "dc.description.sponsorship": [
+   {
+    "authority": "eaaaa5a1-e34e-4e40-9ab5-72cff99be9dd",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "value": "Centre for Development and Environment (CDE) - Sustainable Land Systems"
+   },
+   {
+    "authority": "e8a63149-d542-4299-8251-789acc2ab289",
+    "confidence": 600,
+    "language": null,
+    "place": 1,
+    "value": "Centre for Development and Environment (CDE)"
+   },
+   {
+    "authority": "0d438147-0e6e-48da-809f-a7f7dd2c0369",
+    "confidence": 600,
+    "language": null,
+    "place": 2,
+    "value": "Institute of Geography, Land Systems and Sustainable Land Management"
+   },
+   {
+    "authority": "will be referenced::ROR-ID::https://ror.org/006hf6230",
+    "confidence": -1,
+    "language": null,
+    "place": 3,
+    "value": "University of Twente"
+   },
+   {
+    "authority": "will be referenced::ROR-ID::https://ror.org/04f2nsd36",
+    "confidence": -1,
+    "language": null,
+    "place": 4,
+    "value": "Lancaster University"
+   },
+   {
+    "authority": "will be referenced::ROR-ID::https://ror.org/0116zj450",
+    "confidence": -1,
+    "language": null,
+    "place": 5,
+    "value": "University of Indonesia"
+   }
+  ],
+  "dc.identifier.doi": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "10.48620/88687"
+   }
+  ],
+  "dc.identifier.publisherDOI": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "10.1016/j.cosust.2025.101537"
+   }
+  ],
+  "dc.identifier.uri": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "https://boris-portal.unibe.ch/handle/20.500.12422/212352"
+   }
+  ],
+  "dc.language.iso": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "en"
+   }
+  ],
+  "dc.publisher": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "Elsevier"
+   }
+  ],
+  "dc.relation.ispartof": [
+   {
+    "authority": "will be referenced::ISSN::1877-3435",
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "Current Opinion in Environmental Sustainability"
+   }
+  ],
+  "dc.relation.issn": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "1877-3435"
+   }
+  ],
+  "dc.title": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "Unveiling pervasive assumptions: moving beyond the poverty-biodiversity loss association in conservation"
+   }
+  ],
+  "dc.type": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "article"
+   }
+  ],
+  "dspace.entity.type": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "Publication"
+   }
+  ],
+  "dspace.file.type": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "text"
+   }
+  ],
+  "oaire.citation.volume": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "74"
+   }
+  ],
+  "oairecerif.author.affiliation": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": "will be referenced::ROR-ID::https://ror.org/0116zj450",
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "securityLevel": 0,
+    "value": "University of Indonesia"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 3,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 4,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": "will be referenced::ROR-ID::https://ror.org/04f2nsd36",
+    "confidence": -1,
+    "language": null,
+    "place": 5,
+    "securityLevel": 0,
+    "value": "Lancaster University"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 6,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 7,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 8,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 9,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 10,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 11,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 12,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 13,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": "will be referenced::ROR-ID::https://ror.org/006hf6230",
+    "confidence": -1,
+    "language": null,
+    "place": 14,
+    "securityLevel": 0,
+    "value": "University of Twente"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 15,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": "e8a63149-d542-4299-8251-789acc2ab289",
+    "confidence": 600,
+    "language": null,
+    "place": 16,
+    "securityLevel": 0,
+    "value": "Centre for Development and Environment (CDE)"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 17,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   }
+  ],
+  "oairecerif.author.affiliation2": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 3,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 4,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 5,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 6,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 7,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 8,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 9,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 10,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 11,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 12,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 13,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 14,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 15,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 16,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 17,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   }
+  ],
+  "oairecerif.author.affiliation3": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 3,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 4,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 5,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 6,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 7,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 8,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 9,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 10,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 11,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 12,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 13,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 14,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 15,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 16,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 17,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   }
+  ],
+  "oairecerif.author.affiliation4": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 3,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 4,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 5,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 6,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 7,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 8,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 9,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 10,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 11,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 12,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 13,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 14,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 15,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 16,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 17,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   }
+  ],
+  "unibe.additional.sponsorship": [
+   {
+    "authority": "e8a63149-d542-4299-8251-789acc2ab289",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "Centre for Development and Environment (CDE)"
+   },
+   {
+    "authority": "0d438147-0e6e-48da-809f-a7f7dd2c0369",
+    "confidence": 600,
+    "language": null,
+    "place": 1,
+    "securityLevel": 0,
+    "value": "Institute of Geography, Land Systems and Sustainable Land Management"
+   },
+   {
+    "authority": "eaaaa5a1-e34e-4e40-9ab5-72cff99be9dd",
+    "confidence": 600,
+    "language": null,
+    "place": 2,
+    "securityLevel": 0,
+    "value": "Centre for Development and Environment (CDE) - Sustainable Land Systems"
+   }
+  ],
+  "unibe.contributor.role": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "corresponding author"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "securityLevel": 0,
+    "value": "author"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "securityLevel": 0,
+    "value": "author"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 3,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 4,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 5,
+    "securityLevel": 0,
+    "value": "author"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 6,
+    "securityLevel": 0,
+    "value": "author"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 7,
+    "securityLevel": 0,
+    "value": "author"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 8,
+    "securityLevel": 0,
+    "value": "author"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 9,
+    "securityLevel": 0,
+    "value": "author"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 10,
+    "securityLevel": 0,
+    "value": "author"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 11,
+    "securityLevel": 0,
+    "value": "author"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 12,
+    "securityLevel": 0,
+    "value": "author"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 13,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 14,
+    "securityLevel": 0,
+    "value": "author"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 15,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 16,
+    "securityLevel": 0,
+    "value": "author"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 17,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   }
+  ],
+  "unibe.description.ispublished": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "pub"
+   }
+  ],
+  "unibe.refereed": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "true"
+   }
+  ],
+  "unibe.subtype.article": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "review"
+   }
+  ]
+ },
+ "name": "Unveiling pervasive assumptions: moving beyond the poverty-biodiversity loss association in conservation",
+ "type": "item",
+ "uniqueType": "core.item",
+ "uuid": "d3bf1ec2-8095-4b02-9349-e62ce449d7e2",
+ "withdrawn": false
+}

@@ -1,0 +1,84 @@
+[
+ {
+  "_links": {
+   "accessStatus": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/94e58755-fc18-456e-8f8b-80ebbd2677fe/accessStatus"
+   },
+   "bundle": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/94e58755-fc18-456e-8f8b-80ebbd2677fe/bundle"
+   },
+   "content": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/94e58755-fc18-456e-8f8b-80ebbd2677fe/content"
+   },
+   "format": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/94e58755-fc18-456e-8f8b-80ebbd2677fe/format"
+   },
+   "self": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/94e58755-fc18-456e-8f8b-80ebbd2677fe"
+   },
+   "thumbnail": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/94e58755-fc18-456e-8f8b-80ebbd2677fe/thumbnail"
+   }
+  },
+  "bundleName": "ORIGINAL",
+  "checkSum": {
+   "checkSumAlgorithm": "MD5",
+   "value": "4b52a231e2bd4b0c4d5dc29d6a63ad4b"
+  },
+  "handle": null,
+  "id": "94e58755-fc18-456e-8f8b-80ebbd2677fe",
+  "metadata": {
+   "datacite.rights": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "open.access"
+    }
+   ],
+   "dc.rights.uri": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "https://creativecommons.org/licenses/by/4.0"
+    }
+   ],
+   "dc.title": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "mrd.4204-2.pdf"
+    }
+   ],
+   "dc.type": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "text"
+    }
+   ],
+   "unibe.content": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "published"
+    }
+   ]
+  },
+  "name": "mrd.4204-2.pdf",
+  "sequenceId": 1,
+  "sizeBytes": 122583,
+  "type": "bitstream",
+  "uniqueType": "core.bitstream",
+  "uuid": "94e58755-fc18-456e-8f8b-80ebbd2677fe"
+ }
+]

@@ -1,0 +1,93 @@
+[
+ {
+  "_links": {
+   "accessStatus": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/e7ec3143-a68e-4670-9fca-7210b2c4caec/accessStatus"
+   },
+   "bundle": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/e7ec3143-a68e-4670-9fca-7210b2c4caec/bundle"
+   },
+   "content": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/e7ec3143-a68e-4670-9fca-7210b2c4caec/content"
+   },
+   "format": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/e7ec3143-a68e-4670-9fca-7210b2c4caec/format"
+   },
+   "self": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/e7ec3143-a68e-4670-9fca-7210b2c4caec"
+   },
+   "thumbnail": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/e7ec3143-a68e-4670-9fca-7210b2c4caec/thumbnail"
+   }
+  },
+  "bundleName": "ORIGINAL",
+  "checkSum": {
+   "checkSumAlgorithm": "MD5",
+   "value": "4e4313c4f57e66d72d10c70c83356914"
+  },
+  "handle": null,
+  "id": "e7ec3143-a68e-4670-9fca-7210b2c4caec",
+  "metadata": {
+   "datacite.rights": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "open.access"
+    }
+   ],
+   "dc.rights.uri": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "https://creativecommons.org/licenses/by/4.0"
+    }
+   ],
+   "dc.source": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "Hammer_et-al_2020_Nachhaltige Regional- und Landschaftsentwicklung in integrativen Grossschutzge.pdf"
+    }
+   ],
+   "dc.title": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "Hammer_et-al_2020_Nachhaltige Regional- und Landschaftsentwicklung in integrativen Grossschutzge.pdf"
+    }
+   ],
+   "dc.type": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "text"
+    }
+   ],
+   "unibe.content": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "published"
+    }
+   ]
+  },
+  "name": "Hammer_et-al_2020_Nachhaltige Regional- und Landschaftsentwicklung in integrativen Grossschutzge.pdf",
+  "sequenceId": 3,
+  "sizeBytes": 1178660,
+  "type": "bitstream",
+  "uniqueType": "core.bitstream",
+  "uuid": "e7ec3143-a68e-4670-9fca-7210b2c4caec"
+ }
+]

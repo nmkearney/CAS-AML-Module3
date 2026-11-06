@@ -1,0 +1,93 @@
+[
+ {
+  "_links": {
+   "accessStatus": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/bbd72112-c0bc-45ac-8b9d-05fe49248982/accessStatus"
+   },
+   "bundle": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/bbd72112-c0bc-45ac-8b9d-05fe49248982/bundle"
+   },
+   "content": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/bbd72112-c0bc-45ac-8b9d-05fe49248982/content"
+   },
+   "format": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/bbd72112-c0bc-45ac-8b9d-05fe49248982/format"
+   },
+   "self": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/bbd72112-c0bc-45ac-8b9d-05fe49248982"
+   },
+   "thumbnail": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/bbd72112-c0bc-45ac-8b9d-05fe49248982/thumbnail"
+   }
+  },
+  "bundleName": "ORIGINAL",
+  "checkSum": {
+   "checkSumAlgorithm": "MD5",
+   "value": "0ed2ab04abcce28fc82121f489052f43"
+  },
+  "handle": null,
+  "id": "bbd72112-c0bc-45ac-8b9d-05fe49248982",
+  "metadata": {
+   "datacite.rights": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "open.access"
+    }
+   ],
+   "dc.description": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "A World Drifting Apart: Challenges and Possibilities of Transitioning to a More Equitable Planet"
+    }
+   ],
+   "dc.rights.uri": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "https://creativecommons.org/licenses/by/4.0"
+    }
+   ],
+   "dc.title": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "Bader_Bieri_2023_A_World_Drifting_Apart__Challenges_and_Possibilities_of_Transitioning_to_a_More_Equitable_Planet.pdf"
+    }
+   ],
+   "dc.type": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "text"
+    }
+   ],
+   "unibe.content": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "published"
+    }
+   ]
+  },
+  "name": "Bader_Bieri_2023_A_World_Drifting_Apart__Challenges_and_Possibilities_of_Transitioning_to_a_More_Equitable_Planet.pdf",
+  "sequenceId": 1,
+  "sizeBytes": 503317,
+  "type": "bitstream",
+  "uniqueType": "core.bitstream",
+  "uuid": "bbd72112-c0bc-45ac-8b9d-05fe49248982"
+ }
+]

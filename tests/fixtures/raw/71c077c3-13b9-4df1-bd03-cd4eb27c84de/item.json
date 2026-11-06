@@ -1,0 +1,614 @@
+{
+ "_links": {
+  "accessStatus": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/71c077c3-13b9-4df1-bd03-cd4eb27c84de/accessStatus"
+  },
+  "bundles": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/71c077c3-13b9-4df1-bd03-cd4eb27c84de/bundles"
+  },
+  "identifiers": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/71c077c3-13b9-4df1-bd03-cd4eb27c84de/identifiers"
+  },
+  "mappedCollections": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/71c077c3-13b9-4df1-bd03-cd4eb27c84de/mappedCollections"
+  },
+  "metrics": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/71c077c3-13b9-4df1-bd03-cd4eb27c84de/metrics"
+  },
+  "owningCollection": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/71c077c3-13b9-4df1-bd03-cd4eb27c84de/owningCollection"
+  },
+  "relationships": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/71c077c3-13b9-4df1-bd03-cd4eb27c84de/relationships"
+  },
+  "self": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/71c077c3-13b9-4df1-bd03-cd4eb27c84de"
+  },
+  "submitter": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/71c077c3-13b9-4df1-bd03-cd4eb27c84de/submitter"
+  },
+  "templateItemOf": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/71c077c3-13b9-4df1-bd03-cd4eb27c84de/templateItemOf"
+  },
+  "thumbnail": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/71c077c3-13b9-4df1-bd03-cd4eb27c84de/thumbnail"
+  },
+  "version": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/71c077c3-13b9-4df1-bd03-cd4eb27c84de/version"
+  }
+ },
+ "discoverable": true,
+ "entityType": "Publication",
+ "handle": "20.500.12422/203316",
+ "id": "71c077c3-13b9-4df1-bd03-cd4eb27c84de",
+ "inArchive": true,
+ "lastModified": "2026-09-06T23:25:44.741840Z",
+ "metadata": {
+  "cris.virtual.orcid": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "0000-0003-2813-7327"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "value": "0000-0003-1927-7635"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 3,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   }
+  ],
+  "cris.virtualsource.orcid": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "4cf9355e-7794-4af1-b43f-df67ffb58197"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "b1cf7606-07c8-43dc-95d2-5ad730338125"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "value": "922a8da7-8e43-412b-802c-f3549022b77b"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 3,
+    "value": "2997038a-26aa-4aee-b655-e3fa9a6ef37b"
+   }
+  ],
+  "datacite.rights": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "open.access"
+   }
+  ],
+  "dc.contributor.author": [
+   {
+    "authority": "b1cf7606-07c8-43dc-95d2-5ad730338125",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "Mintah, Frank"
+   },
+   {
+    "authority": "2997038a-26aa-4aee-b655-e3fa9a6ef37b",
+    "confidence": 600,
+    "language": null,
+    "place": 1,
+    "securityLevel": 0,
+    "value": "Tabi Eckebil, Paule Pamela"
+   },
+   {
+    "authority": "4cf9355e-7794-4af1-b43f-df67ffb58197",
+    "confidence": 600,
+    "language": null,
+    "place": 2,
+    "securityLevel": 0,
+    "value": "Oberlack, Christoph"
+   },
+   {
+    "authority": "922a8da7-8e43-412b-802c-f3549022b77b",
+    "confidence": 600,
+    "language": null,
+    "place": 3,
+    "securityLevel": 0,
+    "value": "Ifejika Speranza, Chinwe"
+   }
+  ],
+  "dc.date.accessioned": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "2025-01-23T07:22:30Z"
+   }
+  ],
+  "dc.date.issued": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "2024-12"
+   }
+  ],
+  "dc.description.abstract": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "Tropical deforestation pressures remain high, but in some areas, forest cover persists, re-emerges, or even expands. Uncovering the driving factors of such a shift has incessantly focused on biophysical and economic development changes, especially at national and regional levels, but evidence on the role of governance remains case-based and inconsistent. This article investigates the role of community and participatory governance arrangements and socio-political institutions at the local level in fostering forest re-emergence and their persistence over time. Using an archetype approach, this study conducts a meta-analysis of 42 empirical studies to identify recurrent patterns of institutions and their impact pathways that explain how forest persistence and re-emergence in the tropics occur. The results show that while forest re-emergence is achieved mainly through three archetypical pathways: collective action, adaptive collaborations, decentralisation, and recognition of local management, forest persistence is uniquely associated with cultural protection pathways. These pathways are activated by collaborative institutions, a mix of formal and informal institutions, and customary institutions. Chiefly, the study emphasises the relevance of local social agencies and institutional arrangements. Yet it also shows the supportive contributions of external actors to forest re-emergence when interventions meet local needs and conditions. Moreso, the results also reveal that forest persistence and re-emergence, to some extent, have socio-economic trade-offs. Policy and institutional implications for enhancing local self-organisation, adaptive governance, rights-based reforestation, and formal protection of sacred natural sites are therefore put forward."
+   }
+  ],
+  "dc.description.numberOfPages": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "18"
+   }
+  ],
+  "dc.description.sponsorship": [
+   {
+    "authority": "0d438147-0e6e-48da-809f-a7f7dd2c0369",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "value": "Institute of Geography, Land Systems and Sustainable Land Management"
+   },
+   {
+    "authority": "e72766a8-6120-4b56-b6dd-da7812ad7680",
+    "confidence": 600,
+    "language": null,
+    "place": 1,
+    "value": "Institute of Geography"
+   },
+   {
+    "authority": "e8a63149-d542-4299-8251-789acc2ab289",
+    "confidence": 600,
+    "language": null,
+    "place": 2,
+    "value": "Centre for Development and Environment (CDE)"
+   },
+   {
+    "authority": "6f175fd4-3164-4634-a95d-c8cf51d1b01a",
+    "confidence": 600,
+    "language": null,
+    "place": 3,
+    "value": "Centre for Development and Environment (CDE) - Sustainable Governance"
+   }
+  ],
+  "dc.identifier.doi": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "10.48620/84842"
+   }
+  ],
+  "dc.identifier.publisherDOI": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "10.1016/j.forpol.2024.103352"
+   }
+  ],
+  "dc.identifier.uri": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "https://boris-portal.unibe.ch/handle/20.500.12422/203316"
+   }
+  ],
+  "dc.language.iso": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "en"
+   }
+  ],
+  "dc.publisher": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "Elsevier"
+   }
+  ],
+  "dc.relation.ispartof": [
+   {
+    "authority": "will be referenced::ISSN::1389-9341",
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "Forest Policy and Economics"
+   }
+  ],
+  "dc.relation.issn": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "1389-9341"
+   }
+  ],
+  "dc.subject": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "Governance"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "Institutions"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "value": "Forest persistence"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 3,
+    "value": "Forest re-emergence"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 4,
+    "value": "Archetype analysis"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 5,
+    "value": "Formal concept analysis"
+   }
+  ],
+  "dc.subject.ddc": [
+   {
+    "authority": "boris-dd:ddc910",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "900 - History::910 - Geography & travel"
+   },
+   {
+    "authority": "boris-dd:ddc550",
+    "confidence": 600,
+    "language": null,
+    "place": 1,
+    "securityLevel": 0,
+    "value": "500 - Science::550 - Earth sciences & geology"
+   },
+   {
+    "authority": "boris-dd:ddc580",
+    "confidence": 600,
+    "language": null,
+    "place": 2,
+    "securityLevel": 0,
+    "value": "500 - Science::580 - Plants (Botany)"
+   }
+  ],
+  "dc.title": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "Why do forests persist and re-emerge amidst tropical deforestation pressures? Archetypes of governance and impact pathways"
+   }
+  ],
+  "dc.type": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "article"
+   }
+  ],
+  "dspace.entity.type": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "Publication"
+   }
+  ],
+  "dspace.file.type": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "text"
+   }
+  ],
+  "oaire.citation.issue": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "103352"
+   }
+  ],
+  "oaire.citation.volume": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "169"
+   }
+  ],
+  "oairecerif.author.affiliation": [
+   {
+    "authority": "0d438147-0e6e-48da-809f-a7f7dd2c0369",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "Institute of Geography, Land Systems and Sustainable Land Management"
+   },
+   {
+    "authority": "0d438147-0e6e-48da-809f-a7f7dd2c0369",
+    "confidence": 600,
+    "language": null,
+    "place": 1,
+    "securityLevel": 0,
+    "value": "Institute of Geography, Land Systems and Sustainable Land Management"
+   },
+   {
+    "authority": "e8a63149-d542-4299-8251-789acc2ab289",
+    "confidence": 600,
+    "language": null,
+    "place": 2,
+    "securityLevel": 0,
+    "value": "Centre for Development and Environment (CDE)"
+   },
+   {
+    "authority": "0d438147-0e6e-48da-809f-a7f7dd2c0369",
+    "confidence": 600,
+    "language": null,
+    "place": 3,
+    "securityLevel": 0,
+    "value": "Institute of Geography, Land Systems and Sustainable Land Management"
+   }
+  ],
+  "oairecerif.author.affiliation2": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": "6f175fd4-3164-4634-a95d-c8cf51d1b01a",
+    "confidence": 600,
+    "language": null,
+    "place": 2,
+    "securityLevel": 0,
+    "value": "Centre for Development and Environment (CDE) - Sustainable Governance"
+   },
+   {
+    "authority": "e72766a8-6120-4b56-b6dd-da7812ad7680",
+    "confidence": 600,
+    "language": null,
+    "place": 3,
+    "securityLevel": 0,
+    "value": "Institute of Geography"
+   }
+  ],
+  "oairecerif.author.affiliation3": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 3,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   }
+  ],
+  "oairecerif.author.affiliation4": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 3,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   }
+  ],
+  "unibe.additional.sponsorship": [
+   {
+    "authority": "6f175fd4-3164-4634-a95d-c8cf51d1b01a",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "Centre for Development and Environment (CDE) - Sustainable Governance"
+   }
+  ],
+  "unibe.contributor.role": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "corresponding author"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "author"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "value": "author"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 3,
+    "value": "author"
+   }
+  ],
+  "unibe.description.ispublished": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "pub"
+   }
+  ],
+  "unibe.refereed": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "true"
+   }
+  ],
+  "unibe.subtype.article": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "journal"
+   }
+  ]
+ },
+ "name": "Why do forests persist and re-emerge amidst tropical deforestation pressures? Archetypes of governance and impact pathways",
+ "type": "item",
+ "uniqueType": "core.item",
+ "uuid": "71c077c3-13b9-4df1-bd03-cd4eb27c84de",
+ "withdrawn": false
+}

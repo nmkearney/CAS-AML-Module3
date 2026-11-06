@@ -1,0 +1,93 @@
+[
+ {
+  "_links": {
+   "accessStatus": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/5b8a559f-09a6-451c-a9e3-5576bb0ed294/accessStatus"
+   },
+   "bundle": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/5b8a559f-09a6-451c-a9e3-5576bb0ed294/bundle"
+   },
+   "content": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/5b8a559f-09a6-451c-a9e3-5576bb0ed294/content"
+   },
+   "format": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/5b8a559f-09a6-451c-a9e3-5576bb0ed294/format"
+   },
+   "self": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/5b8a559f-09a6-451c-a9e3-5576bb0ed294"
+   },
+   "thumbnail": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/5b8a559f-09a6-451c-a9e3-5576bb0ed294/thumbnail"
+   }
+  },
+  "bundleName": "ORIGINAL",
+  "checkSum": {
+   "checkSumAlgorithm": "MD5",
+   "value": "6d6cd76cdc9568212167d953b150b282"
+  },
+  "handle": null,
+  "id": "5b8a559f-09a6-451c-a9e3-5576bb0ed294",
+  "metadata": {
+   "datacite.rights": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "open.access"
+    }
+   ],
+   "dc.description": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "Die Rolle von Transformativem Lernen für eine Bildung für Nachhaltige Entwicklung an der Hochschule"
+    }
+   ],
+   "dc.rights.uri": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "https://creativecommons.org/licenses/by/4.0"
+    }
+   ],
+   "dc.title": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "Schild_Leng_Hammer_2019_Transformatives_lernen.pdf"
+    }
+   ],
+   "dc.type": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "text"
+    }
+   ],
+   "unibe.content": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "published"
+    }
+   ]
+  },
+  "name": "Schild_Leng_Hammer_2019_Transformatives_lernen.pdf",
+  "sequenceId": 1,
+  "sizeBytes": 408535,
+  "type": "bitstream",
+  "uniqueType": "core.bitstream",
+  "uuid": "5b8a559f-09a6-451c-a9e3-5576bb0ed294"
+ }
+]

@@ -1,0 +1,84 @@
+[
+ {
+  "_links": {
+   "accessStatus": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/a81e0a9b-fc7c-4bcc-b3f4-8b2e01a6fdb1/accessStatus"
+   },
+   "bundle": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/a81e0a9b-fc7c-4bcc-b3f4-8b2e01a6fdb1/bundle"
+   },
+   "content": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/a81e0a9b-fc7c-4bcc-b3f4-8b2e01a6fdb1/content"
+   },
+   "format": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/a81e0a9b-fc7c-4bcc-b3f4-8b2e01a6fdb1/format"
+   },
+   "self": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/a81e0a9b-fc7c-4bcc-b3f4-8b2e01a6fdb1"
+   },
+   "thumbnail": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/a81e0a9b-fc7c-4bcc-b3f4-8b2e01a6fdb1/thumbnail"
+   }
+  },
+  "bundleName": "ORIGINAL",
+  "checkSum": {
+   "checkSumAlgorithm": "MD5",
+   "value": "6fa14d99e713c4a9a1858d30349019a0"
+  },
+  "handle": null,
+  "id": "a81e0a9b-fc7c-4bcc-b3f4-8b2e01a6fdb1",
+  "metadata": {
+   "datacite.rights": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "open.access"
+    }
+   ],
+   "dc.rights.uri": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "https://creativecommons.org/licenses/by/4.0"
+    }
+   ],
+   "dc.title": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "0276-4741%282006%29026%5B0004%3Awipotm%5D2%2E0%2Eco%3B2.pdf"
+    }
+   ],
+   "dc.type": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "text"
+    }
+   ],
+   "unibe.content": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "published"
+    }
+   ]
+  },
+  "name": "0276-4741%282006%29026%5B0004%3Awipotm%5D2%2E0%2Eco%3B2.pdf",
+  "sequenceId": 1,
+  "sizeBytes": 907966,
+  "type": "bitstream",
+  "uniqueType": "core.bitstream",
+  "uuid": "a81e0a9b-fc7c-4bcc-b3f4-8b2e01a6fdb1"
+ }
+]

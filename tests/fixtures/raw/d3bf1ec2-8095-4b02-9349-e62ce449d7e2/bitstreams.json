@@ -1,0 +1,93 @@
+[
+ {
+  "_links": {
+   "accessStatus": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/80eb088b-8d5f-4b3a-bd9d-8bfa2290fb2a/accessStatus"
+   },
+   "bundle": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/80eb088b-8d5f-4b3a-bd9d-8bfa2290fb2a/bundle"
+   },
+   "content": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/80eb088b-8d5f-4b3a-bd9d-8bfa2290fb2a/content"
+   },
+   "format": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/80eb088b-8d5f-4b3a-bd9d-8bfa2290fb2a/format"
+   },
+   "self": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/80eb088b-8d5f-4b3a-bd9d-8bfa2290fb2a"
+   },
+   "thumbnail": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/80eb088b-8d5f-4b3a-bd9d-8bfa2290fb2a/thumbnail"
+   }
+  },
+  "bundleName": "ORIGINAL",
+  "checkSum": {
+   "checkSumAlgorithm": "MD5",
+   "value": "d5ebf840360d2436e304a5682c1af689"
+  },
+  "handle": null,
+  "id": "80eb088b-8d5f-4b3a-bd9d-8bfa2290fb2a",
+  "metadata": {
+   "datacite.rights": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "open.access"
+    }
+   ],
+   "dc.rights.uri": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "https://creativecommons.org/licenses/by/4.0"
+    }
+   ],
+   "dc.source": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "Carmenta_et-al_2025_Unveiling pervasive assumptions_ moving beyond the poverty-biodiversity loss association in conservation.pdf"
+    }
+   ],
+   "dc.title": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "Carmenta_et-al_2025_Unveiling pervasive assumptions_ moving beyond the poverty-biodiversity loss association in conservation.pdf"
+    }
+   ],
+   "dc.type": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "text"
+    }
+   ],
+   "unibe.content": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "published"
+    }
+   ]
+  },
+  "name": "Carmenta_et-al_2025_Unveiling pervasive assumptions_ moving beyond the poverty-biodiversity loss association in conservation.pdf",
+  "sequenceId": 1,
+  "sizeBytes": 1274030,
+  "type": "bitstream",
+  "uniqueType": "core.bitstream",
+  "uuid": "80eb088b-8d5f-4b3a-bd9d-8bfa2290fb2a"
+ }
+]

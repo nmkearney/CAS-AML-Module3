@@ -1,0 +1,184 @@
+[
+ {
+  "_links": {
+   "accessStatus": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/03f79347-83c7-449b-b563-60fd23d34586/accessStatus"
+   },
+   "bundle": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/03f79347-83c7-449b-b563-60fd23d34586/bundle"
+   },
+   "content": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/03f79347-83c7-449b-b563-60fd23d34586/content"
+   },
+   "format": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/03f79347-83c7-449b-b563-60fd23d34586/format"
+   },
+   "self": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/03f79347-83c7-449b-b563-60fd23d34586"
+   },
+   "thumbnail": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/03f79347-83c7-449b-b563-60fd23d34586/thumbnail"
+   }
+  },
+  "bundleName": "ORIGINAL",
+  "checkSum": {
+   "checkSumAlgorithm": "MD5",
+   "value": "f5dd8e1773701a058d610027bd1da993"
+  },
+  "handle": null,
+  "id": "03f79347-83c7-449b-b563-60fd23d34586",
+  "metadata": {
+   "datacite.rights": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "open.access"
+    }
+   ],
+   "dc.description": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "La politique alimentaire de la ville de Winterthour. Stratégies, activités, mesures et conditions-cadres"
+    }
+   ],
+   "dc.rights": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "This work is licensed under CC BY 4.0"
+    }
+   ],
+   "dc.rights.uri": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "https://creativecommons.org/licenses/by/4.0/"
+    }
+   ],
+   "dc.title": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "La_politique_alimentaire_de_la_ville_de_Winterthur.pdf"
+    }
+   ],
+   "unibe.content": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "published"
+    }
+   ]
+  },
+  "name": "La_politique_alimentaire_de_la_ville_de_Winterthur.pdf",
+  "sequenceId": 1,
+  "sizeBytes": 945255,
+  "type": "bitstream",
+  "uniqueType": "core.bitstream",
+  "uuid": "03f79347-83c7-449b-b563-60fd23d34586"
+ },
+ {
+  "_links": {
+   "accessStatus": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/2d3ecfa1-0ba4-460b-9469-894160b1d93e/accessStatus"
+   },
+   "bundle": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/2d3ecfa1-0ba4-460b-9469-894160b1d93e/bundle"
+   },
+   "content": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/2d3ecfa1-0ba4-460b-9469-894160b1d93e/content"
+   },
+   "format": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/2d3ecfa1-0ba4-460b-9469-894160b1d93e/format"
+   },
+   "self": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/2d3ecfa1-0ba4-460b-9469-894160b1d93e"
+   },
+   "thumbnail": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/2d3ecfa1-0ba4-460b-9469-894160b1d93e/thumbnail"
+   }
+  },
+  "bundleName": "ORIGINAL",
+  "checkSum": {
+   "checkSumAlgorithm": "MD5",
+   "value": "b71f797486a914c088afccc2b838f843"
+  },
+  "handle": null,
+  "id": "2d3ecfa1-0ba4-460b-9469-894160b1d93e",
+  "metadata": {
+   "datacite.rights": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "open.access"
+    }
+   ],
+   "dc.description": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "Die Ernährungspolitik der Stadt Winterthur. Strategien, Aktivitäten, Massnahmen und Rahmenbedingungen"
+    }
+   ],
+   "dc.rights": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "This work is licensed under CC BY 4.0"
+    }
+   ],
+   "dc.rights.uri": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "https://creativecommons.org/licenses/by/4.0/"
+    }
+   ],
+   "dc.title": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "Die_Ern_hrungspolitik_der_Stadt_Winterthur.pdf"
+    }
+   ],
+   "unibe.content": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "published"
+    }
+   ]
+  },
+  "name": "Die_Ern_hrungspolitik_der_Stadt_Winterthur.pdf",
+  "sequenceId": 2,
+  "sizeBytes": 841659,
+  "type": "bitstream",
+  "uniqueType": "core.bitstream",
+  "uuid": "2d3ecfa1-0ba4-460b-9469-894160b1d93e"
+ }
+]

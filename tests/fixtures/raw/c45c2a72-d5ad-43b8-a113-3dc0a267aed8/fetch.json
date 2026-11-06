@@ -1,0 +1,11 @@
+{
+ "body_start": 1,
+ "bytes": 324143,
+ "fetched_at": "2026-11-06T09:48:08+00:00",
+ "file_name": "s18.pdf",
+ "file_url": "https://boris-portal.unibe.ch/server/api/core/bitstreams/da2f8a42-bf26-42e0-956d-b4ad1ef03b58/content",
+ "licence": "CC-BY-4.0",
+ "licence_url": "https://creativecommons.org/licenses/by/4.0",
+ "sha256": "606c3581bf723e9cb03a2530bffb2d2971e4797ed2a058e20eedefb2da3903e2",
+ "uuid": "c45c2a72-d5ad-43b8-a113-3dc0a267aed8"
+}

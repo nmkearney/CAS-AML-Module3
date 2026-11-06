@@ -1,0 +1,633 @@
+record_id,dimension,term,role,confidence,status,note,checked_by,checked_on
+2760e535-c973-4524-ab84-3a1c71b9bf3a,impact_area,SG,,0.75,ok,,Norman Kearney,06.11.2026
+2760e535-c973-4524-ab84-3a1c71b9bf3a,impact_area,TE,,0.6,ok,,Norman Kearney,06.11.2026
+2760e535-c973-4524-ab84-3a1c71b9bf3a,sub_area,SG-d,,0.8,ok,Indigenous and local knowledge,Norman Kearney,06.11.2026
+2760e535-c973-4524-ab84-3a1c71b9bf3a,sub_area,TE-b,,0.6,ok,,Norman Kearney,06.11.2026
+2760e535-c973-4524-ab84-3a1c71b9bf3a,research_mode,M1,,0.6,ok,Editorial about M1-type work,Norman Kearney,06.11.2026
+2760e535-c973-4524-ab84-3a1c71b9bf3a,transformative_aspiration,TA2,,0.4,ok,"Aspiration stated, but in an editorial",Norman Kearney,06.11.2026
+2760e535-c973-4524-ab84-3a1c71b9bf3a,method,Knowledge co-production,,0.85,ok,,Norman Kearney,06.11.2026
+2760e535-c973-4524-ab84-3a1c71b9bf3a,country,global_or_multi_country,,0.9,ok,,Norman Kearney,06.11.2026
+2760e535-c973-4524-ab84-3a1c71b9bf3a,country,CAN,,0.6,ok,"Partner country; articles span BOL, BTN, ITA, PAK, CAN",Norman Kearney,06.11.2026
+2760e535-c973-4524-ab84-3a1c71b9bf3a,setting,Mountains,,0.95,ok,,Norman Kearney,06.11.2026
+2760e535-c973-4524-ab84-3a1c71b9bf3a,actors,Indigenous peoples and local communities,co_producer,0.8,ok,,Norman Kearney,06.11.2026
+2760e535-c973-4524-ab84-3a1c71b9bf3a,actors,Researchers and universities,audience,0.6,ok,,Norman Kearney,06.11.2026
+2760e535-c973-4524-ab84-3a1c71b9bf3a,justice_lens,Recognition,,0.85,ok,,Norman Kearney,06.11.2026
+2760e535-c973-4524-ab84-3a1c71b9bf3a,justice_lens,Decolonial,,0.6,ok,Refers to one article in the issue,Norman Kearney,06.11.2026
+2760e535-c973-4524-ab84-3a1c71b9bf3a,sdg,15,,0.4,ok,Weak; editorial spans many themes,Norman Kearney,06.11.2026
+2760e535-c973-4524-ab84-3a1c71b9bf3a,output_type,Academic,,0.9,ok,Journal editorial,Norman Kearney,06.11.2026
+453f1ec7-d260-4d02-a003-6b95d48c26b2,impact_area,SL,,0.85,ok,,Norman Kearney,06.11.2026
+453f1ec7-d260-4d02-a003-6b95d48c26b2,sub_area,SL-a,,0.8,ok,,Norman Kearney,06.11.2026
+453f1ec7-d260-4d02-a003-6b95d48c26b2,sub_area,SL-b,,0.75,ok,Conservation vs livelihoods trade-off,Norman Kearney,06.11.2026
+453f1ec7-d260-4d02-a003-6b95d48c26b2,objective,O1,,0.75,ok,,Norman Kearney,06.11.2026
+453f1ec7-d260-4d02-a003-6b95d48c26b2,pathway,P1,,0.75,ok,Policy brief,Norman Kearney,06.11.2026
+453f1ec7-d260-4d02-a003-6b95d48c26b2,research_mode,M2,,0.7,ok,,Norman Kearney,06.11.2026
+453f1ec7-d260-4d02-a003-6b95d48c26b2,method,Remote sensing,,0.85,ok,,Norman Kearney,06.11.2026
+453f1ec7-d260-4d02-a003-6b95d48c26b2,method,GIS and spatial analysis,,0.8,ok,,Norman Kearney,06.11.2026
+453f1ec7-d260-4d02-a003-6b95d48c26b2,method,Land-use and land-cover change mapping,,0.8,ok,,Norman Kearney,06.11.2026
+453f1ec7-d260-4d02-a003-6b95d48c26b2,data_type,Secondary geospatial,,0.6,ok,,Norman Kearney,06.11.2026
+453f1ec7-d260-4d02-a003-6b95d48c26b2,data_type,Primary qualitative,,0.5,ok,Type of field data not stated,Norman Kearney,06.11.2026
+453f1ec7-d260-4d02-a003-6b95d48c26b2,country,MDG,,0.95,ok,,Norman Kearney,06.11.2026
+453f1ec7-d260-4d02-a003-6b95d48c26b2,region,Madagascar,,0.95,ok,CDE partner region,Norman Kearney,06.11.2026
+453f1ec7-d260-4d02-a003-6b95d48c26b2,setting,Humid tropics and forest frontiers,,0.9,ok,,Norman Kearney,06.11.2026
+453f1ec7-d260-4d02-a003-6b95d48c26b2,scale,Subnational,,0.6,ok,,Norman Kearney,06.11.2026
+453f1ec7-d260-4d02-a003-6b95d48c26b2,system,Forests,,0.85,ok,,Norman Kearney,06.11.2026
+453f1ec7-d260-4d02-a003-6b95d48c26b2,system,Cropland,,0.7,ok,,Norman Kearney,06.11.2026
+453f1ec7-d260-4d02-a003-6b95d48c26b2,system,Protected areas,,0.8,ok,,Norman Kearney,06.11.2026
+453f1ec7-d260-4d02-a003-6b95d48c26b2,actors,Smallholders and land users,studied,0.9,ok,,Norman Kearney,06.11.2026
+453f1ec7-d260-4d02-a003-6b95d48c26b2,actors,NGOs and civil society,studied,0.5,ok,Conservation/development organisations; quote cut by hyphenation,Norman Kearney,06.11.2026
+453f1ec7-d260-4d02-a003-6b95d48c26b2,justice_lens,Distributive,,0.75,ok,,Norman Kearney,06.11.2026
+453f1ec7-d260-4d02-a003-6b95d48c26b2,sdg,15,,0.8,ok,,Norman Kearney,06.11.2026
+453f1ec7-d260-4d02-a003-6b95d48c26b2,sdg,1,,0.6,ok,,Norman Kearney,06.11.2026
+453f1ec7-d260-4d02-a003-6b95d48c26b2,sdg,2,,0.6,ok,,Norman Kearney,06.11.2026
+453f1ec7-d260-4d02-a003-6b95d48c26b2,output_type,Policy,,0.95,ok,,Norman Kearney,06.11.2026
+6d56cc27-fd5f-47ec-8187-d298be89be1a,impact_area,SG,,0.9,ok,,Norman Kearney,06.11.2026
+6d56cc27-fd5f-47ec-8187-d298be89be1a,sub_area,SG-a,,0.95,ok,Trade rules,Norman Kearney,06.11.2026
+6d56cc27-fd5f-47ec-8187-d298be89be1a,objective,O4,,0.6,ok,,Norman Kearney,06.11.2026
+6d56cc27-fd5f-47ec-8187-d298be89be1a,objective,O2,,0.55,ok,,Norman Kearney,06.11.2026
+6d56cc27-fd5f-47ec-8187-d298be89be1a,pathway,P1,,0.85,ok,,Norman Kearney,06.11.2026
+6d56cc27-fd5f-47ec-8187-d298be89be1a,research_mode,M2,,0.6,ok,,Norman Kearney,06.11.2026
+6d56cc27-fd5f-47ec-8187-d298be89be1a,transformative_aspiration,TA2,,0.5,ok,Pushes for stronger regulation,Norman Kearney,06.11.2026
+6d56cc27-fd5f-47ec-8187-d298be89be1a,method,Document and policy analysis,,0.8,ok,,Norman Kearney,06.11.2026
+6d56cc27-fd5f-47ec-8187-d298be89be1a,data_type,Documents and policies,,0.8,ok,,Norman Kearney,06.11.2026
+6d56cc27-fd5f-47ec-8187-d298be89be1a,country,global_or_multi_country,,0.7,ok,"EU-wide measures, global impacts",Norman Kearney,06.11.2026
+6d56cc27-fd5f-47ec-8187-d298be89be1a,scale,Transboundary or regional,,0.7,ok,,Norman Kearney,06.11.2026
+6d56cc27-fd5f-47ec-8187-d298be89be1a,scale,Cross-scale (incl. telecoupling),,0.6,ok,,Norman Kearney,06.11.2026
+6d56cc27-fd5f-47ec-8187-d298be89be1a,system,Trade,,0.95,ok,,Norman Kearney,06.11.2026
+6d56cc27-fd5f-47ec-8187-d298be89be1a,system,Commodity value chains,,0.8,ok,,Norman Kearney,06.11.2026
+6d56cc27-fd5f-47ec-8187-d298be89be1a,actors,International organisations and UN conventions,audience,0.6,ok,EU as addressee; group fit approximate,Norman Kearney,06.11.2026
+6d56cc27-fd5f-47ec-8187-d298be89be1a,actors,Smallholders and land users,studied,0.7,ok,,Norman Kearney,06.11.2026
+6d56cc27-fd5f-47ec-8187-d298be89be1a,justice_lens,Distributive,,0.6,ok,,Norman Kearney,06.11.2026
+6d56cc27-fd5f-47ec-8187-d298be89be1a,sdg,15,,0.9,ok,,Norman Kearney,06.11.2026
+6d56cc27-fd5f-47ec-8187-d298be89be1a,sdg,12,,0.7,ok,,Norman Kearney,06.11.2026
+6d56cc27-fd5f-47ec-8187-d298be89be1a,output_type,Policy,,0.95,ok,,Norman Kearney,06.11.2026
+71c077c3-13b9-4df1-bd03-cd4eb27c84de,impact_area,SG,,0.85,ok,,Norman Kearney,06.11.2026
+71c077c3-13b9-4df1-bd03-cd4eb27c84de,impact_area,SL,,0.6,ok,,Norman Kearney,06.11.2026
+71c077c3-13b9-4df1-bd03-cd4eb27c84de,sub_area,SG-d,,0.85,ok,,Norman Kearney,06.11.2026
+71c077c3-13b9-4df1-bd03-cd4eb27c84de,sub_area,SL-a,,0.5,ok,,Norman Kearney,06.11.2026
+71c077c3-13b9-4df1-bd03-cd4eb27c84de,objective,O4,,0.7,ok,,Norman Kearney,06.11.2026
+71c077c3-13b9-4df1-bd03-cd4eb27c84de,objective,O1,,0.6,ok,,Norman Kearney,06.11.2026
+71c077c3-13b9-4df1-bd03-cd4eb27c84de,pathway,P1,,0.5,ok,,Norman Kearney,06.11.2026
+71c077c3-13b9-4df1-bd03-cd4eb27c84de,research_mode,M2,,0.9,ok,,Norman Kearney,06.11.2026
+71c077c3-13b9-4df1-bd03-cd4eb27c84de,method,Literature and systematic review,,0.85,ok,,Norman Kearney,06.11.2026
+71c077c3-13b9-4df1-bd03-cd4eb27c84de,method,other,,0.9,ok,,Norman Kearney,06.11.2026
+71c077c3-13b9-4df1-bd03-cd4eb27c84de,data_type,Documents and policies,,0.5,ok,Published case studies as data; no better term,Norman Kearney,06.11.2026
+71c077c3-13b9-4df1-bd03-cd4eb27c84de,country,global_or_multi_country,,0.85,ok,,Norman Kearney,06.11.2026
+71c077c3-13b9-4df1-bd03-cd4eb27c84de,setting,Humid tropics and forest frontiers,,0.9,ok,,Norman Kearney,06.11.2026
+71c077c3-13b9-4df1-bd03-cd4eb27c84de,scale,Community or village,,0.7,ok,,Norman Kearney,06.11.2026
+71c077c3-13b9-4df1-bd03-cd4eb27c84de,system,Forests,,0.95,ok,,Norman Kearney,06.11.2026
+71c077c3-13b9-4df1-bd03-cd4eb27c84de,actors,Indigenous peoples and local communities,studied,0.7,ok,,Norman Kearney,06.11.2026
+71c077c3-13b9-4df1-bd03-cd4eb27c84de,justice_lens,Recognition,,0.5,ok,,Norman Kearney,06.11.2026
+71c077c3-13b9-4df1-bd03-cd4eb27c84de,sdg,15,,0.9,ok,,Norman Kearney,06.11.2026
+71c077c3-13b9-4df1-bd03-cd4eb27c84de,output_type,Academic,,0.95,ok,Journal article,Norman Kearney,06.11.2026
+71c3358b-579b-4c24-b627-3b8d7f37e6fd,impact_area,TE,,0.95,ok,,Norman Kearney,06.11.2026
+71c3358b-579b-4c24-b627-3b8d7f37e6fd,sub_area,TE-a,,0.9,ok,,Norman Kearney,06.11.2026
+71c3358b-579b-4c24-b627-3b8d7f37e6fd,sub_area,TE-c,,0.6,ok,,Norman Kearney,06.11.2026
+71c3358b-579b-4c24-b627-3b8d7f37e6fd,objective,O5,,0.85,ok,,Norman Kearney,06.11.2026
+71c3358b-579b-4c24-b627-3b8d7f37e6fd,pathway,P2,,0.7,ok,,Norman Kearney,06.11.2026
+71c3358b-579b-4c24-b627-3b8d7f37e6fd,research_mode,M3,,0.6,ok,Course examples,Norman Kearney,06.11.2026
+71c3358b-579b-4c24-b627-3b8d7f37e6fd,research_mode,M4,,0.6,ok,Assesses examples against TL concepts,Norman Kearney,06.11.2026
+71c3358b-579b-4c24-b627-3b8d7f37e6fd,method,Conceptual and theoretical work,,0.7,ok,,Norman Kearney,06.11.2026
+71c3358b-579b-4c24-b627-3b8d7f37e6fd,method,Case study,,0.6,ok,,Norman Kearney,06.11.2026
+71c3358b-579b-4c24-b627-3b8d7f37e6fd,data_type,None (conceptual),,0.5,ok,,Norman Kearney,06.11.2026
+71c3358b-579b-4c24-b627-3b8d7f37e6fd,country,CHE,,0.9,ok,,Norman Kearney,06.11.2026
+71c3358b-579b-4c24-b627-3b8d7f37e6fd,region,Europe and Switzerland,,0.9,ok,Derived from CHE,Norman Kearney,06.11.2026
+71c3358b-579b-4c24-b627-3b8d7f37e6fd,system,Higher education,,0.95,ok,,Norman Kearney,06.11.2026
+71c3358b-579b-4c24-b627-3b8d7f37e6fd,actors,Youth and students,studied,0.6,ok,,Norman Kearney,06.11.2026
+71c3358b-579b-4c24-b627-3b8d7f37e6fd,actors,Researchers and universities,audience,0.8,ok,Bulletin of the Swiss association of university lecturers,Norman Kearney,06.11.2026
+71c3358b-579b-4c24-b627-3b8d7f37e6fd,justice_lens,Power,,0.45,ok,Brookfield: uncover implicit power structures; quote broken by hyphenation,Norman Kearney,06.11.2026
+71c3358b-579b-4c24-b627-3b8d7f37e6fd,sdg,4,,0.9,ok,,Norman Kearney,06.11.2026
+71c3358b-579b-4c24-b627-3b8d7f37e6fd,output_type,Academic,,0.7,ok,Could be Practitioner,Norman Kearney,06.11.2026
+7ab97dd8-2ef4-41d5-ad9f-1049a091013b,impact_area,SL,,0.9,ok,,Norman Kearney,06.11.2026
+7ab97dd8-2ef4-41d5-ad9f-1049a091013b,sub_area,SL-a,,0.9,ok,WOCAT / SLM,Norman Kearney,06.11.2026
+7ab97dd8-2ef4-41d5-ad9f-1049a091013b,sub_area,SL-b,,0.6,ok,,Norman Kearney,06.11.2026
+7ab97dd8-2ef4-41d5-ad9f-1049a091013b,objective,O1,,0.7,ok,,Norman Kearney,06.11.2026
+7ab97dd8-2ef4-41d5-ad9f-1049a091013b,pathway,P4,,0.6,ok,,Norman Kearney,06.11.2026
+7ab97dd8-2ef4-41d5-ad9f-1049a091013b,research_mode,M2,,0.6,ok,,Norman Kearney,06.11.2026
+7ab97dd8-2ef4-41d5-ad9f-1049a091013b,method,Case study,,0.7,ok,,Norman Kearney,06.11.2026
+7ab97dd8-2ef4-41d5-ad9f-1049a091013b,method,Soil and water assessment,,0.7,ok,,Norman Kearney,06.11.2026
+7ab97dd8-2ef4-41d5-ad9f-1049a091013b,method,Impact and sustainability assessment,,0.75,ok,,Norman Kearney,06.11.2026
+7ab97dd8-2ef4-41d5-ad9f-1049a091013b,data_type,Primary qualitative,,0.6,ok,WOCAT questionnaire data,Norman Kearney,06.11.2026
+7ab97dd8-2ef4-41d5-ad9f-1049a091013b,country,GRC,,0.95,ok,,Norman Kearney,06.11.2026
+7ab97dd8-2ef4-41d5-ad9f-1049a091013b,region,Southern Europe,,0.9,ok,Derived from GRC (M49),Norman Kearney,06.11.2026
+7ab97dd8-2ef4-41d5-ad9f-1049a091013b,setting,Drylands and rangelands,,0.7,ok,,Norman Kearney,06.11.2026
+7ab97dd8-2ef4-41d5-ad9f-1049a091013b,setting,Coastal and marine,,0.6,ok,,Norman Kearney,06.11.2026
+7ab97dd8-2ef4-41d5-ad9f-1049a091013b,scale,Landscape or watershed,,0.85,ok,,Norman Kearney,06.11.2026
+7ab97dd8-2ef4-41d5-ad9f-1049a091013b,system,Cropland,,0.7,ok,,Norman Kearney,06.11.2026
+7ab97dd8-2ef4-41d5-ad9f-1049a091013b,system,Freshwater and waterbodies,,0.6,ok,,Norman Kearney,06.11.2026
+7ab97dd8-2ef4-41d5-ad9f-1049a091013b,actors,Smallholders and land users,studied,0.7,ok,"Stakeholders = local farmers, inferred",Norman Kearney,06.11.2026
+7ab97dd8-2ef4-41d5-ad9f-1049a091013b,justice_lens,None explicit,,0.8,ok,,Norman Kearney,06.11.2026
+7ab97dd8-2ef4-41d5-ad9f-1049a091013b,sdg,15,,0.8,ok,,Norman Kearney,06.11.2026
+7ab97dd8-2ef4-41d5-ad9f-1049a091013b,sdg,2,,0.5,ok,,Norman Kearney,06.11.2026
+7ab97dd8-2ef4-41d5-ad9f-1049a091013b,output_type,Academic,,0.9,ok,Conference abstract,Norman Kearney,06.11.2026
+8e47c5f7-3dc8-40d8-a993-34c2fbd62074,impact_area,SG,,0.95,ok,,Norman Kearney,06.11.2026
+8e47c5f7-3dc8-40d8-a993-34c2fbd62074,sub_area,SG-b,,0.95,ok,Certification,Norman Kearney,06.11.2026
+8e47c5f7-3dc8-40d8-a993-34c2fbd62074,sub_area,SL-d,,0.45,ok,Telecoupling is secondary,Norman Kearney,06.11.2026
+8e47c5f7-3dc8-40d8-a993-34c2fbd62074,objective,O2,,0.7,ok,,Norman Kearney,06.11.2026
+8e47c5f7-3dc8-40d8-a993-34c2fbd62074,objective,O4,,0.6,ok,,Norman Kearney,06.11.2026
+8e47c5f7-3dc8-40d8-a993-34c2fbd62074,research_mode,M2,,0.85,ok,,Norman Kearney,06.11.2026
+8e47c5f7-3dc8-40d8-a993-34c2fbd62074,method,Document and policy analysis,,0.85,ok,,Norman Kearney,06.11.2026
+8e47c5f7-3dc8-40d8-a993-34c2fbd62074,method,Literature and systematic review,,0.6,ok,,Norman Kearney,06.11.2026
+8e47c5f7-3dc8-40d8-a993-34c2fbd62074,data_type,Documents and policies,,0.9,ok,,Norman Kearney,06.11.2026
+8e47c5f7-3dc8-40d8-a993-34c2fbd62074,data_type,Curated databases,,0.6,ok,,Norman Kearney,06.11.2026
+8e47c5f7-3dc8-40d8-a993-34c2fbd62074,country,global_or_multi_country,,0.8,ok,,Norman Kearney,06.11.2026
+8e47c5f7-3dc8-40d8-a993-34c2fbd62074,scale,Cross-scale (incl. telecoupling),,0.9,ok,,Norman Kearney,06.11.2026
+8e47c5f7-3dc8-40d8-a993-34c2fbd62074,system,Commodity value chains,,0.85,ok,,Norman Kearney,06.11.2026
+8e47c5f7-3dc8-40d8-a993-34c2fbd62074,system,Food systems and agriculture,,0.7,ok,,Norman Kearney,06.11.2026
+8e47c5f7-3dc8-40d8-a993-34c2fbd62074,actors,Standard-setters,studied,0.95,ok,,Norman Kearney,06.11.2026
+8e47c5f7-3dc8-40d8-a993-34c2fbd62074,justice_lens,Distributive,,0.35,ok,Socio-economic spillovers only; weak,Norman Kearney,06.11.2026
+8e47c5f7-3dc8-40d8-a993-34c2fbd62074,sdg,12,,0.85,ok,,Norman Kearney,06.11.2026
+8e47c5f7-3dc8-40d8-a993-34c2fbd62074,sdg,15,,0.5,ok,,Norman Kearney,06.11.2026
+8e47c5f7-3dc8-40d8-a993-34c2fbd62074,output_type,Academic,,0.95,ok,Journal article,Norman Kearney,06.11.2026
+9db04558-724d-47f2-ae90-f350fe772fee,impact_area,TE,,0.5,ok,Pre-strategy overview; 2025-28 categories fit loosely,Norman Kearney,06.11.2026
+9db04558-724d-47f2-ae90-f350fe772fee,impact_area,SL,,0.5,ok,,Norman Kearney,06.11.2026
+9db04558-724d-47f2-ae90-f350fe772fee,sub_area,TE-d,,0.6,ok,Lobbying for mountains at UNCED,Norman Kearney,06.11.2026
+9db04558-724d-47f2-ae90-f350fe772fee,pathway,P3,,0.5,ok,,Norman Kearney,06.11.2026
+9db04558-724d-47f2-ae90-f350fe772fee,research_mode,M2,,0.7,ok,,Norman Kearney,06.11.2026
+9db04558-724d-47f2-ae90-f350fe772fee,method,other,,0.6,ok,,Norman Kearney,06.11.2026
+9db04558-724d-47f2-ae90-f350fe772fee,method,Literature and systematic review,,0.4,ok,Overview of an institute's research; weak fit,Norman Kearney,06.11.2026
+9db04558-724d-47f2-ae90-f350fe772fee,country,global_or_multi_country,,0.8,ok,,Norman Kearney,06.11.2026
+9db04558-724d-47f2-ae90-f350fe772fee,country,CHE,,0.7,ok,,Norman Kearney,06.11.2026
+9db04558-724d-47f2-ae90-f350fe772fee,region,Europe and Switzerland,,0.6,ok,Derived from CHE,Norman Kearney,06.11.2026
+9db04558-724d-47f2-ae90-f350fe772fee,setting,Mountains,,0.95,ok,,Norman Kearney,06.11.2026
+9db04558-724d-47f2-ae90-f350fe772fee,scale,Cross-scale (incl. telecoupling),,0.5,ok,,Norman Kearney,06.11.2026
+9db04558-724d-47f2-ae90-f350fe772fee,actors,Researchers and universities,studied,0.6,ok,,Norman Kearney,06.11.2026
+9db04558-724d-47f2-ae90-f350fe772fee,justice_lens,None explicit,,0.7,ok,,Norman Kearney,06.11.2026
+9db04558-724d-47f2-ae90-f350fe772fee,sdg,13,,0.6,ok,,Norman Kearney,06.11.2026
+9db04558-724d-47f2-ae90-f350fe772fee,sdg,15,,0.5,ok,,Norman Kearney,06.11.2026
+9db04558-724d-47f2-ae90-f350fe772fee,output_type,Academic,,0.9,ok,Journal article; OCR'd text,Norman Kearney,06.11.2026
+a09e8861-8eec-4055-87a1-676e546e6541,impact_area,SG,,0.85,ok,,Norman Kearney,06.11.2026
+a09e8861-8eec-4055-87a1-676e546e6541,impact_area,SL,,0.6,ok,,Norman Kearney,06.11.2026
+a09e8861-8eec-4055-87a1-676e546e6541,sub_area,SL-d,,0.85,ok,,Norman Kearney,06.11.2026
+a09e8861-8eec-4055-87a1-676e546e6541,sub_area,SL-b,,0.6,ok,,Norman Kearney,06.11.2026
+a09e8861-8eec-4055-87a1-676e546e6541,objective,O4,,0.6,ok,,Norman Kearney,06.11.2026
+a09e8861-8eec-4055-87a1-676e546e6541,objective,O2,,0.5,ok,,Norman Kearney,06.11.2026
+a09e8861-8eec-4055-87a1-676e546e6541,research_mode,M2,,0.9,ok,,Norman Kearney,06.11.2026
+a09e8861-8eec-4055-87a1-676e546e6541,method,Stakeholder and actor analysis,,0.85,ok,,Norman Kearney,06.11.2026
+a09e8861-8eec-4055-87a1-676e546e6541,method,Case study,,0.7,ok,,Norman Kearney,06.11.2026
+a09e8861-8eec-4055-87a1-676e546e6541,country,MDG,,0.95,ok,,Norman Kearney,06.11.2026
+a09e8861-8eec-4055-87a1-676e546e6541,region,Madagascar,,0.95,ok,Derived from MDG,Norman Kearney,06.11.2026
+a09e8861-8eec-4055-87a1-676e546e6541,setting,Humid tropics and forest frontiers,,0.55,ok,,Norman Kearney,06.11.2026
+a09e8861-8eec-4055-87a1-676e546e6541,scale,Cross-scale (incl. telecoupling),,0.95,ok,,Norman Kearney,06.11.2026
+a09e8861-8eec-4055-87a1-676e546e6541,system,Protected areas,,0.7,ok,,Norman Kearney,06.11.2026
+a09e8861-8eec-4055-87a1-676e546e6541,system,Extractives and mining,,0.6,ok,,Norman Kearney,06.11.2026
+a09e8861-8eec-4055-87a1-676e546e6541,system,Cropland,,0.5,ok,,Norman Kearney,06.11.2026
+a09e8861-8eec-4055-87a1-676e546e6541,actors,Companies and investors,studied,0.5,ok,Sectors not named in abstract,Norman Kearney,06.11.2026
+a09e8861-8eec-4055-87a1-676e546e6541,actors,NGOs and civil society,studied,0.5,ok,,Norman Kearney,06.11.2026
+a09e8861-8eec-4055-87a1-676e546e6541,actors,National and local government,studied,0.5,ok,,Norman Kearney,06.11.2026
+a09e8861-8eec-4055-87a1-676e546e6541,justice_lens,Distributive,,0.5,ok,,Norman Kearney,06.11.2026
+a09e8861-8eec-4055-87a1-676e546e6541,sdg,15,,0.8,ok,,Norman Kearney,06.11.2026
+a09e8861-8eec-4055-87a1-676e546e6541,output_type,Academic,,0.95,ok,Journal article,Norman Kearney,06.11.2026
+ac8dbaec-da44-400b-aad5-1ac1d1838bb6,impact_area,TE,,0.95,ok,,Norman Kearney,06.11.2026
+ac8dbaec-da44-400b-aad5-1ac1d1838bb6,sub_area,TE-b,,0.85,ok,,Norman Kearney,06.11.2026
+ac8dbaec-da44-400b-aad5-1ac1d1838bb6,sub_area,TE-d,,0.7,ok,,Norman Kearney,06.11.2026
+ac8dbaec-da44-400b-aad5-1ac1d1838bb6,objective,O4,,0.5,ok,Institutions = science system,Norman Kearney,06.11.2026
+ac8dbaec-da44-400b-aad5-1ac1d1838bb6,pathway,P3,,0.6,ok,,Norman Kearney,06.11.2026
+ac8dbaec-da44-400b-aad5-1ac1d1838bb6,research_mode,M2,,0.5,ok,,Norman Kearney,06.11.2026
+ac8dbaec-da44-400b-aad5-1ac1d1838bb6,transformative_aspiration,TA1,,0.6,ok,Change from inside,Norman Kearney,06.11.2026
+ac8dbaec-da44-400b-aad5-1ac1d1838bb6,method,Interviews and focus groups,,0.6,ok,Interview quotes in text,Norman Kearney,06.11.2026
+ac8dbaec-da44-400b-aad5-1ac1d1838bb6,data_type,Primary qualitative,,0.6,ok,,Norman Kearney,06.11.2026
+ac8dbaec-da44-400b-aad5-1ac1d1838bb6,country,CHE,,0.85,ok,,Norman Kearney,06.11.2026
+ac8dbaec-da44-400b-aad5-1ac1d1838bb6,region,Europe and Switzerland,,0.85,ok,Derived from CHE,Norman Kearney,06.11.2026
+ac8dbaec-da44-400b-aad5-1ac1d1838bb6,system,Science systems and funding,,0.9,ok,,Norman Kearney,06.11.2026
+ac8dbaec-da44-400b-aad5-1ac1d1838bb6,system,Science-policy interfaces,,0.7,ok,,Norman Kearney,06.11.2026
+ac8dbaec-da44-400b-aad5-1ac1d1838bb6,actors,Researchers and universities,studied,0.9,ok,,Norman Kearney,06.11.2026
+ac8dbaec-da44-400b-aad5-1ac1d1838bb6,actors,Youth and students,studied,0.4,ok,Young researchers; group fit weak,Norman Kearney,06.11.2026
+ac8dbaec-da44-400b-aad5-1ac1d1838bb6,justice_lens,None explicit,,0.7,ok,,Norman Kearney,06.11.2026
+ac8dbaec-da44-400b-aad5-1ac1d1838bb6,sdg,17,,0.5,ok,,Norman Kearney,06.11.2026
+ac8dbaec-da44-400b-aad5-1ac1d1838bb6,output_type,Academic,,0.85,ok,GAIA communications section,Norman Kearney,06.11.2026
+c45c2a72-d5ad-43b8-a113-3dc0a267aed8,impact_area,TE,,0.85,ok,,Norman Kearney,06.11.2026
+c45c2a72-d5ad-43b8-a113-3dc0a267aed8,sub_area,TE-d,,0.8,ok,Research funding schemes,Norman Kearney,06.11.2026
+c45c2a72-d5ad-43b8-a113-3dc0a267aed8,objective,O4,,0.5,ok,,Norman Kearney,06.11.2026
+c45c2a72-d5ad-43b8-a113-3dc0a267aed8,pathway,P4,,0.5,ok,,Norman Kearney,06.11.2026
+c45c2a72-d5ad-43b8-a113-3dc0a267aed8,transformative_aspiration,TA2,,0.45,ok,Calls for reorienting research funding,Norman Kearney,06.11.2026
+c45c2a72-d5ad-43b8-a113-3dc0a267aed8,data_type,None (conceptual),,0.5,ok,Conference report,Norman Kearney,06.11.2026
+c45c2a72-d5ad-43b8-a113-3dc0a267aed8,country,CHE,,0.9,ok,,Norman Kearney,06.11.2026
+c45c2a72-d5ad-43b8-a113-3dc0a267aed8,region,Europe and Switzerland,,0.9,ok,Derived from CHE,Norman Kearney,06.11.2026
+c45c2a72-d5ad-43b8-a113-3dc0a267aed8,scale,National,,0.6,ok,,Norman Kearney,06.11.2026
+c45c2a72-d5ad-43b8-a113-3dc0a267aed8,system,Science systems and funding,,0.95,ok,,Norman Kearney,06.11.2026
+c45c2a72-d5ad-43b8-a113-3dc0a267aed8,system,Energy,,0.4,ok,Context only,Norman Kearney,06.11.2026
+c45c2a72-d5ad-43b8-a113-3dc0a267aed8,actors,Researchers and universities,audience,0.7,ok,,Norman Kearney,06.11.2026
+c45c2a72-d5ad-43b8-a113-3dc0a267aed8,actors,National and local government,audience,0.6,ok,,Norman Kearney,06.11.2026
+c45c2a72-d5ad-43b8-a113-3dc0a267aed8,justice_lens,None explicit,,0.8,ok,,Norman Kearney,06.11.2026
+c45c2a72-d5ad-43b8-a113-3dc0a267aed8,sdg,9,,0.7,ok,,Norman Kearney,06.11.2026
+c45c2a72-d5ad-43b8-a113-3dc0a267aed8,output_type,Academic,,0.6,ok,Society communication in GAIA,Norman Kearney,06.11.2026
+d3bf1ec2-8095-4b02-9349-e62ce449d7e2,impact_area,SL,,0.85,ok,,Norman Kearney,06.11.2026
+d3bf1ec2-8095-4b02-9349-e62ce449d7e2,sub_area,SL-b,,0.9,ok,,Norman Kearney,06.11.2026
+d3bf1ec2-8095-4b02-9349-e62ce449d7e2,sub_area,SL-d,,0.5,ok,Power asymmetries,Norman Kearney,06.11.2026
+d3bf1ec2-8095-4b02-9349-e62ce449d7e2,objective,O1,,0.5,ok,,Norman Kearney,06.11.2026
+d3bf1ec2-8095-4b02-9349-e62ce449d7e2,research_mode,M2,,0.8,ok,,Norman Kearney,06.11.2026
+d3bf1ec2-8095-4b02-9349-e62ce449d7e2,transformative_aspiration,TA2,,0.8,ok,,Norman Kearney,06.11.2026
+d3bf1ec2-8095-4b02-9349-e62ce449d7e2,method,Literature and systematic review,,0.8,ok,,Norman Kearney,06.11.2026
+d3bf1ec2-8095-4b02-9349-e62ce449d7e2,method,Conceptual and theoretical work,,0.8,ok,,Norman Kearney,06.11.2026
+d3bf1ec2-8095-4b02-9349-e62ce449d7e2,method,Discourse and narrative analysis,,0.6,ok,,Norman Kearney,06.11.2026
+d3bf1ec2-8095-4b02-9349-e62ce449d7e2,data_type,None (conceptual),,0.5,ok,Review,Norman Kearney,06.11.2026
+d3bf1ec2-8095-4b02-9349-e62ce449d7e2,country,global_or_multi_country,,0.8,ok,No country focus,Norman Kearney,06.11.2026
+d3bf1ec2-8095-4b02-9349-e62ce449d7e2,scale,Global,,0.6,ok,,Norman Kearney,06.11.2026
+d3bf1ec2-8095-4b02-9349-e62ce449d7e2,system,Protected areas,,0.4,ok,Conservation broadly; weak,Norman Kearney,06.11.2026
+d3bf1ec2-8095-4b02-9349-e62ce449d7e2,actors,Indigenous peoples and local communities,studied,0.7,ok,,Norman Kearney,06.11.2026
+d3bf1ec2-8095-4b02-9349-e62ce449d7e2,actors,Researchers and universities,audience,0.8,ok,,Norman Kearney,06.11.2026
+d3bf1ec2-8095-4b02-9349-e62ce449d7e2,actors,NGOs and civil society,audience,0.5,ok,,Norman Kearney,06.11.2026
+d3bf1ec2-8095-4b02-9349-e62ce449d7e2,justice_lens,Distributive,,0.8,ok,,Norman Kearney,06.11.2026
+d3bf1ec2-8095-4b02-9349-e62ce449d7e2,justice_lens,Recognition,,0.75,ok,,Norman Kearney,06.11.2026
+d3bf1ec2-8095-4b02-9349-e62ce449d7e2,justice_lens,Decolonial,,0.6,ok,,Norman Kearney,06.11.2026
+d3bf1ec2-8095-4b02-9349-e62ce449d7e2,justice_lens,Power,,0.6,ok,,Norman Kearney,06.11.2026
+d3bf1ec2-8095-4b02-9349-e62ce449d7e2,sdg,15,,0.9,ok,,Norman Kearney,06.11.2026
+d3bf1ec2-8095-4b02-9349-e62ce449d7e2,sdg,1,,0.6,ok,,Norman Kearney,06.11.2026
+d3bf1ec2-8095-4b02-9349-e62ce449d7e2,sdg,10,,0.5,ok,,Norman Kearney,06.11.2026
+d3bf1ec2-8095-4b02-9349-e62ce449d7e2,output_type,Academic,,0.95,ok,Review article,Norman Kearney,06.11.2026
+dac3d725-e65b-4d99-a135-1f8eec9e4f83,impact_area,SL,,0.6,ok,Biophysical; fits CDE areas loosely,Norman Kearney,06.11.2026
+dac3d725-e65b-4d99-a135-1f8eec9e4f83,sub_area,SL-b,,0.45,ok,Weak fit,Norman Kearney,06.11.2026
+dac3d725-e65b-4d99-a135-1f8eec9e4f83,research_mode,M2,,0.6,ok,,Norman Kearney,06.11.2026
+dac3d725-e65b-4d99-a135-1f8eec9e4f83,method,Soil and water assessment,,0.9,ok,,Norman Kearney,06.11.2026
+dac3d725-e65b-4d99-a135-1f8eec9e4f83,method,Modelling and simulation,,0.6,ok,,Norman Kearney,06.11.2026
+dac3d725-e65b-4d99-a135-1f8eec9e4f83,data_type,Primary quantitative,,0.7,ok,,Norman Kearney,06.11.2026
+dac3d725-e65b-4d99-a135-1f8eec9e4f83,country,ECU,,0.95,ok,,Norman Kearney,06.11.2026
+dac3d725-e65b-4d99-a135-1f8eec9e4f83,region,South America,,0.9,ok,Derived from ECU (M49),Norman Kearney,06.11.2026
+dac3d725-e65b-4d99-a135-1f8eec9e4f83,setting,Mountains,,0.9,ok,,Norman Kearney,06.11.2026
+dac3d725-e65b-4d99-a135-1f8eec9e4f83,setting,Humid tropics and forest frontiers,,0.8,ok,,Norman Kearney,06.11.2026
+dac3d725-e65b-4d99-a135-1f8eec9e4f83,scale,Landscape or watershed,,0.9,ok,,Norman Kearney,06.11.2026
+dac3d725-e65b-4d99-a135-1f8eec9e4f83,system,Forests,,0.8,ok,,Norman Kearney,06.11.2026
+dac3d725-e65b-4d99-a135-1f8eec9e4f83,system,Freshwater and waterbodies,,0.6,ok,,Norman Kearney,06.11.2026
+dac3d725-e65b-4d99-a135-1f8eec9e4f83,justice_lens,None explicit,,0.9,ok,,Norman Kearney,06.11.2026
+dac3d725-e65b-4d99-a135-1f8eec9e4f83,sdg,13,,0.8,ok,,Norman Kearney,06.11.2026
+dac3d725-e65b-4d99-a135-1f8eec9e4f83,sdg,15,,0.6,ok,,Norman Kearney,06.11.2026
+dac3d725-e65b-4d99-a135-1f8eec9e4f83,output_type,Academic,,0.9,ok,Conference abstract,Norman Kearney,06.11.2026
+e7a43853-bb46-489a-8978-c7abf3b99585,impact_area,TE,,0.6,ok,,Norman Kearney,06.11.2026
+e7a43853-bb46-489a-8978-c7abf3b99585,sub_area,TE-d,,0.6,ok,,Norman Kearney,06.11.2026
+e7a43853-bb46-489a-8978-c7abf3b99585,pathway,P1,,0.5,ok,,Norman Kearney,06.11.2026
+e7a43853-bb46-489a-8978-c7abf3b99585,country,global_or_multi_country,,0.8,ok,,Norman Kearney,06.11.2026
+e7a43853-bb46-489a-8978-c7abf3b99585,setting,Mountains,,0.95,ok,,Norman Kearney,06.11.2026
+e7a43853-bb46-489a-8978-c7abf3b99585,scale,Global,,0.6,ok,,Norman Kearney,06.11.2026
+e7a43853-bb46-489a-8978-c7abf3b99585,actors,International organisations and UN conventions,studied,0.4,ok,Context rather than object of study,Norman Kearney,06.11.2026
+e7a43853-bb46-489a-8978-c7abf3b99585,actors,Researchers and universities,audience,0.7,ok,,Norman Kearney,06.11.2026
+e7a43853-bb46-489a-8978-c7abf3b99585,justice_lens,None explicit,,0.6,ok,,Norman Kearney,06.11.2026
+e7a43853-bb46-489a-8978-c7abf3b99585,sdg,15,,0.6,ok,,Norman Kearney,06.11.2026
+e7a43853-bb46-489a-8978-c7abf3b99585,output_type,Academic,,0.9,ok,Journal editorial,Norman Kearney,06.11.2026
+fixture-synthetic-01,impact_area,SL,,0.9,ok,,Norman Kearney,06.11.2026
+fixture-synthetic-01,sub_area,SL-a,,0.8,ok,,Norman Kearney,06.11.2026
+fixture-synthetic-01,method,Household and other surveys,,0.9,ok,,Norman Kearney,06.11.2026
+fixture-synthetic-01,country,NPL,,0.95,ok,,Norman Kearney,06.11.2026
+fixture-synthetic-01,region,South Asia and Himalaya,,0.95,ok,Derived from NPL,Norman Kearney,06.11.2026
+fixture-synthetic-01,setting,Mountains,,0.8,ok,,Norman Kearney,06.11.2026
+fixture-synthetic-01,actors,Smallholders and land users,studied,0.8,ok,,Norman Kearney,06.11.2026
+fixture-synthetic-01,sdg,2,,0.7,ok,,Norman Kearney,06.11.2026
+fixture-synthetic-01,output_type,Academic,,0.9,ok,Synthetic,Norman Kearney,06.11.2026
+fixture-synthetic-02,impact_area,SG,,0.3,ok,Metadata only: deliberately low confidence,Norman Kearney,06.11.2026
+fixture-synthetic-02,system,Extractives and mining,,0.6,ok,,Norman Kearney,06.11.2026
+fixture-synthetic-02,country,LAO,,0.7,ok,,Norman Kearney,06.11.2026
+fixture-synthetic-02,region,Mainland Southeast Asia,,0.7,ok,Derived from LAO,Norman Kearney,06.11.2026
+fixture-synthetic-02,output_type,Policy,,0.6,ok,,Norman Kearney,06.11.2026
+fixture-synthetic-03,impact_area,SG,,0.7,ok,,Norman Kearney,06.11.2026
+fixture-synthetic-03,sub_area,SG-d,,0.7,ok,,Norman Kearney,06.11.2026
+fixture-synthetic-03,method,Interviews and focus groups,,0.8,ok,,Norman Kearney,06.11.2026
+fixture-synthetic-03,country,CHE,,0.8,ok,,Norman Kearney,06.11.2026
+fixture-synthetic-03,region,Europe and Switzerland,,0.8,ok,Derived from CHE,Norman Kearney,06.11.2026
+fixture-synthetic-03,setting,Mountains,,0.8,ok,,Norman Kearney,06.11.2026
+fixture-synthetic-03,system,Freshwater and waterbodies,,0.7,ok,,Norman Kearney,06.11.2026
+fixture-synthetic-03,actors,Social enterprises and cooperatives,studied,0.7,ok,,Norman Kearney,06.11.2026
+fixture-synthetic-03,justice_lens,Distributive,,0.6,ok,,Norman Kearney,06.11.2026
+fixture-synthetic-04,impact_area,JE,,0.7,ok,,Norman Kearney,06.11.2026
+fixture-synthetic-04,impact_area,TE,,0.6,ok,,Norman Kearney,06.11.2026
+fixture-synthetic-04,sub_area,JE-d,,0.8,ok,,Norman Kearney,06.11.2026
+fixture-synthetic-04,sub_area,TE-b,,0.7,ok,,Norman Kearney,06.11.2026
+fixture-synthetic-04,pathway,P4,,0.6,ok,,Norman Kearney,06.11.2026
+fixture-synthetic-04,research_mode,M1,,0.9,ok,,Norman Kearney,06.11.2026
+fixture-synthetic-04,transformative_aspiration,TA1,,0.6,ok,,Norman Kearney,06.11.2026
+fixture-synthetic-04,method,Living labs and real-world labs,,0.9,ok,,Norman Kearney,06.11.2026
+fixture-synthetic-04,method,"Futures methods (visioning, scenarios, futures workshops)",,0.7,ok,,Norman Kearney,06.11.2026
+fixture-synthetic-04,method,other,,0.3,ok,,Norman Kearney,06.11.2026
+fixture-synthetic-04,country,CHE,,0.9,ok,,Norman Kearney,06.11.2026
+fixture-synthetic-04,region,Europe and Switzerland,,0.9,ok,Derived from CHE,Norman Kearney,06.11.2026
+fixture-synthetic-04,setting,Urban,,0.9,ok,,Norman Kearney,06.11.2026
+fixture-synthetic-04,scale,Community or village,,0.6,ok,,Norman Kearney,06.11.2026
+fixture-synthetic-04,system,Urban areas and housing,,0.6,ok,,Norman Kearney,06.11.2026
+fixture-synthetic-04,actors,Grassroots and urban-commons initiatives,co_producer,0.9,ok,,Norman Kearney,06.11.2026
+fixture-synthetic-04,actors,Researchers and universities,co_producer,0.7,ok,,Norman Kearney,06.11.2026
+fixture-synthetic-04,justice_lens,Power,,0.6,ok,,Norman Kearney,06.11.2026
+fixture-synthetic-04,sdg,11,,0.7,ok,,Norman Kearney,06.11.2026
+fixture-synthetic-04,output_type,Academic,,0.6,ok,Synthetic working paper,Norman Kearney,06.11.2026
+0674ad8c-bb2d-48d0-b866-8a07df79f5af,impact_area,TE,,0.9,ok,,Norman Kearney,06.11.2026
+0674ad8c-bb2d-48d0-b866-8a07df79f5af,sub_area,TE-c,,0.9,ok,Whole-institution teaching support at UniBe,Norman Kearney,06.11.2026
+0674ad8c-bb2d-48d0-b866-8a07df79f5af,sub_area,TE-a,,0.6,ok,Also curricula/teaching for change,Norman Kearney,06.11.2026
+0674ad8c-bb2d-48d0-b866-8a07df79f5af,objective,O5,,0.85,ok,,Norman Kearney,06.11.2026
+0674ad8c-bb2d-48d0-b866-8a07df79f5af,pathway,P2,,0.7,ok,Teaching aids = transformative literacy,Norman Kearney,06.11.2026
+0674ad8c-bb2d-48d0-b866-8a07df79f5af,research_mode,M3,,0.8,ok,,Norman Kearney,06.11.2026
+0674ad8c-bb2d-48d0-b866-8a07df79f5af,transformative_aspiration,TA1,,0.5,ok,Capacity building inside the institution; inferred,Norman Kearney,06.11.2026
+0674ad8c-bb2d-48d0-b866-8a07df79f5af,data_type,None (conceptual),,0.6,ok,"Guide, no data",Norman Kearney,06.11.2026
+0674ad8c-bb2d-48d0-b866-8a07df79f5af,country,CHE,,0.9,ok,,Norman Kearney,06.11.2026
+0674ad8c-bb2d-48d0-b866-8a07df79f5af,region,Europe and Switzerland,,0.9,ok,Derived from CHE,Norman Kearney,06.11.2026
+0674ad8c-bb2d-48d0-b866-8a07df79f5af,system,Higher education,,0.95,ok,,Norman Kearney,06.11.2026
+0674ad8c-bb2d-48d0-b866-8a07df79f5af,actors,Researchers and universities,audience,0.95,ok,,Norman Kearney,06.11.2026
+0674ad8c-bb2d-48d0-b866-8a07df79f5af,justice_lens,None explicit,,0.7,ok,Only front matter seen,Norman Kearney,06.11.2026
+0674ad8c-bb2d-48d0-b866-8a07df79f5af,sdg,4,,0.8,ok,,Norman Kearney,06.11.2026
+0674ad8c-bb2d-48d0-b866-8a07df79f5af,output_type,Practitioner,,0.7,ok,Audience is lecturers as teaching practitioners,Norman Kearney,06.11.2026
+0d741fd9-b15d-4057-b6f9-22395f89b413,impact_area,TE,,0.9,ok,,Norman Kearney,06.11.2026
+0d741fd9-b15d-4057-b6f9-22395f89b413,sub_area,TE-a,,0.85,ok,Decolonisation of a PhD programme,Norman Kearney,06.11.2026
+0d741fd9-b15d-4057-b6f9-22395f89b413,objective,O5,,0.7,ok,,Norman Kearney,06.11.2026
+0d741fd9-b15d-4057-b6f9-22395f89b413,method,"Monitoring, evaluation and learning",,0.7,ok,,Norman Kearney,06.11.2026
+0d741fd9-b15d-4057-b6f9-22395f89b413,system,Higher education,,0.9,ok,,Norman Kearney,06.11.2026
+0d741fd9-b15d-4057-b6f9-22395f89b413,actors,Researchers and universities,studied,0.85,ok,,Norman Kearney,06.11.2026
+0d741fd9-b15d-4057-b6f9-22395f89b413,justice_lens,Decolonial,,0.95,ok,,Norman Kearney,06.11.2026
+0d741fd9-b15d-4057-b6f9-22395f89b413,sdg,4,,0.8,ok,,Norman Kearney,06.11.2026
+0d741fd9-b15d-4057-b6f9-22395f89b413,sdg,10,,0.5,ok,,Norman Kearney,06.11.2026
+0d741fd9-b15d-4057-b6f9-22395f89b413,output_type,Academic,,0.6,ok,Institutional evaluation report; could be Policy,Norman Kearney,06.11.2026
+0d741fd9-b15d-4057-b6f9-22395f89b413,method,Household and other surveys,,0.9,ok,Alumni tracer survey,Norman Kearney,06.11.2026
+0d741fd9-b15d-4057-b6f9-22395f89b413,method,Literature and systematic review,,0.6,ok,,Norman Kearney,06.11.2026
+0d741fd9-b15d-4057-b6f9-22395f89b413,data_type,Primary quantitative,,0.6,ok,Questionnaire; may be mixed,Norman Kearney,06.11.2026
+0d741fd9-b15d-4057-b6f9-22395f89b413,transformative_aspiration,TA2,,0.55,ok,,Norman Kearney,06.11.2026
+0d741fd9-b15d-4057-b6f9-22395f89b413,research_mode,M4,,0.75,ok,,Norman Kearney,06.11.2026
+0d741fd9-b15d-4057-b6f9-22395f89b413,actors,Youth and students,studied,0.6,ok,PhD candidates/alumni,Norman Kearney,06.11.2026
+0d741fd9-b15d-4057-b6f9-22395f89b413,country,global_or_multi_country,,0.7,ok,,Norman Kearney,06.11.2026
+0d741fd9-b15d-4057-b6f9-22395f89b413,sub_area,TE-c,,0.5,ok,,Norman Kearney,06.11.2026
+0d741fd9-b15d-4057-b6f9-22395f89b413,justice_lens,Power,,0.6,ok,,Norman Kearney,06.11.2026
+0eb401b2-9ef0-4478-9abf-6667fb39a0ac,impact_area,JE,,0.85,ok,BORIS unit is TE; content is JE,Norman Kearney,06.11.2026
+0eb401b2-9ef0-4478-9abf-6667fb39a0ac,sub_area,JE-b,,0.85,ok,,Norman Kearney,06.11.2026
+0eb401b2-9ef0-4478-9abf-6667fb39a0ac,research_mode,M2,,0.6,ok,,Norman Kearney,06.11.2026
+0eb401b2-9ef0-4478-9abf-6667fb39a0ac,data_type,None (conceptual),,0.5,ok,Editorial,Norman Kearney,06.11.2026
+0eb401b2-9ef0-4478-9abf-6667fb39a0ac,country,global_or_multi_country,,0.6,ok,Global framing,Norman Kearney,06.11.2026
+0eb401b2-9ef0-4478-9abf-6667fb39a0ac,justice_lens,Distributive,,0.9,ok,,Norman Kearney,06.11.2026
+0eb401b2-9ef0-4478-9abf-6667fb39a0ac,sdg,10,,0.95,ok,,Norman Kearney,06.11.2026
+0eb401b2-9ef0-4478-9abf-6667fb39a0ac,output_type,Academic,,0.8,ok,Book editorial,Norman Kearney,06.11.2026
+0eb401b2-9ef0-4478-9abf-6667fb39a0ac,justice_lens,Gender,,0.5,ok,,Norman Kearney,06.11.2026
+0eb401b2-9ef0-4478-9abf-6667fb39a0ac,method,Conceptual and theoretical work,,0.75,ok,,Norman Kearney,06.11.2026
+0eb401b2-9ef0-4478-9abf-6667fb39a0ac,scale,Global,,0.8,ok,,Norman Kearney,06.11.2026
+0eb401b2-9ef0-4478-9abf-6667fb39a0ac,sub_area,JE-a,,0.6,ok,,Norman Kearney,06.11.2026
+0eb401b2-9ef0-4478-9abf-6667fb39a0ac,sub_area,JE-c,,0.55,ok,Growth dependence,Norman Kearney,06.11.2026
+0eb401b2-9ef0-4478-9abf-6667fb39a0ac,objective,O3,,0.7,ok,,Norman Kearney,06.11.2026
+0eb401b2-9ef0-4478-9abf-6667fb39a0ac,sdg,13,,0.4,ok,"Mentioned, not central",Norman Kearney,06.11.2026
+25c17984-c6c0-4487-8638-5bb606748603,impact_area,JE,,0.7,ok,,Norman Kearney,06.11.2026
+25c17984-c6c0-4487-8638-5bb606748603,impact_area,SL,,0.5,ok,,Norman Kearney,06.11.2026
+25c17984-c6c0-4487-8638-5bb606748603,sub_area,JE-b,,0.6,ok,,Norman Kearney,06.11.2026
+25c17984-c6c0-4487-8638-5bb606748603,sub_area,SL-a,,0.45,ok,Weak; land use only in conclusion,Norman Kearney,06.11.2026
+25c17984-c6c0-4487-8638-5bb606748603,objective,O1,,0.6,ok,,Norman Kearney,06.11.2026
+25c17984-c6c0-4487-8638-5bb606748603,pathway,P1,,0.6,ok,Evidence for MDG policy,Norman Kearney,06.11.2026
+25c17984-c6c0-4487-8638-5bb606748603,research_mode,M2,,0.7,ok,,Norman Kearney,06.11.2026
+25c17984-c6c0-4487-8638-5bb606748603,method,Document and policy analysis,,0.8,ok,,Norman Kearney,06.11.2026
+25c17984-c6c0-4487-8638-5bb606748603,data_type,Secondary statistics,,0.85,ok,,Norman Kearney,06.11.2026
+25c17984-c6c0-4487-8638-5bb606748603,data_type,Documents and policies,,0.7,ok,,Norman Kearney,06.11.2026
+25c17984-c6c0-4487-8638-5bb606748603,country,global_or_multi_country,,0.85,ok,,Norman Kearney,06.11.2026
+25c17984-c6c0-4487-8638-5bb606748603,setting,Mountains,,0.95,ok,,Norman Kearney,06.11.2026
+25c17984-c6c0-4487-8638-5bb606748603,scale,Global,,0.6,ok,,Norman Kearney,06.11.2026
+25c17984-c6c0-4487-8638-5bb606748603,system,Food systems and agriculture,,0.6,ok,,Norman Kearney,06.11.2026
+25c17984-c6c0-4487-8638-5bb606748603,actors,Smallholders and land users,studied,0.8,ok,,Norman Kearney,06.11.2026
+25c17984-c6c0-4487-8638-5bb606748603,actors,National and local government,audience,0.5,ok,,Norman Kearney,06.11.2026
+25c17984-c6c0-4487-8638-5bb606748603,justice_lens,Distributive,,0.8,ok,,Norman Kearney,06.11.2026
+25c17984-c6c0-4487-8638-5bb606748603,sdg,1,,0.9,ok,,Norman Kearney,06.11.2026
+25c17984-c6c0-4487-8638-5bb606748603,sdg,2,,0.8,ok,,Norman Kearney,06.11.2026
+25c17984-c6c0-4487-8638-5bb606748603,output_type,Policy,,0.6,ok,Policy-oriented MRD section,Norman Kearney,06.11.2026
+25c17984-c6c0-4487-8638-5bb606748603,country,BOL,,0.7,ok,One of three PRSP examples,Norman Kearney,06.11.2026
+25c17984-c6c0-4487-8638-5bb606748603,country,VNM,,0.7,ok,One of three PRSP examples,Norman Kearney,06.11.2026
+25c17984-c6c0-4487-8638-5bb606748603,region,South America and central Andes,,0.7,ok,Derived from BOL,Norman Kearney,06.11.2026
+25c17984-c6c0-4487-8638-5bb606748603,region,South-eastern Asia,,0.7,ok,Derived from VNM (M49),Norman Kearney,06.11.2026
+25c17984-c6c0-4487-8638-5bb606748603,actors,Indigenous peoples and local communities,studied,0.6,ok,,Norman Kearney,06.11.2026
+25c17984-c6c0-4487-8638-5bb606748603,method,Poverty and well-being measurement,,0.6,ok,,Norman Kearney,06.11.2026
+5a56f17f-cbe3-4cc0-9511-ec2674dd2beb,impact_area,JE,,0.45,ok,Food systems fit no impact area cleanly; could be SL,Norman Kearney,06.11.2026
+5a56f17f-cbe3-4cc0-9511-ec2674dd2beb,sub_area,JE-d,,0.4,ok,Uncertain,Norman Kearney,06.11.2026
+5a56f17f-cbe3-4cc0-9511-ec2674dd2beb,objective,O2,,0.85,ok,,Norman Kearney,06.11.2026
+5a56f17f-cbe3-4cc0-9511-ec2674dd2beb,research_mode,M2,,0.6,ok,,Norman Kearney,06.11.2026
+5a56f17f-cbe3-4cc0-9511-ec2674dd2beb,method,Interviews and focus groups,,0.4,ok,Methods only in annex; inferred,Norman Kearney,06.11.2026
+5a56f17f-cbe3-4cc0-9511-ec2674dd2beb,data_type,Primary qualitative,,0.6,ok,,Norman Kearney,06.11.2026
+5a56f17f-cbe3-4cc0-9511-ec2674dd2beb,country,BOL,,0.55,ok,Consortium country; study site not seen,Norman Kearney,06.11.2026
+5a56f17f-cbe3-4cc0-9511-ec2674dd2beb,country,KEN,,0.55,ok,Consortium country; study site not seen,Norman Kearney,06.11.2026
+5a56f17f-cbe3-4cc0-9511-ec2674dd2beb,region,South America and central Andes,,0.5,ok,Derived from BOL,Norman Kearney,06.11.2026
+5a56f17f-cbe3-4cc0-9511-ec2674dd2beb,region,Eastern Africa and Horn of Africa,,0.5,ok,Derived from KEN,Norman Kearney,06.11.2026
+5a56f17f-cbe3-4cc0-9511-ec2674dd2beb,system,Food systems and agriculture,,0.95,ok,,Norman Kearney,06.11.2026
+5a56f17f-cbe3-4cc0-9511-ec2674dd2beb,actors,Smallholders and land users,studied,0.7,ok,,Norman Kearney,06.11.2026
+5a56f17f-cbe3-4cc0-9511-ec2674dd2beb,sdg,2,,0.85,ok,,Norman Kearney,06.11.2026
+5a56f17f-cbe3-4cc0-9511-ec2674dd2beb,output_type,Academic,,0.8,ok,,Norman Kearney,06.11.2026
+5a56f17f-cbe3-4cc0-9511-ec2674dd2beb,method,Conceptual and theoretical work,,0.8,ok,,Norman Kearney,06.11.2026
+5a56f17f-cbe3-4cc0-9511-ec2674dd2beb,justice_lens,Recognition,,0.6,ok,,Norman Kearney,06.11.2026
+8001ee4f-ae98-47a8-9347-26a6da9baa21,impact_area,JE,,0.9,ok,,Norman Kearney,06.11.2026
+8001ee4f-ae98-47a8-9347-26a6da9baa21,sub_area,JE-c,,0.9,ok,Work and working time,Norman Kearney,06.11.2026
+8001ee4f-ae98-47a8-9347-26a6da9baa21,sub_area,JE-d,,0.6,ok,,Norman Kearney,06.11.2026
+8001ee4f-ae98-47a8-9347-26a6da9baa21,objective,O3,,0.85,ok,,Norman Kearney,06.11.2026
+8001ee4f-ae98-47a8-9347-26a6da9baa21,pathway,P4,,0.7,ok,Pilot of a new practice,Norman Kearney,06.11.2026
+8001ee4f-ae98-47a8-9347-26a6da9baa21,research_mode,M1,,0.6,ok,Accompanying research,Norman Kearney,06.11.2026
+8001ee4f-ae98-47a8-9347-26a6da9baa21,transformative_aspiration,TA1,,0.55,ok,,Norman Kearney,06.11.2026
+8001ee4f-ae98-47a8-9347-26a6da9baa21,country,CHE,,0.95,ok,,Norman Kearney,06.11.2026
+8001ee4f-ae98-47a8-9347-26a6da9baa21,region,Europe and Switzerland,,0.95,ok,Derived from CHE,Norman Kearney,06.11.2026
+8001ee4f-ae98-47a8-9347-26a6da9baa21,system,Livelihoods and labour,,0.9,ok,,Norman Kearney,06.11.2026
+8001ee4f-ae98-47a8-9347-26a6da9baa21,system,Social security and care,,0.6,ok,Hospital = care sector,Norman Kearney,06.11.2026
+8001ee4f-ae98-47a8-9347-26a6da9baa21,actors,Companies and investors,studied,0.6,ok,Hospital as employer,Norman Kearney,06.11.2026
+8001ee4f-ae98-47a8-9347-26a6da9baa21,sdg,8,,0.9,ok,,Norman Kearney,06.11.2026
+8001ee4f-ae98-47a8-9347-26a6da9baa21,output_type,Academic,,0.6,ok,Also Practitioner,Norman Kearney,06.11.2026
+8001ee4f-ae98-47a8-9347-26a6da9baa21,method,Household and other surveys,,0.85,ok,"Employee survey, three waves",Norman Kearney,06.11.2026
+8001ee4f-ae98-47a8-9347-26a6da9baa21,method,Pilots and field experiments,,0.85,ok,,Norman Kearney,06.11.2026
+8001ee4f-ae98-47a8-9347-26a6da9baa21,method,Impact evaluation,,0.8,ok,,Norman Kearney,06.11.2026
+8001ee4f-ae98-47a8-9347-26a6da9baa21,data_type,Primary quantitative,,0.9,ok,,Norman Kearney,06.11.2026
+8001ee4f-ae98-47a8-9347-26a6da9baa21,sdg,3,,0.8,ok,,Norman Kearney,06.11.2026
+8001ee4f-ae98-47a8-9347-26a6da9baa21,scale,Household or individual,,0.5,ok,Employee level within one organisation,Norman Kearney,06.11.2026
+8001ee4f-ae98-47a8-9347-26a6da9baa21,justice_lens,None explicit,,0.6,ok,,Norman Kearney,06.11.2026
+8632a01d-8dad-40aa-9926-a9120617c29a,impact_area,TE,,0.6,ok,Science-policy role of CDE,Norman Kearney,06.11.2026
+8632a01d-8dad-40aa-9926-a9120617c29a,impact_area,SL,,0.6,ok,,Norman Kearney,06.11.2026
+8632a01d-8dad-40aa-9926-a9120617c29a,sub_area,TE-d,,0.7,ok,,Norman Kearney,06.11.2026
+8632a01d-8dad-40aa-9926-a9120617c29a,sub_area,SL-a,,0.5,ok,,Norman Kearney,06.11.2026
+8632a01d-8dad-40aa-9926-a9120617c29a,objective,O1,,0.5,ok,,Norman Kearney,06.11.2026
+8632a01d-8dad-40aa-9926-a9120617c29a,pathway,P5,,0.8,ok,,Norman Kearney,06.11.2026
+8632a01d-8dad-40aa-9926-a9120617c29a,pathway,P1,,0.75,ok,,Norman Kearney,06.11.2026
+8632a01d-8dad-40aa-9926-a9120617c29a,research_mode,M1,,0.5,ok,One of several projects described,Norman Kearney,06.11.2026
+8632a01d-8dad-40aa-9926-a9120617c29a,method,Participatory action research,,0.6,ok,,Norman Kearney,06.11.2026
+8632a01d-8dad-40aa-9926-a9120617c29a,method,Multi-stakeholder processes,,0.6,ok,,Norman Kearney,06.11.2026
+8632a01d-8dad-40aa-9926-a9120617c29a,country,global_or_multi_country,,0.9,ok,,Norman Kearney,06.11.2026
+8632a01d-8dad-40aa-9926-a9120617c29a,country,ETH,,0.6,ok,,Norman Kearney,06.11.2026
+8632a01d-8dad-40aa-9926-a9120617c29a,country,KEN,,0.6,ok,,Norman Kearney,06.11.2026
+8632a01d-8dad-40aa-9926-a9120617c29a,country,TJK,,0.7,ok,,Norman Kearney,06.11.2026
+8632a01d-8dad-40aa-9926-a9120617c29a,country,AZE,,0.5,ok,,Norman Kearney,06.11.2026
+8632a01d-8dad-40aa-9926-a9120617c29a,region,Eastern Africa and Horn of Africa,,0.7,ok,,Norman Kearney,06.11.2026
+8632a01d-8dad-40aa-9926-a9120617c29a,region,Central Asia,,0.6,ok,Derived from TJK (M49),Norman Kearney,06.11.2026
+8632a01d-8dad-40aa-9926-a9120617c29a,setting,Mountains,,0.95,ok,,Norman Kearney,06.11.2026
+8632a01d-8dad-40aa-9926-a9120617c29a,scale,Transboundary or regional,,0.7,ok,,Norman Kearney,06.11.2026
+8632a01d-8dad-40aa-9926-a9120617c29a,scale,Cross-scale (incl. telecoupling),,0.6,ok,,Norman Kearney,06.11.2026
+8632a01d-8dad-40aa-9926-a9120617c29a,system,Freshwater and waterbodies,,0.7,ok,,Norman Kearney,06.11.2026
+8632a01d-8dad-40aa-9926-a9120617c29a,actors,Researchers and universities,studied,0.6,ok,Portrait of CDE itself,Norman Kearney,06.11.2026
+8632a01d-8dad-40aa-9926-a9120617c29a,actors,International organisations and UN conventions,audience,0.5,ok,,Norman Kearney,06.11.2026
+8632a01d-8dad-40aa-9926-a9120617c29a,justice_lens,None explicit,,0.6,ok,,Norman Kearney,06.11.2026
+8632a01d-8dad-40aa-9926-a9120617c29a,sdg,15,,0.6,ok,,Norman Kearney,06.11.2026
+8632a01d-8dad-40aa-9926-a9120617c29a,sdg,6,,0.6,ok,,Norman Kearney,06.11.2026
+8632a01d-8dad-40aa-9926-a9120617c29a,output_type,Academic,,0.6,ok,Institutional portrait in a journal; could be Policy,Norman Kearney,06.11.2026
+8632a01d-8dad-40aa-9926-a9120617c29a,country,LAO,,0.7,ok,,Norman Kearney,06.11.2026
+8632a01d-8dad-40aa-9926-a9120617c29a,country,BOL,,0.6,ok,,Norman Kearney,06.11.2026
+8632a01d-8dad-40aa-9926-a9120617c29a,country,PER,,0.6,ok,,Norman Kearney,06.11.2026
+8632a01d-8dad-40aa-9926-a9120617c29a,region,Mainland Southeast Asia,,0.7,ok,Derived from LAO,Norman Kearney,06.11.2026
+8632a01d-8dad-40aa-9926-a9120617c29a,region,South America and central Andes,,0.7,ok,"Derived from BOL, PER",Norman Kearney,06.11.2026
+8632a01d-8dad-40aa-9926-a9120617c29a,sub_area,SL-c,,0.55,ok,,Norman Kearney,06.11.2026
+8632a01d-8dad-40aa-9926-a9120617c29a,method,Database development,,0.5,ok,Lao DECIDE info,Norman Kearney,06.11.2026
+8632a01d-8dad-40aa-9926-a9120617c29a,system,Food systems and agriculture,,0.5,ok,,Norman Kearney,06.11.2026
+8632a01d-8dad-40aa-9926-a9120617c29a,actors,National and local government,co_producer,0.6,ok,,Norman Kearney,06.11.2026
+82d7bbd0-6e95-44c5-9fac-617c24dd3bd2,impact_area,SG,,0.5,ok,Urban food governance,Norman Kearney,06.11.2026
+82d7bbd0-6e95-44c5-9fac-617c24dd3bd2,sub_area,JE-d,,0.6,ok,,Norman Kearney,06.11.2026
+82d7bbd0-6e95-44c5-9fac-617c24dd3bd2,objective,O2,,0.8,ok,,Norman Kearney,06.11.2026
+82d7bbd0-6e95-44c5-9fac-617c24dd3bd2,pathway,P1,,0.6,ok,,Norman Kearney,06.11.2026
+82d7bbd0-6e95-44c5-9fac-617c24dd3bd2,method,Case study,,0.7,ok,,Norman Kearney,06.11.2026
+82d7bbd0-6e95-44c5-9fac-617c24dd3bd2,data_type,Documents and policies,,0.85,ok,,Norman Kearney,06.11.2026
+82d7bbd0-6e95-44c5-9fac-617c24dd3bd2,country,CHE,,0.95,ok,,Norman Kearney,06.11.2026
+82d7bbd0-6e95-44c5-9fac-617c24dd3bd2,region,Europe and Switzerland,,0.95,ok,Derived from CHE,Norman Kearney,06.11.2026
+82d7bbd0-6e95-44c5-9fac-617c24dd3bd2,setting,Urban,,0.95,ok,,Norman Kearney,06.11.2026
+82d7bbd0-6e95-44c5-9fac-617c24dd3bd2,scale,Subnational,,0.8,ok,City level,Norman Kearney,06.11.2026
+82d7bbd0-6e95-44c5-9fac-617c24dd3bd2,system,Food systems and agriculture,,0.95,ok,,Norman Kearney,06.11.2026
+82d7bbd0-6e95-44c5-9fac-617c24dd3bd2,actors,NGOs and civil society,studied,0.5,ok,,Norman Kearney,06.11.2026
+82d7bbd0-6e95-44c5-9fac-617c24dd3bd2,sdg,11,,0.8,ok,,Norman Kearney,06.11.2026
+82d7bbd0-6e95-44c5-9fac-617c24dd3bd2,sdg,2,,0.7,ok,,Norman Kearney,06.11.2026
+82d7bbd0-6e95-44c5-9fac-617c24dd3bd2,output_type,Policy,,0.7,ok,Comparative series for Swiss cities,Norman Kearney,06.11.2026
+82d7bbd0-6e95-44c5-9fac-617c24dd3bd2,impact_area,JE,,0.7,ok,,Norman Kearney,06.11.2026
+82d7bbd0-6e95-44c5-9fac-617c24dd3bd2,research_mode,M2,,0.7,ok,,Norman Kearney,06.11.2026
+82d7bbd0-6e95-44c5-9fac-617c24dd3bd2,sdg,12,,0.7,ok,,Norman Kearney,06.11.2026
+82d7bbd0-6e95-44c5-9fac-617c24dd3bd2,method,Document and policy analysis,,0.9,ok,,Norman Kearney,06.11.2026
+82d7bbd0-6e95-44c5-9fac-617c24dd3bd2,method,Interviews and focus groups,,0.5,ok,Expert interview implied,Norman Kearney,06.11.2026
+82d7bbd0-6e95-44c5-9fac-617c24dd3bd2,actors,National and local government,studied,0.9,ok,,Norman Kearney,06.11.2026
+82d7bbd0-6e95-44c5-9fac-617c24dd3bd2,justice_lens,Distributive,,0.35,ok,Climate justice appears only as a legal basis,Norman Kearney,06.11.2026
+d012a8d7-8b08-41fe-b46b-f551dd068417,impact_area,SG,,0.5,ok,Urban food governance,Norman Kearney,06.11.2026
+d012a8d7-8b08-41fe-b46b-f551dd068417,sub_area,JE-d,,0.6,ok,,Norman Kearney,06.11.2026
+d012a8d7-8b08-41fe-b46b-f551dd068417,objective,O2,,0.8,ok,,Norman Kearney,06.11.2026
+d012a8d7-8b08-41fe-b46b-f551dd068417,pathway,P1,,0.6,ok,,Norman Kearney,06.11.2026
+d012a8d7-8b08-41fe-b46b-f551dd068417,method,Case study,,0.7,ok,,Norman Kearney,06.11.2026
+d012a8d7-8b08-41fe-b46b-f551dd068417,data_type,Documents and policies,,0.85,ok,,Norman Kearney,06.11.2026
+d012a8d7-8b08-41fe-b46b-f551dd068417,country,CHE,,0.95,ok,,Norman Kearney,06.11.2026
+d012a8d7-8b08-41fe-b46b-f551dd068417,region,Europe and Switzerland,,0.95,ok,Derived from CHE,Norman Kearney,06.11.2026
+d012a8d7-8b08-41fe-b46b-f551dd068417,setting,Urban,,0.95,ok,,Norman Kearney,06.11.2026
+d012a8d7-8b08-41fe-b46b-f551dd068417,scale,Subnational,,0.8,ok,City level,Norman Kearney,06.11.2026
+d012a8d7-8b08-41fe-b46b-f551dd068417,system,Food systems and agriculture,,0.95,ok,,Norman Kearney,06.11.2026
+d012a8d7-8b08-41fe-b46b-f551dd068417,actors,National and local government,studied,0.9,ok,,Norman Kearney,06.11.2026
+d012a8d7-8b08-41fe-b46b-f551dd068417,actors,NGOs and civil society,studied,0.5,ok,,Norman Kearney,06.11.2026
+d012a8d7-8b08-41fe-b46b-f551dd068417,justice_lens,None explicit,,0.6,ok,Only TOC seen,Norman Kearney,06.11.2026
+d012a8d7-8b08-41fe-b46b-f551dd068417,sdg,11,,0.8,ok,,Norman Kearney,06.11.2026
+d012a8d7-8b08-41fe-b46b-f551dd068417,sdg,2,,0.7,ok,,Norman Kearney,06.11.2026
+d012a8d7-8b08-41fe-b46b-f551dd068417,sdg,12,,0.6,ok,,Norman Kearney,06.11.2026
+d012a8d7-8b08-41fe-b46b-f551dd068417,output_type,Policy,,0.7,ok,Comparative series for Swiss cities,Norman Kearney,06.11.2026
+d012a8d7-8b08-41fe-b46b-f551dd068417,impact_area,JE,,0.7,ok,,Norman Kearney,06.11.2026
+d012a8d7-8b08-41fe-b46b-f551dd068417,research_mode,M2,,0.7,ok,,Norman Kearney,06.11.2026
+d012a8d7-8b08-41fe-b46b-f551dd068417,method,Document and policy analysis,,0.9,ok,,Norman Kearney,06.11.2026
+d012a8d7-8b08-41fe-b46b-f551dd068417,system,Energy,,0.35,ok,Energy/climate goals as context,Norman Kearney,06.11.2026
+aa8e1522-ccd7-4dcf-a9e6-44a5d6eae9a7,impact_area,TE,,0.5,ok,Science-policy assessment; could be SL,Norman Kearney,06.11.2026
+aa8e1522-ccd7-4dcf-a9e6-44a5d6eae9a7,sub_area,TE-d,,0.6,ok,"MRI network, assessments",Norman Kearney,06.11.2026
+aa8e1522-ccd7-4dcf-a9e6-44a5d6eae9a7,research_mode,M2,,0.6,ok,,Norman Kearney,06.11.2026
+aa8e1522-ccd7-4dcf-a9e6-44a5d6eae9a7,method,Case study,,0.6,ok,,Norman Kearney,06.11.2026
+aa8e1522-ccd7-4dcf-a9e6-44a5d6eae9a7,method,Document and policy analysis,,0.6,ok,,Norman Kearney,06.11.2026
+aa8e1522-ccd7-4dcf-a9e6-44a5d6eae9a7,method,GIS and spatial analysis,,0.5,ok,,Norman Kearney,06.11.2026
+aa8e1522-ccd7-4dcf-a9e6-44a5d6eae9a7,data_type,Secondary statistics,,0.85,ok,,Norman Kearney,06.11.2026
+aa8e1522-ccd7-4dcf-a9e6-44a5d6eae9a7,data_type,Secondary geospatial,,0.6,ok,,Norman Kearney,06.11.2026
+aa8e1522-ccd7-4dcf-a9e6-44a5d6eae9a7,country,ECU,,0.85,ok,,Norman Kearney,06.11.2026
+aa8e1522-ccd7-4dcf-a9e6-44a5d6eae9a7,country,global_or_multi_country,,0.6,ok,,Norman Kearney,06.11.2026
+aa8e1522-ccd7-4dcf-a9e6-44a5d6eae9a7,region,South America,,0.8,ok,Derived from ECU (M49); not in CDE partner mapping,Norman Kearney,06.11.2026
+aa8e1522-ccd7-4dcf-a9e6-44a5d6eae9a7,setting,Mountains,,0.95,ok,,Norman Kearney,06.11.2026
+aa8e1522-ccd7-4dcf-a9e6-44a5d6eae9a7,scale,National,,0.7,ok,,Norman Kearney,06.11.2026
+aa8e1522-ccd7-4dcf-a9e6-44a5d6eae9a7,system,Science-policy interfaces,,0.6,ok,,Norman Kearney,06.11.2026
+aa8e1522-ccd7-4dcf-a9e6-44a5d6eae9a7,actors,National and local government,audience,0.6,ok,,Norman Kearney,06.11.2026
+aa8e1522-ccd7-4dcf-a9e6-44a5d6eae9a7,justice_lens,None explicit,,0.6,ok,,Norman Kearney,06.11.2026
+aa8e1522-ccd7-4dcf-a9e6-44a5d6eae9a7,sdg,15,,0.5,ok,Mountain targets sit in SDG 15; framework covers all,Norman Kearney,06.11.2026
+aa8e1522-ccd7-4dcf-a9e6-44a5d6eae9a7,output_type,Academic,,0.6,ok,Could be Policy,Norman Kearney,06.11.2026
+aa8e1522-ccd7-4dcf-a9e6-44a5d6eae9a7,pathway,P1,,0.8,ok,,Norman Kearney,06.11.2026
+aa8e1522-ccd7-4dcf-a9e6-44a5d6eae9a7,method,"Monitoring, evaluation and learning",,0.8,ok,,Norman Kearney,06.11.2026
+aa8e1522-ccd7-4dcf-a9e6-44a5d6eae9a7,sdg,1,,0.4,ok,"Programme goal, not the paper's focus",Norman Kearney,06.11.2026
+bdf7b415-f133-4632-a184-ee6e0c62517b,impact_area,TE,,0.9,ok,,Norman Kearney,06.11.2026
+bdf7b415-f133-4632-a184-ee6e0c62517b,sub_area,TE-c,,0.7,ok,,Norman Kearney,06.11.2026
+bdf7b415-f133-4632-a184-ee6e0c62517b,objective,O5,,0.6,ok,,Norman Kearney,06.11.2026
+bdf7b415-f133-4632-a184-ee6e0c62517b,data_type,None (conceptual),,0.5,ok,,Norman Kearney,06.11.2026
+bdf7b415-f133-4632-a184-ee6e0c62517b,country,CHE,,0.9,ok,,Norman Kearney,06.11.2026
+bdf7b415-f133-4632-a184-ee6e0c62517b,region,Europe and Switzerland,,0.9,ok,Derived from CHE,Norman Kearney,06.11.2026
+bdf7b415-f133-4632-a184-ee6e0c62517b,system,Higher education,,0.95,ok,,Norman Kearney,06.11.2026
+bdf7b415-f133-4632-a184-ee6e0c62517b,actors,Researchers and universities,audience,0.9,ok,,Norman Kearney,06.11.2026
+bdf7b415-f133-4632-a184-ee6e0c62517b,justice_lens,None explicit,,0.5,ok,Only cover and TOC,Norman Kearney,06.11.2026
+bdf7b415-f133-4632-a184-ee6e0c62517b,sdg,4,,0.8,ok,,Norman Kearney,06.11.2026
+bdf7b415-f133-4632-a184-ee6e0c62517b,output_type,Academic,,0.6,ok,Whole bulletin issue; could be Practitioner,Norman Kearney,06.11.2026
+bdf7b415-f133-4632-a184-ee6e0c62517b,method,Conceptual and theoretical work,,0.7,ok,,Norman Kearney,06.11.2026
+bdf7b415-f133-4632-a184-ee6e0c62517b,sub_area,TE-a,,0.7,ok,,Norman Kearney,06.11.2026
+bdf7b415-f133-4632-a184-ee6e0c62517b,actors,Youth and students,studied,0.5,ok,,Norman Kearney,06.11.2026
+c191917c-34df-4dfe-8f2d-aaaffb20bb05,impact_area,SG,,0.9,ok,,Norman Kearney,06.11.2026
+c191917c-34df-4dfe-8f2d-aaaffb20bb05,sub_area,SG-c,,0.95,ok,Land Matrix,Norman Kearney,06.11.2026
+c191917c-34df-4dfe-8f2d-aaaffb20bb05,objective,O2,,0.85,ok,,Norman Kearney,06.11.2026
+c191917c-34df-4dfe-8f2d-aaaffb20bb05,research_mode,M2,,0.7,ok,,Norman Kearney,06.11.2026
+c191917c-34df-4dfe-8f2d-aaaffb20bb05,method,Database development,,0.8,ok,,Norman Kearney,06.11.2026
+c191917c-34df-4dfe-8f2d-aaaffb20bb05,method,Case study,,0.6,ok,,Norman Kearney,06.11.2026
+c191917c-34df-4dfe-8f2d-aaaffb20bb05,data_type,Curated databases,,0.9,ok,,Norman Kearney,06.11.2026
+c191917c-34df-4dfe-8f2d-aaaffb20bb05,country,global_or_multi_country,,0.85,ok,,Norman Kearney,06.11.2026
+c191917c-34df-4dfe-8f2d-aaaffb20bb05,country,IDN,,0.6,ok,,Norman Kearney,06.11.2026
+c191917c-34df-4dfe-8f2d-aaaffb20bb05,country,MDG,,0.6,ok,,Norman Kearney,06.11.2026
+c191917c-34df-4dfe-8f2d-aaaffb20bb05,region,Madagascar,,0.6,ok,Derived from MDG,Norman Kearney,06.11.2026
+c191917c-34df-4dfe-8f2d-aaaffb20bb05,region,South-eastern Asia,,0.6,ok,Derived from IDN (M49),Norman Kearney,06.11.2026
+c191917c-34df-4dfe-8f2d-aaaffb20bb05,scale,Global,,0.7,ok,,Norman Kearney,06.11.2026
+c191917c-34df-4dfe-8f2d-aaaffb20bb05,system,Large-scale land investments,,0.95,ok,,Norman Kearney,06.11.2026
+c191917c-34df-4dfe-8f2d-aaaffb20bb05,sdg,15,,0.5,ok,,Norman Kearney,06.11.2026
+c191917c-34df-4dfe-8f2d-aaaffb20bb05,output_type,Policy,,0.6,ok,Land Matrix analytical report,Norman Kearney,06.11.2026
+c191917c-34df-4dfe-8f2d-aaaffb20bb05,actors,Smallholders and land users,studied,0.8,ok,,Norman Kearney,06.11.2026
+c191917c-34df-4dfe-8f2d-aaaffb20bb05,actors,Pastoralists,studied,0.7,ok,,Norman Kearney,06.11.2026
+c191917c-34df-4dfe-8f2d-aaaffb20bb05,actors,Indigenous peoples and local communities,studied,0.85,ok,,Norman Kearney,06.11.2026
+c191917c-34df-4dfe-8f2d-aaaffb20bb05,actors,Companies and investors,studied,0.85,ok,,Norman Kearney,06.11.2026
+c191917c-34df-4dfe-8f2d-aaaffb20bb05,actors,Standard-setters,studied,0.7,ok,,Norman Kearney,06.11.2026
+c191917c-34df-4dfe-8f2d-aaaffb20bb05,actors,NGOs and civil society,studied,0.4,ok,Minor actor group,Norman Kearney,06.11.2026
+c191917c-34df-4dfe-8f2d-aaaffb20bb05,justice_lens,Distributive,,0.8,ok,,Norman Kearney,06.11.2026
+c191917c-34df-4dfe-8f2d-aaaffb20bb05,transformative_aspiration,TA2,,0.65,ok,,Norman Kearney,06.11.2026
+c191917c-34df-4dfe-8f2d-aaaffb20bb05,pathway,P1,,0.8,ok,,Norman Kearney,06.11.2026
+c191917c-34df-4dfe-8f2d-aaaffb20bb05,system,Finance and investment,,0.8,ok,,Norman Kearney,06.11.2026
+c191917c-34df-4dfe-8f2d-aaaffb20bb05,country,BRA,,0.5,ok,Named as target countries,Norman Kearney,06.11.2026
+c191917c-34df-4dfe-8f2d-aaaffb20bb05,country,COL,,0.5,ok,Named as target countries,Norman Kearney,06.11.2026
+c191917c-34df-4dfe-8f2d-aaaffb20bb05,sdg,13,,0.8,ok,,Norman Kearney,06.11.2026
+c191917c-34df-4dfe-8f2d-aaaffb20bb05,sdg,1,,0.4,ok,,Norman Kearney,06.11.2026
+c7c9136f-52b3-40d4-893c-cb638a9c2147,impact_area,TE,,0.95,ok,,Norman Kearney,06.11.2026
+c7c9136f-52b3-40d4-893c-cb638a9c2147,sub_area,TE-c,,0.95,ok,Whole-institution approach at UniBe,Norman Kearney,06.11.2026
+c7c9136f-52b3-40d4-893c-cb638a9c2147,research_mode,M4,,0.7,ok,,Norman Kearney,06.11.2026
+c7c9136f-52b3-40d4-893c-cb638a9c2147,method,"Monitoring, evaluation and learning",,0.95,ok,,Norman Kearney,06.11.2026
+c7c9136f-52b3-40d4-893c-cb638a9c2147,method,Household and other surveys,,0.5,ok,Self-declaration by lecturers,Norman Kearney,06.11.2026
+c7c9136f-52b3-40d4-893c-cb638a9c2147,country,CHE,,0.95,ok,,Norman Kearney,06.11.2026
+c7c9136f-52b3-40d4-893c-cb638a9c2147,region,Europe and Switzerland,,0.95,ok,Derived from CHE,Norman Kearney,06.11.2026
+c7c9136f-52b3-40d4-893c-cb638a9c2147,system,Higher education,,0.95,ok,,Norman Kearney,06.11.2026
+c7c9136f-52b3-40d4-893c-cb638a9c2147,actors,Researchers and universities,studied,0.85,ok,,Norman Kearney,06.11.2026
+c7c9136f-52b3-40d4-893c-cb638a9c2147,justice_lens,None explicit,,0.7,ok,,Norman Kearney,06.11.2026
+c7c9136f-52b3-40d4-893c-cb638a9c2147,sdg,4,,0.85,ok,,Norman Kearney,06.11.2026
+c7c9136f-52b3-40d4-893c-cb638a9c2147,output_type,Policy,,0.6,ok,Internal report for university management,Norman Kearney,06.11.2026
+c7c9136f-52b3-40d4-893c-cb638a9c2147,pathway,P3,,0.6,ok,,Norman Kearney,06.11.2026
+c7c9136f-52b3-40d4-893c-cb638a9c2147,objective,O5,,0.8,ok,,Norman Kearney,06.11.2026
+c7c9136f-52b3-40d4-893c-cb638a9c2147,method,Document and policy analysis,,0.75,ok,Course catalogue search,Norman Kearney,06.11.2026
+c7c9136f-52b3-40d4-893c-cb638a9c2147,data_type,Curated databases,,0.75,ok,Course catalogue (KSL),Norman Kearney,06.11.2026
+c7c9136f-52b3-40d4-893c-cb638a9c2147,actors,Youth and students,studied,0.5,ok,,Norman Kearney,06.11.2026
+d74fe85e-543f-4f8e-a742-1927a8b09bd4,impact_area,SL,,0.7,ok,,Norman Kearney,06.11.2026
+d74fe85e-543f-4f8e-a742-1927a8b09bd4,impact_area,SG,,0.6,ok,,Norman Kearney,06.11.2026
+d74fe85e-543f-4f8e-a742-1927a8b09bd4,sub_area,SL-d,,0.6,ok,Change agents,Norman Kearney,06.11.2026
+d74fe85e-543f-4f8e-a742-1927a8b09bd4,objective,O4,,0.5,ok,,Norman Kearney,06.11.2026
+d74fe85e-543f-4f8e-a742-1927a8b09bd4,pathway,P1,,0.6,ok,,Norman Kearney,06.11.2026
+d74fe85e-543f-4f8e-a742-1927a8b09bd4,research_mode,M2,,0.8,ok,,Norman Kearney,06.11.2026
+d74fe85e-543f-4f8e-a742-1927a8b09bd4,method,other,,0.9,ok,,Norman Kearney,06.11.2026
+d74fe85e-543f-4f8e-a742-1927a8b09bd4,country,global_or_multi_country,,0.7,ok,Focus issue across contexts,Norman Kearney,06.11.2026
+d74fe85e-543f-4f8e-a742-1927a8b09bd4,actors,National and local government,audience,0.6,ok,,Norman Kearney,06.11.2026
+d74fe85e-543f-4f8e-a742-1927a8b09bd4,actors,Researchers and universities,audience,0.6,ok,,Norman Kearney,06.11.2026
+d74fe85e-543f-4f8e-a742-1927a8b09bd4,justice_lens,None explicit,,0.7,ok,,Norman Kearney,06.11.2026
+d74fe85e-543f-4f8e-a742-1927a8b09bd4,sdg,15,,0.6,ok,,Norman Kearney,06.11.2026
+d74fe85e-543f-4f8e-a742-1927a8b09bd4,output_type,Academic,,0.95,ok,Journal editorial,Norman Kearney,06.11.2026
+d74fe85e-543f-4f8e-a742-1927a8b09bd4,method,Knowledge co-production,,0.4,ok,"Recommended, not used",Norman Kearney,06.11.2026
+d74fe85e-543f-4f8e-a742-1927a8b09bd4,scale,Cross-scale (incl. telecoupling),,0.75,ok,,Norman Kearney,06.11.2026
+d74fe85e-543f-4f8e-a742-1927a8b09bd4,country,ARG,,0.4,ok,Example from one article,Norman Kearney,06.11.2026
+e5176970-c1f2-4e83-82d7-3f7f779a1d08,impact_area,SG,,0.8,ok,,Norman Kearney,06.11.2026
+e5176970-c1f2-4e83-82d7-3f7f779a1d08,sub_area,SG-d,,0.6,ok,Collaborative/local governance,Norman Kearney,06.11.2026
+e5176970-c1f2-4e83-82d7-3f7f779a1d08,objective,O4,,0.75,ok,,Norman Kearney,06.11.2026
+e5176970-c1f2-4e83-82d7-3f7f779a1d08,pathway,P1,,0.6,ok,,Norman Kearney,06.11.2026
+e5176970-c1f2-4e83-82d7-3f7f779a1d08,research_mode,M2,,0.85,ok,,Norman Kearney,06.11.2026
+e5176970-c1f2-4e83-82d7-3f7f779a1d08,method,Interviews and focus groups,,0.9,ok,,Norman Kearney,06.11.2026
+e5176970-c1f2-4e83-82d7-3f7f779a1d08,method,Document and policy analysis,,0.8,ok,,Norman Kearney,06.11.2026
+e5176970-c1f2-4e83-82d7-3f7f779a1d08,method,Case study,,0.6,ok,,Norman Kearney,06.11.2026
+e5176970-c1f2-4e83-82d7-3f7f779a1d08,data_type,Primary qualitative,,0.9,ok,,Norman Kearney,06.11.2026
+e5176970-c1f2-4e83-82d7-3f7f779a1d08,data_type,Documents and policies,,0.7,ok,,Norman Kearney,06.11.2026
+e5176970-c1f2-4e83-82d7-3f7f779a1d08,country,CHE,,0.95,ok,,Norman Kearney,06.11.2026
+e5176970-c1f2-4e83-82d7-3f7f779a1d08,region,Europe and Switzerland,,0.95,ok,Derived from CHE,Norman Kearney,06.11.2026
+e5176970-c1f2-4e83-82d7-3f7f779a1d08,setting,Mountains,,0.95,ok,,Norman Kearney,06.11.2026
+e5176970-c1f2-4e83-82d7-3f7f779a1d08,scale,Subnational,,0.6,ok,,Norman Kearney,06.11.2026
+e5176970-c1f2-4e83-82d7-3f7f779a1d08,system,Freshwater and waterbodies,,0.95,ok,,Norman Kearney,06.11.2026
+e5176970-c1f2-4e83-82d7-3f7f779a1d08,sdg,6,,0.9,ok,,Norman Kearney,06.11.2026
+e5176970-c1f2-4e83-82d7-3f7f779a1d08,sdg,13,,0.6,ok,,Norman Kearney,06.11.2026
+e5176970-c1f2-4e83-82d7-3f7f779a1d08,output_type,Academic,,0.95,ok,Journal article,Norman Kearney,06.11.2026
+e5176970-c1f2-4e83-82d7-3f7f779a1d08,justice_lens,Distributive,,0.8,ok,,Norman Kearney,06.11.2026
+e5176970-c1f2-4e83-82d7-3f7f779a1d08,actors,National and local government,studied,0.8,ok,Communes,Norman Kearney,06.11.2026
+f50a5dcd-3422-45f4-b579-4abef4dda308,impact_area,JE,,0.8,ok,,Norman Kearney,06.11.2026
+f50a5dcd-3422-45f4-b579-4abef4dda308,sub_area,JE-a,,0.9,ok,Nature parks and protected areas,Norman Kearney,06.11.2026
+f50a5dcd-3422-45f4-b579-4abef4dda308,research_mode,M2,,0.7,ok,,Norman Kearney,06.11.2026
+f50a5dcd-3422-45f4-b579-4abef4dda308,method,Conceptual and theoretical work,,0.6,ok,,Norman Kearney,06.11.2026
+f50a5dcd-3422-45f4-b579-4abef4dda308,country,CHE,,0.6,ok,Swiss research programme; cover shows a French park (Ballons des Vosges),Norman Kearney,06.11.2026
+f50a5dcd-3422-45f4-b579-4abef4dda308,region,Europe and Switzerland,,0.6,ok,Derived from CHE,Norman Kearney,06.11.2026
+f50a5dcd-3422-45f4-b579-4abef4dda308,scale,Subnational,,0.6,ok,,Norman Kearney,06.11.2026
+f50a5dcd-3422-45f4-b579-4abef4dda308,system,Protected areas,,0.95,ok,,Norman Kearney,06.11.2026
+f50a5dcd-3422-45f4-b579-4abef4dda308,justice_lens,Recognition,,0.4,ok,Weak; cultural diversity,Norman Kearney,06.11.2026
+f50a5dcd-3422-45f4-b579-4abef4dda308,justice_lens,Procedural,,0.4,ok,Weak; participation culture,Norman Kearney,06.11.2026
+f50a5dcd-3422-45f4-b579-4abef4dda308,sdg,11,,0.6,ok,Target 11.4 cultural heritage,Norman Kearney,06.11.2026
+f50a5dcd-3422-45f4-b579-4abef4dda308,sdg,15,,0.5,ok,,Norman Kearney,06.11.2026
+f50a5dcd-3422-45f4-b579-4abef4dda308,output_type,Academic,,0.7,ok,,Norman Kearney,06.11.2026
+f50a5dcd-3422-45f4-b579-4abef4dda308,method,Case study,,0.5,ok,Comparative project across parks,Norman Kearney,06.11.2026
+f50a5dcd-3422-45f4-b579-4abef4dda308,method,Literature and systematic review,,0.6,ok,,Norman Kearney,06.11.2026

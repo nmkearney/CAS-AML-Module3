@@ -1,0 +1,92 @@
+uuid,role,rank,status,reason,licence,checked_at
+bdf7b415-f133-4632-a184-ee6e0c62517b,pick,1,kept,already fetched,CC-BY-4.0,2026-11-06T09:57:03+00:00
+1063aac9-b655-4aa4-b995-894cd5478b9f,pick,2,dropped,excluded in review: story map with almost no text (509 chars),CC-BY-NC-SA-4.0,2026-11-06T09:57:03+00:00
+6733749e-a857-47bf-9caa-23aa147571f2,pick,3,dropped,licence not accepted: https://boris-portal.unibe.ch/info/about,https://boris-portal.unibe.ch/info/about,2026-11-06T09:57:03+00:00
+50b74e99-a8a0-4903-ab4e-d26e3f2a95b1,pick,4,dropped,licence not accepted: none,,2026-11-06T09:57:03+00:00
+141a8f9a-6655-4114-9003-cff2cef56d58,pick,5,dropped,licence not accepted: CC-BY-NC-ND-4.0,CC-BY-NC-ND-4.0,2026-11-06T09:57:03+00:00
+73133bd6-4851-46a2-bb0c-ba5c1b9367f0,pick,6,dropped,licence not accepted: https://boris-portal.unibe.ch/info/about,https://boris-portal.unibe.ch/info/about,2026-11-06T09:57:03+00:00
+6cc4628a-9cb2-455d-b1af-01eef308ae2e,pick,7,dropped,licence not accepted: https://boris-portal.unibe.ch/info/about,https://boris-portal.unibe.ch/info/about,2026-11-06T09:57:03+00:00
+c4968cf0-dae3-4e3a-83c2-9d91441e2a56,pick,8,dropped,licence not accepted: https://boris-portal.unibe.ch/info/about,https://boris-portal.unibe.ch/info/about,2026-11-06T09:57:03+00:00
+115b8967-a516-4440-a412-9da173887729,pick,9,dropped,licence not accepted: CC-BY-NC-ND-4.0,CC-BY-NC-ND-4.0,2026-11-06T09:57:03+00:00
+71c3358b-579b-4c24-b627-3b8d7f37e6fd,pick,10,kept,already fetched,CC-BY-4.0,2026-11-06T09:57:03+00:00
+442f415a-1258-496f-a5f8-a3d0e256c520,pick,11,dropped,licence not accepted: https://boris-portal.unibe.ch/info/about,https://boris-portal.unibe.ch/info/about,2026-11-06T09:57:03+00:00
+3af9315f-2e7c-4665-ae75-98d10f186b3c,pick,12,dropped,licence not accepted: https://boris-portal.unibe.ch/info/about,https://boris-portal.unibe.ch/info/about,2026-11-06T09:57:03+00:00
+9db04558-724d-47f2-ae90-f350fe772fee,pick,13,kept,already fetched,CC-BY-4.0,2026-11-06T09:57:03+00:00
+a09e8861-8eec-4055-87a1-676e546e6541,pick,14,kept,already fetched,CC-BY-4.0,2026-11-06T09:57:03+00:00
+3f45b40a-9bb6-43ca-b826-974e378d69f6,pick,15,dropped,licence not accepted: https://boris-portal.unibe.ch/info/about,https://boris-portal.unibe.ch/info/about,2026-11-06T09:57:03+00:00
+5a56f17f-cbe3-4cc0-9511-ec2674dd2beb,pick,16,kept,already fetched,CC-BY-4.0,2026-11-06T09:57:03+00:00
+2128fae3-25d2-4fb4-9656-456f89c0d8b1,pick,17,dropped,licence not accepted: CC-BY-NC-ND-4.0,CC-BY-NC-ND-4.0,2026-11-06T09:57:03+00:00
+2fb2da85-1197-4168-acd1-2cc68a359022,pick,18,dropped,licence not accepted: none,,2026-11-06T09:57:03+00:00
+7ab97dd8-2ef4-41d5-ad9f-1049a091013b,pick,19,kept,already fetched,CC-BY-4.0,2026-11-06T09:57:03+00:00
+e156660e-6212-46ec-8fee-8329003c9ae6,pick,20,dropped,licence not accepted: CC-BY-NC-ND-4.0,CC-BY-NC-ND-4.0,2026-11-06T09:57:03+00:00
+453f1ec7-d260-4d02-a003-6b95d48c26b2,pick,21,kept,already fetched,CC-BY-4.0,2026-11-06T09:57:03+00:00
+b4bde97f-ccc0-4fee-81a6-62936fdfa98f,pick,22,dropped,licence not accepted: https://boris-portal.unibe.ch/info/about,https://boris-portal.unibe.ch/info/about,2026-11-06T09:57:03+00:00
+82d7bbd0-6e95-44c5-9fac-617c24dd3bd2,pick,23,kept,already fetched,CC-BY-4.0,2026-11-06T09:57:03+00:00
+735bf4b9-b808-4fe0-b7f1-315dba8c2d5b,pick,24,dropped,licence not accepted: https://boris-portal.unibe.ch/info/about,https://boris-portal.unibe.ch/info/about,2026-11-06T09:57:03+00:00
+25c17984-c6c0-4487-8638-5bb606748603,pick,25,kept,already fetched,CC-BY-4.0,2026-11-06T09:57:03+00:00
+9c9ff08f-5f1f-432c-9fd4-945dffbf6930,pick,26,dropped,licence not accepted: CC-BY-NC-ND-4.0,CC-BY-NC-ND-4.0,2026-11-06T09:57:03+00:00
+fa819631-4b35-4b3b-990a-1d09be9f223b,pick,27,dropped,licence not accepted: CC-BY-NC-ND-4.0,CC-BY-NC-ND-4.0,2026-11-06T09:57:03+00:00
+a1f60463-73c4-412c-b1d0-5bf3850d3b54,pick,28,dropped,excluded in review: first 3 pages nearly empty (203 chars),CC-BY-NC-4.0,2026-11-06T09:57:03+00:00
+c6b40c35-c89e-4dd0-bc69-2df94067a27d,pick,29,dropped,licence not accepted: none,,2026-11-06T09:57:03+00:00
+c7c9136f-52b3-40d4-893c-cb638a9c2147,pick,30,kept,already fetched,CC-BY-NC-4.0,2026-11-06T09:57:03+00:00
+f7cd567f-3639-4c45-98e5-333cbee2d930,reserve,1,dropped,licence not accepted: https://boris-portal.unibe.ch/info/about,https://boris-portal.unibe.ch/info/about,2026-11-06T09:57:03+00:00
+d74fe85e-543f-4f8e-a742-1927a8b09bd4,reserve,2,kept,already fetched,CC-BY-4.0,2026-11-06T09:57:03+00:00
+58377aba-9350-4f54-b29b-19aa1f299e84,reserve,3,dropped,licence not accepted: https://boris-portal.unibe.ch/info/about,https://boris-portal.unibe.ch/info/about,2026-11-06T09:57:03+00:00
+4cc5da90-6464-4e3c-992b-e01860470b5b,reserve,4,dropped,licence not accepted: https://boris-portal.unibe.ch/info/about,https://boris-portal.unibe.ch/info/about,2026-11-06T09:57:03+00:00
+04860ed2-8496-498b-8618-24d1c9b6376e,reserve,5,dropped,licence not accepted: none,,2026-11-06T09:57:03+00:00
+feaabb8d-c244-42b7-8ba8-6930570d0157,reserve,6,dropped,licence not accepted: CC-BY-NC-ND-4.0,CC-BY-NC-ND-4.0,2026-11-06T09:57:03+00:00
+662a5fdc-e5ec-4eff-ac25-9b7434c7b9c0,reserve,7,dropped,excluded in review: first 3 pages are covers only (116 chars),CC-BY-NC-4.0,2026-11-06T09:57:03+00:00
+2760e535-c973-4524-ab84-3a1c71b9bf3a,reserve,8,kept,already fetched,CC-BY-4.0,2026-11-06T09:57:03+00:00
+572276d9-5537-4e23-be46-d2948c6d636c,reserve,9,dropped,licence not accepted: https://boris-portal.unibe.ch/info/about,https://boris-portal.unibe.ch/info/about,2026-11-06T09:57:03+00:00
+0d741fd9-b15d-4057-b6f9-22395f89b413,reserve,10,kept,already fetched,CC-BY-NC-4.0,2026-11-06T09:57:03+00:00
+e5176970-c1f2-4e83-82d7-3f7f779a1d08,reserve,11,kept,already fetched,CC-BY-4.0,2026-11-06T09:57:03+00:00
+08cedda7-e2d1-41c4-ba7b-04a00ec7123a,reserve,12,dropped,no PDF in ORIGINAL,,2026-11-06T09:57:03+00:00
+8b728278-7197-4368-bb7a-c7d134f683aa,reserve,13,dropped,licence not accepted: https://boris-portal.unibe.ch/info/about,https://boris-portal.unibe.ch/info/about,2026-11-06T09:57:03+00:00
+0eb401b2-9ef0-4478-9abf-6667fb39a0ac,reserve,14,kept,already fetched,CC-BY-4.0,2026-11-06T09:57:03+00:00
+c45c2a72-d5ad-43b8-a113-3dc0a267aed8,reserve,15,kept,already fetched,CC-BY-4.0,2026-11-06T09:57:03+00:00
+e7a43853-bb46-489a-8978-c7abf3b99585,reserve,16,kept,already fetched,CC-BY-4.0,2026-11-06T09:57:03+00:00
+613a9897-2819-4b27-8a28-de12c490b5c0,reserve,17,dropped,licence not accepted: CC-BY-NC-ND-4.0,CC-BY-NC-ND-4.0,2026-11-06T09:57:03+00:00
+c191917c-34df-4dfe-8f2d-aaaffb20bb05,reserve,18,kept,already fetched,CC-BY-4.0,2026-11-06T09:57:03+00:00
+f9189a8a-6e15-496f-a807-61a13f846e21,reserve,19,dropped,licence not accepted: https://boris-portal.unibe.ch/info/about,https://boris-portal.unibe.ch/info/about,2026-11-06T09:57:03+00:00
+b2eb2c80-939c-4a52-af17-777f03f75812,reserve,20,dropped,licence not accepted: CC-BY-NC-ND-4.0,CC-BY-NC-ND-4.0,2026-11-06T09:57:03+00:00
+290ae29b-6eb4-474b-a612-665f9e7c2f62,reserve,21,dropped,licence not accepted: CC-BY-NC-ND-4.0,CC-BY-NC-ND-4.0,2026-11-06T09:57:03+00:00
+f50a5dcd-3422-45f4-b579-4abef4dda308,reserve,22,kept,already fetched,CC-BY-4.0,2026-11-06T09:57:03+00:00
+6aaac3c6-ecf4-419a-8278-05678117a9a5,reserve,23,dropped,licence not accepted: https://boris-portal.unibe.ch/info/about,https://boris-portal.unibe.ch/info/about,2026-11-06T09:57:03+00:00
+87b6427e-eb3e-435b-9e46-233e3ffc5843,reserve,24,dropped,licence not accepted: none,,2026-11-06T09:57:03+00:00
+c7629c52-29a4-40e7-9c80-3011812709e1,reserve,25,dropped,licence not accepted: https://boris-portal.unibe.ch/info/about,https://boris-portal.unibe.ch/info/about,2026-11-06T09:57:03+00:00
+7d5a1d59-8ebc-4e5a-ad9e-fc15de63782b,reserve,26,dropped,licence not accepted: none,,2026-11-06T09:57:03+00:00
+71c077c3-13b9-4df1-bd03-cd4eb27c84de,reserve,27,kept,already fetched,CC-BY-4.0,2026-11-06T09:57:03+00:00
+4a87004b-2e35-470a-926e-9859f8967027,reserve,28,dropped,no PDF in ORIGINAL,,2026-11-06T09:57:03+00:00
+1d477017-595e-4861-86b7-1952b90aba13,reserve,29,dropped,licence not accepted: none,,2026-11-06T09:57:03+00:00
+dac3d725-e65b-4d99-a135-1f8eec9e4f83,reserve,30,kept,already fetched,CC-BY-4.0,2026-11-06T09:57:03+00:00
+17ab780e-fa14-4a34-a1bb-ec0c8287862a,reserve,31,dropped,licence not accepted: none,,2026-11-06T09:57:03+00:00
+5af93692-5911-41f7-b18c-5dd1e2546bcb,reserve,32,dropped,licence not accepted: https://boris-portal.unibe.ch/info/about,https://boris-portal.unibe.ch/info/about,2026-11-06T09:57:03+00:00
+39ba05ce-2770-4325-b793-c27db04b2576,reserve,33,dropped,licence not accepted: https://boris-portal.unibe.ch/info/about,https://boris-portal.unibe.ch/info/about,2026-11-06T09:57:03+00:00
+13f1f7b9-dcf9-4564-b591-2b30549d72ca,reserve,34,dropped,licence not accepted: none,,2026-11-06T09:57:03+00:00
+94e99a8b-2057-43e5-a238-a348e2c5c866,reserve,35,dropped,no PDF in ORIGINAL,,2026-11-06T09:57:03+00:00
+68f72c3e-c0d0-43c9-b08d-aef7ccdbbbc2,reserve,36,dropped,licence not accepted: CC-BY-NC-ND-4.0,CC-BY-NC-ND-4.0,2026-11-06T09:57:03+00:00
+17a59828-a1cb-4dd3-9712-074b03bcacd8,reserve,37,dropped,licence not accepted: https://boris-portal.unibe.ch/info/about,https://boris-portal.unibe.ch/info/about,2026-11-06T09:57:03+00:00
+c9830dc8-8283-49d5-a8f0-a60a3d2fef82,reserve,38,dropped,licence not accepted: https://boris-portal.unibe.ch/info/about,https://boris-portal.unibe.ch/info/about,2026-11-06T09:57:03+00:00
+ac8dbaec-da44-400b-aad5-1ac1d1838bb6,reserve,39,kept,already fetched,CC-BY-4.0,2026-11-06T09:57:03+00:00
+6d56cc27-fd5f-47ec-8187-d298be89be1a,reserve,40,kept,already fetched,CC-BY-4.0,2026-11-06T09:57:03+00:00
+90e847b8-966a-4204-8db3-ccef670e7048,reserve,41,dropped,licence not accepted: none,,2026-11-06T09:57:03+00:00
+8001ee4f-ae98-47a8-9347-26a6da9baa21,reserve,42,kept,already fetched,CC-BY-4.0,2026-11-06T09:57:03+00:00
+28eab160-0606-4933-bda1-891b24d46d84,reserve,43,dropped,licence not accepted: none,,2026-11-06T09:57:03+00:00
+5c7f9a70-9662-4722-87e5-c027da954a7e,reserve,44,dropped,licence not accepted: https://boris-portal.unibe.ch/info/about,https://boris-portal.unibe.ch/info/about,2026-11-06T09:57:03+00:00
+d3bf1ec2-8095-4b02-9349-e62ce449d7e2,reserve,45,kept,already fetched,CC-BY-4.0,2026-11-06T09:57:03+00:00
+563dde97-5504-4131-b246-ee83ede034e7,reserve,46,dropped,licence not accepted: none,,2026-11-06T09:57:03+00:00
+2c973bb9-9546-4828-9912-2c389f200307,reserve,47,dropped,excluded in review: first 3 pages are front matter (975 chars),CC-BY-NC-4.0,2026-11-06T09:57:03+00:00
+ec78d6c4-3a51-4dd2-b4ed-19be05791cac,reserve,48,dropped,licence not accepted: https://boris-portal.unibe.ch/info/about,https://boris-portal.unibe.ch/info/about,2026-11-06T09:57:03+00:00
+d012a8d7-8b08-41fe-b46b-f551dd068417,reserve,49,kept,already fetched,CC-BY-4.0,2026-11-06T09:57:03+00:00
+3aef216c-64b5-4cb1-aa8f-0570418d66e4,reserve,50,dropped,licence not accepted: none,,2026-11-06T09:57:04+00:00
+72632f83-3fef-40c1-9154-7d7b55e42967,reserve,51,dropped,too little text in first pages (997 chars),CC-BY-NC-SA-4.0,2026-11-06T09:57:06+00:00
+000aa4c4-b1f0-482a-bbfa-66ebf343bfd2,reserve,52,dropped,licence not accepted: CC-BY-NC-ND-4.0,CC-BY-NC-ND-4.0,2026-11-06T09:57:07+00:00
+8632a01d-8dad-40aa-9926-a9120617c29a,reserve,53,kept,ok,CC-BY-4.0,2026-11-06T09:57:09+00:00
+8b2e4f41-c9f4-4298-bb2e-81418d3d5ab5,reserve,54,dropped,no PDF in ORIGINAL,,2026-11-06T09:57:10+00:00
+6cb95f36-f7da-4a8e-a8fd-245f9c964410,reserve,55,dropped,licence not accepted: none,,2026-11-06T09:57:11+00:00
+c67980aa-a98d-48fe-9a4f-9bfedd3c67a9,reserve,56,dropped,licence not accepted: https://boris-portal.unibe.ch/info/about,https://boris-portal.unibe.ch/info/about,2026-11-06T09:57:12+00:00
+8e47c5f7-3dc8-40d8-a993-34c2fbd62074,reserve,57,kept,ok,CC-BY-4.0,2026-11-06T09:57:14+00:00
+0674ad8c-bb2d-48d0-b866-8a07df79f5af,reserve,58,kept,ok,CC-BY-NC-4.0,2026-11-06T09:57:16+00:00
+f51336f1-c4de-4785-8455-da4f69d57dcf,reserve,59,dropped,licence not accepted: https://boris-portal.unibe.ch/info/about,https://boris-portal.unibe.ch/info/about,2026-11-06T09:57:17+00:00
+91a67a38-22fb-4735-9cdc-e1459a274473,reserve,60,dropped,licence not accepted: https://boris-portal.unibe.ch/info/about,https://boris-portal.unibe.ch/info/about,2026-11-06T09:57:18+00:00
+aa8e1522-ccd7-4dcf-a9e6-44a5d6eae9a7,reserve,61,kept,ok,CC-BY-4.0,2026-11-06T09:57:22+00:00

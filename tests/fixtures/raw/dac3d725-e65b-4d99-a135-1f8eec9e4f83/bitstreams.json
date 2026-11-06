@@ -1,0 +1,84 @@
+[
+ {
+  "_links": {
+   "accessStatus": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/542a034f-2fd7-4776-81d7-8c71096c4bdc/accessStatus"
+   },
+   "bundle": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/542a034f-2fd7-4776-81d7-8c71096c4bdc/bundle"
+   },
+   "content": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/542a034f-2fd7-4776-81d7-8c71096c4bdc/content"
+   },
+   "format": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/542a034f-2fd7-4776-81d7-8c71096c4bdc/format"
+   },
+   "self": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/542a034f-2fd7-4776-81d7-8c71096c4bdc"
+   },
+   "thumbnail": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/542a034f-2fd7-4776-81d7-8c71096c4bdc/thumbnail"
+   }
+  },
+  "bundleName": "ORIGINAL",
+  "checkSum": {
+   "checkSumAlgorithm": "MD5",
+   "value": "73cc78a837ea40c002dec7686f3dc78d"
+  },
+  "handle": null,
+  "id": "542a034f-2fd7-4776-81d7-8c71096c4bdc",
+  "metadata": {
+   "datacite.rights": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "open.access"
+    }
+   ],
+   "dc.rights.uri": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "https://creativecommons.org/licenses/by/4.0"
+    }
+   ],
+   "dc.title": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "EGU2015-5297.pdf"
+    }
+   ],
+   "dc.type": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "text"
+    }
+   ],
+   "unibe.content": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "published"
+    }
+   ]
+  },
+  "name": "EGU2015-5297.pdf",
+  "sequenceId": 1,
+  "sizeBytes": 38786,
+  "type": "bitstream",
+  "uniqueType": "core.bitstream",
+  "uuid": "542a034f-2fd7-4776-81d7-8c71096c4bdc"
+ }
+]
