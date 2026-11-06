@@ -1,0 +1,58 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "chatcde"
+version = "0.1.0"
+description = "Local research assistant over the publications of CDE, University of Bern (prototype)."
+readme = "README.md"
+license = "GPL-3.0-or-later"
+license-files = ["LICENSE"]
+requires-python = ">=3.12"
+authors = [{ name = "Norman Kearney" }, { name = "Simon Bader" }]
+dependencies = [
+    "typer>=0.15",    # CLI; sub-apps per subpackage, rich help
+    "rich>=13",       # console log handler and tables
+    "pydantic>=2.7",  # config validation; shared schemas
+    "pyyaml>=6",      # config and vocabulary YAML
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8",
+    "ruff==0.17.3",   # exact pin: local and CI must format identically
+]
+
+[project.scripts]
+chatcde = "chatcde.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/chatcde"]
+
+# --- Ruff -----------------------------------------------------------------
+[tool.ruff]
+target-version = "py312"
+line-length = 88
+src = ["src", "tests"]
+# TODO(#2): schemas.py is the draft contract; issue #2 formats it, settles
+# str+Enum vs StrEnum (UP042) and removes this exclusion.
+extend-exclude = ["src/chatcde/schemas.py"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "D"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["D"]
+"scripts/**" = ["D"]
+
+# --- Pytest ---------------------------------------------------------------
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --strict-markers -m 'not network'"
+markers = [
+    "network: needs network access (BORIS, OpenAlex, GPUStack); deselected by default",
+]

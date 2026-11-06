@@ -9,7 +9,7 @@ workflow, and the one-time GitHub setup.
 | | Track A: Data | Track B: Assistant |
 |---|---|---|
 | Developer | Norman Kearney (`@nmkearney`) | Simon Bader (`@krybad`) |
-| Owns | `harvest/`, `parse/`, `tag/`, `vocab/`, `chatcde export`, `chatcde fetch-data` | `store/` (chunks, embeddings, search, reranking), `tools/`, `agent.py`, `workflows/`, `prompts/`, query commands |
+| Owns | `harvest/`, `parse/`, `tag/`, `vocab/`, `bundle/` (`chatcde export`, `fetch-data`, `info`) | `store/` (chunks, embeddings, search, reranking), `tools/`, `agent.py`, `workflows/`, `prompts/`, query commands |
 | Build steps | 2 (harvest and parse), 3 (vocabulary and tagging) | 4 (tools, agent and CLI) |
 | Writes | `records`, `authors`, `tags`, `pages`, `downloads` tables; data bundles | `chunks` table; search index |
 | Checks | `chatcde coverage`, `chatcde evaluate tagging` | unit tests on fixtures, `chatcde evaluate questions` |
@@ -144,9 +144,8 @@ open an issue instead of editing it.
 
 ### 1. Add your colleague
 
-**Settings → Collaborators → Add people** → enter their GitHub login. They accept the email
-invitation. Then fill in their login in this file, in `.github/CODEOWNERS` (remove the `# `
-at the start of each line to activate it) and in the `--assign-b` command above.
+**Settings → Collaborators → Add people** → enter their GitHub login. They accept the email invitation. 
+.github/CODEOWNERS lists both developers on one line (* @nmkearney @krybad), so every pull request requests the other person’s review. Don’t add per-folder owners: GitHub uses the last matching line, and a folder owned only by its author could never get a code-owner approval.
 
 ### 2. Protect `main`
 
