@@ -33,8 +33,8 @@ re-exported here when it changes in substance.
 
 Two developers work in parallel; see `CONTRIBUTING.md` for the full workflow.
 - **Track A (Data), Norman Kearney:** `harvest/`, `parse/`, `tag/`, `vocab/`,
-  `chatcde export` / `fetch-data`. Writes the `records`, `authors`, `tags`,
-  `pages` and `downloads` tables.
+  `bundle/` (`chatcde export` / `fetch-data` / `info`). Writes the `records`,
+  `authors`, `tags`, `pages` and `downloads` tables.
 - **Track B (Assistant), Simon Bader:** `store/`, `tools/`, `agent.py`,
   `workflows/`, `prompts/`, query commands. Writes `chunks` and the search index.
 - **Shared contract:** `src/chatcde/schemas.py` and the tool signatures in
@@ -209,16 +209,20 @@ CONTRIBUTING.md       tracks, git/GitHub workflow, setup how-tos
 pyproject.toml
 config/default.yaml   all settings; placeholders marked TODO
 src/chatcde/
-  cli.py          Typer app; thin wrappers around the modules below
-  config.py       loads and validates config (pydantic)
+  cli.py          root Typer app: global options; assembles each subpackage's cli.py
+  cli_common.py   help panels and the stub helper shared by the sub-apps
+  config.py       loads and validates config (pydantic); see decision 0006
+  log.py          logging setup (Rich console on stderr + rotating file)
   schemas.py      shared data formats: the contract between tracks (DRAFT)
   harvest/        BORIS REST client, OpenAlex enrichment, PDF download, manifest
   parse/          PDF → text (+ OCR), chunking
   tag/            LLM extraction against the vocabulary; vocab drafting
   store/          catalogue (DuckDB), text index
-  tools/          the tool functions (core logic, no CLI or LLM code); core.py = signatures
+  tools/          the tool functions (core logic, no LLM code); core.py = signatures,
+                  cli.py = thin CLI wrappers (each subpackage has its own cli.py)
   agent.py        LLM loop over the OpenAI-compatible API
-  workflows/      gaps, frontier, brief, experts
+  workflows/      ask, chat, gaps, frontier, brief, experts
+  bundle/         data bundles: export, fetch-data, info
   prompts/        versioned prompt templates
 vocab/            versioned vocabularies (YAML) + CHANGELOG.md
 docs/             planning.md, schema_draft.md, decisions/
