@@ -1,0 +1,603 @@
+{
+ "_links": {
+  "accessStatus": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/c45c2a72-d5ad-43b8-a113-3dc0a267aed8/accessStatus"
+  },
+  "bundles": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/c45c2a72-d5ad-43b8-a113-3dc0a267aed8/bundles"
+  },
+  "identifiers": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/c45c2a72-d5ad-43b8-a113-3dc0a267aed8/identifiers"
+  },
+  "mappedCollections": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/c45c2a72-d5ad-43b8-a113-3dc0a267aed8/mappedCollections"
+  },
+  "metrics": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/c45c2a72-d5ad-43b8-a113-3dc0a267aed8/metrics"
+  },
+  "owningCollection": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/c45c2a72-d5ad-43b8-a113-3dc0a267aed8/owningCollection"
+  },
+  "relationships": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/c45c2a72-d5ad-43b8-a113-3dc0a267aed8/relationships"
+  },
+  "self": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/c45c2a72-d5ad-43b8-a113-3dc0a267aed8"
+  },
+  "submitter": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/c45c2a72-d5ad-43b8-a113-3dc0a267aed8/submitter"
+  },
+  "templateItemOf": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/c45c2a72-d5ad-43b8-a113-3dc0a267aed8/templateItemOf"
+  },
+  "thumbnail": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/c45c2a72-d5ad-43b8-a113-3dc0a267aed8/thumbnail"
+  },
+  "version": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/c45c2a72-d5ad-43b8-a113-3dc0a267aed8/version"
+  }
+ },
+ "discoverable": true,
+ "entityType": "Publication",
+ "handle": "20.500.12422/195816",
+ "id": "c45c2a72-d5ad-43b8-a113-3dc0a267aed8",
+ "inArchive": true,
+ "lastModified": "2026-09-07T08:09:04.773127Z",
+ "metadata": {
+  "cris.virtual.orcid": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "0000-0001-9076-5522"
+   }
+  ],
+  "cris.virtualsource.orcid": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "63ab5201-6083-422b-8fa0-32bdf80eebad"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "a935ea98-c9eb-4484-ac92-ffc643918968"
+   }
+  ],
+  "datacite.rights": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "open.access"
+   }
+  ],
+  "dc.contributor.author": [
+   {
+    "authority": "a935ea98-c9eb-4484-ac92-ffc643918968",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "value": "Kläy, Andreas"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "Heim, Thomas"
+   },
+   {
+    "authority": "63ab5201-6083-422b-8fa0-32bdf80eebad",
+    "confidence": 600,
+    "language": null,
+    "place": 2,
+    "value": "Minsch, Jürg"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 3,
+    "value": "Stauffacher, Michael"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 4,
+    "value": "Zingerli, Claudia"
+   }
+  ],
+  "dc.date.accessioned": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "2025-01-08T19:22:18Z"
+   }
+  ],
+  "dc.date.issued": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "2011"
+   }
+  ],
+  "dc.description.abstract": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "Wie können Wissenschaft und Forschungsförderung Innovationen für nachhaltige Entwicklung befördern? Fazit einer SAGUF-Tagung: Es fehlt vor allem an geeigneten Anreizsystemen und politischen Impulsen."
+   }
+  ],
+  "dc.description.numberOfPages": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "3"
+   }
+  ],
+  "dc.description.sponsorship": [
+   {
+    "authority": "f19d311e-6df9-4f67-a42e-6bc624220928",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "value": "Forschungsgruppe Inter-/Transdisziplinarität, Forum für Allgemeine Ökologie"
+   },
+   {
+    "authority": "e8a63149-d542-4299-8251-789acc2ab289",
+    "confidence": 600,
+    "language": null,
+    "place": 1,
+    "value": "Centre for Development and Environment (CDE)"
+   },
+   {
+    "authority": "8bc01556-cf41-470a-95ae-93f4e011445d",
+    "confidence": 600,
+    "language": null,
+    "place": 2,
+    "value": "NCCR North-South Management Centre"
+   }
+  ],
+  "dc.identifier.doi": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "10.7892/boris.9071"
+   }
+  ],
+  "dc.identifier.isi": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "000296042200019"
+   }
+  ],
+  "dc.identifier.uri": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "https://boris-portal.unibe.ch/handle/20.500.12422/195816"
+   }
+  ],
+  "dc.language.iso": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "me"
+   }
+  ],
+  "dc.publisher": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "Oekom Verlag"
+   }
+  ],
+  "dc.publisher.place": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "München"
+   }
+  ],
+  "dc.relation.issn": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "0940-5550"
+   }
+  ],
+  "dc.relation.magazine": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "GAIA - ökologische Perspektiven für Wissenschaft und Gesellschaft / ecological perspectives for science and society"
+   }
+  ],
+  "dc.relation.organization": [
+   {
+    "authority": "d6b8688e-e1c5-4ad0-9c9e-14abf19c2f2c",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "value": "Institute of Geography, Geographies of Sustainability"
+   },
+   {
+    "authority": "e72766a8-6120-4b56-b6dd-da7812ad7680",
+    "confidence": 600,
+    "language": null,
+    "place": 1,
+    "value": "Institute of Geography"
+   },
+   {
+    "authority": "e8a63149-d542-4299-8251-789acc2ab289",
+    "confidence": 600,
+    "language": null,
+    "place": 2,
+    "value": "Centre for Development and Environment (CDE)"
+   },
+   {
+    "authority": "f19d311e-6df9-4f67-a42e-6bc624220928",
+    "confidence": 600,
+    "language": null,
+    "place": 3,
+    "value": "Interdisciplinary Centre for General Ecology (IKAÖ)"
+   }
+  ],
+  "dc.subject.ddc": [
+   {
+    "authority": "boris-dd:ddc330",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "value": "300 - Social sciences, sociology & anthropology::330 - Economics"
+   }
+  ],
+  "dc.title": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "Welche Forschung führt zu Innovationen für eine nachhaltige Entwicklung?"
+   }
+  ],
+  "dc.type": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "magazine_article"
+   }
+  ],
+  "dspace.entity.type": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "Publication"
+   }
+  ],
+  "dspace.file.type": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "text"
+   }
+  ],
+  "oaire.citation.endPage": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "216"
+   }
+  ],
+  "oaire.citation.issue": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "3"
+   }
+  ],
+  "oaire.citation.startPage": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "214"
+   }
+  ],
+  "oaire.citation.volume": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "20"
+   }
+  ],
+  "oairecerif.author.affiliation": [
+   {
+    "authority": "8bc01556-cf41-470a-95ae-93f4e011445d",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "value": "NCCR North-South Management Centre"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": "f19d311e-6df9-4f67-a42e-6bc624220928",
+    "confidence": 600,
+    "language": null,
+    "place": 2,
+    "value": "Forschungsgruppe Inter-/Transdisziplinarität, Forum für Allgemeine Ökologie"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 3,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 4,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   }
+  ],
+  "oairecerif.author.affiliation2": [
+   {
+    "authority": "e8a63149-d542-4299-8251-789acc2ab289",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "value": "Centre for Development and Environment (CDE)"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 3,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 4,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   }
+  ],
+  "oairecerif.author.affiliation3": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 3,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 4,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   }
+  ],
+  "oairecerif.author.affiliation4": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 3,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 4,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   }
+  ],
+  "oairecerif.identifier.url": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "http://www.ingentaconnect.com/content/oekom/gaia/2011/00000020/00000003/art00018"
+   }
+  ],
+  "unibe.contributor.role": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "creator"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "creator"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "value": "creator"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 3,
+    "value": "creator"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 4,
+    "value": "creator"
+   }
+  ],
+  "unibe.description.ispublished": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "pub"
+   }
+  ],
+  "unibe.eprints.legacyId": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "9071"
+   }
+  ],
+  "unibe.journal.abbrevTitle": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "GAIA"
+   }
+  ],
+  "unibe.refereed": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "false"
+   }
+  ]
+ },
+ "name": "Welche Forschung führt zu Innovationen für eine nachhaltige Entwicklung?",
+ "type": "item",
+ "uniqueType": "core.item",
+ "uuid": "c45c2a72-d5ad-43b8-a113-3dc0a267aed8",
+ "withdrawn": false
+}

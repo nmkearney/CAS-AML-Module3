@@ -1,0 +1,700 @@
+{
+ "_links": {
+  "accessStatus": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/a09e8861-8eec-4055-87a1-676e546e6541/accessStatus"
+  },
+  "bundles": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/a09e8861-8eec-4055-87a1-676e546e6541/bundles"
+  },
+  "identifiers": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/a09e8861-8eec-4055-87a1-676e546e6541/identifiers"
+  },
+  "mappedCollections": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/a09e8861-8eec-4055-87a1-676e546e6541/mappedCollections"
+  },
+  "metrics": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/a09e8861-8eec-4055-87a1-676e546e6541/metrics"
+  },
+  "owningCollection": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/a09e8861-8eec-4055-87a1-676e546e6541/owningCollection"
+  },
+  "relationships": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/a09e8861-8eec-4055-87a1-676e546e6541/relationships"
+  },
+  "self": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/a09e8861-8eec-4055-87a1-676e546e6541"
+  },
+  "submitter": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/a09e8861-8eec-4055-87a1-676e546e6541/submitter"
+  },
+  "templateItemOf": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/a09e8861-8eec-4055-87a1-676e546e6541/templateItemOf"
+  },
+  "thumbnail": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/a09e8861-8eec-4055-87a1-676e546e6541/thumbnail"
+  },
+  "version": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/a09e8861-8eec-4055-87a1-676e546e6541/version"
+  }
+ },
+ "discoverable": true,
+ "entityType": "Publication",
+ "handle": "20.500.12422/200507",
+ "id": "a09e8861-8eec-4055-87a1-676e546e6541",
+ "inArchive": true,
+ "lastModified": "2026-09-07T04:29:46.701145Z",
+ "metadata": {
+  "cris.virtual.orcid": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "0000-0002-3253-5128"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 3,
+    "value": "0000-0002-0286-6348"
+   }
+  ],
+  "cris.virtualsource.orcid": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "76c96faf-c3a5-43ba-aa8f-a0d20c5b9223"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "8abe3724-1154-470d-931f-60e1cad096d2"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "value": "fcf70a38-3309-4cd7-a211-0c2833cb64f4"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 3,
+    "value": "5a59260d-6826-40b1-ab53-f69fe98239c7"
+   }
+  ],
+  "datacite.rights": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "open.access"
+   }
+  ],
+  "dc.contributor.author": [
+   {
+    "authority": "fcf70a38-3309-4cd7-a211-0c2833cb64f4",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "value": "Andriamihaja, Onintsoa Ravaka Niaina"
+   },
+   {
+    "authority": "8abe3724-1154-470d-931f-60e1cad096d2",
+    "confidence": 600,
+    "language": null,
+    "place": 1,
+    "value": "Metz, Florence Alessa"
+   },
+   {
+    "authority": "76c96faf-c3a5-43ba-aa8f-a0d20c5b9223",
+    "confidence": 600,
+    "language": null,
+    "place": 2,
+    "value": "Zähringer, Julie Gwendolin"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 3,
+    "value": "Fischer, Manuel"
+   },
+   {
+    "authority": "5a59260d-6826-40b1-ab53-f69fe98239c7",
+    "confidence": 600,
+    "language": null,
+    "place": 4,
+    "value": "Messerli, Peter"
+   }
+  ],
+  "dc.date.accessioned": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "2025-01-08T20:36:57Z"
+   }
+  ],
+  "dc.date.issued": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "2019"
+   }
+  ],
+  "dc.description.abstract": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "In north-eastern Madagascar, maintenance of biodiversity competes with expansion of\nland for agriculture and mining. The concept of “telecoupling” provides a framework for analysis of distant actors and institutions that influence local land use decisions. However, there is a lack of knowledge regarding the extent of telecoupling of land governance in north-eastern Madagascar and a lack of evidence regarding its role in driving land use change and land competition. Using a descriptive Social Network Analysis, we disentangled distant interactions between actors in terms of flows and institutions. Our findings show that the domains of economic and environmental interactions are dominated by actors from different sectors that have claims on the same land but generally do not interact. Distant influences occurring via remote flows of goods, money, and institutions serve to reinforce local land competition. Balancing economic and environmental land claims for more sustainable regional development in north-eastern Madagascar requires collaboration between actors across sectors, scales, and domains."
+   }
+  ],
+  "dc.description.numberOfPages": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "24"
+   }
+  ],
+  "dc.description.sponsorship": [
+   {
+    "authority": "6f175fd4-3164-4634-a95d-c8cf51d1b01a",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "value": "Centre for Development and Environment (CDE) - Sustainable Governance"
+   },
+   {
+    "authority": "b865274b-db96-40ca-bb71-2c4484ecbe65",
+    "confidence": 600,
+    "language": null,
+    "place": 1,
+    "value": "Institut für Politikwissenschaft (IPW)"
+   },
+   {
+    "authority": "e72766a8-6120-4b56-b6dd-da7812ad7680",
+    "confidence": 600,
+    "language": null,
+    "place": 2,
+    "value": "Geographisches Institut der Universität Bern (GIUB)"
+   },
+   {
+    "authority": "e8a63149-d542-4299-8251-789acc2ab289",
+    "confidence": 600,
+    "language": null,
+    "place": 3,
+    "value": "Centre for Development and Environment (CDE)"
+   }
+  ],
+  "dc.identifier.doi": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "10.7892/boris.128143"
+   }
+  ],
+  "dc.identifier.publisherDOI": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "10.3390/su11030851"
+   }
+  ],
+  "dc.identifier.uri": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "https://boris-portal.unibe.ch/handle/20.500.12422/200507"
+   }
+  ],
+  "dc.language.iso": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "en"
+   }
+  ],
+  "dc.publisher": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "MDPI"
+   }
+  ],
+  "dc.relation.ispartof": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "Sustainability"
+   }
+  ],
+  "dc.relation.issn": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "2071-1050"
+   }
+  ],
+  "dc.relation.organization": [
+   {
+    "authority": "6f175fd4-3164-4634-a95d-c8cf51d1b01a",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "value": "Centre for Development and Environment (CDE) - Sustainable Governance"
+   },
+   {
+    "authority": "d6b8688e-e1c5-4ad0-9c9e-14abf19c2f2c",
+    "confidence": 600,
+    "language": null,
+    "place": 1,
+    "value": "Institute of Geography, Geographies of Sustainability"
+   },
+   {
+    "authority": "b865274b-db96-40ca-bb71-2c4484ecbe65",
+    "confidence": 600,
+    "language": null,
+    "place": 2,
+    "value": "Institute of Political Science"
+   },
+   {
+    "authority": "d6b8688e-e1c5-4ad0-9c9e-14abf19c2f2c",
+    "confidence": 600,
+    "language": null,
+    "place": 3,
+    "value": "Institute of Geography, Geographies of Sustainability"
+   },
+   {
+    "authority": "e72766a8-6120-4b56-b6dd-da7812ad7680",
+    "confidence": 600,
+    "language": null,
+    "place": 4,
+    "value": "Institute of Geography"
+   },
+   {
+    "authority": "e8a63149-d542-4299-8251-789acc2ab289",
+    "confidence": 600,
+    "language": null,
+    "place": 5,
+    "value": "Centre for Development and Environment (CDE)"
+   }
+  ],
+  "dc.relation.project": [
+   {
+    "authority": "7083636d-f696-4f8b-8c15-fa2f88d0b2ff",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "value": "Managing telecoupled landscapes for the sustainable provision of ecosystem services and poverty alleviation"
+   },
+   {
+    "authority": "db098519-afe3-4fad-92af-f4f156eb1c3c",
+    "confidence": 600,
+    "language": null,
+    "place": 1,
+    "value": "Cluster: Land Resources"
+   }
+  ],
+  "dc.relation.school": [
+   {
+    "authority": "df9e4de3-7fd5-429f-b55e-b15fa34c7c69",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "value": "International Graduate School North-South (IGS North-South)"
+   }
+  ],
+  "dc.subject.ddc": [
+   {
+    "authority": "boris-dd:ddc910",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "value": "900 - History::910 - Geography & travel"
+   },
+   {
+    "authority": "boris-dd:ddc320",
+    "confidence": 600,
+    "language": null,
+    "place": 1,
+    "value": "300 - Social sciences, sociology & anthropology::320 - Political science"
+   }
+  ],
+  "dc.title": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "Land Competition under Telecoupling: Distant Actors’ Environmental versus Economic Claims on Land in North-Eastern Madagascar"
+   }
+  ],
+  "dc.type": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "article"
+   }
+  ],
+  "dspace.entity.type": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "Publication"
+   }
+  ],
+  "dspace.file.type": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "text"
+   }
+  ],
+  "oaire.citation.issue": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "3"
+   }
+  ],
+  "oaire.citation.startPage": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "851"
+   }
+  ],
+  "oaire.citation.volume": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "11"
+   }
+  ],
+  "oairecerif.author.affiliation": [
+   {
+    "authority": "6f175fd4-3164-4634-a95d-c8cf51d1b01a",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "value": "Centre for Development and Environment (CDE) - Sustainable Governance"
+   },
+   {
+    "authority": "b865274b-db96-40ca-bb71-2c4484ecbe65",
+    "confidence": 600,
+    "language": null,
+    "place": 1,
+    "value": "Institut für Politikwissenschaft (IPW)"
+   },
+   {
+    "authority": "e8a63149-d542-4299-8251-789acc2ab289",
+    "confidence": 600,
+    "language": null,
+    "place": 2,
+    "value": "Centre for Development and Environment (CDE)"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 3,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": "e8a63149-d542-4299-8251-789acc2ab289",
+    "confidence": 600,
+    "language": null,
+    "place": 4,
+    "value": "Centre for Development and Environment (CDE)"
+   }
+  ],
+  "oairecerif.author.affiliation2": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 3,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": "e72766a8-6120-4b56-b6dd-da7812ad7680",
+    "confidence": 600,
+    "language": null,
+    "place": 4,
+    "value": "Geographisches Institut der Universität Bern (GIUB)"
+   }
+  ],
+  "oairecerif.author.affiliation3": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 3,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 4,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   }
+  ],
+  "oairecerif.author.affiliation4": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 3,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 4,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   }
+  ],
+  "oairecerif.identifier.url": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "http://www.mdpi.com/journal/sustainability"
+   }
+  ],
+  "unibe.contributor.role": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "creator"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "creator"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "value": "creator"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 3,
+    "value": "creator"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 4,
+    "value": "creator"
+   }
+  ],
+  "unibe.date.licenseChanged": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "2019-10-23 05:34:10"
+   }
+  ],
+  "unibe.description.ispublished": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "pub"
+   }
+  ],
+  "unibe.eprints.legacyId": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "128143"
+   }
+  ],
+  "unibe.journal.abbrevTitle": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "Sustainability"
+   }
+  ],
+  "unibe.refereed": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "true"
+   }
+  ],
+  "unibe.relation.legacyproject": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "420"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "803"
+   }
+  ],
+  "unibe.subtype.article": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "journal"
+   }
+  ]
+ },
+ "name": "Land Competition under Telecoupling: Distant Actors’ Environmental versus Economic Claims on Land in North-Eastern Madagascar",
+ "type": "item",
+ "uniqueType": "core.item",
+ "uuid": "a09e8861-8eec-4055-87a1-676e546e6541",
+ "withdrawn": false
+}

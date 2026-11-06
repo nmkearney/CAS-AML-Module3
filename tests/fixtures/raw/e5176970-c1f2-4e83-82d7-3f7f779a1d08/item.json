@@ -1,0 +1,509 @@
+{
+ "_links": {
+  "accessStatus": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/e5176970-c1f2-4e83-82d7-3f7f779a1d08/accessStatus"
+  },
+  "bundles": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/e5176970-c1f2-4e83-82d7-3f7f779a1d08/bundles"
+  },
+  "identifiers": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/e5176970-c1f2-4e83-82d7-3f7f779a1d08/identifiers"
+  },
+  "mappedCollections": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/e5176970-c1f2-4e83-82d7-3f7f779a1d08/mappedCollections"
+  },
+  "metrics": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/e5176970-c1f2-4e83-82d7-3f7f779a1d08/metrics"
+  },
+  "owningCollection": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/e5176970-c1f2-4e83-82d7-3f7f779a1d08/owningCollection"
+  },
+  "relationships": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/e5176970-c1f2-4e83-82d7-3f7f779a1d08/relationships"
+  },
+  "self": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/e5176970-c1f2-4e83-82d7-3f7f779a1d08"
+  },
+  "submitter": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/e5176970-c1f2-4e83-82d7-3f7f779a1d08/submitter"
+  },
+  "templateItemOf": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/e5176970-c1f2-4e83-82d7-3f7f779a1d08/templateItemOf"
+  },
+  "thumbnail": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/e5176970-c1f2-4e83-82d7-3f7f779a1d08/thumbnail"
+  },
+  "version": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/e5176970-c1f2-4e83-82d7-3f7f779a1d08/version"
+  }
+ },
+ "discoverable": true,
+ "entityType": "Publication",
+ "handle": "20.500.12422/196755",
+ "id": "e5176970-c1f2-4e83-82d7-3f7f779a1d08",
+ "inArchive": true,
+ "lastModified": "2026-09-07T11:27:43.279736Z",
+ "metadata": {
+  "cris.virtual.orcid": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "0000-0001-5368-8169"
+   }
+  ],
+  "cris.virtualsource.orcid": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "48d05231-96e4-4cfa-8e25-629f69daa10d"
+   }
+  ],
+  "datacite.rights": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "open.access"
+   }
+  ],
+  "dc.contributor.author": [
+   {
+    "authority": "48d05231-96e4-4cfa-8e25-629f69daa10d",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "value": "Schneider, Flurina"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "Homewood, Christine"
+   }
+  ],
+  "dc.date.accessioned": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "2025-01-08T19:35:20Z"
+   }
+  ],
+  "dc.date.issued": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "2013"
+   }
+  ],
+  "dc.description.abstract": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "In times of increasing uncertainty because of climate and socioeconomic changes, the ability to deal with uncertainty and surprise is an essential requirement for the sustainability of alpine water governance. This article aims to contribute to the understanding of the adaptive capacity of water governance arrangements in the Swiss Alps and to propose options for reforms. To this purpose, we evaluated the current arrangements and the ways the actors have dealt with water shortages in the past, based on qualitative interviews and a document review. The research revealed that the adaptive capacity of the investigated arrangements is rather high with regard to reactive ways of responding to water shortage problems. However, there is limited capacity to proactively anticipate possible changes and to find prospective solutions on a regional scale. We conclude that with increased environmental and social pressures, forms of proactive water resource governance should be introduced, taking into account the welfare of people in both upstream and downstream areas."
+   }
+  ],
+  "dc.description.numberOfPages": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "9"
+   }
+  ],
+  "dc.description.sponsorship": [
+   {
+    "authority": "8cedc8ee-b5d2-48ef-8e17-ab6f720296df",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "value": "Geographisches Institut, Physische Geographie"
+   },
+   {
+    "authority": "8bc01556-cf41-470a-95ae-93f4e011445d",
+    "confidence": 600,
+    "language": null,
+    "place": 1,
+    "value": "NCCR North-South Management Centre"
+   },
+   {
+    "authority": "e8a63149-d542-4299-8251-789acc2ab289",
+    "confidence": 600,
+    "language": null,
+    "place": 2,
+    "value": "Centre for Development and Environment (CDE)"
+   }
+  ],
+  "dc.identifier.doi": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "10.7892/boris.39666"
+   }
+  ],
+  "dc.identifier.publisherDOI": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "10.1659/MRD-JOURNAL-D-13-00004.1"
+   }
+  ],
+  "dc.identifier.uri": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "https://boris-portal.unibe.ch/handle/20.500.12422/196755"
+   }
+  ],
+  "dc.language.iso": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "en"
+   }
+  ],
+  "dc.publisher": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "International Mountain Society"
+   }
+  ],
+  "dc.relation.ispartof": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "Mountain Research and Development"
+   }
+  ],
+  "dc.relation.issn": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "0276-4741"
+   }
+  ],
+  "dc.relation.organization": [
+   {
+    "authority": "d6b8688e-e1c5-4ad0-9c9e-14abf19c2f2c",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "value": "Institute of Geography, Geographies of Sustainability"
+   },
+   {
+    "authority": "e72766a8-6120-4b56-b6dd-da7812ad7680",
+    "confidence": 600,
+    "language": null,
+    "place": 1,
+    "value": "Institute of Geography"
+   },
+   {
+    "authority": "e8a63149-d542-4299-8251-789acc2ab289",
+    "confidence": 600,
+    "language": null,
+    "place": 2,
+    "value": "Centre for Development and Environment (CDE)"
+   }
+  ],
+  "dc.relation.project": [
+   {
+    "authority": "7c52b567-045c-4fd8-861e-2811fbde16dd",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "value": "Approaching water stress in the Alps"
+   }
+  ],
+  "dc.subject": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "Water governance"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "adaptive capacity"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "value": "reform options"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 3,
+    "value": "reactive and proactive responses"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 4,
+    "value": "Switzerland"
+   }
+  ],
+  "dc.subject.ddc": [
+   {
+    "authority": "boris-dd:ddc910",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "value": "900 - History::910 - Geography & travel"
+   },
+   {
+    "authority": "boris-dd:ddc330",
+    "confidence": 600,
+    "language": null,
+    "place": 1,
+    "value": "300 - Social sciences, sociology & anthropology::330 - Economics"
+   }
+  ],
+  "dc.title": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "Exploring Water Governance Arrangements in the Swiss Alps From the Perspective of Adaptive Capacity"
+   }
+  ],
+  "dc.type": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "article"
+   }
+  ],
+  "dspace.entity.type": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "Publication"
+   }
+  ],
+  "dspace.file.type": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "text"
+   }
+  ],
+  "oaire.citation.endPage": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "233"
+   }
+  ],
+  "oaire.citation.issue": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "3"
+   }
+  ],
+  "oaire.citation.startPage": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "225"
+   }
+  ],
+  "oaire.citation.volume": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "33"
+   }
+  ],
+  "oairecerif.author.affiliation": [
+   {
+    "authority": "8cedc8ee-b5d2-48ef-8e17-ab6f720296df",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "value": "Geographisches Institut, Physische Geographie"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   }
+  ],
+  "oairecerif.author.affiliation2": [
+   {
+    "authority": "8bc01556-cf41-470a-95ae-93f4e011445d",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "value": "NCCR North-South Management Centre"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   }
+  ],
+  "oairecerif.author.affiliation3": [
+   {
+    "authority": "e8a63149-d542-4299-8251-789acc2ab289",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "value": "Centre for Development and Environment (CDE)"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   }
+  ],
+  "oairecerif.author.affiliation4": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   }
+  ],
+  "unibe.contributor.role": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "creator"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "creator"
+   }
+  ],
+  "unibe.description.ispublished": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "pub"
+   }
+  ],
+  "unibe.eprints.legacyId": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "39666"
+   }
+  ],
+  "unibe.journal.abbrevTitle": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "MT RES DEV"
+   }
+  ],
+  "unibe.refereed": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "true"
+   }
+  ],
+  "unibe.relation.legacyproject": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "Approaching water stress in the Alps"
+   }
+  ],
+  "unibe.subtype.article": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "journal"
+   }
+  ]
+ },
+ "name": "Exploring Water Governance Arrangements in the Swiss Alps From the Perspective of Adaptive Capacity",
+ "type": "item",
+ "uniqueType": "core.item",
+ "uuid": "e5176970-c1f2-4e83-82d7-3f7f779a1d08",
+ "withdrawn": false
+}

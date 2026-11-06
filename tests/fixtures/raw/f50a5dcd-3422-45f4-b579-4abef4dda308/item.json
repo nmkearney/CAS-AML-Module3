@@ -1,0 +1,439 @@
+{
+ "_links": {
+  "accessStatus": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/f50a5dcd-3422-45f4-b579-4abef4dda308/accessStatus"
+  },
+  "bundles": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/f50a5dcd-3422-45f4-b579-4abef4dda308/bundles"
+  },
+  "identifiers": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/f50a5dcd-3422-45f4-b579-4abef4dda308/identifiers"
+  },
+  "mappedCollections": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/f50a5dcd-3422-45f4-b579-4abef4dda308/mappedCollections"
+  },
+  "metrics": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/f50a5dcd-3422-45f4-b579-4abef4dda308/metrics"
+  },
+  "owningCollection": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/f50a5dcd-3422-45f4-b579-4abef4dda308/owningCollection"
+  },
+  "relationships": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/f50a5dcd-3422-45f4-b579-4abef4dda308/relationships"
+  },
+  "self": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/f50a5dcd-3422-45f4-b579-4abef4dda308"
+  },
+  "submitter": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/f50a5dcd-3422-45f4-b579-4abef4dda308/submitter"
+  },
+  "templateItemOf": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/f50a5dcd-3422-45f4-b579-4abef4dda308/templateItemOf"
+  },
+  "thumbnail": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/f50a5dcd-3422-45f4-b579-4abef4dda308/thumbnail"
+  },
+  "version": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/f50a5dcd-3422-45f4-b579-4abef4dda308/version"
+  }
+ },
+ "discoverable": true,
+ "entityType": "Publication",
+ "handle": "20.500.12422/47991",
+ "id": "f50a5dcd-3422-45f4-b579-4abef4dda308",
+ "inArchive": true,
+ "lastModified": "2026-09-07T13:06:09.673624Z",
+ "metadata": {
+  "cris.virtual.orcid": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "0000-0001-8985-2397"
+   }
+  ],
+  "cris.virtualsource.orcid": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "cd7b58c5-10d1-4cf5-9d5c-0037b8ba41df"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "65f79c7a-c0b9-4326-908d-206cd09d40e0"
+   }
+  ],
+  "datacite.rights": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "open.access"
+   }
+  ],
+  "dc.contributor.author": [
+   {
+    "authority": "will be referenced::ORCID::0000-0002-2515-137X",
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "Hammer, Thomas"
+   },
+   {
+    "authority": "cd7b58c5-10d1-4cf5-9d5c-0037b8ba41df",
+    "confidence": 600,
+    "language": null,
+    "place": 1,
+    "securityLevel": 0,
+    "value": "Leng, Marion"
+   },
+   {
+    "authority": "65f79c7a-c0b9-4326-908d-206cd09d40e0",
+    "confidence": 600,
+    "language": null,
+    "place": 2,
+    "securityLevel": 0,
+    "value": "Scharrer, Bettina"
+   }
+  ],
+  "dc.date.accessioned": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "2024-10-02T13:08:11Z"
+   }
+  ],
+  "dc.date.issued": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "2020"
+   }
+  ],
+  "dc.description.note": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "Projekte müssen noch nachgetragen werden. Manuelle Eingabe lässt das System nicht zu - Fehlermeldung. 02.10.2024/mbr\n\nProjekt 1:   The cultural dimension of sustainable regional and landscape development\n\nProjekt 2:   Education for Sustainable Development"
+   }
+  ],
+  "dc.description.sponsorship": [
+   {
+    "authority": "e8a63149-d542-4299-8251-789acc2ab289",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "value": "Centre for Development and Environment (CDE)"
+   },
+   {
+    "authority": "97ec2e0d-c51f-4a07-9050-a4441fc5fb2b",
+    "confidence": 600,
+    "language": null,
+    "place": 1,
+    "value": "Centre for Development and Environment (CDE) - Transformative Education & Science"
+   },
+   {
+    "authority": "4b4c9b40-6d35-47e5-bb61-36d14ad01ca6",
+    "confidence": 600,
+    "language": null,
+    "place": 2,
+    "value": "Centre for Development and Environment (CDE) - Just Economies & Human Well Being"
+   }
+  ],
+  "dc.identifier.doi": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "10.48620/8446"
+   }
+  ],
+  "dc.identifier.uri": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "https://boris-portal.unibe.ch/handle/20.500.12422/47991"
+   }
+  ],
+  "dc.language.iso": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "de"
+   }
+  ],
+  "dc.publisher": [
+   {
+    "authority": null,
+    "confidence": 0,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "Centre for Development and Environment (CDE); Bern Open Publishing (BOP)"
+   }
+  ],
+  "dc.relation.isbn": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "978-3-03917-002-9"
+   }
+  ],
+  "dc.relation.ispartofseries": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "CDE Working Papers"
+   }
+  ],
+  "dc.title": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "Nachhaltige Regional- und Landschaftsentwicklung in integrativen Grossschutzgebieten: Welche Rolle soll der Kultur beigemessen werden?"
+   }
+  ],
+  "dc.type": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "working_paper"
+   }
+  ],
+  "dspace.entity.type": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "Publication"
+   }
+  ],
+  "dspace.file.type": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "text"
+   }
+  ],
+  "oaire.citation.volume": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "5"
+   }
+  ],
+  "oairecerif.author.affiliation": [
+   {
+    "authority": "e8a63149-d542-4299-8251-789acc2ab289",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "Centre for Development and Environment (CDE)"
+   },
+   {
+    "authority": "97ec2e0d-c51f-4a07-9050-a4441fc5fb2b",
+    "confidence": 600,
+    "language": null,
+    "place": 1,
+    "securityLevel": 0,
+    "value": "Centre for Development and Environment (CDE) - Transformative Education & Science"
+   },
+   {
+    "authority": "4b4c9b40-6d35-47e5-bb61-36d14ad01ca6",
+    "confidence": 600,
+    "language": null,
+    "place": 2,
+    "securityLevel": 0,
+    "value": "Centre for Development and Environment (CDE) - Just Economies & Human Well Being"
+   }
+  ],
+  "oairecerif.author.affiliation2": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   }
+  ],
+  "oairecerif.author.affiliation3": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   }
+  ],
+  "oairecerif.author.affiliation4": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   }
+  ],
+  "unibe.additional.sponsorship": [
+   {
+    "authority": "e8a63149-d542-4299-8251-789acc2ab289",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "Centre for Development and Environment (CDE)"
+   }
+  ],
+  "unibe.contributor.role": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "author"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "securityLevel": 0,
+    "value": "author"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "securityLevel": 0,
+    "value": "author"
+   }
+  ],
+  "unibe.description.ispublished": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "inpress"
+   }
+  ],
+  "unibe.referee": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "false"
+   }
+  ],
+  "unibe.refereed": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "false"
+   }
+  ]
+ },
+ "name": "Nachhaltige Regional- und Landschaftsentwicklung in integrativen Grossschutzgebieten: Welche Rolle soll der Kultur beigemessen werden?",
+ "type": "item",
+ "uniqueType": "core.item",
+ "uuid": "f50a5dcd-3422-45f4-b579-4abef4dda308",
+ "withdrawn": false
+}

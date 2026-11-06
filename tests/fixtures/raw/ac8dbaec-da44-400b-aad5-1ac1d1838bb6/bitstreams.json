@@ -1,0 +1,93 @@
+[
+ {
+  "_links": {
+   "accessStatus": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/d9f78ee1-7bfe-4e6a-8677-f72ce9f927f0/accessStatus"
+   },
+   "bundle": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/d9f78ee1-7bfe-4e6a-8677-f72ce9f927f0/bundle"
+   },
+   "content": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/d9f78ee1-7bfe-4e6a-8677-f72ce9f927f0/content"
+   },
+   "format": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/d9f78ee1-7bfe-4e6a-8677-f72ce9f927f0/format"
+   },
+   "self": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/d9f78ee1-7bfe-4e6a-8677-f72ce9f927f0"
+   },
+   "thumbnail": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/d9f78ee1-7bfe-4e6a-8677-f72ce9f927f0/thumbnail"
+   }
+  },
+  "bundleName": "ORIGINAL",
+  "checkSum": {
+   "checkSumAlgorithm": "MD5",
+   "value": "25032a9b7af00dcee1ccc195e45dd96d"
+  },
+  "handle": null,
+  "id": "d9f78ee1-7bfe-4e6a-8677-f72ce9f927f0",
+  "metadata": {
+   "datacite.rights": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "open.access"
+    }
+   ],
+   "dc.rights.uri": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "https://creativecommons.org/licenses/by/4.0"
+    }
+   ],
+   "dc.source": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "Sütterlin-et-al_2026_Akademische Nachhaltigkeits-netzwerke zwischen Exzellenz und Wirkung_ Wie kann die Wissenschafts-Bubble durchlässiger werden_.pdf"
+    }
+   ],
+   "dc.title": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "Sütterlin-et-al_2026_Akademische Nachhaltigkeits-netzwerke zwischen Exzellenz und Wirkung_ Wie kann die Wissenschafts-Bubble durchlässiger werden_.pdf"
+    }
+   ],
+   "dc.type": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "text"
+    }
+   ],
+   "unibe.content": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "published"
+    }
+   ]
+  },
+  "name": "Sütterlin-et-al_2026_Akademische Nachhaltigkeits-netzwerke zwischen Exzellenz und Wirkung_ Wie kann die Wissenschafts-Bubble durchlässiger werden_.pdf",
+  "sequenceId": 1,
+  "sizeBytes": 169038,
+  "type": "bitstream",
+  "uniqueType": "core.bitstream",
+  "uuid": "d9f78ee1-7bfe-4e6a-8677-f72ce9f927f0"
+ }
+]

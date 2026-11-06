@@ -1,0 +1,548 @@
+[
+ {
+  "_links": {
+   "accessStatus": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/0f31cd48-8d2a-41db-97a8-21c394b1ebdb/accessStatus"
+   },
+   "bundle": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/0f31cd48-8d2a-41db-97a8-21c394b1ebdb/bundle"
+   },
+   "content": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/0f31cd48-8d2a-41db-97a8-21c394b1ebdb/content"
+   },
+   "format": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/0f31cd48-8d2a-41db-97a8-21c394b1ebdb/format"
+   },
+   "self": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/0f31cd48-8d2a-41db-97a8-21c394b1ebdb"
+   },
+   "thumbnail": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/0f31cd48-8d2a-41db-97a8-21c394b1ebdb/thumbnail"
+   }
+  },
+  "bundleName": "ORIGINAL",
+  "checkSum": {
+   "checkSumAlgorithm": "MD5",
+   "value": "55711a467684b37c39efc791052f343b"
+  },
+  "handle": null,
+  "id": "0f31cd48-8d2a-41db-97a8-21c394b1ebdb",
+  "metadata": {
+   "datacite.rights": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "open.access"
+    }
+   ],
+   "dc.rights.uri": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "https://creativecommons.org/licenses/by/4.0"
+    }
+   ],
+   "dc.source": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "Land Matrix_AR CS Full Report 2025.pdf"
+    }
+   ],
+   "dc.title": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "Land Matrix_AR CS Full Report 2025.pdf"
+    }
+   ],
+   "dc.type": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "text"
+    }
+   ],
+   "unibe.content": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "published"
+    }
+   ]
+  },
+  "name": "Land Matrix_AR CS Full Report 2025.pdf",
+  "sequenceId": 1,
+  "sizeBytes": 14360707,
+  "type": "bitstream",
+  "uniqueType": "core.bitstream",
+  "uuid": "0f31cd48-8d2a-41db-97a8-21c394b1ebdb"
+ },
+ {
+  "_links": {
+   "accessStatus": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/1bc73780-4b8f-4374-ba27-845de8f637f4/accessStatus"
+   },
+   "bundle": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/1bc73780-4b8f-4374-ba27-845de8f637f4/bundle"
+   },
+   "content": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/1bc73780-4b8f-4374-ba27-845de8f637f4/content"
+   },
+   "format": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/1bc73780-4b8f-4374-ba27-845de8f637f4/format"
+   },
+   "self": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/1bc73780-4b8f-4374-ba27-845de8f637f4"
+   },
+   "thumbnail": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/1bc73780-4b8f-4374-ba27-845de8f637f4/thumbnail"
+   }
+  },
+  "bundleName": "ORIGINAL",
+  "checkSum": {
+   "checkSumAlgorithm": "MD5",
+   "value": "035be8f6be06261d7b7d01154d04ef00"
+  },
+  "handle": null,
+  "id": "1bc73780-4b8f-4374-ba27-845de8f637f4",
+  "metadata": {
+   "datacite.rights": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "open.access"
+    }
+   ],
+   "dc.rights.uri": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "https://creativecommons.org/licenses/by/4.0"
+    }
+   ],
+   "dc.source": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "Land_Matrix_Analytical_Report_2025_Executive_summary_Spanish.pdf"
+    }
+   ],
+   "dc.title": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "Land_Matrix_Analytical_Report_2025_Executive_summary_Spanish.pdf"
+    }
+   ],
+   "dc.type": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "text"
+    }
+   ],
+   "unibe.content": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "supplemental"
+    }
+   ]
+  },
+  "name": "Land_Matrix_Analytical_Report_2025_Executive_summary_Spanish.pdf",
+  "sequenceId": 2,
+  "sizeBytes": 4056806,
+  "type": "bitstream",
+  "uniqueType": "core.bitstream",
+  "uuid": "1bc73780-4b8f-4374-ba27-845de8f637f4"
+ },
+ {
+  "_links": {
+   "accessStatus": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/4063f300-1db8-458f-b134-53e91c3c1057/accessStatus"
+   },
+   "bundle": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/4063f300-1db8-458f-b134-53e91c3c1057/bundle"
+   },
+   "content": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/4063f300-1db8-458f-b134-53e91c3c1057/content"
+   },
+   "format": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/4063f300-1db8-458f-b134-53e91c3c1057/format"
+   },
+   "self": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/4063f300-1db8-458f-b134-53e91c3c1057"
+   },
+   "thumbnail": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/4063f300-1db8-458f-b134-53e91c3c1057/thumbnail"
+   }
+  },
+  "bundleName": "ORIGINAL",
+  "checkSum": {
+   "checkSumAlgorithm": "MD5",
+   "value": "6f59bb0153f566c006e4ebbc279306d3"
+  },
+  "handle": null,
+  "id": "4063f300-1db8-458f-b134-53e91c3c1057",
+  "metadata": {
+   "datacite.rights": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "open.access"
+    }
+   ],
+   "dc.rights.uri": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "https://creativecommons.org/licenses/by/4.0"
+    }
+   ],
+   "dc.source": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "Land_Matrix_Analytical_Report_2025_Executive_summary_Ukrainian.pdf"
+    }
+   ],
+   "dc.title": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "Land_Matrix_Analytical_Report_2025_Executive_summary_Ukrainian.pdf"
+    }
+   ],
+   "dc.type": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "text"
+    }
+   ],
+   "unibe.content": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "supplemental"
+    }
+   ]
+  },
+  "name": "Land_Matrix_Analytical_Report_2025_Executive_summary_Ukrainian.pdf",
+  "sequenceId": 3,
+  "sizeBytes": 4125921,
+  "type": "bitstream",
+  "uniqueType": "core.bitstream",
+  "uuid": "4063f300-1db8-458f-b134-53e91c3c1057"
+ },
+ {
+  "_links": {
+   "accessStatus": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/6d2d41e7-4a91-4257-940a-3d522f034df5/accessStatus"
+   },
+   "bundle": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/6d2d41e7-4a91-4257-940a-3d522f034df5/bundle"
+   },
+   "content": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/6d2d41e7-4a91-4257-940a-3d522f034df5/content"
+   },
+   "format": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/6d2d41e7-4a91-4257-940a-3d522f034df5/format"
+   },
+   "self": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/6d2d41e7-4a91-4257-940a-3d522f034df5"
+   },
+   "thumbnail": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/6d2d41e7-4a91-4257-940a-3d522f034df5/thumbnail"
+   }
+  },
+  "bundleName": "ORIGINAL",
+  "checkSum": {
+   "checkSumAlgorithm": "MD5",
+   "value": "89f6c93276d041a5b4fb2d7dbef88eac"
+  },
+  "handle": null,
+  "id": "6d2d41e7-4a91-4257-940a-3d522f034df5",
+  "metadata": {
+   "datacite.rights": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "open.access"
+    }
+   ],
+   "dc.rights.uri": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "https://creativecommons.org/licenses/by/4.0"
+    }
+   ],
+   "dc.source": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "Land_Matrix_Analytical_Report_2025_Executive_summary_English.pdf"
+    }
+   ],
+   "dc.title": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "Land_Matrix_Analytical_Report_2025_Executive_summary_English.pdf"
+    }
+   ],
+   "dc.type": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "text"
+    }
+   ],
+   "unibe.content": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "supplemental"
+    }
+   ]
+  },
+  "name": "Land_Matrix_Analytical_Report_2025_Executive_summary_English.pdf",
+  "sequenceId": 4,
+  "sizeBytes": 4055541,
+  "type": "bitstream",
+  "uniqueType": "core.bitstream",
+  "uuid": "6d2d41e7-4a91-4257-940a-3d522f034df5"
+ },
+ {
+  "_links": {
+   "accessStatus": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/2e171381-c2cc-4626-9822-921b092c0d91/accessStatus"
+   },
+   "bundle": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/2e171381-c2cc-4626-9822-921b092c0d91/bundle"
+   },
+   "content": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/2e171381-c2cc-4626-9822-921b092c0d91/content"
+   },
+   "format": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/2e171381-c2cc-4626-9822-921b092c0d91/format"
+   },
+   "self": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/2e171381-c2cc-4626-9822-921b092c0d91"
+   },
+   "thumbnail": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/2e171381-c2cc-4626-9822-921b092c0d91/thumbnail"
+   }
+  },
+  "bundleName": "ORIGINAL",
+  "checkSum": {
+   "checkSumAlgorithm": "MD5",
+   "value": "b23d3910e3dfd0a965217a68e3768e7b"
+  },
+  "handle": null,
+  "id": "2e171381-c2cc-4626-9822-921b092c0d91",
+  "metadata": {
+   "datacite.rights": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "open.access"
+    }
+   ],
+   "dc.rights.uri": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "https://creativecommons.org/licenses/by/4.0"
+    }
+   ],
+   "dc.source": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "Land_Matrix_Analytical_Report_2025_Executive_summary_French.pdf"
+    }
+   ],
+   "dc.title": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "Land_Matrix_Analytical_Report_2025_Executive_summary_French.pdf"
+    }
+   ],
+   "dc.type": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "text"
+    }
+   ],
+   "unibe.content": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "supplemental"
+    }
+   ]
+  },
+  "name": "Land_Matrix_Analytical_Report_2025_Executive_summary_French.pdf",
+  "sequenceId": 5,
+  "sizeBytes": 4058080,
+  "type": "bitstream",
+  "uniqueType": "core.bitstream",
+  "uuid": "2e171381-c2cc-4626-9822-921b092c0d91"
+ },
+ {
+  "_links": {
+   "accessStatus": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/505e3ff9-a2f1-451a-a3f2-95dadbe73399/accessStatus"
+   },
+   "bundle": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/505e3ff9-a2f1-451a-a3f2-95dadbe73399/bundle"
+   },
+   "content": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/505e3ff9-a2f1-451a-a3f2-95dadbe73399/content"
+   },
+   "format": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/505e3ff9-a2f1-451a-a3f2-95dadbe73399/format"
+   },
+   "self": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/505e3ff9-a2f1-451a-a3f2-95dadbe73399"
+   },
+   "thumbnail": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/505e3ff9-a2f1-451a-a3f2-95dadbe73399/thumbnail"
+   }
+  },
+  "bundleName": "ORIGINAL",
+  "checkSum": {
+   "checkSumAlgorithm": "MD5",
+   "value": "c1c55a825dede0de6c3f85eb0809a79b"
+  },
+  "handle": null,
+  "id": "505e3ff9-a2f1-451a-a3f2-95dadbe73399",
+  "metadata": {
+   "datacite.rights": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "open.access"
+    }
+   ],
+   "dc.rights.uri": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "https://creativecommons.org/licenses/by/4.0"
+    }
+   ],
+   "dc.source": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "Land_Matrix_Analytical_Report_2025_Executive_summary_Russian.pdf"
+    }
+   ],
+   "dc.title": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "Land_Matrix_Analytical_Report_2025_Executive_summary_Russian.pdf"
+    }
+   ],
+   "dc.type": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "text"
+    }
+   ],
+   "unibe.content": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "supplemental"
+    }
+   ]
+  },
+  "name": "Land_Matrix_Analytical_Report_2025_Executive_summary_Russian.pdf",
+  "sequenceId": 6,
+  "sizeBytes": 4126383,
+  "type": "bitstream",
+  "uniqueType": "core.bitstream",
+  "uuid": "505e3ff9-a2f1-451a-a3f2-95dadbe73399"
+ }
+]

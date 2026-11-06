@@ -1,0 +1,480 @@
+{
+ "_links": {
+  "accessStatus": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/453f1ec7-d260-4d02-a003-6b95d48c26b2/accessStatus"
+  },
+  "bundles": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/453f1ec7-d260-4d02-a003-6b95d48c26b2/bundles"
+  },
+  "identifiers": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/453f1ec7-d260-4d02-a003-6b95d48c26b2/identifiers"
+  },
+  "mappedCollections": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/453f1ec7-d260-4d02-a003-6b95d48c26b2/mappedCollections"
+  },
+  "metrics": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/453f1ec7-d260-4d02-a003-6b95d48c26b2/metrics"
+  },
+  "owningCollection": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/453f1ec7-d260-4d02-a003-6b95d48c26b2/owningCollection"
+  },
+  "relationships": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/453f1ec7-d260-4d02-a003-6b95d48c26b2/relationships"
+  },
+  "self": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/453f1ec7-d260-4d02-a003-6b95d48c26b2"
+  },
+  "submitter": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/453f1ec7-d260-4d02-a003-6b95d48c26b2/submitter"
+  },
+  "templateItemOf": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/453f1ec7-d260-4d02-a003-6b95d48c26b2/templateItemOf"
+  },
+  "thumbnail": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/453f1ec7-d260-4d02-a003-6b95d48c26b2/thumbnail"
+  },
+  "version": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/453f1ec7-d260-4d02-a003-6b95d48c26b2/version"
+  }
+ },
+ "discoverable": true,
+ "entityType": "Publication",
+ "handle": "20.500.12422/65301",
+ "id": "453f1ec7-d260-4d02-a003-6b95d48c26b2",
+ "inArchive": true,
+ "lastModified": "2026-09-22T14:40:01.571182Z",
+ "metadata": {
+  "cris.virtual.orcid": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "0000-0002-3253-5128"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "0000-0002-0286-6348"
+   }
+  ],
+  "cris.virtualsource.orcid": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "76c96faf-c3a5-43ba-aa8f-a0d20c5b9223"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "5a59260d-6826-40b1-ab53-f69fe98239c7"
+   }
+  ],
+  "datacite.rights": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "open.access"
+   }
+  ],
+  "dc.contributor.author": [
+   {
+    "authority": "76c96faf-c3a5-43ba-aa8f-a0d20c5b9223",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "value": "Zähringer, Julie Gwendolin"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "Ramamonjisoa, Bruno"
+   },
+   {
+    "authority": "5a59260d-6826-40b1-ab53-f69fe98239c7",
+    "confidence": 600,
+    "language": null,
+    "place": 2,
+    "value": "Messerli, Peter"
+   }
+  ],
+  "dc.date.accessioned": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "2024-10-08T15:36:48Z"
+   }
+  ],
+  "dc.date.issued": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "2018"
+   }
+  ],
+  "dc.description.abstract": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "In the imagination of people worldwide, the island of Madagascar is synonymous with beautiful rainforests and exotic animals, like lemurs, found nowhere else. Often absent from this foreign view, however, are the island’s human inhabitants – the Malagasy people. Largely reliant on small-scale agriculture, they depend on land access to survive. With few\nagricultural inputs and little technology available, shifting cultivation is a well-adapted, rational land use practised by many Malagasy to grow staple crops. But as various factors – demographic, market-based, etc. – put the whole land use system under pressure, shifting cultivators are forced to expand their farming into remaining forests. This causes conflict with those who want to conserve Madagascar’s forests and biodiversity as a global good. To date, no environmentally just and equitable solutions have been found that ensure conservation of the region’s extraordinary biodiversity while enabling local land users to escape poverty and food insecurity."
+   }
+  ],
+  "dc.description.sponsorship": [
+   {
+    "authority": "e8a63149-d542-4299-8251-789acc2ab289",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "value": "Centre for Development and Environment (CDE)"
+   }
+  ],
+  "dc.identifier.doi": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "10.7892/boris.128142"
+   }
+  ],
+  "dc.identifier.uri": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "https://boris-portal.unibe.ch/handle/20.500.12422/65301"
+   }
+  ],
+  "dc.language.iso": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "me"
+   }
+  ],
+  "dc.publisher": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "Centre for Development and Environment (CDE), University of Bern, with Bern Open Publishing (BOP)"
+   }
+  ],
+  "dc.publisher.place": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "Bern, Switzerland"
+   }
+  ],
+  "dc.relation.ispartofseries": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "CDE Policy Brief"
+   }
+  ],
+  "dc.relation.issn": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "2296-8687"
+   }
+  ],
+  "dc.relation.organization": [
+   {
+    "authority": "e8a63149-d542-4299-8251-789acc2ab289",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "value": "Centre for Development and Environment (CDE)"
+   }
+  ],
+  "dc.relation.project": [
+   {
+    "authority": "db098519-afe3-4fad-92af-f4f156eb1c3c",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "value": "Cluster: Land Resources"
+   }
+  ],
+  "dc.subject": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "CDEPolicyBrief"
+   }
+  ],
+  "dc.subject.ddc": [
+   {
+    "authority": "boris-dd:ddc910",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "value": "900 - History::910 - Geography & travel"
+   }
+  ],
+  "dc.title": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "Conservation versus local livelihoods? Sustainable development challenges in Madagascar"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "Conservation ou moyens d’existence ? Les défis du développement durable à Madagascar"
+   }
+  ],
+  "dc.type": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "report"
+   }
+  ],
+  "dspace.entity.type": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "Publication"
+   }
+  ],
+  "dspace.file.type": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "text"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "text"
+   }
+  ],
+  "oaire.citation.volume": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "12"
+   }
+  ],
+  "oairecerif.author.affiliation": [
+   {
+    "authority": "e8a63149-d542-4299-8251-789acc2ab289",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "value": "Centre for Development and Environment (CDE)"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": "e8a63149-d542-4299-8251-789acc2ab289",
+    "confidence": 600,
+    "language": null,
+    "place": 2,
+    "value": "Centre for Development and Environment (CDE)"
+   }
+  ],
+  "oairecerif.author.affiliation2": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   }
+  ],
+  "oairecerif.author.affiliation3": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   }
+  ],
+  "oairecerif.author.affiliation4": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   }
+  ],
+  "unibe.contributor.role": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "creator"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "creator"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "value": "creator"
+   }
+  ],
+  "unibe.date.licenseChanged": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "2019-10-26 03:44:21"
+   }
+  ],
+  "unibe.description.ispublished": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "pub"
+   }
+  ],
+  "unibe.eprints.legacyId": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "128142"
+   }
+  ],
+  "unibe.refereed": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "false"
+   }
+  ],
+  "unibe.relation.legacyproject": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "803"
+   }
+  ],
+  "unibe.subtype.report": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "report"
+   }
+  ]
+ },
+ "name": "Conservation versus local livelihoods? Sustainable development challenges in Madagascar",
+ "type": "item",
+ "uniqueType": "core.item",
+ "uuid": "453f1ec7-d260-4d02-a003-6b95d48c26b2",
+ "withdrawn": false
+}

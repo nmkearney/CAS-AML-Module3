@@ -1,0 +1,84 @@
+[
+ {
+  "_links": {
+   "accessStatus": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/2d3f7568-be75-4e66-b721-1db4595c1736/accessStatus"
+   },
+   "bundle": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/2d3f7568-be75-4e66-b721-1db4595c1736/bundle"
+   },
+   "content": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/2d3f7568-be75-4e66-b721-1db4595c1736/content"
+   },
+   "format": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/2d3f7568-be75-4e66-b721-1db4595c1736/format"
+   },
+   "self": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/2d3f7568-be75-4e66-b721-1db4595c1736"
+   },
+   "thumbnail": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/2d3f7568-be75-4e66-b721-1db4595c1736/thumbnail"
+   }
+  },
+  "bundleName": "ORIGINAL",
+  "checkSum": {
+   "checkSumAlgorithm": "MD5",
+   "value": "632ffccffc7cefa766c338ab54eed4ba"
+  },
+  "handle": null,
+  "id": "2d3f7568-be75-4e66-b721-1db4595c1736",
+  "metadata": {
+   "datacite.rights": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "open.access"
+    }
+   ],
+   "dc.rights.uri": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "https://creativecommons.org/licenses/by/4.0"
+    }
+   ],
+   "dc.title": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "gh-58-253-2003.pdf"
+    }
+   ],
+   "dc.type": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "text"
+    }
+   ],
+   "unibe.content": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "published"
+    }
+   ]
+  },
+  "name": "gh-58-253-2003.pdf",
+  "sequenceId": 1,
+  "sizeBytes": 15694021,
+  "type": "bitstream",
+  "uniqueType": "core.bitstream",
+  "uuid": "2d3f7568-be75-4e66-b721-1db4595c1736"
+ }
+]

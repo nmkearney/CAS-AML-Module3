@@ -1,0 +1,93 @@
+[
+ {
+  "_links": {
+   "accessStatus": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/997dfc81-0f4b-423d-9b49-4cc350be090c/accessStatus"
+   },
+   "bundle": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/997dfc81-0f4b-423d-9b49-4cc350be090c/bundle"
+   },
+   "content": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/997dfc81-0f4b-423d-9b49-4cc350be090c/content"
+   },
+   "format": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/997dfc81-0f4b-423d-9b49-4cc350be090c/format"
+   },
+   "self": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/997dfc81-0f4b-423d-9b49-4cc350be090c"
+   },
+   "thumbnail": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/997dfc81-0f4b-423d-9b49-4cc350be090c/thumbnail"
+   }
+  },
+  "bundleName": "ORIGINAL",
+  "checkSum": {
+   "checkSumAlgorithm": "MD5",
+   "value": "01630acbe12046e45374ab305cf2f979"
+  },
+  "handle": null,
+  "id": "997dfc81-0f4b-423d-9b49-4cc350be090c",
+  "metadata": {
+   "datacite.rights": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "open.access"
+    }
+   ],
+   "dc.rights.uri": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "https://creativecommons.org/licenses/by/4.0"
+    }
+   ],
+   "dc.source": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "1-s2.0-S1389934124002065-main.pdf"
+    }
+   ],
+   "dc.title": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "1-s2.0-S1389934124002065-main.pdf"
+    }
+   ],
+   "dc.type": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "text"
+    }
+   ],
+   "unibe.content": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "published"
+    }
+   ]
+  },
+  "name": "1-s2.0-S1389934124002065-main.pdf",
+  "sequenceId": 1,
+  "sizeBytes": 8972410,
+  "type": "bitstream",
+  "uniqueType": "core.bitstream",
+  "uuid": "997dfc81-0f4b-423d-9b49-4cc350be090c"
+ }
+]

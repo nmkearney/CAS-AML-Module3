@@ -1,0 +1,529 @@
+{
+ "_links": {
+  "accessStatus": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/c191917c-34df-4dfe-8f2d-aaaffb20bb05/accessStatus"
+  },
+  "bundles": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/c191917c-34df-4dfe-8f2d-aaaffb20bb05/bundles"
+  },
+  "identifiers": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/c191917c-34df-4dfe-8f2d-aaaffb20bb05/identifiers"
+  },
+  "mappedCollections": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/c191917c-34df-4dfe-8f2d-aaaffb20bb05/mappedCollections"
+  },
+  "metrics": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/c191917c-34df-4dfe-8f2d-aaaffb20bb05/metrics"
+  },
+  "owningCollection": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/c191917c-34df-4dfe-8f2d-aaaffb20bb05/owningCollection"
+  },
+  "relationships": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/c191917c-34df-4dfe-8f2d-aaaffb20bb05/relationships"
+  },
+  "self": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/c191917c-34df-4dfe-8f2d-aaaffb20bb05"
+  },
+  "submitter": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/c191917c-34df-4dfe-8f2d-aaaffb20bb05/submitter"
+  },
+  "templateItemOf": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/c191917c-34df-4dfe-8f2d-aaaffb20bb05/templateItemOf"
+  },
+  "thumbnail": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/c191917c-34df-4dfe-8f2d-aaaffb20bb05/thumbnail"
+  },
+  "version": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/c191917c-34df-4dfe-8f2d-aaaffb20bb05/version"
+  }
+ },
+ "discoverable": true,
+ "entityType": "Publication",
+ "handle": "20.500.12422/217650",
+ "id": "c191917c-34df-4dfe-8f2d-aaaffb20bb05",
+ "inArchive": true,
+ "lastModified": "2026-09-07T07:51:22.239827Z",
+ "metadata": {
+  "cris.virtual.orcid": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "0000-0001-8442-6444"
+   }
+  ],
+  "cris.virtualsource.orcid": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "b6a5be3f-98ed-41a4-8938-cbcfee2e2124"
+   }
+  ],
+  "datacite.rights": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "open.access"
+   }
+  ],
+  "dc.contributor.author": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "Kubitza, Christoph"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "securityLevel": 0,
+    "value": "Grislain, Quentin"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "securityLevel": 0,
+    "value": "Rivera, NIkka"
+   },
+   {
+    "authority": "b6a5be3f-98ed-41a4-8938-cbcfee2e2124",
+    "confidence": 600,
+    "language": null,
+    "place": 3,
+    "securityLevel": 0,
+    "value": "Sonderegger, Gabi"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 4,
+    "securityLevel": 0,
+    "value": "Lay, Jann"
+   }
+  ],
+  "dc.date.accessioned": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "2025-09-01T11:47:52Z"
+   }
+  ],
+  "dc.date.issued": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "2025"
+   }
+  ],
+  "dc.description.sponsorship": [
+   {
+    "authority": "6f175fd4-3164-4634-a95d-c8cf51d1b01a",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "value": "Centre for Development and Environment (CDE) - Sustainable Governance"
+   },
+   {
+    "authority": "e8a63149-d542-4299-8251-789acc2ab289",
+    "confidence": 600,
+    "language": null,
+    "place": 1,
+    "value": "Centre for Development and Environment (CDE)"
+   }
+  ],
+  "dc.identifier.doi": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "10.48620/91000"
+   }
+  ],
+  "dc.identifier.uri": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "https://boris-portal.unibe.ch/handle/20.500.12422/217650"
+   }
+  ],
+  "dc.language.iso": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "en"
+   }
+  ],
+  "dc.publisher": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "Centre for Development and Environment, University of Bern; Centre de coopération internationale en recherche agronomique pour le développement; German Institute for Global and Area Studies; with Bern Open Publishing."
+   }
+  ],
+  "dc.publisher.place": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "Bern, Montpellier, Hamburg"
+   }
+  ],
+  "dc.relation.isbn": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "978-3-03917-112-5"
+   }
+  ],
+  "dc.relation.project": [
+   {
+    "authority": "9f4999b0-3f94-4d9d-902f-9708b64343cf",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "Land Matrix"
+   }
+  ],
+  "dc.title": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "Large-scale land acquisitions for carbon offsetting: Green grabbing or just transition? Analytical report on land-based offset projects"
+   }
+  ],
+  "dc.type": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "report"
+   }
+  ],
+  "dspace.entity.type": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "Publication"
+   }
+  ],
+  "dspace.file.type": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "text"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "text"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "value": "text"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 3,
+    "value": "text"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 4,
+    "value": "text"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 5,
+    "value": "text"
+   }
+  ],
+  "oairecerif.author.affiliation": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": "6f175fd4-3164-4634-a95d-c8cf51d1b01a",
+    "confidence": 600,
+    "language": null,
+    "place": 3,
+    "securityLevel": 0,
+    "value": "Centre for Development and Environment (CDE) - Sustainable Governance"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 4,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   }
+  ],
+  "oairecerif.author.affiliation2": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": "e8a63149-d542-4299-8251-789acc2ab289",
+    "confidence": 600,
+    "language": null,
+    "place": 3,
+    "securityLevel": 0,
+    "value": "Centre for Development and Environment (CDE)"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 4,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   }
+  ],
+  "oairecerif.author.affiliation3": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 3,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 4,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   }
+  ],
+  "oairecerif.author.affiliation4": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 3,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 4,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   }
+  ],
+  "unibe.additional.sponsorship": [
+   {
+    "authority": "e8a63149-d542-4299-8251-789acc2ab289",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "Centre for Development and Environment (CDE)"
+   }
+  ],
+  "unibe.contributor.role": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "author"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "securityLevel": 0,
+    "value": "author"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "securityLevel": 0,
+    "value": "author"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 3,
+    "securityLevel": 0,
+    "value": "author"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 4,
+    "securityLevel": 0,
+    "value": "author"
+   }
+  ],
+  "unibe.description.ispublished": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "pub"
+   }
+  ],
+  "unibe.refereed": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "false"
+   }
+  ],
+  "unibe.subtype.report": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "securityLevel": 0,
+    "value": "report"
+   }
+  ]
+ },
+ "name": "Large-scale land acquisitions for carbon offsetting: Green grabbing or just transition? Analytical report on land-based offset projects",
+ "type": "item",
+ "uniqueType": "core.item",
+ "uuid": "c191917c-34df-4dfe-8f2d-aaaffb20bb05",
+ "withdrawn": false
+}

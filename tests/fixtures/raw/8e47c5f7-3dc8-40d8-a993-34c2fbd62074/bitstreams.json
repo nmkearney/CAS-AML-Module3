@@ -1,0 +1,93 @@
+[
+ {
+  "_links": {
+   "accessStatus": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/1adea2b7-2373-447f-aad0-957bbae7ab52/accessStatus"
+   },
+   "bundle": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/1adea2b7-2373-447f-aad0-957bbae7ab52/bundle"
+   },
+   "content": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/1adea2b7-2373-447f-aad0-957bbae7ab52/content"
+   },
+   "format": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/1adea2b7-2373-447f-aad0-957bbae7ab52/format"
+   },
+   "self": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/1adea2b7-2373-447f-aad0-957bbae7ab52"
+   },
+   "thumbnail": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/1adea2b7-2373-447f-aad0-957bbae7ab52/thumbnail"
+   }
+  },
+  "bundleName": "ORIGINAL",
+  "checkSum": {
+   "checkSumAlgorithm": "MD5",
+   "value": "86eb29daf57ae4cea797cdc3b6165e8a"
+  },
+  "handle": null,
+  "id": "1adea2b7-2373-447f-aad0-957bbae7ab52",
+  "metadata": {
+   "datacite.rights": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "open.access"
+    }
+   ],
+   "dc.description": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "Governing spillovers of agricultural land use through voluntary sustainability standards: A coverage analysis of sustainability requirements"
+    }
+   ],
+   "dc.rights.uri": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "https://creativecommons.org/licenses/by/4.0"
+    }
+   ],
+   "dc.title": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "Sonderegger_et-al_2022_Governing_spillovers_of_agricultural_land_use_through_voluntary_sustainability_standards__A_coverage_analysis_of_sustainability_requirements.pdf"
+    }
+   ],
+   "dc.type": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "text"
+    }
+   ],
+   "unibe.content": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "published"
+    }
+   ]
+  },
+  "name": "Sonderegger_et-al_2022_Governing_spillovers_of_agricultural_land_use_through_voluntary_sustainability_standards__A_coverage_analysis_of_sustainability_requirements.pdf",
+  "sequenceId": 1,
+  "sizeBytes": 8970426,
+  "type": "bitstream",
+  "uniqueType": "core.bitstream",
+  "uuid": "1adea2b7-2373-447f-aad0-957bbae7ab52"
+ }
+]

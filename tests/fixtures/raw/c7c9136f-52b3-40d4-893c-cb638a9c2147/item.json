@@ -1,0 +1,447 @@
+{
+ "_links": {
+  "accessStatus": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/c7c9136f-52b3-40d4-893c-cb638a9c2147/accessStatus"
+  },
+  "bundles": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/c7c9136f-52b3-40d4-893c-cb638a9c2147/bundles"
+  },
+  "identifiers": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/c7c9136f-52b3-40d4-893c-cb638a9c2147/identifiers"
+  },
+  "mappedCollections": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/c7c9136f-52b3-40d4-893c-cb638a9c2147/mappedCollections"
+  },
+  "metrics": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/c7c9136f-52b3-40d4-893c-cb638a9c2147/metrics"
+  },
+  "owningCollection": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/c7c9136f-52b3-40d4-893c-cb638a9c2147/owningCollection"
+  },
+  "relationships": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/c7c9136f-52b3-40d4-893c-cb638a9c2147/relationships"
+  },
+  "self": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/c7c9136f-52b3-40d4-893c-cb638a9c2147"
+  },
+  "submitter": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/c7c9136f-52b3-40d4-893c-cb638a9c2147/submitter"
+  },
+  "templateItemOf": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/c7c9136f-52b3-40d4-893c-cb638a9c2147/templateItemOf"
+  },
+  "thumbnail": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/c7c9136f-52b3-40d4-893c-cb638a9c2147/thumbnail"
+  },
+  "version": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/c7c9136f-52b3-40d4-893c-cb638a9c2147/version"
+  }
+ },
+ "discoverable": true,
+ "entityType": "Publication",
+ "handle": "20.500.12422/166510",
+ "id": "c7c9136f-52b3-40d4-893c-cb638a9c2147",
+ "inArchive": true,
+ "lastModified": "2026-09-07T08:28:42.183575Z",
+ "metadata": {
+  "cris.virtual.orcid": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "0000-0001-8734-6394"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "value": "0000-0003-3925-166X"
+   }
+  ],
+  "cris.virtualsource.orcid": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "0f0ad5b0-9242-4bd6-86db-c39930bf1bf4"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "0c5b6581-6451-437a-aec0-07226d19e158"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "value": "61c4b2e6-e81c-4e95-b7c8-ed51f6717d3c"
+   }
+  ],
+  "datacite.rights": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "open.access"
+   }
+  ],
+  "dc.contributor.author": [
+   {
+    "authority": "61c4b2e6-e81c-4e95-b7c8-ed51f6717d3c",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "value": "Chastonay, Jonas Frédéric"
+   },
+   {
+    "authority": "0f0ad5b0-9242-4bd6-86db-c39930bf1bf4",
+    "confidence": 600,
+    "language": null,
+    "place": 1,
+    "value": "Karrer, Laurenzia Michaela"
+   },
+   {
+    "authority": "0c5b6581-6451-437a-aec0-07226d19e158",
+    "confidence": 600,
+    "language": null,
+    "place": 2,
+    "value": "Trechsel, Lilian Julia"
+   }
+  ],
+  "dc.date.accessioned": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "2024-10-25T16:18:18Z"
+   }
+  ],
+  "dc.date.issued": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "2023"
+   }
+  ],
+  "dc.description.sponsorship": [
+   {
+    "authority": "e8a63149-d542-4299-8251-789acc2ab289",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "value": "Centre for Development and Environment (CDE)"
+   },
+   {
+    "authority": "97ec2e0d-c51f-4a07-9050-a4441fc5fb2b",
+    "confidence": 600,
+    "language": null,
+    "place": 1,
+    "value": "Centre for Development and Environment (CDE) - Transformative Education & Science"
+   }
+  ],
+  "dc.identifier.doi": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "10.48350/181782"
+   }
+  ],
+  "dc.identifier.uri": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "https://boris-portal.unibe.ch/handle/20.500.12422/166510"
+   }
+  ],
+  "dc.language.iso": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "de"
+   }
+  ],
+  "dc.publisher": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "Centre for Development and Environment (CDE), Universität Bern, mit Bern Open Publishing (BOP)"
+   }
+  ],
+  "dc.relation.organization": [
+   {
+    "authority": "e8a63149-d542-4299-8251-789acc2ab289",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "value": "Centre for Development and Environment (CDE)"
+   }
+  ],
+  "dc.relation.project": [
+   {
+    "authority": "42147b8f-de8c-436a-b713-366879ff8c3f",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "value": "Uni Bern, Projekt 7.9 (Bildung für Nachhaltige Entwicklung)"
+   },
+   {
+    "authority": "bab9c5f3-af2f-42b4-a239-581f82a18517",
+    "confidence": 600,
+    "language": null,
+    "place": 1,
+    "value": "Education for Sustainable Development"
+   }
+  ],
+  "dc.subject.ddc": [
+   {
+    "authority": "boris-dd:ddc570",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "value": "500 - Science::570 - Life sciences; biology"
+   }
+  ],
+  "dc.title": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "Monitoring-Bericht zuhanden des Vizerektorats Qualität: Integration von Nachhaltiger Entwicklung in der Lehre an der Universität Bern, akademisches Jahr 2022/2023"
+   }
+  ],
+  "dc.type": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "report"
+   }
+  ],
+  "dspace.entity.type": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "Publication"
+   }
+  ],
+  "dspace.file.type": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "text"
+   }
+  ],
+  "oairecerif.author.affiliation": [
+   {
+    "authority": "97ec2e0d-c51f-4a07-9050-a4441fc5fb2b",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "value": "Centre for Development and Environment (CDE) - Transformative Education & Science"
+   },
+   {
+    "authority": "e8a63149-d542-4299-8251-789acc2ab289",
+    "confidence": 600,
+    "language": null,
+    "place": 1,
+    "value": "Centre for Development and Environment (CDE)"
+   },
+   {
+    "authority": "e8a63149-d542-4299-8251-789acc2ab289",
+    "confidence": 600,
+    "language": null,
+    "place": 2,
+    "value": "Centre for Development and Environment (CDE)"
+   }
+  ],
+  "oairecerif.author.affiliation2": [
+   {
+    "authority": "e8a63149-d542-4299-8251-789acc2ab289",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "value": "Centre for Development and Environment (CDE)"
+   },
+   {
+    "authority": "97ec2e0d-c51f-4a07-9050-a4441fc5fb2b",
+    "confidence": 600,
+    "language": null,
+    "place": 1,
+    "value": "Centre for Development and Environment (CDE) - Transformative Education & Science"
+   },
+   {
+    "authority": "97ec2e0d-c51f-4a07-9050-a4441fc5fb2b",
+    "confidence": 600,
+    "language": null,
+    "place": 2,
+    "value": "Centre for Development and Environment (CDE) - Transformative Education & Science"
+   }
+  ],
+  "oairecerif.author.affiliation3": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   }
+  ],
+  "oairecerif.author.affiliation4": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   }
+  ],
+  "unibe.contributor.role": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "creator"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "creator"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "value": "creator"
+   }
+  ],
+  "unibe.date.licenseChanged": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "2023-06-19 09:09:32"
+   }
+  ],
+  "unibe.description.ispublished": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "pub"
+   }
+  ],
+  "unibe.eprints.legacyId": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "181782"
+   }
+  ],
+  "unibe.refereed": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "false"
+   }
+  ],
+  "unibe.relation.legacyproject": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "807"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "806"
+   }
+  ],
+  "unibe.subtype.report": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "report"
+   }
+  ]
+ },
+ "name": "Monitoring-Bericht zuhanden des Vizerektorats Qualität: Integration von Nachhaltiger Entwicklung in der Lehre an der Universität Bern, akademisches Jahr 2022/2023",
+ "type": "item",
+ "uniqueType": "core.item",
+ "uuid": "c7c9136f-52b3-40d4-893c-cb638a9c2147",
+ "withdrawn": false
+}

@@ -1,0 +1,1075 @@
+{
+ "_links": {
+  "accessStatus": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/9db04558-724d-47f2-ae90-f350fe772fee/accessStatus"
+  },
+  "bundles": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/9db04558-724d-47f2-ae90-f350fe772fee/bundles"
+  },
+  "identifiers": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/9db04558-724d-47f2-ae90-f350fe772fee/identifiers"
+  },
+  "mappedCollections": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/9db04558-724d-47f2-ae90-f350fe772fee/mappedCollections"
+  },
+  "metrics": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/9db04558-724d-47f2-ae90-f350fe772fee/metrics"
+  },
+  "owningCollection": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/9db04558-724d-47f2-ae90-f350fe772fee/owningCollection"
+  },
+  "relationships": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/9db04558-724d-47f2-ae90-f350fe772fee/relationships"
+  },
+  "self": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/9db04558-724d-47f2-ae90-f350fe772fee"
+  },
+  "submitter": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/9db04558-724d-47f2-ae90-f350fe772fee/submitter"
+  },
+  "templateItemOf": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/9db04558-724d-47f2-ae90-f350fe772fee/templateItemOf"
+  },
+  "thumbnail": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/9db04558-724d-47f2-ae90-f350fe772fee/thumbnail"
+  },
+  "version": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/9db04558-724d-47f2-ae90-f350fe772fee/version"
+  }
+ },
+ "discoverable": true,
+ "entityType": "Publication",
+ "handle": "20.500.12422/139299",
+ "id": "9db04558-724d-47f2-ae90-f350fe772fee",
+ "inArchive": true,
+ "lastModified": "2026-09-07T04:11:34.160307Z",
+ "metadata": {
+  "cris.virtual.orcid": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 3,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 4,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 5,
+    "value": "0000-0002-4647-6122"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 6,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 7,
+    "value": "0000-0002-0286-6348"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 8,
+    "value": "0000-0002-0374-3104"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 9,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 10,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 11,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 12,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   }
+  ],
+  "cris.virtualsource.orcid": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "eac502da-ec1b-4a3d-bc74-e63666c6f714"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "82087928-245f-44b3-a8d5-34b80570833e"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "value": "f0bc67d3-b9eb-424c-ba8b-51142aeaefa5"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 3,
+    "value": "33fc8f2a-91f3-475f-93c0-fa0455465968"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 4,
+    "value": "5423fed8-c253-4f65-9430-098378e9976f"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 5,
+    "value": "52285751-efd1-439e-bc85-5f5329ff4790"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 6,
+    "value": "4342a652-7ff0-4c3a-a5fd-789dec52fa64"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 7,
+    "value": "5a59260d-6826-40b1-ab53-f69fe98239c7"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 8,
+    "value": "67dbd3df-6852-495a-bfb1-8d5407ef6944"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 9,
+    "value": "f990928b-8088-4f69-8e71-1c2c1b9b58ab"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 10,
+    "value": "958869ea-58dc-4080-80f0-213b9d9dc910"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 11,
+    "value": "cf33d89c-459b-47e3-8580-274460a4f87b"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 12,
+    "value": "337f164a-d516-4b87-8d1f-336d09a5bf12"
+   }
+  ],
+  "datacite.rights": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "open.access"
+   }
+  ],
+  "dc.contributor.author": [
+   {
+    "authority": "67dbd3df-6852-495a-bfb1-8d5407ef6944",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "value": "Hurni, Hans"
+   },
+   {
+    "authority": "5423fed8-c253-4f65-9430-098378e9976f",
+    "confidence": 600,
+    "language": null,
+    "place": 1,
+    "value": "Veit, Heinz"
+   },
+   {
+    "authority": "f990928b-8088-4f69-8e71-1c2c1b9b58ab",
+    "confidence": 600,
+    "language": null,
+    "place": 2,
+    "value": "Wanner, Heinz"
+   },
+   {
+    "authority": "337f164a-d516-4b87-8d1f-336d09a5bf12",
+    "confidence": 600,
+    "language": null,
+    "place": 3,
+    "value": "Germann, Peter"
+   },
+   {
+    "authority": "33fc8f2a-91f3-475f-93c0-fa0455465968",
+    "confidence": 600,
+    "language": null,
+    "place": 4,
+    "value": "Kienholz, Hans"
+   },
+   {
+    "authority": "958869ea-58dc-4080-80f0-213b9d9dc910",
+    "confidence": 600,
+    "language": null,
+    "place": 5,
+    "value": "Weingartner, Rolf"
+   },
+   {
+    "authority": "4342a652-7ff0-4c3a-a5fd-789dec52fa64",
+    "confidence": 600,
+    "language": null,
+    "place": 6,
+    "value": "Wunderle, Stefan"
+   },
+   {
+    "authority": "cf33d89c-459b-47e3-8580-274460a4f87b",
+    "confidence": 600,
+    "language": null,
+    "place": 7,
+    "value": "Messerli, Paul Walter"
+   },
+   {
+    "authority": "f0bc67d3-b9eb-424c-ba8b-51142aeaefa5",
+    "confidence": 600,
+    "language": null,
+    "place": 8,
+    "value": "Egli, Hans-Rudolf"
+   },
+   {
+    "authority": "eac502da-ec1b-4a3d-bc74-e63666c6f714",
+    "confidence": 600,
+    "language": null,
+    "place": 9,
+    "value": "Wastl-Walter, Doris"
+   },
+   {
+    "authority": "82087928-245f-44b3-a8d5-34b80570833e",
+    "confidence": 600,
+    "language": null,
+    "place": 10,
+    "value": "Maselli, Daniel"
+   },
+   {
+    "authority": "5a59260d-6826-40b1-ab53-f69fe98239c7",
+    "confidence": 600,
+    "language": null,
+    "place": 11,
+    "value": "Messerli, Peter"
+   },
+   {
+    "authority": "52285751-efd1-439e-bc85-5f5329ff4790",
+    "confidence": 600,
+    "language": null,
+    "place": 12,
+    "value": "Wiesmann, Urs Martin"
+   }
+  ],
+  "dc.date.accessioned": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "2024-10-24T16:44:45Z"
+   }
+  ],
+  "dc.date.issued": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "2003"
+   }
+  ],
+  "dc.description.numberOfPages": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "14"
+   }
+  ],
+  "dc.description.sponsorship": [
+   {
+    "authority": "8cedc8ee-b5d2-48ef-8e17-ab6f720296df",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "value": "Geographisches Institut, Physische Geographie"
+   },
+   {
+    "authority": "e72766a8-6120-4b56-b6dd-da7812ad7680",
+    "confidence": 600,
+    "language": null,
+    "place": 1,
+    "value": "Geographisches Institut der Universität Bern (GIUB)"
+   },
+   {
+    "authority": "e8a63149-d542-4299-8251-789acc2ab289",
+    "confidence": 600,
+    "language": null,
+    "place": 2,
+    "value": "Centre for Development and Environment (CDE)"
+   },
+   {
+    "authority": "d6b8688e-e1c5-4ad0-9c9e-14abf19c2f2c",
+    "confidence": 600,
+    "language": null,
+    "place": 3,
+    "value": "Geographisches Institut, Integrative Geographie"
+   }
+  ],
+  "dc.identifier.doi": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "10.7892/boris.77597"
+   }
+  ],
+  "dc.identifier.publisherDOI": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "10.5194/gh-58-253-2003"
+   }
+  ],
+  "dc.identifier.uri": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "https://boris-portal.unibe.ch/handle/20.500.12422/139299"
+   }
+  ],
+  "dc.language.iso": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "en"
+   }
+  ],
+  "dc.publisher": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "Copernicus Publications"
+   }
+  ],
+  "dc.relation.ispartof": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "Geographica Helvetica"
+   }
+  ],
+  "dc.relation.issn": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "0016-7312"
+   }
+  ],
+  "dc.relation.organization": [
+   {
+    "authority": "e72766a8-6120-4b56-b6dd-da7812ad7680",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "value": "Institute of Geography"
+   },
+   {
+    "authority": "e8a63149-d542-4299-8251-789acc2ab289",
+    "confidence": 600,
+    "language": null,
+    "place": 1,
+    "value": "Centre for Development and Environment (CDE)"
+   }
+  ],
+  "dc.subject.ddc": [
+   {
+    "authority": "boris-dd:ddc330",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "value": "300 - Social sciences, sociology & anthropology::330 - Economics"
+   },
+   {
+    "authority": "boris-dd:ddc910",
+    "confidence": 600,
+    "language": null,
+    "place": 1,
+    "value": "900 - History::910 - Geography & travel"
+   }
+  ],
+  "dc.title": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "Research on Mountains and Global Change"
+   }
+  ],
+  "dc.type": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "article"
+   }
+  ],
+  "dspace.entity.type": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "Publication"
+   }
+  ],
+  "dspace.file.type": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "text"
+   }
+  ],
+  "oaire.citation.endPage": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "266"
+   }
+  ],
+  "oaire.citation.issue": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "3"
+   }
+  ],
+  "oaire.citation.startPage": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "253"
+   }
+  ],
+  "oaire.citation.volume": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "58"
+   }
+  ],
+  "oairecerif.author.affiliation": [
+   {
+    "authority": "e8a63149-d542-4299-8251-789acc2ab289",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "value": "Centre for Development and Environment (CDE)"
+   },
+   {
+    "authority": "8cedc8ee-b5d2-48ef-8e17-ab6f720296df",
+    "confidence": 600,
+    "language": null,
+    "place": 1,
+    "value": "Geographisches Institut, Physische Geographie"
+   },
+   {
+    "authority": "8cedc8ee-b5d2-48ef-8e17-ab6f720296df",
+    "confidence": 600,
+    "language": null,
+    "place": 2,
+    "value": "Geographisches Institut, Physische Geographie"
+   },
+   {
+    "authority": "e72766a8-6120-4b56-b6dd-da7812ad7680",
+    "confidence": 600,
+    "language": null,
+    "place": 3,
+    "value": "Geographisches Institut der Universität Bern (GIUB)"
+   },
+   {
+    "authority": "e72766a8-6120-4b56-b6dd-da7812ad7680",
+    "confidence": 600,
+    "language": null,
+    "place": 4,
+    "value": "Geographisches Institut der Universität Bern (GIUB)"
+   },
+   {
+    "authority": "e72766a8-6120-4b56-b6dd-da7812ad7680",
+    "confidence": 600,
+    "language": null,
+    "place": 5,
+    "value": "Geographisches Institut der Universität Bern (GIUB)"
+   },
+   {
+    "authority": "8cedc8ee-b5d2-48ef-8e17-ab6f720296df",
+    "confidence": 600,
+    "language": null,
+    "place": 6,
+    "value": "Geographisches Institut, Physische Geographie"
+   },
+   {
+    "authority": "e72766a8-6120-4b56-b6dd-da7812ad7680",
+    "confidence": 600,
+    "language": null,
+    "place": 7,
+    "value": "Geographisches Institut der Universität Bern (GIUB)"
+   },
+   {
+    "authority": "e72766a8-6120-4b56-b6dd-da7812ad7680",
+    "confidence": 600,
+    "language": null,
+    "place": 8,
+    "value": "Geographisches Institut der Universität Bern (GIUB)"
+   },
+   {
+    "authority": "e72766a8-6120-4b56-b6dd-da7812ad7680",
+    "confidence": 600,
+    "language": null,
+    "place": 9,
+    "value": "Geographisches Institut der Universität Bern (GIUB)"
+   },
+   {
+    "authority": "d6b8688e-e1c5-4ad0-9c9e-14abf19c2f2c",
+    "confidence": 600,
+    "language": null,
+    "place": 10,
+    "value": "Geographisches Institut, Integrative Geographie"
+   },
+   {
+    "authority": "e8a63149-d542-4299-8251-789acc2ab289",
+    "confidence": 600,
+    "language": null,
+    "place": 11,
+    "value": "Centre for Development and Environment (CDE)"
+   },
+   {
+    "authority": "d6b8688e-e1c5-4ad0-9c9e-14abf19c2f2c",
+    "confidence": 600,
+    "language": null,
+    "place": 12,
+    "value": "Geographisches Institut, Integrative Geographie"
+   }
+  ],
+  "oairecerif.author.affiliation2": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 3,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 4,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 5,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 6,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 7,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 8,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 9,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": "e8a63149-d542-4299-8251-789acc2ab289",
+    "confidence": 600,
+    "language": null,
+    "place": 10,
+    "value": "Centre for Development and Environment (CDE)"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 11,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 12,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   }
+  ],
+  "oairecerif.author.affiliation3": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 3,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 4,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 5,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 6,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 7,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 8,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 9,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 10,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 11,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 12,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   }
+  ],
+  "oairecerif.author.affiliation4": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 3,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 4,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 5,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 6,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 7,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 8,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 9,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 10,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 11,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 12,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   }
+  ],
+  "unibe.contributor.role": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "creator"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "creator"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "value": "creator"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 3,
+    "value": "creator"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 4,
+    "value": "creator"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 5,
+    "value": "creator"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 6,
+    "value": "creator"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 7,
+    "value": "creator"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 8,
+    "value": "creator"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 9,
+    "value": "creator"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 10,
+    "value": "creator"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 11,
+    "value": "creator"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 12,
+    "value": "creator"
+   }
+  ],
+  "unibe.description.ispublished": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "pub"
+   }
+  ],
+  "unibe.eprints.legacyId": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "77597"
+   }
+  ],
+  "unibe.journal.abbrevTitle": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "Geographica Helvetica"
+   }
+  ],
+  "unibe.refereed": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "false"
+   }
+  ],
+  "unibe.subtype.article": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "journal"
+   }
+  ]
+ },
+ "name": "Research on Mountains and Global Change",
+ "type": "item",
+ "uniqueType": "core.item",
+ "uuid": "9db04558-724d-47f2-ae90-f350fe772fee",
+ "withdrawn": false
+}

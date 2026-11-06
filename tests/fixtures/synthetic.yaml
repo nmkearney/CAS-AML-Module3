@@ -1,0 +1,109 @@
+# Synthetic fixture records for edge cases the real, openly licensed records cannot
+# cover. Titles, authors and text are made up. Each object is validated against
+# src/chatcde/schemas.py by scripts/build_fixture_jsonl.py and appended to the JSONL.
+#
+#   01  restricted: file exists but cannot be downloaded; BORIS abstract; DOI
+#   02  metadata only: no file, no abstract; title + keywords are all the text
+#   03  no DOI, no year; abstract from OpenAlex; download error; access unknown
+#   04  open with one page, no abstract, no DOI; two CDE units; non-CDE first author
+
+records:
+  - record_id: fixture-synthetic-01
+    handle: null
+    doi: 10.0000/fixture.synthetic.01
+    title: "Synthetic fixture: soil fertility trade-offs in terraced highland farms"
+    abstract: >-
+      This synthetic abstract describes a household survey on soil fertility
+      management in terraced highland farms in Nepal. It compares terrace
+      maintenance with off-farm labour and discusses implications for land
+      management policy.
+    abstract_source: abstract_boris
+    year: 2018
+    pub_type: article
+    languages: [en]
+    keywords: [soil fertility, terraces, Nepal]
+    container: "Journal of Synthetic Fixtures"
+    cde_units: [Sustainable Land Systems]
+    access: restricted
+    has_fulltext: false
+    boris_url: https://boris-portal.unibe.ch/entities/publication/fixture-synthetic-01
+    harvested_at: 2026-11-06T12:00:00Z
+  - record_id: fixture-synthetic-02
+    handle: null
+    doi: 10.0000/fixture.synthetic.02
+    title: "Synthetic fixture: a policy brief on mining concessions"
+    abstract: null
+    abstract_source: null
+    year: 2009
+    pub_type: report
+    languages: [en]
+    keywords: [mining, concessions, Lao PDR, policy brief]
+    container: null
+    cde_units: []
+    access: metadata_only
+    has_fulltext: false
+    boris_url: https://boris-portal.unibe.ch/entities/publication/fixture-synthetic-02
+    harvested_at: 2026-11-06T12:00:00Z
+  - record_id: fixture-synthetic-03
+    handle: null
+    doi: null
+    title: "Synthetische Testaufnahme: Wasserrechte im Berggebiet"
+    abstract: >-
+      Diese synthetische Zusammenfassung beschreibt Interviews zu Wasserrechten in
+      einem Schweizer Berggebiet und die Rolle von Genossenschaften bei der
+      Verteilung knapper Ressourcen.
+    abstract_source: abstract_openalex
+    year: null
+    pub_type: book_section
+    languages: [de]
+    keywords: []
+    container: "Synthetischer Sammelband"
+    cde_units: []
+    access: unknown
+    has_fulltext: false
+    boris_url: https://boris-portal.unibe.ch/entities/publication/fixture-synthetic-03
+    harvested_at: 2026-11-06T12:00:00Z
+  - record_id: fixture-synthetic-04
+    handle: null
+    doi: null
+    title: "Synthetic fixture: co-designing a living lab with urban gardeners"
+    abstract: null
+    abstract_source: null
+    year: 2024
+    pub_type: working_paper
+    languages: [en]
+    keywords: [living lab, urban gardening]
+    container: "CDE Working Paper (synthetic)"
+    cde_units: [Just Economies & Human Well Being, Transformative Education & Science]
+    access: open
+    has_fulltext: true
+    boris_url: https://boris-portal.unibe.ch/entities/publication/fixture-synthetic-04
+    harvested_at: 2026-11-06T12:00:00Z
+
+authors:
+  - {record_id: fixture-synthetic-01, position: 0, name: "Fixture, Anna", orcid: null, is_cde: true, cde_unit: Sustainable Land Systems}
+  - {record_id: fixture-synthetic-01, position: 1, name: "Example, Bishnu", orcid: null, is_cde: false, cde_unit: null}
+  - {record_id: fixture-synthetic-02, position: 0, name: "Placeholder, Chanthaly", orcid: null, is_cde: true, cde_unit: null}
+  - {record_id: fixture-synthetic-03, position: 0, name: "Muster, Daniel", orcid: null, is_cde: true, cde_unit: null}
+  - {record_id: fixture-synthetic-04, position: 0, name: "Outside, Eve", orcid: null, is_cde: false, cde_unit: null}
+  - {record_id: fixture-synthetic-04, position: 1, name: "Fixture, Anna", orcid: null, is_cde: true, cde_unit: Just Economies & Human Well Being}
+
+pages:
+  - record_id: fixture-synthetic-04
+    page: 1
+    text: |
+      Synthetic fixture: co-designing a living lab with urban gardeners.
+      This synthetic working paper reports how researchers and members of three
+      urban gardening initiatives in Bern co-designed a living lab. Together they
+      ran visioning workshops and agreed on shared rules for the use of green space.
+      The gardeners were co-researchers throughout. The paper reflects on power
+      relations between the university and grassroots initiatives.
+    language: en
+    ocr: false
+    provenance: {code_version: synthetic, created_at: 2026-11-06T12:00:00Z}
+
+downloads:
+  - {record_id: fixture-synthetic-01, url: null, file_name: synthetic-01.pdf, status: restricted, sha256: null, bytes: null, error: "HTTP 401", fetched_at: 2026-11-06T12:00:00Z}
+  - {record_id: fixture-synthetic-02, url: null, file_name: null, status: no_file, sha256: null, bytes: null, error: null, fetched_at: 2026-11-06T12:00:00Z}
+  - {record_id: fixture-synthetic-03, url: null, file_name: synthetic-03.pdf, status: error, sha256: null, bytes: null, error: "timeout", fetched_at: 2026-11-06T12:00:00Z}
+  - {record_id: fixture-synthetic-04, url: null, file_name: synthetic-04.pdf, status: downloaded, sha256: "0000000000000000000000000000000000000000000000000000000000000000", bytes: 1024, fetched_at: 2026-11-06T12:00:00Z}

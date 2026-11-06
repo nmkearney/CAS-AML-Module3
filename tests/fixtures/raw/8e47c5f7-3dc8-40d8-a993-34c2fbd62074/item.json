@@ -1,0 +1,573 @@
+{
+ "_links": {
+  "accessStatus": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/8e47c5f7-3dc8-40d8-a993-34c2fbd62074/accessStatus"
+  },
+  "bundles": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/8e47c5f7-3dc8-40d8-a993-34c2fbd62074/bundles"
+  },
+  "identifiers": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/8e47c5f7-3dc8-40d8-a993-34c2fbd62074/identifiers"
+  },
+  "mappedCollections": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/8e47c5f7-3dc8-40d8-a993-34c2fbd62074/mappedCollections"
+  },
+  "metrics": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/8e47c5f7-3dc8-40d8-a993-34c2fbd62074/metrics"
+  },
+  "owningCollection": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/8e47c5f7-3dc8-40d8-a993-34c2fbd62074/owningCollection"
+  },
+  "relationships": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/8e47c5f7-3dc8-40d8-a993-34c2fbd62074/relationships"
+  },
+  "self": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/8e47c5f7-3dc8-40d8-a993-34c2fbd62074"
+  },
+  "submitter": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/8e47c5f7-3dc8-40d8-a993-34c2fbd62074/submitter"
+  },
+  "templateItemOf": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/8e47c5f7-3dc8-40d8-a993-34c2fbd62074/templateItemOf"
+  },
+  "thumbnail": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/8e47c5f7-3dc8-40d8-a993-34c2fbd62074/thumbnail"
+  },
+  "version": {
+   "href": "https://boris-portal.unibe.ch/server/api/core/items/8e47c5f7-3dc8-40d8-a993-34c2fbd62074/version"
+  }
+ },
+ "discoverable": true,
+ "entityType": "Publication",
+ "handle": "20.500.12422/120730",
+ "id": "8e47c5f7-3dc8-40d8-a993-34c2fbd62074",
+ "inArchive": true,
+ "lastModified": "2026-09-07T02:33:30.427695Z",
+ "metadata": {
+  "cris.virtual.orcid": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "0000-0003-2813-7327"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "0000-0001-8442-6444"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "value": "0000-0001-8905-8169"
+   }
+  ],
+  "cris.virtualsource.orcid": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "4cf9355e-7794-4af1-b43f-df67ffb58197"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "b6a5be3f-98ed-41a4-8938-cbcfee2e2124"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "value": "f4472934-7d4d-44b3-8f60-da0bd72f8c81"
+   }
+  ],
+  "datacite.rights": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "open.access"
+   }
+  ],
+  "dc.contributor.author": [
+   {
+    "authority": "b6a5be3f-98ed-41a4-8938-cbcfee2e2124",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "value": "Sonderegger, Gabi"
+   },
+   {
+    "authority": "f4472934-7d4d-44b3-8f60-da0bd72f8c81",
+    "confidence": 600,
+    "language": null,
+    "place": 1,
+    "value": "Heinimann, Andreas"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "value": "Diogo, Vasco"
+   },
+   {
+    "authority": "4cf9355e-7794-4af1-b43f-df67ffb58197",
+    "confidence": 600,
+    "language": null,
+    "place": 3,
+    "value": "Oberlack, Christoph"
+   }
+  ],
+  "dc.date.accessioned": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "2024-10-15T09:33:58Z"
+   }
+  ],
+  "dc.date.issued": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "2022-12"
+   }
+  ],
+  "dc.description.abstract": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "Voluntary Sustainability Standards (VSS) are prominent governance instruments that define and verify sustainable agricultural land use at farm and supply chain levels. However, agricultural production can prompt spillover dynamics with implications for sustainability that go beyond these scales, e.g., through runoff of chemical inputs or long-distance migrant worker flows. Scientific evidence on the governance of spillovers through VSS is, however, limited. This study investigates the extent to which VSS regulate a set of 21 environmental and socio-economic spillovers of agricultural land use. To this end, we assessed the spillover coverage in 100 sustainability standards. We find that VSS have a clear tendency to cover environmental spillovers more extensively than socio-economic spillovers. Further, we show how spillover coverage differs across varying types of standard-setting organizations and VSS verification mechanisms. Finally, we discuss the role and limitations that VSS can have in addressing the revealed gaps."
+   }
+  ],
+  "dc.description.sponsorship": [
+   {
+    "authority": "e8a63149-d542-4299-8251-789acc2ab289",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "value": "Centre for Development and Environment (CDE)"
+   },
+   {
+    "authority": "85febc16-e07b-4201-b1f3-df31fbbd2b4f",
+    "confidence": 600,
+    "language": null,
+    "place": 1,
+    "value": "Wyss Academy for Nature - Research Pool Wyss Academy (REPO)"
+   },
+   {
+    "authority": "6f175fd4-3164-4634-a95d-c8cf51d1b01a",
+    "confidence": 600,
+    "language": null,
+    "place": 2,
+    "value": "Centre for Development and Environment (CDE) - Sustainable Governance"
+   },
+   {
+    "authority": "ae896a2a-8a03-4fd3-8a29-aea5a2a28a64",
+    "confidence": 600,
+    "language": null,
+    "place": 3,
+    "value": "Wyss Academy for Nature"
+   }
+  ],
+  "dc.identifier.doi": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "10.48350/177656"
+   }
+  ],
+  "dc.identifier.publisherDOI": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "10.1016/j.esg.2022.100158"
+   }
+  ],
+  "dc.identifier.uri": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "https://boris-portal.unibe.ch/handle/20.500.12422/120730"
+   }
+  ],
+  "dc.language.iso": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "en"
+   }
+  ],
+  "dc.publisher": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "Elsevier"
+   }
+  ],
+  "dc.relation.ispartof": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "Earth system governance"
+   }
+  ],
+  "dc.relation.issn": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "2589-8116"
+   }
+  ],
+  "dc.relation.organization": [
+   {
+    "authority": "ae896a2a-8a03-4fd3-8a29-aea5a2a28a64",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "value": "Wyss Academy for Nature"
+   },
+   {
+    "authority": "e8a63149-d542-4299-8251-789acc2ab289",
+    "confidence": 600,
+    "language": null,
+    "place": 1,
+    "value": "Centre for Development and Environment (CDE)"
+   }
+  ],
+  "dc.relation.project": [
+   {
+    "authority": "9dc899ea-5d3e-4586-a801-5e129cfa8cfe",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "value": "COUPLED – Operationalizing telecoupling to solve sustainability challenges related to land use"
+   },
+   {
+    "authority": "f6034ec0-d063-4984-8b0f-b81f36469f54",
+    "confidence": 600,
+    "language": null,
+    "place": 1,
+    "value": "Sustainability Governance"
+   }
+  ],
+  "dc.relation.school": [
+   {
+    "authority": "df9e4de3-7fd5-429f-b55e-b15fa34c7c69",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "value": "International Graduate School North-South (IGS North-South)"
+   }
+  ],
+  "dc.subject.ddc": [
+   {
+    "authority": "boris-dd:ddc570",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "value": "500 - Science::570 - Life sciences; biology"
+   }
+  ],
+  "dc.title": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "Governing spillovers of agricultural land use through voluntary sustainability standards: A coverage analysis of sustainability requirements"
+   }
+  ],
+  "dc.type": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "article"
+   }
+  ],
+  "dspace.entity.type": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "Publication"
+   }
+  ],
+  "dspace.file.type": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "text"
+   }
+  ],
+  "oaire.citation.startPage": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "100158"
+   }
+  ],
+  "oaire.citation.volume": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "14"
+   }
+  ],
+  "oairecerif.author.affiliation": [
+   {
+    "authority": "e8a63149-d542-4299-8251-789acc2ab289",
+    "confidence": 600,
+    "language": null,
+    "place": 0,
+    "value": "Centre for Development and Environment (CDE)"
+   },
+   {
+    "authority": "85febc16-e07b-4201-b1f3-df31fbbd2b4f",
+    "confidence": 600,
+    "language": null,
+    "place": 1,
+    "value": "Wyss Academy for Nature - Research Pool Wyss Academy (REPO)"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": "6f175fd4-3164-4634-a95d-c8cf51d1b01a",
+    "confidence": 600,
+    "language": null,
+    "place": 3,
+    "value": "Centre for Development and Environment (CDE) - Sustainable Governance"
+   }
+  ],
+  "oairecerif.author.affiliation2": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": "ae896a2a-8a03-4fd3-8a29-aea5a2a28a64",
+    "confidence": 600,
+    "language": null,
+    "place": 1,
+    "value": "Wyss Academy for Nature"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 3,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   }
+  ],
+  "oairecerif.author.affiliation3": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 3,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   }
+  ],
+  "oairecerif.author.affiliation4": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 3,
+    "value": "#PLACEHOLDER_PARENT_METADATA_VALUE#"
+   }
+  ],
+  "unibe.contributor.role": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "creator"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "creator"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 2,
+    "value": "creator"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 3,
+    "value": "creator"
+   }
+  ],
+  "unibe.date.licenseChanged": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "2023-02-01 09:01:17"
+   }
+  ],
+  "unibe.description.ispublished": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "pub"
+   }
+  ],
+  "unibe.eprints.legacyId": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "177656"
+   }
+  ],
+  "unibe.refereed": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "true"
+   }
+  ],
+  "unibe.relation.legacyproject": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "1718"
+   },
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 1,
+    "value": "805"
+   }
+  ],
+  "unibe.subtype.article": [
+   {
+    "authority": null,
+    "confidence": -1,
+    "language": null,
+    "place": 0,
+    "value": "journal"
+   }
+  ]
+ },
+ "name": "Governing spillovers of agricultural land use through voluntary sustainability standards: A coverage analysis of sustainability requirements",
+ "type": "item",
+ "uniqueType": "core.item",
+ "uuid": "8e47c5f7-3dc8-40d8-a993-34c2fbd62074",
+ "withdrawn": false
+}

@@ -1,0 +1,84 @@
+[
+ {
+  "_links": {
+   "accessStatus": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/ed0e5709-654b-4b23-8a68-b4bf3004ca38/accessStatus"
+   },
+   "bundle": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/ed0e5709-654b-4b23-8a68-b4bf3004ca38/bundle"
+   },
+   "content": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/ed0e5709-654b-4b23-8a68-b4bf3004ca38/content"
+   },
+   "format": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/ed0e5709-654b-4b23-8a68-b4bf3004ca38/format"
+   },
+   "self": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/ed0e5709-654b-4b23-8a68-b4bf3004ca38"
+   },
+   "thumbnail": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/ed0e5709-654b-4b23-8a68-b4bf3004ca38/thumbnail"
+   }
+  },
+  "bundleName": "ORIGINAL",
+  "checkSum": {
+   "checkSumAlgorithm": "MD5",
+   "value": "38c1da29a4f27101b5f2fbeb903351af"
+  },
+  "handle": null,
+  "id": "ed0e5709-654b-4b23-8a68-b4bf3004ca38",
+  "metadata": {
+   "datacite.rights": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "open.access"
+    }
+   ],
+   "dc.rights.uri": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "https://creativecommons.org/licenses/by/4.0"
+    }
+   ],
+   "dc.title": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "Hertkorn_R4D_2017_WP_4_Food_that_makes_you_strong.pdf"
+    }
+   ],
+   "dc.type": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "text"
+    }
+   ],
+   "unibe.content": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "published"
+    }
+   ]
+  },
+  "name": "Hertkorn_R4D_2017_WP_4_Food_that_makes_you_strong.pdf",
+  "sequenceId": 1,
+  "sizeBytes": 2302387,
+  "type": "bitstream",
+  "uniqueType": "core.bitstream",
+  "uuid": "ed0e5709-654b-4b23-8a68-b4bf3004ca38"
+ }
+]

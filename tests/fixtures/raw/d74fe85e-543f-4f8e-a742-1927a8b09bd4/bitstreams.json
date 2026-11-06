@@ -1,0 +1,93 @@
+[
+ {
+  "_links": {
+   "accessStatus": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/b44f744a-a162-4c09-8e67-e8246e6bb02c/accessStatus"
+   },
+   "bundle": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/b44f744a-a162-4c09-8e67-e8246e6bb02c/bundle"
+   },
+   "content": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/b44f744a-a162-4c09-8e67-e8246e6bb02c/content"
+   },
+   "format": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/b44f744a-a162-4c09-8e67-e8246e6bb02c/format"
+   },
+   "self": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/b44f744a-a162-4c09-8e67-e8246e6bb02c"
+   },
+   "thumbnail": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/b44f744a-a162-4c09-8e67-e8246e6bb02c/thumbnail"
+   }
+  },
+  "bundleName": "ORIGINAL",
+  "checkSum": {
+   "checkSumAlgorithm": "MD5",
+   "value": "0309f7aabd7400e9caeddb7fd008c9f0"
+  },
+  "handle": null,
+  "id": "b44f744a-a162-4c09-8e67-e8246e6bb02c",
+  "metadata": {
+   "datacite.rights": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "open.access"
+    }
+   ],
+   "dc.description": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "Archetypes in support of tailoring land-use policies"
+    }
+   ],
+   "dc.rights.uri": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "https://creativecommons.org/licenses/by/4.0"
+    }
+   ],
+   "dc.title": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "Oberlack_et-al_2023_Archetypes_in_support_of_tailoring_land-use_policies.pdf"
+    }
+   ],
+   "dc.type": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "text"
+    }
+   ],
+   "unibe.content": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "published"
+    }
+   ]
+  },
+  "name": "Oberlack_et-al_2023_Archetypes_in_support_of_tailoring_land-use_policies.pdf",
+  "sequenceId": 1,
+  "sizeBytes": 750610,
+  "type": "bitstream",
+  "uniqueType": "core.bitstream",
+  "uuid": "b44f744a-a162-4c09-8e67-e8246e6bb02c"
+ }
+]

@@ -1,0 +1,184 @@
+[
+ {
+  "_links": {
+   "accessStatus": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/71233217-ad7c-4611-bf77-86f12e500c4d/accessStatus"
+   },
+   "bundle": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/71233217-ad7c-4611-bf77-86f12e500c4d/bundle"
+   },
+   "content": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/71233217-ad7c-4611-bf77-86f12e500c4d/content"
+   },
+   "format": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/71233217-ad7c-4611-bf77-86f12e500c4d/format"
+   },
+   "self": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/71233217-ad7c-4611-bf77-86f12e500c4d"
+   },
+   "thumbnail": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/71233217-ad7c-4611-bf77-86f12e500c4d/thumbnail"
+   }
+  },
+  "bundleName": "ORIGINAL",
+  "checkSum": {
+   "checkSumAlgorithm": "MD5",
+   "value": "95da6f33bba94f48e460f37f9d56c250"
+  },
+  "handle": null,
+  "id": "71233217-ad7c-4611-bf77-86f12e500c4d",
+  "metadata": {
+   "datacite.rights": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "open.access"
+    }
+   ],
+   "dc.description": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "Die Ernährungspolitik der Stadt Basel. Strategien, Aktivitäten, Massnahmen und Rahmenbedingungen"
+    }
+   ],
+   "dc.rights": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "This work is licensed under CC BY 4.0"
+    }
+   ],
+   "dc.rights.uri": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "https://creativecommons.org/licenses/by/4.0/"
+    }
+   ],
+   "dc.title": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "Die_Ern_hrungspolitik_der_Stadt_Basel.pdf"
+    }
+   ],
+   "unibe.content": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "published"
+    }
+   ]
+  },
+  "name": "Die_Ern_hrungspolitik_der_Stadt_Basel.pdf",
+  "sequenceId": 1,
+  "sizeBytes": 924155,
+  "type": "bitstream",
+  "uniqueType": "core.bitstream",
+  "uuid": "71233217-ad7c-4611-bf77-86f12e500c4d"
+ },
+ {
+  "_links": {
+   "accessStatus": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/dbf4b0b1-7d4d-4394-b7a2-3a7d93f18f9e/accessStatus"
+   },
+   "bundle": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/dbf4b0b1-7d4d-4394-b7a2-3a7d93f18f9e/bundle"
+   },
+   "content": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/dbf4b0b1-7d4d-4394-b7a2-3a7d93f18f9e/content"
+   },
+   "format": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/dbf4b0b1-7d4d-4394-b7a2-3a7d93f18f9e/format"
+   },
+   "self": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/dbf4b0b1-7d4d-4394-b7a2-3a7d93f18f9e"
+   },
+   "thumbnail": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/dbf4b0b1-7d4d-4394-b7a2-3a7d93f18f9e/thumbnail"
+   }
+  },
+  "bundleName": "ORIGINAL",
+  "checkSum": {
+   "checkSumAlgorithm": "MD5",
+   "value": "d4e1a762a5d7495881af1928b27f376b"
+  },
+  "handle": null,
+  "id": "dbf4b0b1-7d4d-4394-b7a2-3a7d93f18f9e",
+  "metadata": {
+   "datacite.rights": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "open.access"
+    }
+   ],
+   "dc.description": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "La politique alimentaire de la ville de Bâle. Stratégies, activités, mesures et conditions-cadres"
+    }
+   ],
+   "dc.rights": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "This work is licensed under CC BY 4.0"
+    }
+   ],
+   "dc.rights.uri": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "https://creativecommons.org/licenses/by/4.0/"
+    }
+   ],
+   "dc.title": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "La_politique_alimentaire_de_la_ville_de_B_le.pdf"
+    }
+   ],
+   "unibe.content": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "published"
+    }
+   ]
+  },
+  "name": "La_politique_alimentaire_de_la_ville_de_B_le.pdf",
+  "sequenceId": 2,
+  "sizeBytes": 1239823,
+  "type": "bitstream",
+  "uniqueType": "core.bitstream",
+  "uuid": "dbf4b0b1-7d4d-4394-b7a2-3a7d93f18f9e"
+ }
+]

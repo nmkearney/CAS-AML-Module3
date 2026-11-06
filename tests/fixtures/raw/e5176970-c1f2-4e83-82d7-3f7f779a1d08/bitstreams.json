@@ -1,0 +1,84 @@
+[
+ {
+  "_links": {
+   "accessStatus": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/fcf932f6-14fd-4fda-99b1-61291f3b1e67/accessStatus"
+   },
+   "bundle": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/fcf932f6-14fd-4fda-99b1-61291f3b1e67/bundle"
+   },
+   "content": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/fcf932f6-14fd-4fda-99b1-61291f3b1e67/content"
+   },
+   "format": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/fcf932f6-14fd-4fda-99b1-61291f3b1e67/format"
+   },
+   "self": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/fcf932f6-14fd-4fda-99b1-61291f3b1e67"
+   },
+   "thumbnail": {
+    "href": "https://boris-portal.unibe.ch/server/api/core/bitstreams/fcf932f6-14fd-4fda-99b1-61291f3b1e67/thumbnail"
+   }
+  },
+  "bundleName": "ORIGINAL",
+  "checkSum": {
+   "checkSumAlgorithm": "MD5",
+   "value": "a5b8384bec6ae7f1b1777a7d4fe5e3dc"
+  },
+  "handle": null,
+  "id": "fcf932f6-14fd-4fda-99b1-61291f3b1e67",
+  "metadata": {
+   "datacite.rights": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "open.access"
+    }
+   ],
+   "dc.rights.uri": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "https://creativecommons.org/licenses/by/4.0"
+    }
+   ],
+   "dc.title": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "mrd-journal-d-13-00004%2E1.pdf"
+    }
+   ],
+   "dc.type": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "text"
+    }
+   ],
+   "unibe.content": [
+    {
+     "authority": null,
+     "confidence": -1,
+     "language": null,
+     "place": 0,
+     "value": "published"
+    }
+   ]
+  },
+  "name": "mrd-journal-d-13-00004%2E1.pdf",
+  "sequenceId": 1,
+  "sizeBytes": 2891288,
+  "type": "bitstream",
+  "uniqueType": "core.bitstream",
+  "uuid": "fcf932f6-14fd-4fda-99b1-61291f3b1e67"
+ }
+]
