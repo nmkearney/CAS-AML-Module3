@@ -45,7 +45,7 @@ data:
 # --- Vocabulary and prompts ---------------------------------------------
 vocab:
   file: "vocab/draft_vocabulary.yaml"
-  version: "0.1"
+  version: "0.2"
 prompts:
   dir: "src/chatcde/prompts"
 
