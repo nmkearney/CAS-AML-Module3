@@ -66,6 +66,17 @@ def test_unknown_key_is_an_error(tmp_path: Path):
         load_config(bad)
 
 
+def test_model_alternatives_load_and_reject_unknown_roles(tmp_path: Path):
+    cfg = load_config()
+    assert cfg.model_alternatives.agent
+    assert cfg.model_alternatives.agent != cfg.models.agent
+    assert cfg.model_alternatives.reranker is None
+    assert cfg.llm.rerank_path.startswith("/")
+    bad = write(tmp_path / "alt.yaml", "model_alternatives:\n  agnet: x\n")
+    with pytest.raises(ConfigError, match="agnet"):
+        load_config(bad)
+
+
 def test_missing_explicit_file_is_an_error(tmp_path: Path):
     with pytest.raises(ConfigError, match="not found"):
         load_config(tmp_path / "nope.yaml")

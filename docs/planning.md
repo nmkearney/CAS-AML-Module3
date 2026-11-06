@@ -65,8 +65,8 @@ The code and the data are distributed separately:
 
 | Role | First choice | Alternative |
 | --- | --- | --- |
-| Agent (tool calling, answers) | gpt-oss-120b | minimax-m2.7 |
-| Bulk tagging (JSON output) | qwen3.8-27b | lfm2.5-24b-a2b |
+| Agent (tool calling, answers) | gpt-oss-120b | qwen3.8-27b |
+| Bulk tagging (JSON output) | qwen3.8-27b (thinking off) | lfm2.5-24b-a2b |
 | Embeddings | qwen3-embedding-4b | granite-embedding-107m-multilingual |
 | Reranking | jina-reranker-v2-base-multilingual | — |
 | Scanned pages and figures | qwen3-vl-30b-a3b-instruct | internvl3-8b-instruct |
@@ -236,7 +236,7 @@ If the prototype succeeds, later work adds a web app or MCP server, staff review
 - [x] How will researchers use it? Command line first; web app or MCP server later.
 - [x] May the build use cloud models? No: every LLM call stays local.
 - [x] Which models are available? GPUStack's list; roles assigned above.
-- [ ] Are tool calling and JSON-schema output enabled on GPUStack for gpt-oss-120b and qwen3.8-27b, and what is the concurrency limit?
+- [x] Are tool calling and JSON-schema output enabled on GPUStack for gpt-oss-120b and qwen3.8-27b, and what is the concurrency limit? Yes, both work; about 4 parallel requests per model (decision 0003, checked 2026-11-06).
 - [ ] Exact location of the full edition on CDE's server.
 - [ ] Does the University Library confirm that restricted publisher texts may be copied to staff machines? If not, use `--top-up`.
 - [ ] Can files marked "restricted" in BORIS be downloaded on the VPN?
