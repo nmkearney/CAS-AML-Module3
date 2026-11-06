@@ -21,6 +21,22 @@ chatcde --help
 
 Most commands are placeholders for now; each one names the issue that implements it.
 
+## Harvest
+
+On the UniBe network or VPN (the BORIS REST API is closed to other traffic):
+
+```bash
+chatcde harvest metadata            # BORIS search -> data/catalogue.duckdb (records, authors)
+chatcde harvest metadata --offline  # rebuild the tables from the saved pages, no network
+chatcde harvest metadata --force    # fetch every page again
+```
+
+The fetch saves every search page under `data/raw/boris/` and resumes if it is
+interrupted. It takes about 2.5 minutes for the ~87 pages, with 0.3 s between requests.
+Off the VPN it stops with exit code 2. Which records count as CDE's is explained in
+`docs/decisions/0008-harvest-metadata.md`. The counts of each run are in
+`data/raw/boris/harvest_summary.json`.
+
 ## Configuration
 
 Settings are merged from these files, later ones winning:

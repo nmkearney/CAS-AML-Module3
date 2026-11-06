@@ -111,6 +111,16 @@ Two developers work in parallel; see `CONTRIBUTING.md` for the full workflow.
 - Known bug in the first run: access rights were merged with `dc.date.accessioned`.
   This is fixed in v3 of `scripts/boris_cde_inventory.py`; re-run it for clean counts.
 
+## Harvest results (`chatcde harvest metadata`, 2026-11-06)
+
+- **3,003 publications** in `data/catalogue.duckdb`: 2,529 name CDE explicitly,
+  273 NCCR North-South and 201 legacy records confirmed by a CDE author
+  (decision 0008); 50 unconfirmed legacy records are left out.
+- 2,111 with a DOI, 1,338 with an abstract, 549 with a CDE unit; 14,298 author rows.
+- Access: 1,573 open, 899 metadata only, 531 restricted.
+- `cris.virtual.orcid` is not aligned with the authors by position; match it via
+  `cris.virtualsource.orcid` (fixed in `chatcde.harvest.mapping`).
+
 ## Architecture
 
 ```

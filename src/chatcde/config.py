@@ -170,6 +170,10 @@ class BorisConfig(_Section):
     api_base: str
     cde_query: str
     request_delay_s: float
+    page_size: int
+    sort: str
+    timeout_s: float
+    max_retries: int
 
 
 class OpenAlexConfig(_Section):
@@ -190,6 +194,8 @@ class DataConfig(_Section):
     """Local data folder and bundle locations."""
 
     dir: ProjectPath
+    raw_dir: ProjectPath
+    catalogue: ProjectPath
     editions: dict[Literal["full", "open"], EditionLocation]
     default_edition: Literal["auto", "full", "open"]
 
