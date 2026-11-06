@@ -6,20 +6,30 @@ version: 1
 
 # --- Local LLM endpoint (OpenAI-compatible: GPUStack, vLLM or Ollama) --------
 llm:
-  base_url: "https://gpustack.example.unibe.ch/v1"   # TODO: real GPUStack URL
+  base_url: "https://gpustack.unibe.ch/v1"
   api_key_env: "CHATCDE_LLM_API_KEY"                 # read from this env variable
   timeout_s: 120
-  max_concurrency: 4                                 # TODO: confirm GPUStack limit
+  max_concurrency: 4             # measured 2026-11-06: throughput collapses at 8 (0003)
+  rerank_path: "/rerank"         # appended to base_url; reranking is not in the OpenAI API
 
 # Models by role; candidates are compared with `chatcde evaluate`.
-# See docs/decisions/0003-models-by-role.md.
+# See docs/decisions/0003-models-by-role.md. Check them with scripts/check_gpustack.py.
 models:
-  agent: "gpt-oss-120b"                  # alternative: minimax-m2.7
-  tagging: "qwen3.8-27b"                 # alternative: lfm2.5-24b-a2b
-  embedding: "qwen3-embedding-4b"        # alternative: granite-embedding-107m-multilingual
+  agent: "gpt-oss-120b"
+  tagging: "qwen3.8-27b"
+  embedding: "qwen3-embedding-4b"
   reranker: "jina-reranker-v2-base-multilingual"
-  vision: "qwen3-vl-30b-a3b-instruct"    # scanned pages, figures; alternative: internvl3-8b-instruct
+  vision: "qwen3-vl-30b-a3b-instruct"    # scanned pages, figures
   speech: "faster-whisper-large-v3"      # optional: audiovisual records
+
+# Second choice for each role (null = none), compared with the first choice.
+model_alternatives:
+  agent: "qwen3.8-27b"           # minimax-m2.7 is not served on GPUStack (2026-11-06)
+  tagging: "lfm2.5-24b-a2b"
+  embedding: "granite-embedding-107m-multilingual"
+  reranker: null
+  vision: "internvl3-8b-instruct"
+  speech: null
 
 # --- Sources -------------------------------------------------------------
 boris:

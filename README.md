@@ -37,7 +37,7 @@ An override only needs the keys it changes:
 llm:
   base_url: "https://gpustack.unibe.ch/v1"
 models:
-  agent: "minimax-m2.7"
+  agent: "qwen3.8-27b"
 ```
 
 Unknown keys are errors, so typos are caught. Relative paths are resolved against the
@@ -48,6 +48,11 @@ environment variable named by `llm.api_key_env` (default `CHATCDE_LLM_API_KEY`).
 chatcde config path   # which files are merged
 chatcde config show   # the merged result
 ```
+
+To check that the endpoint and every configured model (`models` and
+`model_alternatives`) work, i.e. tool calling, JSON-schema output, embeddings,
+reranking and concurrency, run `python3 scripts/check_gpustack.py`. It prints a table
+and writes a JSON report to `data/checks/`; `--help` lists the options.
 
 ## Logging
 

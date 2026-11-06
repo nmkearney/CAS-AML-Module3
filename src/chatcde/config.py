@@ -132,6 +132,7 @@ class LLMConfig(_Section):
     api_key_env: str
     timeout_s: float
     max_concurrency: int
+    rerank_path: str
 
     def api_key(self) -> str | None:
         """Return the API key from the environment variable named in the config."""
@@ -147,6 +148,20 @@ class ModelsConfig(_Section):
     reranker: str
     vision: str
     speech: str
+
+
+class ModelAlternativesConfig(_Section):
+    """Second-choice model for each role, or ``None`` if there is none.
+
+    ``chatcde evaluate`` compares these with :class:`ModelsConfig` (decision 0003).
+    """
+
+    agent: str | None = None
+    tagging: str | None = None
+    embedding: str | None = None
+    reranker: str | None = None
+    vision: str | None = None
+    speech: str | None = None
 
 
 class BorisConfig(_Section):
@@ -225,6 +240,7 @@ class Config(_Section):
     version: Literal[1]
     llm: LLMConfig
     models: ModelsConfig
+    model_alternatives: ModelAlternativesConfig
     boris: BorisConfig
     openalex: OpenAlexConfig
     data: DataConfig

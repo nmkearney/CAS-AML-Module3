@@ -132,7 +132,10 @@ endpoint, pydantic for schemas and config, pytest, ruff.
 ## Models (GPUStack, OpenAI-compatible)
 
 Set by role in `config/default.yaml`; see `docs/decisions/0003-models-by-role.md`.
-Agent: gpt-oss-120b (alt. minimax-m2.7). Tagging: qwen3.8-27b (alt. lfm2.5-24b-a2b).
+Endpoint `https://gpustack.unibe.ch/v1`, about 4 parallel requests per model
+(verified 2026-11-06 with `scripts/check_gpustack.py`; minimax-m2.7 is not served).
+Agent: gpt-oss-120b (alt. qwen3.8-27b). Tagging: qwen3.8-27b with thinking off
+(alt. lfm2.5-24b-a2b).
 Embeddings: qwen3-embedding-4b (alt. granite-embedding-107m-multilingual).
 Reranker: jina-reranker-v2-base-multilingual (1K context → ~500-token chunks).
 Vision for scans/figures: qwen3-vl-30b-a3b-instruct. Optional speech: faster-whisper-large-v3.
@@ -250,8 +253,6 @@ data/             local only; gitignored (raw/, text/, index/, catalogue.duckdb)
 
 ## Open questions
 
-- GPUStack: are tool calling and JSON-schema output enabled for gpt-oss-120b and
-  qwen3.8-27b? What is the concurrency limit? What is the base URL?
 - Exact location of the full edition on CDE's server (placeholder in config).
 - Does the University Library confirm that restricted publisher texts may be
   copied to staff machines (full edition)? If not, use `--top-up`.
