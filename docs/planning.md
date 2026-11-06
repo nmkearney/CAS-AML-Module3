@@ -239,6 +239,6 @@ If the prototype succeeds, later work adds a web app or MCP server, staff review
 - [x] Are tool calling and JSON-schema output enabled on GPUStack for gpt-oss-120b and qwen3.8-27b, and what is the concurrency limit? Yes, both work; about 4 parallel requests per model (decision 0003, checked 2026-11-06).
 - [ ] Exact location of the full edition on CDE's server.
 - [ ] Does the University Library confirm that restricted publisher texts may be copied to staff machines? If not, use `--top-up`.
-- [ ] Can files marked "restricted" in BORIS be downloaded on the VPN?
+- [x] Can files marked "restricted" in BORIS be downloaded on the VPN? **No**: 0 of 530, all HTTP 401 (2026-11-06, decision 0009).
 - [ ] Where is CDE's geodata held outside BORIS? (Deferred until after the prototype.)
 - [ ] If the prototype continues, who reviews the vocabulary, and should staff be told about the expertise tools?

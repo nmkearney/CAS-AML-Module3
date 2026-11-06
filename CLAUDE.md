@@ -121,6 +121,14 @@ Two developers work in parallel; see `CONTRIBUTING.md` for the full workflow.
 - `cris.virtual.orcid` is not aligned with the authors by position; match it via
   `cris.virtualsource.orcid` (fixed in `chatcde.harvest.mapping`).
 
+## File download results (`chatcde harvest files`, 2026-11-06)
+
+- Main PDF per record in `data/raw/files/<record_id>.pdf`; manifest in `downloads`
+  (decision 0009). **1,542 downloaded** (6.3 GB), 913 no_file, 548 restricted, 0 errors.
+- **Files marked restricted cannot be downloaded on the VPN**: 0 of 530, all HTTP 401.
+  18 records marked open also refuse their file. Full text = open-access records only.
+- Some publisher PDFs are named `…-main.pdf__tid=…`; `is_pdf_name` accepts them.
+
 ## Architecture
 
 ```
@@ -266,6 +274,6 @@ data/             local only; gitignored (raw/, text/, index/, catalogue.duckdb)
 - Exact location of the full edition on CDE's server (placeholder in config).
 - Does the University Library confirm that restricted publisher texts may be
   copied to staff machines (full edition)? If not, use `--top-up`.
-- Can files marked "restricted" in BORIS be downloaded on the VPN?
+- ~~Can files marked "restricted" in BORIS be downloaded on the VPN?~~ No (decision 0009).
 - Older work: tag with 2025–2028 categories? (Proposal: yes, keeping the BORIS unit as recorded. Record as a decision.)
 - Are there four or five CDE partner regions, and which countries belong to each? (Record as a decision.)
