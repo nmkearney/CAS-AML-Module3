@@ -73,7 +73,8 @@ def harvest_metadata_cmd(
     t.add_row("Publications written", str(s.records))
     for link, n in s.by_cde_link.items():
         t.add_row(f"  CDE link: {link}", str(n))
-    t.add_row("  with a DOI", str(s.with_doi))
+    t.add_row("  with a DOI (BORIS)", str(s.with_doi))
+    t.add_row("  with a publisher DOI", str(s.with_publisher_doi))
     t.add_row("  with an abstract", str(s.with_abstract))
     t.add_row("  with a CDE unit", str(s.with_cde_unit))
     t.add_row("Authors written", str(s.authors))

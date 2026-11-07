@@ -3,9 +3,9 @@
 The stage runs in two phases, like ``harvest metadata`` (decision 0010):
 
 1. **Fetch** (network, resumable). Collect every DOI of every record: the
-   publisher DOI (``dc.identifier.publisherDOI``, read from the saved BORIS
-   search pages) and BORIS's own DOI (``Record.doi``). Look them up in batches
-   of up to 100 with one ``filter=doi:a|b|…`` request each, and save each reply
+   publisher DOI (``Record.publisher_doi``) and BORIS's own DOI
+   (``Record.doi``). Look them up in batches of up to 100 with one
+   ``filter=doi:a|b|…`` request each, and save each reply
    as-is to ``<raw_dir>/openalex/lookups/batch-NNNN.json``.
    ``openalex_state.json`` lists the DOIs already looked up (found or not), so a
    rerun only asks for new ones; ``force`` starts over.
@@ -47,7 +47,8 @@ from chatcde import __version__, catalogue
 from chatcde.config import Config, OpenAlexConfig
 from chatcde.harvest import mapping
 from chatcde.harvest.common import code_version, now, write_json
-from chatcde.harvest.metadata import HarvestError, iter_items
+from chatcde.harvest.mapping import doi_key
+from chatcde.harvest.metadata import HarvestError
 from chatcde.schemas import TextSource
 
 log = logging.getLogger(__name__)
@@ -188,14 +189,6 @@ class OpenAlexClient:
 # ---------------------------------------------------------------------------
 
 
-def doi_key(doi: str | None) -> str | None:
-    """A DOI in the form used for matching: bare ``10.x/y``, lower case."""
-    bare = mapping.normalise_doi(doi.strip()) if doi else None
-    if bare:
-        bare = bare.removeprefix("https://dx.doi.org/")
-    return bare.lower() if bare else None
-
-
 def abstract_from_index(inv: dict[str, list[int]] | None) -> str | None:
     """Rebuild an abstract from OpenAlex's ``abstract_inverted_index``.
 
@@ -277,22 +270,6 @@ def oa_link(
         version=best.get("version"),
         host_is_boris=is_boris,
     )
-
-
-def publisher_dois(raw_dir: Path) -> dict[str, str]:
-    """record_id → publisher DOI, from the saved BORIS search pages.
-
-    ``Record.doi`` holds BORIS's own DOI (``dc.identifier.doi``); the
-    publisher's DOI is in ``dc.identifier.publisherDOI`` and is not part of the
-    shared schema, so it is read from the raw cache here.
-    """
-    out: dict[str, str] = {}
-    for item, _ in iter_items(raw_dir):
-        md = item.get("metadata", {})
-        doi = doi_key(mapping.first(md, "dc.identifier.publisherDOI"))
-        if doi:
-            out[item["uuid"]] = doi
-    return out
 
 
 # ---------------------------------------------------------------------------
@@ -496,7 +473,7 @@ def apply_openalex(
         min_words: Shortest abstract accepted (``openalex.min_abstract_words``).
         boris_hosts: Hosts whose OA links point back to BORIS.
         boris_prefixes: DOI prefixes minted by BORIS.
-        pubs: record_id → publisher DOI (:func:`publisher_dois`).
+        pubs: record_id → publisher DOI (``Record.publisher_doi``).
         dois: Every DOI of the current records, the denominator for "found".
 
     Returns:
@@ -676,13 +653,19 @@ def harvest_openalex(
     con = catalogue.connect(db)
     try:
         catalogue.ensure_tables(con, ["records"])
-        recs = con.execute("SELECT record_id, doi FROM records").fetchall()
+        if "publisher_doi" not in catalogue.columns(con, "records"):
+            raise HarvestError(
+                f"{db} predates Record.publisher_doi; run "
+                "`chatcde harvest metadata --offline` first"
+            )
+        recs = con.execute(
+            "SELECT record_id, doi, publisher_doi FROM records"
+        ).fetchall()
         if not recs:
             raise HarvestError(
                 f"no records in {db}; run `chatcde harvest metadata` first"
             )
-        ids = {r[0] for r in recs}
-        pubs = {k: v for k, v in publisher_dois(raw_dir).items() if k in ids}
+        pubs = {r[0]: k for r in recs if (k := doi_key(r[2]))}
         dois = set(pubs.values()) | {k for k in (doi_key(r[1]) for r in recs) if k}
 
         requests, this_run = 0, 0

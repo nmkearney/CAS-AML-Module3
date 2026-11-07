@@ -132,7 +132,8 @@ Two developers work in parallel; see `CONTRIBUTING.md` for the full workflow.
 ## OpenAlex enrichment results (`chatcde harvest openalex`, 2026-11-07)
 
 - `Record.doi` is **BORIS's own DataCite DOI** (10.7892, 10.48350, 10.48620); the
-  publisher DOI is `dc.identifier.publisherDOI` (981 records), read from the raw cache.
+  publisher DOI (`dc.identifier.publisherDOI`, 981 records) is `Record.publisher_doi`
+  (#38), bare and lower-case.
 - **210 of 1,665 missing abstracts filled** (abstracts now 1,548 / 3,003); 606 works
   have no abstract in OpenAlex, 602 records have no DOI at all (decision 0010).
 - 1,698 OA links in `data/raw/openalex/oa_links.csv`; 183 point outside BORIS for
