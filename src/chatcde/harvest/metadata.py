@@ -20,21 +20,20 @@ from __future__ import annotations
 
 import json
 import logging
-import os
 import shutil
-import subprocess
 from collections import Counter
 from collections.abc import Iterator
-from datetime import UTC, datetime
+from datetime import datetime
 from pathlib import Path
 from typing import Any
 
 from pydantic import BaseModel, Field
 
-from chatcde import __version__, catalogue
-from chatcde.config import BorisConfig, Config, project_root
+from chatcde import catalogue
+from chatcde.config import BorisConfig, Config
 from chatcde.harvest import mapping
 from chatcde.harvest.boris import BorisClient
+from chatcde.harvest.common import code_version, now, write_json
 from chatcde.schemas import Author, Record, TextSource
 
 log = logging.getLogger(__name__)
@@ -91,34 +90,6 @@ class HarvestSummary(BaseModel):
     by_pub_type: dict[str, int]
 
 
-def code_version() -> str:
-    """Package version plus the short git commit, if the source is a git checkout."""
-    try:
-        commit = subprocess.run(
-            ["git", "rev-parse", "--short", "HEAD"],
-            cwd=project_root(),
-            capture_output=True,
-            text=True,
-            check=True,
-            timeout=5,
-        ).stdout.strip()
-    except (OSError, subprocess.SubprocessError):
-        return __version__
-    return f"{__version__}+g{commit}"
-
-
-def _now() -> datetime:
-    return datetime.now(UTC).replace(microsecond=0)
-
-
-def _write_json(path: Path, obj: Any) -> None:
-    """Write JSON via a temp file and rename, so a crash never leaves half a file."""
-    path.parent.mkdir(parents=True, exist_ok=True)
-    tmp = path.with_suffix(path.suffix + ".tmp")
-    tmp.write_text(json.dumps(obj, ensure_ascii=False, indent=1), encoding="utf-8")
-    os.replace(tmp, path)
-
-
 def boris_dir(raw_dir: Path) -> Path:
     """Folder for everything fetched from BORIS's search."""
     return raw_dir / "boris"
@@ -141,7 +112,7 @@ def load_state(raw_dir: Path) -> FetchState | None:
 
 
 def _save_state(raw_dir: Path, state: FetchState) -> None:
-    _write_json(_state_path(raw_dir), state.model_dump(mode="json"))
+    write_json(_state_path(raw_dir), state.model_dump(mode="json"))
 
 
 # ---------------------------------------------------------------------------
@@ -213,7 +184,7 @@ def fetch_pages(
         ):
             page += 1
             continue
-        fetched_at = _now()
+        fetched_at = now()
         reply = client.search_page(page)
         info = _search_result(reply)["page"]
         total, pages = int(info["totalElements"]), int(info["totalPages"])
@@ -236,7 +207,7 @@ def fetch_pages(
                 state.total_elements,
             )
             warned = True
-        _write_json(
+        write_json(
             _page_path(raw_dir, page),
             {"page": page, "fetched_at": fetched_at.isoformat(), "reply": reply},
         )
@@ -245,7 +216,7 @@ def fetch_pages(
         log.debug("saved page %d/%d", page + 1, state.total_pages)
         page += 1
 
-    state.completed_at = _now()
+    state.completed_at = now()
     _save_state(raw_dir, state)
     log.info("Fetched %d pages with %d requests", state.total_pages, client.requests)
     return state
@@ -388,7 +359,7 @@ def build_catalogue(
         )
     return HarvestSummary(
         code_version=code_version(),
-        built_at=_now(),
+        built_at=now(),
         query=query,
         fetched_at=fetched_at,
         search_hits=len(items),
@@ -452,7 +423,7 @@ def harvest_metadata(
     summary = build_catalogue(
         raw_dir, cfg.data.catalogue, query=state.query, fetched_at=state.completed_at
     )
-    _write_json(
+    write_json(
         boris_dir(raw_dir) / "harvest_summary.json", summary.model_dump(mode="json")
     )
     log.info(

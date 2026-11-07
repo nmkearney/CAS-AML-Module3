@@ -7,7 +7,9 @@ Rules it enforces (CLAUDE.md, "Be gentle with BORIS"):
 * TLS verified against ``certifi``'s roots (python.org builds on macOS have none);
 * every reply must be JSON. Off the UniBe network the API answers HTTP 200 with
   an HTML "Temporary Access Restriction" page; that raises :class:`NotOnVPNError`
-  instead of being parsed as data.
+  instead of being parsed as data. File downloads (:meth:`BorisClient.download`)
+  are the one exception: they must not be HTML, and 401/403 means the file is
+  restricted (:class:`FileRestrictedError`).
 
 Timeouts, connection errors and 5xx replies are retried ``max_retries`` times
 with a growing pause; anything else raises :class:`BorisError`.
@@ -15,14 +17,18 @@ with a growing pause; anything else raises :class:`BorisError`.
 
 from __future__ import annotations
 
+import hashlib
 import logging
+import os
 import ssl
 import time
 from collections.abc import Callable
-from typing import Any
+from pathlib import Path
+from typing import Any, TypeVar
 
 import certifi
 import httpx
+from pydantic import BaseModel
 
 from chatcde import __version__
 from chatcde.config import BorisConfig
@@ -43,6 +49,29 @@ class BorisError(Exception):
 
 class NotOnVPNError(BorisError):
     """BORIS answered with its HTML access page: not on the UniBe network/VPN."""
+
+
+class FileRestrictedError(BorisError):
+    """BORIS refused a file (HTTP 401/403): it exists but is not open to us."""
+
+
+class ChecksumError(BorisError):
+    """A downloaded file does not match the checksum BORIS lists for it."""
+
+
+class _Retryable(Exception):
+    """One attempt failed in a way worth retrying (a 5xx reply)."""
+
+
+T = TypeVar("T")
+
+
+class Download(BaseModel):
+    """What :meth:`BorisClient.download` saved."""
+
+    sha256: str
+    md5: str
+    bytes: int
 
 
 class BorisClient:
@@ -87,30 +116,23 @@ class BorisClient:
         """Close the HTTP connection pool."""
         self.http.close()
 
-    def get_json(
-        self, url: str, params: dict[str, Any] | None = None
-    ) -> dict[str, Any]:
-        """GET ``url`` and return its JSON body.
+    def _retrying(self, url: str, once: Callable[[], T]) -> T:
+        """Run one request with the polite delay; retry on network trouble and 5xx.
 
-        Waits ``request_delay_s`` before every attempt. Retries timeouts,
-        connection errors and 5xx replies with a growing pause.
-
-        Raises:
-            NotOnVPNError: The reply was not JSON (BORIS's off-network page).
-            BorisError: Any other HTTP error, or retries used up.
+        ``once`` performs a single attempt. It raises :class:`_Retryable` for a
+        5xx reply; :class:`httpx.TransportError` (timeouts, dropped connections)
+        is retried too. Every other exception passes straight through.
         """
         attempts = self.cfg.max_retries + 1
         for attempt in range(1, attempts + 1):
             self._sleep(self.cfg.request_delay_s)
             self.requests += 1
             try:
-                r = self.http.get(url, params=params)
+                return once()
             except httpx.TransportError as exc:
                 problem = f"{type(exc).__name__}: {exc}"
-            else:
-                if r.status_code < 500:
-                    return self._json(r)
-                problem = f"HTTP {r.status_code}"
+            except _Retryable as exc:
+                problem = str(exc)
             if attempt < attempts:
                 pause = 2.0**attempt
                 log.warning(
@@ -123,6 +145,27 @@ class BorisClient:
                 )
                 self._sleep(pause)
         raise BorisError(f"{problem} for {url} after {attempts} attempts")
+
+    def get_json(
+        self, url: str, params: dict[str, Any] | None = None
+    ) -> dict[str, Any]:
+        """GET ``url`` and return its JSON body.
+
+        Waits ``request_delay_s`` before every attempt. Retries timeouts,
+        connection errors and 5xx replies with a growing pause.
+
+        Raises:
+            NotOnVPNError: The reply was not JSON (BORIS's off-network page).
+            BorisError: Any other HTTP error, or retries used up.
+        """
+
+        def once() -> dict[str, Any]:
+            r = self.http.get(url, params=params)
+            if r.status_code >= 500:
+                raise _Retryable(f"HTTP {r.status_code}")
+            return self._json(r)
+
+        return self._retrying(url, once)
 
     @staticmethod
     def _json(r: httpx.Response) -> dict[str, Any]:
@@ -164,3 +207,83 @@ class BorisClient:
                 "sort": self.cfg.sort,
             },
         )
+
+    def original_bitstreams(self, uuid: str) -> list[dict[str, Any]]:
+        """Bitstreams in the item's ``ORIGINAL`` bundle (empty list if none).
+
+        Asks for the bundles with their bitstreams embedded (one request,
+        checked on BORIS 2026-11-06). If the embedded page is incomplete (more
+        files than one page holds), the bundle's bitstream list is fetched.
+        """
+        data = self.get_json(
+            f"{self.base}/core/items/{uuid}/bundles",
+            params={"size": 20, "embed": "bitstreams"},
+        )
+        for bundle in data.get("_embedded", {}).get("bundles", []):
+            if bundle.get("name") != "ORIGINAL":
+                continue
+            page = bundle.get("_embedded", {}).get("bitstreams")
+            if page is not None:
+                files = page.get("_embedded", {}).get("bitstreams", [])
+                total = page.get("page", {}).get("totalElements", len(files))
+                if len(files) >= total:
+                    return files
+            href = bundle["_links"]["bitstreams"]["href"]
+            full = self.get_json(href, params={"size": 100})
+            return full.get("_embedded", {}).get("bitstreams", [])
+        return []
+
+    def download(
+        self, url: str, dest: Path, *, expected_md5: str | None = None
+    ) -> Download:
+        """Stream a bitstream's content to ``dest``; return its checksums and size.
+
+        The file is written to ``dest`` + ``.part`` and renamed only when
+        complete, so an interrupted run never leaves a partial file under the
+        final name. Uses ``download_timeout_s`` (large PDFs).
+
+        Raises:
+            FileRestrictedError: BORIS answered 401 or 403.
+            NotOnVPNError: BORIS sent its HTML access page instead of the file.
+            ChecksumError: The MD5 differs from ``expected_md5``.
+            BorisError: Any other HTTP error, or retries used up.
+        """
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        part = dest.with_name(dest.name + ".part")
+
+        def once() -> Download:
+            with self.http.stream(
+                "GET",
+                url,
+                headers={"Accept": "*/*"},
+                timeout=self.cfg.download_timeout_s,
+            ) as r:
+                if r.status_code >= 500:
+                    raise _Retryable(f"HTTP {r.status_code}")
+                if r.status_code in (401, 403):
+                    raise FileRestrictedError(f"HTTP {r.status_code}")
+                if r.status_code >= 400:
+                    raise BorisError(f"HTTP {r.status_code} for {url}")
+                ctype = r.headers.get("content-type", "")
+                if ctype.startswith("text/html"):
+                    raise NotOnVPNError(VPN_HINT.format(ctype=ctype))
+                sha, md5, size = hashlib.sha256(), hashlib.md5(usedforsecurity=False), 0
+                try:
+                    with part.open("wb") as f:
+                        for chunk in r.iter_bytes():
+                            f.write(chunk)
+                            sha.update(chunk)
+                            md5.update(chunk)
+                            size += len(chunk)
+                except BaseException:
+                    part.unlink(missing_ok=True)
+                    raise
+            if expected_md5 and md5.hexdigest() != expected_md5.lower():
+                part.unlink(missing_ok=True)
+                raise ChecksumError(
+                    f"MD5 {md5.hexdigest()} != {expected_md5} listed by BORIS"
+                )
+            os.replace(part, dest)
+            return Download(sha256=sha.hexdigest(), md5=md5.hexdigest(), bytes=size)
+
+        return self._retrying(url, once)

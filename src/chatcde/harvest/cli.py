@@ -3,7 +3,7 @@
 Subcommands:
 
 * ``metadata``: BORIS search → ``records`` and ``authors`` tables (issue #7).
-* ``files``: PDFs with a download manifest (issue #8, not yet implemented).
+* ``files``: each record's main PDF with a download manifest (issue #8).
 * ``openalex``: abstracts for DOIs without one (issue #9, not yet implemented).
 
 Heavy modules (httpx, duckdb) are imported inside the commands so that
@@ -86,9 +86,83 @@ def harvest_metadata_cmd(
 
 
 @harvest_app.command("files")
-def harvest_files_cmd(force: ForceOption = False) -> None:
-    """Download PDFs from BORIS with a download manifest (UniBe VPN only)."""
-    not_implemented("harvest files", 8)
+def harvest_files_cmd(
+    ctx: typer.Context,
+    force: ForceOption = False,
+    limit: Annotated[
+        int | None,
+        typer.Option("--limit", min=1, help="Try at most this many records."),
+    ] = None,
+) -> None:
+    """Download each record's main PDF from BORIS with a download manifest.
+
+    Files go to data/raw/files/<record_id>.pdf; one row per record goes to the
+    downloads table (downloaded / restricted / no_file / error). Resumes where
+    it stopped; finished records are skipped unless --force. Needs the UniBe VPN.
+    """
+    from rich.console import Console
+    from rich.progress import (
+        BarColumn,
+        MofNCompleteColumn,
+        Progress,
+        TextColumn,
+        TimeRemainingColumn,
+    )
+    from rich.table import Table
+
+    from chatcde.harvest.boris import BorisError, NotOnVPNError
+    from chatcde.harvest.files import download_files
+    from chatcde.harvest.metadata import HarvestError
+    from chatcde.schemas import ManifestEntry
+
+    cfg = ctx.obj
+    err = Console(stderr=True)
+    with Progress(
+        TextColumn("[bold]files"),
+        BarColumn(),
+        MofNCompleteColumn(),
+        TimeRemainingColumn(),
+        TextColumn("{task.description}"),
+        console=err,
+        transient=True,
+    ) as bar:
+        task = bar.add_task("", total=None)
+
+        def step(done: int, total: int, entry: ManifestEntry) -> None:
+            bar.update(
+                task, completed=done, total=total, description=entry.status.value
+            )
+
+        try:
+            s = download_files(cfg, force=force, limit=limit, progress=step)
+        except NotOnVPNError as exc:
+            typer.echo(f"Not on the UniBe network: {exc}", err=True)
+            raise typer.Exit(code=2) from exc
+        except (BorisError, HarvestError) as exc:
+            typer.echo(f"Download failed: {exc}", err=True)
+            raise typer.Exit(code=1) from exc
+
+    t = Table(title="chatcde harvest files", show_header=False)
+    t.add_column(style="bold")
+    t.add_column(justify="right")
+    t.add_row("Records in the catalogue", str(s.records))
+    t.add_row("Tried in this run", str(s.attempted))
+    t.add_row("Finished earlier (skipped)", str(s.skipped))
+    for status, n in s.by_status.items():
+        t.add_row(f"Manifest: {status}", f"{n} / {s.records}")
+    t.add_row("Downloaded size", f"{s.downloaded_bytes / 1e9:.2f} GB")
+    Console().print(t)
+
+    statuses = sorted({st for row in s.by_access.values() for st in row})
+    x = Table(title="BORIS access (rows) x download status (columns)")
+    x.add_column("access", style="bold")
+    for st in [*statuses, "total"]:
+        x.add_column(st, justify="right")
+    for access, row in s.by_access.items():
+        cells = [str(row.get(st, 0)) for st in statuses]
+        x.add_row(access, *cells, str(sum(row.values())))
+    Console().print(x)
+    typer.echo(f"Files: {cfg.data.files_dir}")
 
 
 @harvest_app.command("openalex")

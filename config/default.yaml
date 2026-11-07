@@ -39,6 +39,7 @@ boris:
   page_size: 100                # search results per page
   sort: "dc.date.accessioned,ASC"  # fixed order so pages stay stable while resuming
   timeout_s: 60
+  download_timeout_s: 300       # per file download (some PDFs are large)
   max_retries: 3                # on timeouts and 5xx, with growing back-off
 openalex:
   api_base: "https://api.openalex.org"
@@ -48,6 +49,7 @@ openalex:
 data:
   dir: "data"
   raw_dir: "data/raw"            # cached source JSON and files (harvest)
+  files_dir: "data/raw/files"    # one main PDF per record: <record_id>.pdf (0009)
   catalogue: "data/catalogue.duckdb"
   editions:
     full:

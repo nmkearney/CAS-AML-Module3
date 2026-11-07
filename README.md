@@ -37,6 +37,21 @@ Off the VPN it stops with exit code 2. Which records count as CDE's is explained
 `docs/decisions/0008-harvest-metadata.md`. The counts of each run are in
 `data/raw/boris/harvest_summary.json`.
 
+Then the files, also on the VPN:
+
+```bash
+chatcde harvest files               # main PDF per record -> data/raw/files/<record_id>.pdf
+chatcde harvest files --limit 20    # trial run on 20 records
+chatcde harvest files --force       # try every record again
+```
+
+Every record gets one row in the `downloads` table: `downloaded` (with sha256 and
+size), `restricted` (BORIS answered 401/403), `no_file` (no PDF in the `ORIGINAL`
+bundle) or `error`. A rerun skips finished records and retries errors. The command
+prints the counts by status and by BORIS access × status; they are also saved to
+`data/raw/boris/files_summary.json`. A full run needs about 5 GB and takes under an
+hour. See `docs/decisions/0009-download-files.md`.
+
 ## Configuration
 
 Settings are merged from these files, later ones winning:

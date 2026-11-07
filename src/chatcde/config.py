@@ -173,6 +173,7 @@ class BorisConfig(_Section):
     page_size: int
     sort: str
     timeout_s: float
+    download_timeout_s: float
     max_retries: int
 
 
@@ -195,6 +196,7 @@ class DataConfig(_Section):
 
     dir: ProjectPath
     raw_dir: ProjectPath
+    files_dir: ProjectPath
     catalogue: ProjectPath
     editions: dict[Literal["full", "open"], EditionLocation]
     default_edition: Literal["auto", "full", "open"]
