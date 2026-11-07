@@ -81,6 +81,7 @@ prompts:
 retrieval:
   chunk_tokens: 500              # fits the reranker's 1K context
   chunk_overlap_tokens: 50
+  tokens_per_word: 1.4           # token estimate per word/punctuation piece (0011)
   top_k: 40                      # candidates before reranking
   top_n: 8                       # passages passed to the agent
 

@@ -67,6 +67,24 @@ Each record's publisher DOI and BORIS DOI are looked up, 100 per request (about
 same folder. No key is needed. An optional free key is read from
 `CHATCDE_OPENALEX_API_KEY`. See `docs/decisions/0010-openalex-enrichment.md`.
 
+## Index
+
+Split the catalogue's texts into passages for search (no network needed):
+
+```bash
+chatcde index chunk                 # records + pages -> chunks table
+chatcde index chunk --limit 20      # trial run on 20 records
+chatcde index chunk --force         # chunk every record again
+```
+
+Chunks hold at most `retrieval.chunk_tokens` estimated tokens (500), with
+`chunk_overlap_tokens` (50) repeated from the previous chunk. A record gets abstract
+chunks if it has an abstract, full-text chunks if it has pages, and one chunk of title,
+keywords and container if it has neither, so every record can be found. A rerun only
+chunks records whose text or chunk settings changed; the `chunk_state` table records
+each record's fingerprint, code version and settings. See
+`docs/decisions/0011-chunking.md`. `chatcde index embed` follows in issue #21.
+
 ## Configuration
 
 Settings are merged from these files, later ones winning:

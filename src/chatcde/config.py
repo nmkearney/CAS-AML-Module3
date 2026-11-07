@@ -233,6 +233,7 @@ class RetrievalConfig(_Section):
 
     chunk_tokens: int
     chunk_overlap_tokens: int
+    tokens_per_word: float = Field(gt=0)
     top_k: int
     top_n: int
 
