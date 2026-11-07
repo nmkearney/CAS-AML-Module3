@@ -140,6 +140,15 @@ Two developers work in parallel; see `CONTRIBUTING.md` for the full workflow.
 - OpenAlex now uses API keys and a daily budget instead of the mailto polite pool; a
   full run costs ~$0.003 and needs no key.
 
+## Coverage (`chatcde coverage`, 2026-11-07)
+
+- Of 3,003 records: **1,542 full text (51%)**, 606 abstract only (20%), 855 metadata
+  only (28%). Full text = at least one parsed page with text (decision 0015).
+- Restricted (531) and metadata-only (899) records never have full text; 98% of the
+  1,573 open records do. Conference items are 50% metadata only.
+- `coverage_report()` is written by Track A and reused by Track B (#11, #24; pending
+  agreement). `CoverageReport` gained `by_type` and `by_access` (#43).
+
 ## Architecture
 
 ```
