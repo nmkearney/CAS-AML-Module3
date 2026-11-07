@@ -52,6 +52,21 @@ prints the counts by status and by BORIS access × status; they are also saved t
 `data/raw/boris/files_summary.json`. A full run needs about 5 GB and takes under an
 hour. See `docs/decisions/0009-download-files.md`.
 
+Then the OpenAlex enrichment (public API, no VPN needed):
+
+```bash
+chatcde harvest openalex            # abstracts + OA links for every record's DOIs
+chatcde harvest openalex --offline  # re-apply the saved lookups (e.g. after a config change)
+chatcde harvest openalex --force    # look every DOI up again
+```
+
+Each record's publisher DOI and BORIS DOI are looked up, 100 per request (about
+30 requests). An OpenAlex abstract is written only where BORIS has none
+(`abstract_source = abstract_openalex`). Open-access links go to
+`data/raw/openalex/oa_links.csv`, and the counts to `openalex_summary.json` in the
+same folder. No key is needed. An optional free key is read from
+`CHATCDE_OPENALEX_API_KEY`. See `docs/decisions/0010-openalex-enrichment.md`.
+
 ## Configuration
 
 Settings are merged from these files, later ones winning:
