@@ -28,6 +28,7 @@ from pydantic import (
     AfterValidator,
     BaseModel,
     ConfigDict,
+    Field,
     ValidationError,
     ValidationInfo,
 )
@@ -178,10 +179,22 @@ class BorisConfig(_Section):
 
 
 class OpenAlexConfig(_Section):
-    """OpenAlex API settings."""
+    """OpenAlex API settings (decision 0010)."""
 
     api_base: str
-    mailto: str
+    api_key_env: str
+    mailto: str = ""
+    request_delay_s: float
+    batch_size: int = Field(ge=1, le=100)
+    timeout_s: float
+    max_retries: int
+    min_abstract_words: int = Field(ge=0)
+    boris_hosts: list[str]
+    boris_doi_prefixes: list[str]
+
+    def api_key(self) -> str | None:
+        """Return the API key from the environment variable named in the config."""
+        return os.environ.get(self.api_key_env) or None
 
 
 class EditionLocation(_Section):

@@ -4,7 +4,7 @@ Subcommands:
 
 * ``metadata``: BORIS search → ``records`` and ``authors`` tables (issue #7).
 * ``files``: each record's main PDF with a download manifest (issue #8).
-* ``openalex``: abstracts for DOIs without one (issue #9, not yet implemented).
+* ``openalex``: abstracts and open-access links from OpenAlex (issue #9).
 
 Heavy modules (httpx, duckdb) are imported inside the commands so that
 ``chatcde --help`` stays fast (decision 0006).
@@ -16,7 +16,7 @@ from typing import Annotated
 
 import typer
 
-from chatcde.cli_common import PANEL_PIPELINE, not_implemented
+from chatcde.cli_common import PANEL_PIPELINE
 
 app = typer.Typer()
 harvest_app = typer.Typer(
@@ -166,6 +166,79 @@ def harvest_files_cmd(
 
 
 @harvest_app.command("openalex")
-def harvest_openalex_cmd(force: ForceOption = False) -> None:
-    """Fill missing abstracts from OpenAlex for records with a DOI."""
-    not_implemented("harvest openalex", 9)
+def harvest_openalex_cmd(
+    ctx: typer.Context,
+    force: ForceOption = False,
+    offline: Annotated[
+        bool,
+        typer.Option(
+            "--offline", help="Apply the saved OpenAlex lookups again; no network."
+        ),
+    ] = False,
+    limit: Annotated[
+        int | None,
+        typer.Option("--limit", min=1, help="Look up at most this many new DOIs."),
+    ] = None,
+) -> None:
+    """Fill missing abstracts from OpenAlex and list open-access links.
+
+    Looks up each record's publisher DOI and BORIS DOI (100 per request),
+    saving replies under data/raw/openalex/. Abstracts are written only where
+    BORIS has none; OA links go to data/raw/openalex/oa_links.csv. Public API,
+    no VPN needed. DOIs looked up earlier are skipped unless --force.
+    """
+    from rich.console import Console
+    from rich.progress import BarColumn, MofNCompleteColumn, Progress, TextColumn
+    from rich.table import Table
+
+    from chatcde.harvest.metadata import HarvestError
+    from chatcde.harvest.openalex import OpenAlexError, harvest_openalex, openalex_dir
+
+    cfg = ctx.obj
+    with Progress(
+        TextColumn("[bold]openalex"),
+        BarColumn(),
+        MofNCompleteColumn(),
+        console=Console(stderr=True),
+        transient=True,
+    ) as bar:
+        task = bar.add_task("", total=None)
+
+        def step(done: int, total: int) -> None:
+            bar.update(task, completed=done, total=total)
+
+        try:
+            s = harvest_openalex(
+                cfg, force=force, offline=offline, limit=limit, progress=step
+            )
+        except (OpenAlexError, HarvestError) as exc:
+            typer.echo(f"OpenAlex enrichment failed: {exc}", err=True)
+            raise typer.Exit(code=1) from exc
+
+    t = Table(title="chatcde harvest openalex", show_header=False)
+    t.add_column(style="bold")
+    t.add_column(justify="right")
+    t.add_row("Records in the catalogue", str(s.records))
+    t.add_row("  with a DOI (publisher or BORIS)", str(s.records_with_doi))
+    t.add_row("  with a publisher DOI", str(s.with_publisher_doi))
+    t.add_row("DOIs looked up", f"{s.dois_looked_up} / {s.dois_known}")
+    t.add_row("  in this run", f"{s.dois_looked_up_this_run} ({s.requests} requests)")
+    t.add_row("  known to OpenAlex", f"{s.dois_found} / {s.dois_looked_up}")
+    t.add_row("Records without a BORIS abstract", str(s.missing_abstract_before))
+    t.add_row("  filled from OpenAlex", str(s.abstract_filled))
+    for kind, n in s.abstract_filled_by_doi.items():
+        t.add_row(f"    via {kind} DOI", str(n))
+    t.add_row("  OpenAlex has no abstract", str(s.abstract_none_in_openalex))
+    t.add_row(
+        f"  rejected (< {s.min_abstract_words} words)", str(s.abstract_rejected_short)
+    )
+    t.add_row("  not found in OpenAlex", str(s.missing_abstract_not_found))
+    t.add_row("  no DOI", str(s.missing_abstract_no_doi))
+    t.add_row("  still missing", f"{s.missing_abstract_after} / {s.records}")
+    t.add_row("Open-access links", str(s.oa_links))
+    t.add_row("  outside BORIS", str(s.oa_links_outside_boris))
+    t.add_row(
+        "    where BORIS gave no file", str(s.oa_links_outside_boris_without_boris_file)
+    )
+    Console().print(t)
+    typer.echo(f"OA links: {openalex_dir(cfg.data.raw_dir) / 'oa_links.csv'}")

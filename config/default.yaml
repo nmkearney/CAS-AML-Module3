@@ -41,9 +41,19 @@ boris:
   timeout_s: 60
   download_timeout_s: 300       # per file download (some PDFs are large)
   max_retries: 3                # on timeouts and 5xx, with growing back-off
-openalex:
+openalex:                       # public API; no VPN needed (decision 0010)
   api_base: "https://api.openalex.org"
-  mailto: ""                                         # TODO: contact email for the polite pool
+  api_key_env: "CHATCDE_OPENALEX_API_KEY"  # optional free key; keyless budget suffices
+  mailto: ""                    # optional contact email, sent only if set
+  request_delay_s: 0.2          # pause before every request; never parallel
+  batch_size: 100               # DOIs per request (OpenAlex allows up to 100)
+  timeout_s: 60
+  max_retries: 3                # on timeouts, 429 and 5xx, with growing back-off
+  min_abstract_words: 30        # shorter OpenAlex abstracts are rejected as junk
+  # OA links on these hosts or DOI prefixes point back to BORIS (all three
+  # prefixes are BORIS's own DataCite DOIs, checked 2026-11-07).
+  boris_hosts: ["boris.unibe.ch", "boris-portal.unibe.ch"]
+  boris_doi_prefixes: ["10.7892/", "10.48350/", "10.48620/"]
 
 # --- Data bundles (see docs/decisions/0004-two-data-editions.md) ----------
 data:
