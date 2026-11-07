@@ -229,13 +229,18 @@ class PromptsConfig(_Section):
 
 
 class RetrievalConfig(_Section):
-    """Chunking and search settings."""
+    """Chunking and search settings (decisions 0011 and 0013)."""
 
     chunk_tokens: int
     chunk_overlap_tokens: int
     tokens_per_word: float = Field(gt=0)
-    top_k: int
-    top_n: int
+    top_k: int = Field(ge=1)
+    top_n: int = Field(ge=1)
+    rrf_k: int = Field(ge=1)
+    rerank: bool
+    rerank_max_chars: int = Field(ge=100)
+    bm25_k1: float = Field(ge=0)
+    bm25_b: float = Field(ge=0, le=1)
 
 
 class EmbeddingConfig(_Section):

@@ -100,6 +100,28 @@ and normalised. Requests go out in batches of 32, up to `llm.max_concurrency` at
 time. A rerun embeds only new or changed chunks. Vectors stay in the catalogue file, so
 bundles carry them. See `docs/decisions/0012-embeddings.md`.
 
+Build the keyword (BM25) index, which runs locally with no endpoint:
+
+```bash
+chatcde index bm25                  # chunks -> bm25_docs + bm25_postings tables
+chatcde index bm25 --force          # index every chunk again
+```
+
+Then try the hybrid search. BM25 and vector search each return `retrieval.top_k` (40)
+candidates. The two lists are fused by reciprocal rank, and the reranker model reorders
+the fused list. The command prints each stage's rank and score:
+
+```bash
+chatcde index search "Bodenerosion in Bergregionen"
+chatcde index search "land acquisitions Laos" --year-from 2010 --lang en
+chatcde index search "living lab" --mode bm25 --no-rerank   # offline, keywords only
+```
+
+`--mode` is `hybrid`, `bm25` or `vector`. Filters: `--year-from`, `--year-to`, `--unit`,
+`--type`, `--lang`, `--country`. This command is for checking the search. The
+user-facing search with citations is `chatcde search` (issue #23). See
+`docs/decisions/0013-hybrid-search.md`.
+
 ## Configuration
 
 Settings are merged from these files, later ones winning:
