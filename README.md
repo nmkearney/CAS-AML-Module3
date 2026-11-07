@@ -83,7 +83,22 @@ chunks if it has an abstract, full-text chunks if it has pages, and one chunk of
 keywords and container if it has neither, so every record can be found. A rerun only
 chunks records whose text or chunk settings changed; the `chunk_state` table records
 each record's fingerprint, code version and settings. See
-`docs/decisions/0011-chunking.md`. `chatcde index embed` follows in issue #21.
+`docs/decisions/0011-chunking.md`.
+
+Then embed the chunks with the `embedding` model on the local endpoint (needs the key
+in `CHATCDE_LLM_API_KEY`):
+
+```bash
+chatcde index embed                 # chunks -> embeddings table (vector index)
+chatcde index embed --limit 50      # trial run on 50 chunks
+chatcde index embed --alternative   # also embed with the alternative model, to compare
+chatcde index embed --force         # embed every chunk again
+```
+
+Each chunk is embedded as title + text, truncated to `embedding.dimensions` (1,024)
+and normalised. Requests go out in batches of 32, up to `llm.max_concurrency` at a
+time. A rerun embeds only new or changed chunks. Vectors stay in the catalogue file, so
+bundles carry them. See `docs/decisions/0012-embeddings.md`.
 
 ## Configuration
 

@@ -85,6 +85,15 @@ retrieval:
   top_k: 40                      # candidates before reranking
   top_n: 8                       # passages passed to the agent
 
+# --- Embeddings (see docs/decisions/0012-embeddings.md) ---------------------
+embedding:
+  batch_size: 32                 # chunks per /embeddings request
+  dimensions: 1024               # truncate (Matryoshka) and renormalise; null = full size
+  include_title: true            # embed "title + chunk text" for documents
+  max_retries: 3                 # on timeouts, 429 and 5xx, with growing back-off
+  query_instructions:            # per model; models not listed embed the bare query
+    qwen3-embedding-4b: "Given a question about research publications, retrieve passages that answer it"
+
 # --- Evaluation -----------------------------------------------------------
 evaluation:
   reference_set: "data/reference/reference_tags.yaml"

@@ -238,6 +238,16 @@ class RetrievalConfig(_Section):
     top_n: int
 
 
+class EmbeddingConfig(_Section):
+    """How chunks and queries are embedded (docs/decisions/0012-embeddings.md)."""
+
+    batch_size: int = Field(ge=1)
+    dimensions: int | None = Field(default=None, ge=1)
+    include_title: bool
+    max_retries: int = Field(ge=0)
+    query_instructions: dict[str, str] = Field(default_factory=dict)
+
+
 class EvaluationConfig(_Section):
     """Reference sets and thresholds for ``chatcde evaluate``."""
 
@@ -269,6 +279,7 @@ class Config(_Section):
     vocab: VocabConfig
     prompts: PromptsConfig
     retrieval: RetrievalConfig
+    embedding: EmbeddingConfig
     evaluation: EvaluationConfig
     logging: LoggingConfig
 
