@@ -82,8 +82,14 @@ retrieval:
   chunk_tokens: 500              # fits the reranker's 1K context
   chunk_overlap_tokens: 50
   tokens_per_word: 1.4           # token estimate per word/punctuation piece (0011)
-  top_k: 40                      # candidates before reranking
-  top_n: 8                       # passages passed to the agent
+  top_k: 40                      # candidates per retriever (BM25, vectors) and after fusion
+  top_n: 8                       # passages returned after reranking
+  # Hybrid search (docs/decisions/0013-hybrid-search.md)
+  rrf_k: 60                      # reciprocal rank fusion: score = sum 1 / (rrf_k + rank)
+  rerank: true                   # rerank the fused candidates with models.reranker
+  rerank_max_chars: 2000         # cut each passage to fit the reranker's 1K-token context
+  bm25_k1: 1.2                   # BM25 term-frequency saturation
+  bm25_b: 0.75                   # BM25 length normalisation
 
 # --- Embeddings (see docs/decisions/0012-embeddings.md) ---------------------
 embedding:

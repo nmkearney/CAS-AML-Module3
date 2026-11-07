@@ -1,6 +1,6 @@
 """Client for the local OpenAI-compatible endpoint (GPUStack, vLLM or Ollama).
 
-Only what the store needs: ``/embeddings`` now, ``/rerank`` with issue #22. The
+Only what the store needs: ``/embeddings`` (issue #21) and ``/rerank`` (#22). The
 endpoint, key variable, timeout and retries come from the config; model names
 are passed in by the caller, which reads them from the ``models`` section, so no
 model is hard-coded here.
@@ -173,3 +173,58 @@ class EndpointClient:
                 f"expected {len(texts)} embeddings from {model}, got {len(vectors)}"
             )
         return vectors  # type: ignore[return-value]
+
+    def rerank(
+        self,
+        model: str,
+        query: str,
+        documents: Sequence[str],
+        *,
+        path: str = "/rerank",
+    ) -> list[tuple[int, float]]:
+        """Score ``documents`` against ``query`` with a reranker model.
+
+        Reranking is not part of the OpenAI API; GPUStack (vLLM) serves the
+        Jina/Cohere format at ``/v1/rerank`` (decision 0003): the reply holds
+        ``results`` with an ``index`` into ``documents`` and a ``relevance_score``.
+
+        Args:
+            model: Reranker model (the ``reranker`` role in the config).
+            query: The search text.
+            documents: Candidate passages.
+            path: Route appended to the base URL (``llm.rerank_path``).
+
+        Returns:
+            ``(index, score)`` pairs, best first.
+
+        Raises:
+            EndpointError: If the request fails or the reply is malformed.
+        """
+        if not documents:
+            return []
+        body = self.post_json(
+            path,
+            {
+                "model": model,
+                "query": query,
+                "documents": list(documents),
+                "top_n": len(documents),
+            },
+        )
+        results = body.get("results") or body.get("data")
+        if not isinstance(results, list) or not results:
+            raise EndpointError(f"no rerank results from {model}: {str(body)[:200]}")
+        scored: dict[int, float] = {}
+        for r in results:
+            item = r if isinstance(r, dict) else {}
+            index = item.get("index")
+            score = item.get("relevance_score", item.get("score"))
+            if (
+                not isinstance(index, int)
+                or not 0 <= index < len(documents)
+                or index in scored
+                or not isinstance(score, int | float)
+            ):
+                raise EndpointError(f"malformed rerank result from {model}: {r!r}")
+            scored[index] = float(score)
+        return sorted(scored.items(), key=lambda t: (-t[1], t[0]))
