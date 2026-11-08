@@ -1456,34 +1456,65 @@ region:
   cde_partner_countries: [KEN, ETH, LAO, MMR, NPL, BOL, MDG]  # main partner institutions (0017)
 
 setting:
+  groups:
+  - code: SET-G-agricultural-and-rural-landscapes
+    label: Agricultural and rural landscapes
+  - code: SET-G-biomes-and-ecosystems
+    label: Biomes and ecosystems
+  - code: SET-G-mountains-and-highlands
+    label: Mountains and highlands
+  - code: SET-G-places-regions-and-scales
+    label: Places, regions and scales
+  - code: SET-G-protected-and-governed-areas
+    label: Protected and governed areas
+  - code: SET-G-urban-settings-and-institutions
+    label: Urban settings and institutions
   terms:
-  - code: SET-africa
-    label: Africa
-    definition: The African continent, including specific regions such as Sub-Saharan Africa, East Africa,
-      and the Horn of Africa.
-    source: candidate
   - code: SET-agricultural-landscapes
     label: Agricultural landscapes
+    group: SET-G-agricultural-and-rural-landscapes
     definition: Landscapes dominated by agricultural activities, including arable land, pastures, and
       other managed rural environments.
     source: candidate
-  - code: SET-alpine-and-glacial-landscapes
-    label: Alpine and glacial landscapes
-    definition: High-altitude environments characterized by permanent or seasonal ice, snow, and associated
-      mountainous terrain, including glacial features and alpine zones.
+  - code: SET-heterogeneous-landscapes
+    label: Heterogeneous landscapes
+    group: SET-G-agricultural-and-rural-landscapes
+    definition: Landscapes characterized by a complex mix of different land cover types, land uses, or
+      ecological zones, often described as mosaics.
+    source: candidate
+  - code: SET-rainfed-agricultural-areas
+    label: Rainfed agricultural areas
+    group: SET-G-agricultural-and-rural-landscapes
+    definition: Land used for crop production relying on natural rainfall, including uplands and subsistence
+      farming systems, excluding irrigated or pasture lands.
+    source: candidate
+  - code: SET-rural-areas
+    label: Rural areas
+    group: SET-G-agricultural-and-rural-landscapes
+    definition: Settlements and landscapes characterized by low population density, agricultural land
+      use, and distance from urban centers, including remote and dispersed communities.
+    source: candidate
+  - code: SET-rural-lowlands
+    label: Rural lowlands
+    group: SET-G-agricultural-and-rural-landscapes
+    definition: null
+    source: seed
+  - code: SET-smallholder-farms
+    label: Smallholder farms
+    group: SET-G-agricultural-and-rural-landscapes
+    definition: Agricultural production units characterized by small landholdings and labor-intensive
+      management, typically in developing regions. Excludes large-scale commercial plantations or industrial
+      agriculture.
     source: candidate
   - code: SET-amazon-biome
     label: Amazon biome
+    group: SET-G-biomes-and-ecosystems
     definition: The Amazon rainforest and its surrounding regions, including specific national areas like
       Peruvian Amazonia, characterized by tropical forest ecosystems.
     source: candidate
-  - code: SET-andean-highlands
-    label: Andean highlands
-    definition: Mountainous regions in South America, including the Andes, interandean valleys, and highland
-      ecosystems, excluding lowland tropical forests.
-    source: candidate
   - code: SET-coastal-and-marine
     label: Coastal and marine
+    group: SET-G-biomes-and-ecosystems
     definition: Environments including coastlines, littoral zones, and adjacent marine areas. Excludes
       purely inland water bodies or terrestrial zones far from the sea.
     includes:
@@ -1492,13 +1523,9 @@ setting:
     - coastal region
     - coastal zone
     source: seed
-  - code: SET-developing-countries
-    label: Developing countries
-    definition: Geographic settings characterized by lower income levels, including developing, transition,
-      and low- and middle-income countries, excluding industrialized nations.
-    source: candidate
   - code: SET-drylands-and-rangelands
     label: Drylands and rangelands
+    group: SET-G-biomes-and-ecosystems
     definition: Arid, semi-arid, and dryland environments, including rangelands and associated agricultural
       zones, excluding humid tropical forests.
     includes:
@@ -1517,64 +1544,19 @@ setting:
     source: seed
   - code: SET-forest-landscapes
     label: Forest landscapes
+    group: SET-G-biomes-and-ecosystems
     definition: Environments dominated by trees or forests, including forest frontiers, boreal forests,
       and multi-use forest areas. Excludes non-forested rural lowlands or drylands.
     source: candidate
-  - code: SET-global
-    label: Global
-    definition: Refers to worldwide or planetary scales, encompassing global systems, societies, and environmental
-      processes, rather than specific regional or local settings.
-    includes:
-    - Global scale
-    - global and national scales
-    source: candidate
-  - code: SET-global-economic-systems
-    label: Global economic systems
-    definition: Macro-level economic structures, trade regimes, and globalized market environments. Excludes
-      specific national economies or local market settings.
-    source: candidate
-  - code: SET-global-north-and-south
-    label: Global North and South
-    definition: Geopolitical or economic divisions of the world into developed (North) and developing
-      (South) regions, often used to contrast socio-economic contexts.
-    source: candidate
   - code: SET-grasslands-and-steppes
     label: Grasslands and steppes
+    group: SET-G-biomes-and-ecosystems
     definition: Open vegetation communities dominated by grasses and herbs, including agricultural grasslands,
       rangelands, and steppe ecosystems.
     source: candidate
-  - code: SET-heterogeneous-landscapes
-    label: Heterogeneous landscapes
-    definition: Landscapes characterized by a complex mix of different land cover types, land uses, or
-      ecological zones, often described as mosaics.
-    source: candidate
-  - code: SET-high-altitude-drylands
-    label: High-altitude drylands
-    definition: Arid or semi-arid environments located at high elevations, such as alpine deserts, puna,
-      or high-altitude grasslands.
-    source: candidate
-  - code: SET-higher-education-institutions
-    label: Higher education institutions
-    definition: Universities, colleges, and other tertiary education establishments, including specific
-      programs or curricula within them.
-    includes:
-    - University campus
-    - university environment
-    source: candidate
-  - code: SET-highlands
-    label: Highlands
-    definition: Elevated landforms characterized by mountainous or hilly terrain, including associated
-      catchments and river basins, distinct from lowlands or coastal areas.
-    includes:
-    - Highlands and uplands
-    - highland-lowland systems
-    - highland agricultural areas
-    - highland-lowland interaction zones
-    - upland areas
-    source: candidate
-    note: Higher-level category of high-altitude-drylands?
   - code: SET-humid-tropics-and-forest-frontiers
     label: Humid tropics and forest frontiers
+    group: SET-G-biomes-and-ecosystems
     definition: Tropical regions characterized by high rainfall, including forests, agricultural landscapes,
       and forest-frontier zones. Excludes arid or semi-arid tropical areas.
     includes:
@@ -1591,23 +1573,62 @@ setting:
     - tropical forest environments
     - tropical forest landscape
     source: seed
-  - code: SET-indigenous-territories
-    label: Indigenous territories
-    definition: Geographic areas defined by indigenous governance, traditional land rights, or cultural
-      boundaries, including specific districts or communities.
-    source: candidate
   - code: SET-lowlands
     label: Lowlands
+    group: SET-G-biomes-and-ecosystems
     definition: Low-elevation terrestrial areas, including floodplains, swamps, and irrigated zones, excluding
       coastal marine environments and high-altitude regions.
     source: candidate
-  - code: SET-mainland-southeast-asia
-    label: Mainland Southeast Asia
-    definition: The continental landmass of Southeast Asia, including the Mekong basin and upland regions,
-      excluding maritime islands.
+  - code: SET-rivers-and-wetlands
+    label: Rivers and wetlands
+    group: SET-G-biomes-and-ecosystems
+    definition: Fluvial environments including river channels, floodplains, deltas, and associated wetland
+      ecosystems. Excludes coastal marine zones and upland forests.
+    includes:
+    - River basins and watersheds
+    - river basin
+    - river catchment
+    - mountain river basins
+    - river basins
+    - transboundary river basin
+    - tropical watershed
+    - watershed
+    - watersheds
     source: candidate
+  - code: SET-alpine-and-glacial-landscapes
+    label: Alpine and glacial landscapes
+    group: SET-G-mountains-and-highlands
+    definition: High-altitude environments characterized by permanent or seasonal ice, snow, and associated
+      mountainous terrain, including glacial features and alpine zones.
+    source: candidate
+  - code: SET-andean-highlands
+    label: Andean highlands
+    group: SET-G-mountains-and-highlands
+    definition: Mountainous regions in South America, including the Andes, interandean valleys, and highland
+      ecosystems, excluding lowland tropical forests.
+    source: candidate
+  - code: SET-high-altitude-drylands
+    label: High-altitude drylands
+    group: SET-G-mountains-and-highlands
+    definition: Arid or semi-arid environments located at high elevations, such as alpine deserts, puna,
+      or high-altitude grasslands.
+    source: candidate
+  - code: SET-highlands
+    label: Highlands
+    group: SET-G-mountains-and-highlands
+    definition: Elevated landforms characterized by mountainous or hilly terrain, including associated
+      catchments and river basins, distinct from lowlands or coastal areas.
+    includes:
+    - Highlands and uplands
+    - highland-lowland systems
+    - highland agricultural areas
+    - highland-lowland interaction zones
+    - upland areas
+    source: candidate
+    note: Higher-level category of high-altitude-drylands?
   - code: SET-mountains
     label: Mountains
+    group: SET-G-mountains-and-highlands
     definition: High-altitude environments including alpine, highland, and high mountain areas, excluding
       lowland or coastal zones.
     includes:
@@ -1624,17 +1645,77 @@ setting:
     - high alpine region
     - high mountain plateau
     source: seed
+  - code: SET-steep-and-hilly-terrain
+    label: Steep and hilly terrain
+    group: SET-G-mountains-and-highlands
+    definition: Landscapes characterized by significant slope gradients, including mountains, hills, and
+      scree slopes, distinct from flat lowlands or specific biomes.
+    source: candidate
+  - code: SET-africa
+    label: Africa
+    group: SET-G-places-regions-and-scales
+    definition: The African continent, including specific regions such as Sub-Saharan Africa, East Africa,
+      and the Horn of Africa.
+    source: candidate
+  - code: SET-developing-countries
+    label: Developing countries
+    group: SET-G-places-regions-and-scales
+    definition: Geographic settings characterized by lower income levels, including developing, transition,
+      and low- and middle-income countries, excluding industrialized nations.
+    source: candidate
+  - code: SET-global
+    label: Global
+    group: SET-G-places-regions-and-scales
+    definition: Refers to worldwide or planetary scales, encompassing global systems, societies, and environmental
+      processes, rather than specific regional or local settings.
+    includes:
+    - Global scale
+    - global and national scales
+    source: candidate
+  - code: SET-global-economic-systems
+    label: Global economic systems
+    group: SET-G-places-regions-and-scales
+    definition: Macro-level economic structures, trade regimes, and globalized market environments. Excludes
+      specific national economies or local market settings.
+    source: candidate
+  - code: SET-global-north-and-south
+    label: Global North and South
+    group: SET-G-places-regions-and-scales
+    definition: Geopolitical or economic divisions of the world into developed (North) and developing
+      (South) regions, often used to contrast socio-economic contexts.
+    source: candidate
+  - code: SET-mainland-southeast-asia
+    label: Mainland Southeast Asia
+    group: SET-G-places-regions-and-scales
+    definition: The continental landmass of Southeast Asia, including the Mekong basin and upland regions,
+      excluding maritime islands.
+    source: candidate
   - code: SET-national-and-subnational-scales
     label: National and subnational scales
+    group: SET-G-places-regions-and-scales
     definition: Geographic scopes of analysis or policy implementation ranging from subnational regions
       to the entire country, excluding global or local scales.
     source: candidate
-  - code: SET-peri-urban
-    label: Peri-urban
-    definition: Urban peripheries and the transition zones between urban and rural landscapes.
-    source: seed
+  - code: SET-switzerland
+    label: Switzerland
+    group: SET-G-places-regions-and-scales
+    definition: The national territory of Switzerland, including its specific administrative units, alpine
+      regions, and urban areas.
+    includes:
+    - swiss business environment
+    - swiss context
+    - swiss federal context
+    - swiss national context
+    source: candidate
+  - code: SET-indigenous-territories
+    label: Indigenous territories
+    group: SET-G-protected-and-governed-areas
+    definition: Geographic areas defined by indigenous governance, traditional land rights, or cultural
+      boundaries, including specific districts or communities.
+    source: candidate
   - code: SET-protected-and-conserved-areas
     label: Protected and conserved areas
+    group: SET-G-protected-and-governed-areas
     definition: Designated zones for nature conservation, including biosphere reserves, biodiversity hotspots,
       and other protected areas, regardless of specific biome.
     includes:
@@ -1649,70 +1730,37 @@ setting:
     - national park
     - national parks
     source: candidate
-  - code: SET-rainfed-agricultural-areas
-    label: Rainfed agricultural areas
-    definition: Land used for crop production relying on natural rainfall, including uplands and subsistence
-      farming systems, excluding irrigated or pasture lands.
-    source: candidate
   - code: SET-regional-nature-parks
     label: Regional nature parks
+    group: SET-G-protected-and-governed-areas
     definition: Designated protected or semi-protected areas focused on regional conservation, sustainable
       development, and landscape management, distinct from national parks or urban zones.
     source: candidate
-  - code: SET-rivers-and-wetlands
-    label: Rivers and wetlands
-    definition: Fluvial environments including river channels, floodplains, deltas, and associated wetland
-      ecosystems. Excludes coastal marine zones and upland forests.
-    includes:
-    - River basins and watersheds
-    - river basin
-    - river catchment
-    - mountain river basins
-    - river basins
-    - transboundary river basin
-    - tropical watershed
-    - watershed
-    - watersheds
-    source: candidate
-  - code: SET-rural-areas
-    label: Rural areas
-    definition: Settlements and landscapes characterized by low population density, agricultural land
-      use, and distance from urban centers, including remote and dispersed communities.
-    source: candidate
-  - code: SET-rural-lowlands
-    label: Rural lowlands
-    definition: null
-    source: seed
-  - code: SET-smallholder-farms
-    label: Smallholder farms
-    definition: Agricultural production units characterized by small landholdings and labor-intensive
-      management, typically in developing regions. Excludes large-scale commercial plantations or industrial
-      agriculture.
-    source: candidate
-  - code: SET-steep-and-hilly-terrain
-    label: Steep and hilly terrain
-    definition: Landscapes characterized by significant slope gradients, including mountains, hills, and
-      scree slopes, distinct from flat lowlands or specific biomes.
-    source: candidate
-  - code: SET-switzerland
-    label: Switzerland
-    definition: The national territory of Switzerland, including its specific administrative units, alpine
-      regions, and urban areas.
-    includes:
-    - swiss business environment
-    - swiss context
-    - swiss federal context
-    - swiss national context
-    source: candidate
-  - code: SET-urban
-    label: Urban
-    definition: Settled areas, especially city centers
-    source: seed
   - code: SET-world-heritage-sites
     label: World heritage sites
+    group: SET-G-protected-and-governed-areas
     definition: Areas designated by UNESCO as World Heritage Sites, recognized for their outstanding universal
       value to humanity.
     source: candidate
+  - code: SET-higher-education-institutions
+    label: Higher education institutions
+    group: SET-G-urban-settings-and-institutions
+    definition: Universities, colleges, and other tertiary education establishments, including specific
+      programs or curricula within them.
+    includes:
+    - University campus
+    - university environment
+    source: candidate
+  - code: SET-peri-urban
+    label: Peri-urban
+    group: SET-G-urban-settings-and-institutions
+    definition: Urban peripheries and the transition zones between urban and rural landscapes.
+    source: seed
+  - code: SET-urban
+    label: Urban
+    group: SET-G-urban-settings-and-institutions
+    definition: Settled areas, especially city centers
+    source: seed
 
 scale:
   terms:
