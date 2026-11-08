@@ -17,6 +17,7 @@ from typing import TYPE_CHECKING, Annotated
 import typer
 
 from chatcde.cli_common import PANEL_QUERY, not_implemented
+from chatcde.schemas import Dimension
 
 if TYPE_CHECKING:
     from chatcde.config import Config
@@ -230,16 +231,232 @@ def read(
         typer.echo("")
 
 
-@app.command(rich_help_panel=PANEL_QUERY)
-def count() -> None:
-    """Count publications by one or two schema dimensions."""
-    not_implemented("count", 24)
+def _ids(record_ids: list[str], show: bool, limit: int = 3) -> str:
+    """Record IDs for a table cell: all with ``--ids``, else the first few."""
+    if show or len(record_ids) <= limit:
+        return ", ".join(record_ids)
+    return ", ".join(record_ids[:limit]) + f", ... (+{len(record_ids) - limit})"
 
 
 @app.command(rich_help_panel=PANEL_QUERY)
-def schema() -> None:
-    """Show the schema dimensions and their scope notes."""
-    not_implemented("schema", 24)
+def count(
+    ctx: typer.Context,
+    row: Annotated[Dimension, typer.Argument(help="Dimension for the rows.")],
+    col: Annotated[
+        Dimension | None, typer.Argument(help="Optional dimension for the columns.")
+    ] = None,
+    gaps: Annotated[
+        bool,
+        typer.Option(
+            "--gaps", help="Show thin cells (find_gaps) instead of all counts."
+        ),
+    ] = False,
+    max_ratio: Annotated[
+        float, typer.Option(min=0.0, help="With --gaps: largest count / expected.")
+    ] = 0.25,
+    all_types: Annotated[
+        bool,
+        typer.Option(
+            "--all-types",
+            help="With --gaps: keep the types in gaps.exclude_types (conference "
+            "items).",
+        ),
+    ] = False,
+    year_from: Annotated[int | None, typer.Option(help="Earliest year.")] = None,
+    year_to: Annotated[int | None, typer.Option(help="Latest year.")] = None,
+    unit: Annotated[
+        list[str] | None, typer.Option(help="CDE unit (repeatable).")
+    ] = None,
+    pub_type: Annotated[
+        list[str] | None, typer.Option("--type", help="BORIS type (repeatable).")
+    ] = None,
+    lang: Annotated[
+        list[str] | None, typer.Option(help="Language code (repeatable).")
+    ] = None,
+    country: Annotated[
+        list[str] | None, typer.Option(help="Country tag, ISO alpha-3 (repeatable).")
+    ] = None,
+    region: Annotated[
+        list[str] | None, typer.Option(help="Region tag (repeatable).")
+    ] = None,
+    sub_area: Annotated[
+        list[str] | None, typer.Option(help="Sub-area tag, e.g. SL-d (repeatable).")
+    ] = None,
+    method: Annotated[
+        list[str] | None, typer.Option(help="Method tag (repeatable).")
+    ] = None,
+    sdg: Annotated[
+        list[int] | None, typer.Option(help="SDG number (repeatable).")
+    ] = None,
+    min_confidence: Annotated[
+        float, typer.Option(min=0.0, max=1.0, help="Lowest tag confidence counted.")
+    ] = 0.5,
+    show_ids: Annotated[
+        bool, typer.Option("--ids", help="List every record ID, not only a few.")
+    ] = False,
+    as_json: JsonOption = False,
+) -> None:
+    """Count publications by one or two schema dimensions, with denominators.
+
+    Counts records (a record with two methods counts under both) and says how
+    many matching records have no tag. With --gaps, lists the combinations of
+    the two dimensions with far fewer records than expected if they were
+    independent; conference items are left out unless --type or --all-types.
+    """
+    from rich.console import Console
+    from rich.table import Table
+
+    from chatcde.schemas import Filters
+    from chatcde.tools import core, counts
+    from chatcde.tools.context import get_context
+
+    filters = Filters(
+        year_from=year_from,
+        year_to=year_to,
+        cde_units=unit or [],
+        pub_types=pub_type or [],
+        languages=lang or [],
+        countries=country or [],
+        regions=region or [],
+        sub_areas=sub_area or [],
+        methods=method or [],
+        sdgs=sdg or [],
+        min_confidence=min_confidence,
+    )
+    console = Console()
+    if gaps:
+        if col is None:
+            typer.echo("--gaps needs two dimensions (ROW COL).", err=True)
+            raise typer.Exit(code=2)
+        report = _call(
+            ctx.obj,
+            lambda: counts.gap_report(
+                get_context(),
+                row,
+                col,
+                filters,
+                max_ratio,
+                exclude_types=[] if all_types else None,
+            ),
+        )
+        if as_json:
+            typer.echo(_dump(report.gaps))
+            return
+        m, b = report.matrix, report.basis
+        base = m.total_records - m.untagged_records
+        typer.echo(
+            f"{m.total_records} matching records; {base} tagged on both "
+            f"{row.value} and {col.value} (confidence >= {filters.min_confidence})."
+        )
+        if b.excluded_types:
+            typer.echo(
+                f"Left out: {b.excluded_records} records of type "
+                f"{', '.join(b.excluded_types)} (use --all-types to keep them)."
+            )
+        typer.echo(
+            f"Gaps: count <= {max_ratio} x expected, among cells expected to hold "
+            f"at least {report.min_expected:g} records."
+        )
+        if not report.gaps:
+            typer.echo("No gaps found.")
+            return
+        t = Table(title=f"Gaps: {row.value} x {col.value}")
+        t.add_column(row.value)
+        t.add_column(col.value)
+        for name in ("Count", "Expected", "Ratio"):
+            t.add_column(name, justify="right")
+        t.add_column("Records")
+        for g in report.gaps:
+            t.add_row(
+                g.row,
+                g.col or "",
+                str(g.count),
+                f"{g.expected:.1f}",
+                f"{g.ratio:.2f}",
+                _ids(g.record_ids, show_ids),
+            )
+        console.print(t)
+        return
+
+    m = _call(ctx.obj, lambda: core.count_by(row, col, filters))
+    if as_json:
+        typer.echo(_dump(m))
+        return
+    dims = row.value if col is None else f"{row.value} or {col.value}"
+    typer.echo(
+        f"{m.total_records} matching records; {m.untagged_records} have no tag on "
+        f"{dims} (confidence >= {filters.min_confidence})."
+    )
+    base = m.total_records - m.untagged_records
+    if col is None:
+        t = Table(title=f"Records by {row.value}")
+        t.add_column(row.value)
+        t.add_column("Records", justify="right")
+        t.add_column("Share", justify="right")
+        t.add_column("Record IDs")
+        for c in m.cells:
+            share = (
+                f"{100 * c.count / m.total_records:.0f}%" if m.total_records else "-"
+            )
+            t.add_row(c.row, str(c.count), share, _ids(c.record_ids, show_ids))
+        console.print(t)
+        typer.echo("Share = records with the term / matching records.")
+        return
+    typer.echo(f"{base} records are tagged on both dimensions.")
+    found = {(c.row, c.col): c.count for c in m.cells}
+    t = Table(title=f"Records by {row.value} x {col.value}")
+    t.add_column(f"{row.value} \\ {col.value}")
+    for c_term in m.col_totals:
+        t.add_column(c_term, justify="right")
+    t.add_column("Total", justify="right", style="bold")
+    for r_term, r_total in m.row_totals.items():
+        t.add_row(
+            r_term,
+            *[str(found.get((r_term, c), 0) or "") for c in m.col_totals],
+            str(r_total),
+        )
+    t.add_row(
+        "Total", *[str(n) for n in m.col_totals.values()], str(base), style="bold"
+    )
+    console.print(t)
+    typer.echo("Empty cells are 0. Use --json for the record IDs behind each cell.")
+
+
+def _overview() -> None:
+    """Print the 17 dimensions with vocabulary size and tag use."""
+    from rich.console import Console
+    from rich.table import Table
+
+    from chatcde.tools import counts
+    from chatcde.tools.context import get_context
+
+    ctx = get_context()
+    summaries, total = counts.dimension_overview(ctx)
+    t = Table(title=f"Schema dimensions (vocabulary {ctx.cfg.vocab.version})")
+    for name in ("#", "Dimension", "Terms", "Terms used", "Records tagged"):
+        t.add_column(name, justify="left" if name == "Dimension" else "right")
+    for i, s in enumerate(summaries, 1):
+        t.add_row(
+            str(i),
+            s.dimension.value,
+            str(s.terms),
+            str(s.terms_used),
+            f"{s.records_tagged} of {total}",
+        )
+    Console().print(t)
+    typer.echo(
+        "Counts use tags with confidence >= 0.5. Terms: `chatcde vocab -d "
+        "<dimension>`. Scope notes: docs/schema_draft.md."
+    )
+
+
+@app.command(rich_help_panel=PANEL_QUERY)
+def schema(ctx: typer.Context) -> None:
+    """Show the 17 schema dimensions with vocabulary size and how much is tagged.
+
+    Scope notes for each dimension are in docs/schema_draft.md.
+    """
+    _call(ctx.obj, _overview)
 
 
 @app.command(rich_help_panel=PANEL_QUERY)
@@ -248,7 +465,47 @@ def coverage() -> None:
     not_implemented("coverage", 11)
 
 
-def vocab_list(ctx: typer.Context) -> None:
-    """List vocabulary terms; ``vocab extract`` drafts new ones."""
-    if ctx.invoked_subcommand is None:
-        not_implemented("vocab", 24)
+def vocab_list(
+    ctx: typer.Context,
+    dimension: Annotated[
+        Dimension | None,
+        typer.Option("--dimension", "-d", help="List this dimension's terms."),
+    ] = None,
+    as_json: JsonOption = False,
+) -> None:
+    """List vocabulary terms with record counts; ``vocab extract`` drafts new ones.
+
+    Without --dimension, shows every dimension with its number of terms. With
+    it, shows each term's code, label, records tagged and definition (the same
+    list the assistant gets from list_vocabulary).
+    """
+    if ctx.invoked_subcommand is not None:
+        return
+    if dimension is None:
+        if as_json:
+            typer.echo("--json needs --dimension.", err=True)
+            raise typer.Exit(code=2)
+        _call(ctx.obj, _overview)
+        return
+
+    from rich.console import Console
+    from rich.table import Table
+
+    from chatcde.tools import core
+
+    terms = _call(ctx.obj, lambda: core.list_vocabulary(dimension))
+    if as_json:
+        typer.echo(_dump(terms))
+        return
+    t = Table(title=f"Vocabulary: {dimension.value}")
+    for name in ("Code", "Label", "Records", "Definition"):
+        t.add_column(name, justify="right" if name == "Records" else "left")
+    for term in terms:
+        t.add_row(
+            term.code,
+            term.label if term.label != term.code else "",
+            str(term.record_count),
+            textwrap.shorten(term.definition or "", width=70, placeholder=" ..."),
+        )
+    Console().print(t)
+    typer.echo("Records = records with a tag of the term at confidence >= 0.5.")
