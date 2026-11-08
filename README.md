@@ -285,6 +285,37 @@ print(result.answer, [c.citation.record_id for c in result.citations])
 
 See `docs/decisions/0022-agent-loop.md` and `docs/decisions/0023-ask-and-chat.md`.
 
+## Find gaps with the assistant
+
+`chatcde gaps` runs the gap analysis as a fixed chain, so every run takes the same
+steps:
+
+```bash
+chatcde gaps                                         # sub_area x method, all of CDE
+chatcde gaps --dims method,region --unit "Sustainable Land Systems"
+chatcde gaps --dims sub_area,method --year-from 2015 --max-cells 5 --json > gaps.json
+chatcde gaps --no-llm                                # counts and nearby records only
+```
+
+1. Code counts the two dimensions within the scope and finds the thin cells, as
+   `chatcde count ROW COL --gaps` does.
+2. For each of the first `gaps.max_cells` (8) cells, code searches the scope for the
+   two terms and lists the records found with their own tags.
+3. Code lists the caveats: untagged records, conference items left out, cells not
+   shown, and the data edition.
+4. The agent model judges each cell in one request with a JSON schema: a real gap, a
+   tagging artefact (the work exists but is tagged otherwise), a deliberate choice
+   (outside CDE's scope) or unclear, with a reason and the records behind it.
+
+Every number in the table comes from step 1; the model only judges. Record IDs it
+cites outside the cell's evidence are dropped and shown in red. The prompt is
+`src/chatcde/prompts/gaps.v1.md`, and the settings are in the `gaps` section of the
+config. `--alternative`, `--log FILE` and `--json` work as for `ask`. See
+`docs/decisions/0024-gaps-workflow.md`.
+```
+
+See `docs/decisions/0022-agent-loop.md` and `docs/decisions/0023-ask-and-chat.md`.
+
 ## Configuration
 
 Settings are merged from these files, later ones winning:

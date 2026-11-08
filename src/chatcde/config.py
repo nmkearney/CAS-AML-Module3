@@ -308,10 +308,18 @@ class ToolsConfig(_Section):
 
 
 class GapsConfig(_Section):
-    """Gap analysis settings (decisions 0018 and 0021)."""
+    """Gap analysis and the ``chatcde gaps`` workflow (decisions 0018, 0021, 0024)."""
 
     exclude_types: list[str] = Field(default_factory=list)
     min_expected: float = Field(ge=0)
+    max_ratio: float = Field(ge=0)
+    dims: str
+    max_cells: int = Field(ge=1)
+    passages_per_cell: int = Field(ge=1)
+    prompt: str
+    structured_output: bool
+    temperature: float = Field(ge=0)
+    max_tokens: int = Field(ge=256)
 
 
 class AgentConfig(_Section):

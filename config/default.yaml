@@ -158,6 +158,15 @@ tools:
 gaps:
   exclude_types: [conference_item]  # left out of find_gaps unless the filters name types
   min_expected: 5                # cells expected to hold fewer records are not judged
+  # `chatcde gaps` (docs/decisions/0024-gaps-workflow.md)
+  max_ratio: 0.25                # a gap holds at most this share of its expected count
+  dims: "sub_area,method"        # default --dims (row,col)
+  max_cells: 8                   # gap cells searched and judged, most extreme first
+  passages_per_cell: 3           # nearby records shown per cell
+  prompt: "gaps.v1"              # file <prompts.dir>/<name>.md
+  structured_output: true        # send the JSON schema as response_format
+  temperature: 0.1
+  max_tokens: 6144               # gpt-oss spends part of it on reasoning
 
 # --- Agent (see docs/decisions/0022-agent-loop.md) -------------------------
 agent:
