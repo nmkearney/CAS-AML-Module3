@@ -136,11 +136,13 @@ def unit_agreement(
     con: duckdb.DuckDBPyConnection,
     derived: list[Tag],
     vocab: dict[str, Any],
+    tagged: set[str],
     min_confidence: float = 0.5,
 ) -> tuple[int, int]:
-    """(records with a CDE unit that maps to an area, those whose areas include it).
+    """(tagged records with a mapped CDE unit, those whose areas include it).
 
-    Only derived impact areas at ``min_confidence`` or more count, as in the tools.
+    Only records in ``tagged`` (those the run tagged) are counted, and only derived
+    impact areas at ``min_confidence`` or more, as in the tools.
     """
     codes = unit_codes(vocab)
     areas: dict[str, set[str]] = defaultdict(set)
@@ -152,7 +154,7 @@ def unit_agreement(
         "SELECT record_id, cde_units FROM records WHERE len(cde_units) > 0"
     ).fetchall():
         wanted = {codes[u] for u in units or [] if u in codes}
-        if not wanted:
+        if rid not in tagged or not wanted:
             continue
         with_unit += 1
         agrees += bool(wanted & areas.get(rid, set()))
@@ -175,7 +177,7 @@ def publish(
     regions = RegionMap(load_countries(cfg.tagging.m49_file), vocab)
     derived = derive(llm, vocab, regions)
     catalogue.replace_tables(con, {"tags": [*llm, *derived]})
-    with_unit, agrees = unit_agreement(con, derived, vocab)
+    with_unit, agrees = unit_agreement(con, derived, vocab, {t.record_id for t in llm})
     summary = PublishSummary(
         run=run,
         records_tagged=len({t.record_id for t in llm}),

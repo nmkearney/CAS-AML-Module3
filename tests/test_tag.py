@@ -502,6 +502,12 @@ def test_publish_replaces_tags(db: Path, tmp_path: Path):
     ).fetchone()
     assert rows == (s.llm_tags + s.region_tags + s.impact_area_tags, 2)  # fixtures gone
     assert s.impact_area_tags == 2  # first sub_area code (JE-a) -> JE, per record
+    units = con.execute(
+        "SELECT count(*) FROM records WHERE list_contains(?, record_id) "
+        "AND len(cde_units) > 0",
+        [ids],
+    ).fetchone()[0]
+    assert s.records_with_unit <= units  # only the tagged records are counted
     con.close()
 
 
