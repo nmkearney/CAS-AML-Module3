@@ -45,9 +45,9 @@ from chatcde.tools.specs import ToolSpec, run_tool, tool_specs
 log = logging.getLogger(__name__)
 
 #: One ``[...]`` group that contains at least one ``BORIS:`` reference.
-_CITE_GROUP_RE = re.compile(r"\[([^\[\]]*BORIS:[^\[\]]*)\]")
+CITE_GROUP_RE = re.compile(r"\[([^\[\]]*BORIS:[^\[\]]*)\]")
 #: One reference inside such a group: the ID and an optional page.
-_CITE_RE = re.compile(
+CITE_RE = re.compile(
     r"BORIS:\s*([\w.:/-]+?)"  # the record ID
     r"(?:\s*,?\s*pp?\.\s*(\d+)(?:\s*[-–]\s*\d+)?)?"  # optional page (range)
     r"\s*(?=[;,]|$)"
@@ -119,8 +119,8 @@ def parse_citations(answer: str) -> list[tuple[str, int | None]]:
     Several references may share one bracket (``[BORIS:a; BORIS:b, p. 3]``).
     """
     found = []
-    for group in _CITE_GROUP_RE.finditer(answer):
-        for m in _CITE_RE.finditer(group.group(1)):
+    for group in CITE_GROUP_RE.finditer(answer):
+        for m in CITE_RE.finditer(group.group(1)):
             found.append(
                 (m.group(1).rstrip(".,;"), int(m.group(2)) if m.group(2) else None)
             )
