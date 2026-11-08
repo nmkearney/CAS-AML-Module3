@@ -164,7 +164,7 @@ Fixed workflows script the core uses, so a mid-sized local model follows the sam
 
 | Command | Tool chain and output |
 | --- | --- |
-| `chatcde gaps --scope … --dims theme,method` | The method and topic gap workflow for a unit, theme or region; ends with an evidence table and coverage caveats |
+| `chatcde gaps --scope … --dims theme,method` | The method and topic gap workflow for a unit, theme or region; ends with an evidence table and coverage caveats; conference items are left out unless included (decision 0018) |
 | `chatcde frontier --strength …` | CDE's record in an area, how the field is moving, and two or three candidate directions |
 | `chatcde brief --topic … [--region …]` | A cited synthesis of CDE findings |
 | `chatcde experts --topic …` | People, units and projects, with reasons |

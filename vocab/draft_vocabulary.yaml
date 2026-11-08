@@ -5,7 +5,7 @@
 
 version: 0.2
 
-impact_area:
+impact_area:  # applies to all years, not only 2025 on (decision 0016)
   - {code: JE, label: Just economies and human well-being, boris_unit: "Just Economies & Human Well Being"}
   - {code: SL, label: Sustainable land systems, boris_unit: "Sustainable Land Systems"}
   - {code: SG, label: Sustainability governance, boris_unit: "Sustainable Governance"}
@@ -156,13 +156,12 @@ country: {standard: ISO 3166-1 alpha-3, extra_flag: global_or_multi_country}
 
 region:
   world: UN M49 sub-regions (derived from country)
-  cde_partner_region:  # DRAFT mapping, to confirm (four vs five regions)
-    Eastern Africa and Horn of Africa: [KEN, ETH]
-    Madagascar: [MDG]
-    Mainland Southeast Asia: [LAO, MMR]
-    South Asia and Himalaya: [NPL]
-    South America and central Andes: [BOL, PER]
-    Europe and Switzerland: [CHE]
+  cde_partner_region:  # decision 0017: four regions, derived from country in code
+    CDE-EAF: {label: Eastern Africa, m49: "014"}            # incl. Horn of Africa, Madagascar
+    CDE-MSEA: {label: Mainland Southeast Asia, countries: [KHM, LAO, MMR, THA, VNM]}
+    CDE-SAM: {label: South America, m49: "005"}             # incl. central Andes
+    CDE-EUR: {label: Europe and Switzerland, m49: "150"}
+  cde_partner_countries: [KEN, ETH, LAO, MMR, NPL, BOL, MDG]  # main partner institutions (0017)
 
 setting:  # proposed
   - Mountains
