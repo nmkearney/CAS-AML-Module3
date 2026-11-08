@@ -67,6 +67,29 @@ Each record's publisher DOI and BORIS DOI are looked up, 100 per request (about
 same folder. No key is needed. An optional free key is read from
 `CHATCDE_OPENALEX_API_KEY`. See `docs/decisions/0010-openalex-enrichment.md`.
 
+## Parse
+
+Turn the downloaded PDFs into page text (no VPN needed; OCR needs the key in
+`CHATCDE_LLM_API_KEY`):
+
+```bash
+chatcde parse --no-ocr              # text layer of every PDF; scanned pages stay pending
+chatcde parse                       # the same, then OCR of pending pages with models.vision
+chatcde parse --limit 20            # trial run on 20 PDFs
+chatcde parse --record <record_id>  # one record (repeatable)
+chatcde parse --force               # read every PDF again (cached OCR answers are reused)
+```
+
+Every page of each PDF becomes one row in the `pages` table, with its text, its
+detected language (`en`, `de`, `fr`, … or empty) and whether it came from OCR. Pages
+with almost no text but covered by images (scans), and pages whose text layer is
+garbled, are rendered and transcribed by the vision model, 4 at a time. Answers are
+cached in `data/text/ocr/`, so a rerun never asks twice for the same page. The
+`parse_state` table keeps each record's status (`done`, `needs_ocr`, `error`); a rerun
+skips finished records and retries the rest. Counts go to
+`data/text/parse_summary.json`. Thresholds are in the `parse` section of the config.
+See `docs/decisions/0014-parsing.md`.
+
 ## Index
 
 Split the catalogue's texts into passages for search (no network needed):
