@@ -15,13 +15,14 @@ from __future__ import annotations
 
 import json
 import logging
-from collections.abc import Mapping
+from collections.abc import Callable, Mapping, Sequence
+from concurrent.futures import FIRST_COMPLETED, Future, ThreadPoolExecutor, wait
 from pathlib import Path
 from typing import Any
 
 from pydantic import BaseModel, ValidationError
 
-from chatcde.store.endpoint import EndpointClient
+from chatcde.store.endpoint import EndpointClient, EndpointError
 
 log = logging.getLogger(__name__)
 
@@ -143,3 +144,59 @@ def chat_json[T: BaseModel](
                     )
         log.debug("attempt %d/%d: %s", attempt, attempts, problem)
     raise LLMReplyError(problem)
+
+
+def run_parallel[I, R](
+    items: Sequence[I],
+    ask: Callable[[I], R],
+    handle: Callable[[I, R | None, str | None], None],
+    *,
+    workers: int,
+    max_consecutive_failures: int,
+) -> bool:
+    """Run ``ask`` on every item with up to ``workers`` requests in flight.
+
+    ``handle(item, result, error)`` is called in the calling thread for each
+    finished item, so it may write to DuckDB (connections are not shared between
+    threads). ``error`` is ``"LLMReplyError: ..."`` or ``"EndpointError: ..."``
+    and ``result`` is then None.
+
+    An invalid answer is the model's fault and does not count towards stopping.
+    After ``max_consecutive_failures`` endpoint errors in a row no new requests
+    are sent; the ones in flight still finish.
+
+    Returns:
+        True if the run stopped early because the endpoint kept failing.
+    """
+    queue = list(items)
+    consecutive = 0
+    stopped = False
+    with ThreadPoolExecutor(max_workers=workers) as pool:
+        pending: dict[Future[R], I] = {}
+        while (queue and not stopped) or pending:
+            while queue and not stopped and len(pending) < workers:
+                item = queue.pop(0)
+                pending[pool.submit(ask, item)] = item
+            ready, _ = wait(pending, return_when=FIRST_COMPLETED)
+            for fut in ready:
+                item = pending.pop(fut)
+                try:
+                    result = fut.result()
+                except LLMReplyError as exc:
+                    consecutive = 0
+                    handle(item, None, f"LLMReplyError: {exc}")
+                    continue
+                except EndpointError as exc:
+                    consecutive += 1
+                    if consecutive >= max_consecutive_failures and not stopped:
+                        stopped = True
+                        log.error(
+                            "%d endpoint failures in a row; stopping (last: %s)",
+                            consecutive,
+                            exc,
+                        )
+                    handle(item, None, f"EndpointError: {exc}")
+                    continue
+                consecutive = 0
+                handle(item, result, None)
+    return stopped

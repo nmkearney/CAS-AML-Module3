@@ -24,7 +24,6 @@ import re
 import unicodedata
 from collections import Counter
 from collections.abc import Callable
-from concurrent.futures import FIRST_COMPLETED, Future, ThreadPoolExecutor, wait
 from dataclasses import dataclass
 from typing import Literal
 
@@ -33,9 +32,9 @@ from pydantic import BaseModel, Field
 
 from chatcde.config import Config
 from chatcde.harvest.common import code_version, now
-from chatcde.store.endpoint import EndpointClient, EndpointError
+from chatcde.store.endpoint import EndpointClient
 from chatcde.tag import tables
-from chatcde.tag.llm import LLMReplyError, chat_json, fill_prompt, load_prompt
+from chatcde.tag.llm import chat_json, fill_prompt, load_prompt, run_parallel
 
 log = logging.getLogger(__name__)
 
@@ -92,11 +91,19 @@ class LabelSummary(BaseModel):
 
 @dataclass(frozen=True)
 class RecordText:
-    """The text the model sees for one record."""
+    """The text the model sees for one record, and its parts.
+
+    ``text`` is what is sent. The parts (as included in ``text``, before the
+    overall cut) let tagging find which part a quote came from (decision 0028).
+    """
 
     record_id: str
     text: str
     sources: str  # e.g. "abstract,fulltext"
+    metadata: str = ""  # title, year, type, language, keywords, container
+    abstract: str = ""
+    abstract_source: str | None = None  # TextSource value, e.g. "abstract_boris"
+    fulltext: str = ""
 
 
 #: A role the model sometimes repeats inside an actor label: "companies (audience)".
@@ -157,7 +164,7 @@ def build_texts(
     rows = con.execute(
         """
         SELECT record_id, title, year, pub_type, languages, keywords, container,
-               abstract
+               abstract, abstract_source
         FROM records WHERE list_contains(?, record_id)
         """,
         [record_ids],
@@ -171,7 +178,7 @@ def build_texts(
         ).fetchall():
             pages.setdefault(rid, []).append(text)
     out: dict[str, RecordText] = {}
-    for rid, title, year, pub_type, langs, keywords, container, abstract in rows:
+    for rid, title, year, pub_type, langs, keywords, container, abstract, a_src in rows:
         head = [f"Title: {title}"]
         meta = [
             f"Year: {year}" if year else None,
@@ -183,17 +190,28 @@ def build_texts(
             head.append(f"Keywords: {'; '.join(keywords)}")
         if container:
             head.append(f"Published in: {container}")
-        parts = ["\n".join(h for h in head if h)]
+        meta_text = "\n".join(h for h in head if h)
+        parts = [meta_text]
         sources = []
-        if abstract and abstract.strip():
-            parts.append("Abstract:\n" + abstract.strip())
+        abstract_text = (abstract or "").strip()
+        if abstract_text:
+            parts.append("Abstract:\n" + abstract_text)
             sources.append("abstract")
         body = "\n\n".join(t.strip() for t in pages.get(rid, []) if t.strip())
+        body = body[:max_fulltext_chars]
         if body:
-            parts.append("Full text (first pages):\n" + body[:max_fulltext_chars])
+            parts.append("Full text (first pages):\n" + body)
             sources.append("fulltext")
         text = "\n\n".join(parts)[:max_input_chars]
-        out[rid] = RecordText(rid, text, ",".join(sources) or "metadata")
+        out[rid] = RecordText(
+            rid,
+            text,
+            ",".join(sources) or "metadata",
+            metadata=meta_text,
+            abstract=abstract_text,
+            abstract_source=a_src,
+            fulltext=body,
+        )
     return out
 
 
@@ -321,8 +339,6 @@ def label_sample(
         max_input_chars=s.max_input_chars,
     )
     version = code_version()
-    labelled = failed = consecutive = 0
-    stopped = False
     log.info(
         "Labelling %d of %d sampled records with %s (%s); %d already done",
         len(work),
@@ -343,63 +359,53 @@ def label_sample(
             extra_body=s.extra_body,
         )
 
-    queue = [texts[r] for r in work if r in texts]
-    finished = 0
-    with ThreadPoolExecutor(max_workers=cfg.llm.max_concurrency) as pool:
-        pending: dict[Future[ExtractedLabels], RecordText] = {}
-        while (queue and not stopped) or pending:
-            while queue and not stopped and len(pending) < cfg.llm.max_concurrency:
-                rec = queue.pop(0)
-                pending[pool.submit(ask, rec)] = rec
-            ready, _ = wait(pending, return_when=FIRST_COMPLETED)
-            for fut in ready:
-                rec = pending.pop(fut)
-                rows: list[tables.LabelRow] = []
-                error: str | None = None
-                try:
-                    rows = to_rows(
-                        fut.result(),
-                        rec,
-                        limit=s.labels_per_kind,
-                        model=model,
-                        prompt_version=prompt_version,
-                        version=version,
-                    )
-                    consecutive = 0
-                except LLMReplyError as exc:
-                    error = f"LLMReplyError: {exc}"
-                    consecutive = 0
-                except EndpointError as exc:
-                    error = f"EndpointError: {exc}"
-                    consecutive += 1
-                    if consecutive >= s.max_consecutive_failures and not stopped:
-                        stopped = True
-                        log.error(
-                            "%d endpoint failures in a row; stopping (last: %s)",
-                            consecutive,
-                            exc,
-                        )
-                if error:
-                    failed += 1
-                    log.warning("%s: %s", rec.record_id, error)
-                else:
-                    labelled += 1
-                state = tables.LabelStateRow(
-                    record_id=rec.record_id,
-                    model=model,
-                    prompt_version=prompt_version,
-                    status="error" if error else "ok",
-                    n_labels=len(rows),
-                    sources=rec.sources,
-                    input_chars=len(rec.text),
-                    error=error[:500] if error else None,
-                    code_version=version,
-                    created_at=now(),
-                )
-                _save(con, rec, state, rows)
-                finished += 1
-                if progress:
-                    progress(finished, len(work))
+    counts = {"labelled": 0, "failed": 0, "finished": 0}
+
+    def handle(
+        rec: RecordText, answer: ExtractedLabels | None, error: str | None
+    ) -> None:
+        rows = (
+            to_rows(
+                answer,
+                rec,
+                limit=s.labels_per_kind,
+                model=model,
+                prompt_version=prompt_version,
+                version=version,
+            )
+            if answer is not None
+            else []
+        )
+        if error:
+            counts["failed"] += 1
+            log.warning("%s: %s", rec.record_id, error)
+        else:
+            counts["labelled"] += 1
+        state = tables.LabelStateRow(
+            record_id=rec.record_id,
+            model=model,
+            prompt_version=prompt_version,
+            status="error" if error else "ok",
+            n_labels=len(rows),
+            sources=rec.sources,
+            input_chars=len(rec.text),
+            error=error[:500] if error else None,
+            code_version=version,
+            created_at=now(),
+        )
+        _save(con, rec, state, rows)
+        counts["finished"] += 1
+        if progress:
+            progress(counts["finished"], len(work))
+
+    stopped = run_parallel(
+        [texts[r] for r in work if r in texts],
+        ask,
+        handle,
+        workers=cfg.llm.max_concurrency,
+        max_consecutive_failures=s.max_consecutive_failures,
+    )
+    labelled, failed = counts["labelled"], counts["failed"]
 
     ok_total, by_kind, found = _totals(con, model, prompt_version)
     return LabelSummary(

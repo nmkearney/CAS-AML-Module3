@@ -128,6 +128,42 @@ vocab_extract:
   extra_body:
     chat_template_kwargs: {enable_thinking: false}
 
+# --- Tagging (docs/decisions/0028-tagging.md) ------------------------------
+# `chatcde tag`: the tagging model tags terms (never groups) against the closed
+# lists in vocab.file, in batches of dimensions; region and impact_area are
+# derived in code when the run is published to the `tags` table.
+tagging:
+  prompt: "tag.v1"               # file <prompts.dir>/<name>.md
+  run: "main"                    # run name in tag_runs; `main` is published to tags
+  batches:                       # one request per record and batch
+    strategy: [sub_area, additional_sub_area, objective, pathway, research_mode,
+               transformative_aspiration]
+    how_where: [method, data_type, setting, scale, country]
+    who_what: [system, actors, justice_lens, sdg, output_type]
+  max_per_dimension:             # most tags kept per record and dimension
+    default: 4
+    method: 5
+    actors: 6                    # a group may appear with two roles
+    country: 8
+    sdg: 3                       # also vocab: sdg.max_per_record
+  confidence:                    # evidence strength reported by the model -> confidence
+    explicit: 0.9                # the text states it
+    inferred: 0.6                # clearly implied
+    weak: 0.3                    # plausible only
+  unverified_cap: 0.4            # quote not found in the input: confidence capped (< 0.5 counts)
+  max_fulltext_chars: 12000      # characters of parsed page text given to the model
+  max_input_chars: 20000         # cap on the whole input (title + abstract + pages)
+  max_tokens: 3072               # answer budget per record and batch
+  max_consecutive_failures: 5    # stop if the endpoint keeps failing
+  includes_shown: 6              # synonyms shown per term in the prompt
+  m49_file: "vocab/m49.csv"      # UN M49 countries and regions (scripts/fetch_m49.py)
+  pilot:                         # `chatcde tag --pilot`: a fresh stratified draw
+    size: 100
+    seed: 29                     # differs from vocab_extract.seed; the #13 sample is excluded
+    floor: 1
+  extra_body:
+    chat_template_kwargs: {enable_thinking: false}
+
 # --- Retrieval ------------------------------------------------------------
 retrieval:
   chunk_tokens: 500              # fits the reranker's 1K context

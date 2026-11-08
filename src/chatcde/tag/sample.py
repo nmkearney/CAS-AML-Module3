@@ -104,12 +104,14 @@ def language_of(languages: list[str] | None, own: list[str]) -> str:
 
 
 def load_candidates(
-    con: duckdb.DuckDBPyConnection, cfg: Config
+    con: duckdb.DuckDBPyConnection, cfg: Config, *, metadata_only: bool = False
 ) -> tuple[int, list[Candidate]]:
     """Return (publications in the catalogue, eligible records with their strata).
 
     A record is eligible if it has a non-empty abstract or at least one page of
     text in ``pages`` (if that table exists; it is written by ``chatcde parse``).
+    With ``metadata_only``, records with neither are eligible too (the tagging
+    pilot, which must look like the whole corpus).
     """
     codes = unit_codes(load_vocabulary(cfg.vocab.file))
     total = con.execute("SELECT count(*) FROM records").fetchone()[0]  # type: ignore[index]
@@ -136,7 +138,7 @@ def load_candidates(
             has_pages=bool(has_pages),
         )
         for rid, year, langs, units, has_pages, has_abstract in rows
-        if has_pages or has_abstract
+        if has_pages or has_abstract or metadata_only
     ]
     return int(total), out
 
@@ -173,9 +175,18 @@ def allocate(sizes: dict[str, int], target: int, floor: int) -> dict[str, int]:
 
 
 def draw(
-    candidates: list[Candidate], target: int, floor: int, seed: int
+    candidates: list[Candidate],
+    target: int,
+    floor: int,
+    seed: int,
+    *,
+    prefer_pages: bool = True,
 ) -> list[Candidate]:
-    """Draw the stratified sample (see the module docstring); seeded, so repeatable."""
+    """Draw the stratified sample (see the module docstring); seeded, so repeatable.
+
+    ``prefer_pages=False`` keeps the within-stratum order random, so records
+    without page text are drawn at their share (the tagging pilot).
+    """
     strata: dict[str, list[Candidate]] = {}
     for c in sorted(candidates, key=lambda c: c.record_id):
         strata.setdefault(c.stratum, []).append(c)
@@ -185,9 +196,8 @@ def draw(
     for s in sorted(strata):
         members = list(strata[s])
         rng.shuffle(members)
-        members.sort(
-            key=lambda c: not c.has_pages
-        )  # stable: pages first, random within
+        if prefer_pages:
+            members.sort(key=lambda c: not c.has_pages)  # stable: pages first
         picked.extend(members[: alloc[s]])
     return picked
 
@@ -284,5 +294,67 @@ def build_sample(
         len(candidates),
         len({c.stratum for c in candidates}),
         s.seed,
+    )
+    return _summary(total, candidates, picked, reused=False)
+
+
+def draw_pilot(
+    con: duckdb.DuckDBPyConnection, cfg: Config, *, force: bool = False
+) -> SampleSummary:
+    """Draw the tagging pilot into ``tag_pilot`` unless the same draw already exists.
+
+    Same strata as the vocabulary sample (unit x decade x language), but every
+    record is eligible (metadata-only records too, as the full run tags them), the
+    #13 sample (``vocab_sample``) is excluded so the pilot does not measure the
+    records the vocabulary was built from, and the within-stratum order is random.
+    Seed, size and floor come from ``tagging.pilot`` (decision 0028).
+    """
+    p = cfg.tagging.pilot
+    tables.ensure(con, "tag_pilot", "vocab_sample")
+    total, candidates = load_candidates(con, cfg, metadata_only=True)
+    used = {r[0] for r in con.execute("SELECT record_id FROM vocab_sample").fetchall()}
+    candidates = [c for c in candidates if c.record_id not in used]
+    stored = con.execute(
+        "SELECT DISTINCT seed, sample_size, stratum_floor FROM tag_pilot"
+    ).fetchall()
+    if not force and stored == [(p.seed, p.size, p.floor)]:
+        ids = {r[0] for r in con.execute("SELECT record_id FROM tag_pilot").fetchall()}
+        picked = [c for c in candidates if c.record_id in ids]
+        log.info(
+            "Pilot of %d records with seed %d already drawn; kept", len(ids), p.seed
+        )
+        return _summary(total, candidates, picked, reused=True)
+    picked = draw(candidates, p.size, p.floor, p.seed, prefer_pages=False)
+    stamp, version = now(), code_version()
+    rows = [
+        tables.SampleRow(
+            record_id=c.record_id,
+            stratum=c.stratum,
+            unit=c.unit,
+            decade=c.decade,
+            language=c.language,
+            has_pages=c.has_pages,
+            seed=p.seed,
+            sample_size=p.size,
+            stratum_floor=p.floor,
+            sampled_at=stamp,
+            code_version=version,
+        )
+        for c in picked
+    ]
+    con.execute("BEGIN TRANSACTION")
+    try:
+        con.execute("DELETE FROM tag_pilot")
+        tables.insert(con, "tag_pilot", rows)
+        con.execute("COMMIT")
+    except BaseException:
+        con.execute("ROLLBACK")
+        raise
+    log.info(
+        "Pilot: %d of %d records (the %d in the vocabulary sample excluded), seed %d",
+        len(rows),
+        len(candidates),
+        len(used),
+        p.seed,
     )
     return _summary(total, candidates, picked, reused=False)

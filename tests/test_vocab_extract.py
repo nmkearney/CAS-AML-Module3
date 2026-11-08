@@ -548,7 +548,7 @@ def test_cli_vocab_extract_all_steps(
         assert title in result.output
     assert (tmp_path / "candidates.yaml").is_file()
     con = duckdb.connect(str(db), read_only=True)
-    for t in tables.TABLES:
+    for t in (n for n in tables.TABLES if n.startswith("vocab_")):
         assert con.execute(f"SELECT count(*) FROM {t}").fetchone()[0] > 0
     con.close()
 

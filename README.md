@@ -281,6 +281,39 @@ chatcde vocab review --force --carry-from vocab/curation/v0.3.xlsx   # re-export
 - See `docs/decisions/0026-vocabulary-codes-and-curation.md` and
   `docs/decisions/0027-additional-sub-areas.md`.
 
+## Tag the corpus
+
+The tagging model (`models.tagging`) tags each record against the closed vocabulary. It
+needs `CHATCDE_LLM_API_KEY` and the UniBe network or VPN.
+
+```bash
+chatcde tag --pilot                        # a fresh stratified draw of 100 records
+chatcde tag --pilot --limit 3 --no-publish # try a few requests first
+chatcde tag --ids <record_id> --batch how_where --force
+chatcde tag --all                          # every record; resumable, runs for hours
+chatcde tag --pilot --alternative          # model_alternatives.tagging, run "alt"
+chatcde tag --publish-only                 # rebuild the tags table from run "main"
+```
+
+- **One request per record and batch.** The three batches are strategy, how and where,
+  and who and what (`tagging.batches`). The JSON schema allows only live codes, and the
+  prompt lists each dimension's terms under their groups.
+- **Code, not the model, decides the confidence and checks the evidence.**
+  - The model gives an evidence strength, which maps to a confidence (explicit 0.9,
+    inferred 0.6, weak 0.3).
+  - Every quote is looked up in the abstract, the pages and the metadata, and `source`
+    records where it was found.
+  - A tag whose quote is found nowhere is capped at 0.4, below the 0.5 that counts.
+- **Tags are terms only.** Groups come from the vocabulary at query time.
+  Publishing the `main` run writes the `tags` table and adds **region** (UN M49 region,
+  CDE partner region, partner-country flag, from `vocab/m49.csv`) and **impact_area**
+  (from the sub-areas' parents), both derived in code.
+- **Runs are kept in `tag_runs`, and their state in `tag_state`.** Work already done
+  with the same model, prompt and vocabulary version is skipped; errors are retried on
+  the next run.
+
+See `docs/decisions/0028-tagging.md`.
+
 ## Ask the assistant
 
 The local agent model (`models.agent`) answers questions by calling the tools above:

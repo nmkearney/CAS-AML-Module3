@@ -31,6 +31,7 @@ from pydantic import (
     Field,
     ValidationError,
     ValidationInfo,
+    field_validator,
 )
 
 ENV_CONFIG = "CHATCDE_CONFIG"
@@ -285,6 +286,56 @@ class VocabExtractConfig(_Section):
     extra_body: dict[str, Any] = Field(default_factory=dict)
 
 
+class TaggingPilotConfig(_Section):
+    """The pilot draw for ``chatcde tag --pilot`` (decision 0028)."""
+
+    size: int = Field(ge=1)
+    seed: int
+    floor: int = Field(ge=0)
+
+
+class TaggingConfig(_Section):
+    """Closed-list tagging of the corpus (``chatcde tag``, decision 0028)."""
+
+    prompt: str
+    run: str
+    batches: dict[str, list[str]]
+    max_per_dimension: dict[str, int]
+    confidence: dict[Literal["explicit", "inferred", "weak"], float]
+    unverified_cap: float = Field(ge=0, le=1)
+    max_fulltext_chars: int = Field(ge=0)
+    max_input_chars: int = Field(ge=500)
+    max_tokens: int = Field(ge=256)
+    max_consecutive_failures: int = Field(ge=1)
+    includes_shown: int = Field(ge=0)
+    m49_file: ProjectPath
+    pilot: TaggingPilotConfig
+    extra_body: dict[str, Any] = Field(default_factory=dict)
+
+    @field_validator("batches")
+    @classmethod
+    def _batches_are_taggable(cls, v: dict[str, list[str]]) -> dict[str, list[str]]:
+        """Every batch names schema dimensions, each in one batch, none derived."""
+        from chatcde.schemas import Dimension
+
+        known = {d.value for d in Dimension}
+        derived = {Dimension.REGION.value, Dimension.IMPACT_AREA.value}
+        seen: list[str] = [d for dims in v.values() for d in dims]
+        if unknown := sorted(set(seen) - known):
+            raise ValueError(f"unknown dimensions in tagging.batches: {unknown}")
+        if bad := sorted(set(seen) & derived):
+            raise ValueError(f"derived in code, not tagged: {bad}")
+        if dup := sorted({d for d in seen if seen.count(d) > 1}):
+            raise ValueError(f"dimensions in more than one batch: {dup}")
+        return v
+
+    def limit(self, dimension: str) -> int:
+        """Most tags kept per record for ``dimension`` (``default`` otherwise)."""
+        return self.max_per_dimension.get(
+            dimension, self.max_per_dimension.get("default", 4)
+        )
+
+
 class RetrievalConfig(_Section):
     """Chunking and search settings (decisions 0011 and 0013)."""
 
@@ -380,6 +431,7 @@ class Config(_Section):
     vocab: VocabConfig
     prompts: PromptsConfig
     vocab_extract: VocabExtractConfig
+    tagging: TaggingConfig
     retrieval: RetrievalConfig
     embedding: EmbeddingConfig
     tools: ToolsConfig
