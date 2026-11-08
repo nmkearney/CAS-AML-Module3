@@ -222,7 +222,7 @@ def vocab_review(
 
     One sheet per curated dimension: current terms (decision 'keep') and the
     candidates from `vocab extract` (decide each). Edit the white columns in
-    Excel, then run `chatcde vocab apply`. See decision 0025.
+    Excel, then run `chatcde vocab apply`. See decision 0026.
     """
     from chatcde.tag.curation import export_workbook
 

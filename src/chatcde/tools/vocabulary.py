@@ -8,7 +8,7 @@
   definition comes from ``definition``, ``scope`` or ``rule``;
 * groups of lists (``method``, ``system``, ``actors.groups``; up to v0.2): the
   group name becomes the definition;
-* the curated layout written by ``chatcde vocab apply`` (v0.3, decision 0025):
+* the curated layout written by ``chatcde vocab apply`` (v0.3, decision 0026):
   ``{groups: [{code, label}], terms: [{code, label, group, definition, ...}],
   retired: [...]}``. Only ``terms`` are entries; the group label is prefixed to
   the definition, and retired codes are not listed;

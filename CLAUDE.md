@@ -159,7 +159,7 @@ Two developers work in parallel; see `CONTRIBUTING.md` for the full workflow.
 
 ## Vocabulary v0.3 (`chatcde vocab apply`, 2026-11-08)
 
-- Curated in `vocab/curation/v0.3.xlsx` (decisions 0025, 0026): setting 35, data_type 44,
+- Curated in `vocab/curation/v0.3.xlsx` (decisions 0026, 0027): setting 35, data_type 44,
   method 60, system 66, actors 61, scale 8, justice_lens 7, additional_sub_area 77 terms.
 - Terms have codes (`MET-case-study`); `Tag.term` stores the code, and the fixtures were
   remapped with `scripts/remap_fixture_tags.py` and the code map `v0.3_codes.csv`.
@@ -241,7 +241,7 @@ counts, checksums); `chatcde info` and `coverage_report` report the edition.
 | `chatcde search`, `show`, `read`, `count`, `vocab`, `schema`, `coverage`, `info` | Direct tool calls, no LLM (`search` uses the embedding and reranker models) |
 | `chatcde harvest`, `parse`, `tag`, `index`, `evaluate` | Pipeline stages |
 | `chatcde vocab extract` | Open extraction on the sample, for vocabulary drafting |
-| `chatcde vocab review` / `vocab apply` | Curation workbook (Excel) from the candidates; write the vocabulary YAML from its decisions (decision 0025) |
+| `chatcde vocab review` / `vocab apply` | Curation workbook (Excel) from the candidates; write the vocabulary YAML from its decisions (decision 0026) |
 | `chatcde fetch-data [--edition full\|open] [--top-up]` | Download a prebuilt data bundle (full on VPN, else open) |
 | `chatcde export --edition full\|open` | Build a distributable bundle from the local index |
 
@@ -253,7 +253,7 @@ Full definitions and scope notes are in `docs/schema_draft.md` and `vocab/draft_
 |---|---|---|
 | 1 | impact_area | Strategy 2025–2028, Table 1 (JE, SL, SG, TE); derived from sub-area parents (#49) |
 | 2 | sub_area | Strategy Table 1 (16 sub-areas, e.g. SL-d) |
-| 3 | additional_sub_area | curated from open extraction: 77 topics outside the sub-areas, each with an impact_area, cross_cutting or outside (decision 0026) |
+| 3 | additional_sub_area | curated from open extraction: 77 topics outside the sub-areas, each with an impact_area, cross_cutting or outside (decision 0027) |
 | 4 | objective | Strategy 1.4 (O1–O5) |
 | 5 | pathway | Strategy 2.2 (P1–P5), only when explicit |
 | 6 | research_mode | Strategy 1.3 (M1–M4) |
@@ -271,7 +271,7 @@ Full definitions and scope notes are in `docs/schema_draft.md` and `vocab/draft_
 | 18 | output_type | BORIS type + audience |
 
 From v0.3, closed-list terms have stable codes (`MET-case-study`, `ASA-food-security`) and
-`Tag.term` stores the code (decision 0025).
+`Tag.term` stores the code (decision 0026).
 
 Vocabulary process (no workshops): seed from the YAML; the local LLM does open
 extraction on a stratified sample of 200–300 records (by unit, decade and language); the developer

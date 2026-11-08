@@ -1,6 +1,6 @@
 """Curate the vocabulary in an Excel workbook, then apply it to the YAML (issue #14).
 
-The developer decides in Excel; code writes the YAML (decision 0025). The flow
+The developer decides in Excel; code writes the YAML (decision 0026). The flow
 runs one way:
 
     vocab/candidates.yaml + draft_vocabulary.yaml
@@ -65,7 +65,7 @@ PREFIXES: dict[str, str] = {
 }
 
 #: Candidate kind in candidates.yaml -> sheet. Theme candidates are the evidence
-#: for additional sub-areas (decision 0026).
+#: for additional sub-areas (decision 0027).
 KIND_SHEET: dict[str, str] = {
     "setting": "setting",
     "data_type": "data_type",
@@ -362,7 +362,7 @@ def _scope_rows(
 
 
 README = [
-    "Vocabulary curation workbook (chatcde vocab review / apply; decision 0025).",
+    "Vocabulary curation workbook (chatcde vocab review / apply; decision 0026).",
     "",
     "Edit only the white columns. Grey columns are evidence and are ignored.",
     "When done (or any time), run: chatcde vocab apply  -> rewrites "
@@ -793,7 +793,7 @@ def apply_workbook(
             key = row.get("key", "")
             label = row.get("label", "")
             if decision in ("keep", "accept") and row.get("merge_into"):
-                # merge_into on a live term = related terms (0025), ';'-separated.
+                # merge_into on a live term = related terms (0026), ';'-separated.
                 own = row.get("code", "")
                 if own not in live[dim]:
                     continue  # the row already failed in pass 1

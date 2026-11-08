@@ -1,6 +1,6 @@
 """Remap the hand-made fixture tags from term labels to vocabulary codes.
 
-One-off script for vocabulary v0.3 (issue #14, decisions 0025 and 0026). Up to
+One-off script for vocabulary v0.3 (issue #14, decisions 0026 and 0027). Up to
 v0.2, ``Tag.term`` held the label of a closed-list term ("Case study"); from
 v0.3 it holds the code ("MET-case-study"). The fixture tags in
 ``tests/fixtures/tags.jsonl`` and their hand-check rows in ``tag_review.csv``

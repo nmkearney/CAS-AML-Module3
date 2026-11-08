@@ -55,7 +55,7 @@ def flatten(node: Any) -> set[str]:
             out |= {x["code"]} if isinstance(x, dict) else {str(x)}
         return out
     if isinstance(node, dict):
-        if "terms" in node:  # curated layout (vocab apply, decision 0025)
+        if "terms" in node:  # curated layout (vocab apply, decision 0026)
             return {t["code"] for t in node["terms"]}
         return set().union(*(flatten(v) for v in node.values()))
     return set()

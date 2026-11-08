@@ -1,8 +1,8 @@
 # Draft schema and vocabulary
 
-Exported 2026-10-27 from the planning doc's "Draft schema and vocabulary" tab and updated for vocabulary **v0.3** (2026-11-08, issue #14). The machine-readable version is `vocab/draft_vocabulary.yaml`; keep the two in sync. From v0.3, every closed-list term has a stable code (e.g. `MET-case-study`), and tags store the code (decision 0025). The term lists below show labels only; codes, definitions and `includes` are in the YAML.
+Exported 2026-10-27 from the planning doc's "Draft schema and vocabulary" tab and updated for vocabulary **v0.3** (2026-11-08, issue #14). The machine-readable version is `vocab/draft_vocabulary.yaml`; keep the two in sync. From v0.3, every closed-list term has a stable code (e.g. `MET-case-study`), and tags store the code (decision 0026). The term lists below show labels only; codes, definitions and `includes` are in the YAML.
 
-The schema has 18 dimensions (17 in v0.2, plus additional sub-areas in v0.3, decision 0026). Five are taken directly from the 2025–2028 strategy (impact area, sub-area, objective, pathway to impact and research mode), so CDE's own categories become the backbone of the gap analysis. The rest cover the methods, places, systems and actors the strategy mentions without listing them. It's the starting point for curation: the terms are tested on the 200–300 record sample, and every change is logged. The schema table shows where each set of terms comes from; anything not taken from a CDE source is a proposal.
+The schema has 18 dimensions (17 in v0.2, plus additional sub-areas in v0.3, decision 0027). Five are taken directly from the 2025–2028 strategy (impact area, sub-area, objective, pathway to impact and research mode), so CDE's own categories become the backbone of the gap analysis. The rest cover the methods, places, systems and actors the strategy mentions without listing them. It's the starting point for curation: the terms are tested on the 200–300 record sample, and every change is logged. The schema table shows where each set of terms comes from; anything not taken from a CDE source is a proposal.
 
 ## Schema
 
@@ -60,7 +60,7 @@ The strategy defines four impact areas, each with four sub-areas, and BORIS reco
 
 ## Additional sub-areas
 
-Topics CDE works on that no strategy sub-area covers (decision 0026). Each term has an `impact_area`: one of JE, SL, SG or TE when it belongs to that area but none of its sub-areas covers it; `cross_cutting` when it is relevant to several areas; `outside` when it is in none. Some terms carry `related` links to a sub-area or another term (e.g. Biodiversity conservation → SL-b); a related link is a pointer, not a merge. The v0.3 list has 77 terms, more than the 25–35 the decision aims for; precision in #16 decides whether it is narrowed.
+Topics CDE works on that no strategy sub-area covers (decision 0027). Each term has an `impact_area`: one of JE, SL, SG or TE when it belongs to that area but none of its sub-areas covers it; `cross_cutting` when it is relevant to several areas; `outside` when it is in none. Some terms carry `related` links to a sub-area or another term (e.g. Biodiversity conservation → SL-b); a related link is a pointer, not a merge. The v0.3 list has 77 terms, more than the 25–35 the decision aims for; precision in #16 decides whether it is narrowed.
 
 | impact_area | Additional sub-areas |
 | --- | --- |
@@ -173,7 +173,7 @@ Each item becomes a file in `docs/decisions/` once decided.
 - [x] **Older work.** Should all publications be tagged with the 2025–2028 categories, or should earlier strategy categories be mapped across too? Decided in [0016](decisions/0016-older-work-current-categories.md): the current categories for all years, with the BORIS unit kept as recorded. This affects nearly the whole corpus: 268 publications date from 2025 or later, and 536 predate 2010.
 - [x] **Partner regions.** Are there four or five, and which countries belong to each? Decided in [0017](decisions/0017-partner-regions.md): four regions plus a partner-country flag.
 - [ ] **Objectives and pathways.** Can these be tagged reliably from publication text, or are they better recorded at project level from BORIS project records?
-- [x] **Method granularity.** Settled in curation (v0.3, decision 0025): 60 terms, of which 32 sit in the eight groups; groups have codes (`MET-G-…`), so gap counts can roll up to groups. The new terms still need a group.
+- [x] **Method granularity.** Settled in curation (v0.3, decision 0026): 60 terms, of which 32 sit in the eight groups; groups have codes (`MET-G-…`), so gap counts can roll up to groups. The new terms still need a group.
 - [ ] **SDGs.** Cap at three per record, or tag all that apply?
 - [x] **Mountains and setting.** Settled in curation (v0.3): setting stays a dimension of its own, with 35 terms including mountains.
 - [ ] **Actor roles.** Is studied, engaged or audience a distinction CDE wants to measure, given how sensitive a "transdisciplinarity gap" could be?

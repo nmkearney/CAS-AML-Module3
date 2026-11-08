@@ -265,8 +265,8 @@ chatcde vocab review --force --carry-from vocab/curation/v0.3.xlsx   # re-export
   - It writes nothing if any row is invalid.
   - It rewrites only the curated sections.
   - It gives the same file every time for the same workbook.
-- See `docs/decisions/0025-vocabulary-codes-and-curation.md` and
-  `docs/decisions/0026-additional-sub-areas.md`.
+- See `docs/decisions/0026-vocabulary-codes-and-curation.md` and
+  `docs/decisions/0027-additional-sub-areas.md`.
 
 ## Ask the assistant
 
@@ -338,6 +338,27 @@ cites outside the cell's evidence are dropped and shown in red. The prompt is
 `src/chatcde/prompts/gaps.v1.md`, and the settings are in the `gaps` section of the
 config. `--alternative`, `--log FILE` and `--json` work as for `ask`. See
 `docs/decisions/0024-gaps-workflow.md`.
+
+## Evaluate the assistant
+
+`chatcde evaluate questions` runs the test questions in `tests/questions.yaml` through
+the agent and scores the answers with code, not with another model:
+
+```bash
+chatcde evaluate questions                      # both agent models, every question
+chatcde evaluate questions --models main --kind count --id q03
+chatcde evaluate questions --runs 3 --out data/eval/run1.jsonl   # resumes if interrupted
+chatcde evaluate questions --rescore data/eval/run1.jsonl        # after editing expectations
+```
+
+Each question lists what a good answer contains: records it must cite, tools it must
+call, words and numbers it must mention. Every answer must also finish, cite only
+catalogue records, and cite only records a tool returned. The command prints a table of
+answers and one of models: pass rate, score, record recall, tool calls, time and
+tokens. It exits 1 if a model's pass rate is below
+`evaluation.min_question_pass_rate` (0.8). Answers are saved as JSON lines in
+`evaluation.results_dir`. The question format is in
+`docs/decisions/0025-evaluate-questions.md`.
 
 ## Configuration
 

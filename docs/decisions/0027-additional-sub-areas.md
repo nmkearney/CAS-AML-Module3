@@ -1,4 +1,4 @@
-# 0026: Additional sub-areas beyond the strategy
+# 0027: Additional sub-areas beyond the strategy
 
 - Status: accepted (2026-11-08). The shared-format change (`Dimension.ADDITIONAL_SUB_AREA`)
   was proposed in #49 and is made in PR #55, where Track B reviews it.
@@ -20,7 +20,7 @@ and part of the frontier comparison with the wider field (use case 2).
   replaces the idea of a general `theme` dimension, because its name and scope state
   how it relates to the strategy.
 - **Whether a topic is additional is decided once, at vocabulary level,** by the
-  curator in the workbook (0025). The tagger only applies the closed list, and tags
+  curator in the workbook (0026). The tagger only applies the closed list, and tags
   `sub_area` and `additional_sub_area` independently, so a record can carry both.
 - **Boundary rule:** an additional sub-area must not overlap a strategy sub-area's
   scope. A candidate that partly overlaps, such as "Sustainable land management" and
@@ -46,7 +46,7 @@ and part of the frontier comparison with the wider field (use case 2).
   - *Outcome in v0.3:* the curator accepted 77 terms (SL 26, cross_cutting 21, SG 11,
     JE 9, TE 5, outside 5), well above the aim. They are kept for the trial in #16, and
     narrowed if precision is low (see Revisit). Sixteen of them carry `related` links
-    to a sub-area or term (0025), and a few overlap a sub-area's scope (e.g.
+    to a sub-area or term (0026), and a few overlap a sub-area's scope (e.g.
     Sustainability standards and certification and SG-b); the boundary rule is to be
     re-checked in v0.4.
 

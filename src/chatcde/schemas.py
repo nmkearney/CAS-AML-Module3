@@ -76,9 +76,9 @@ class DownloadStatus(str, Enum):
 class Dimension(str, Enum):
     """The 18 schema dimensions (docs/schema_draft.md).
 
-    ``ADDITIONAL_SUB_AREA`` (decision 0026): topics CDE works on that no strategy
+    ``ADDITIONAL_SUB_AREA`` (decision 0027): topics CDE works on that no strategy
     sub-area covers. From vocabulary v0.3, ``Tag.term`` holds the term's code
-    (e.g. ``MET-case-study``), not its label (decision 0025).
+    (e.g. ``MET-case-study``), not its label (decision 0026).
     """
 
     IMPACT_AREA = "impact_area"

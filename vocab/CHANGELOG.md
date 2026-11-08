@@ -8,14 +8,14 @@ in `config/default.yaml`.
 
 Curated from the 353 open-extraction candidates in `vocab/candidates.yaml` (decision
 0019) in `vocab/curation/v0.3.xlsx` by Norman Kearney, and written by
-`chatcde vocab apply` (decision 0025). Issue #14.
+`chatcde vocab apply` (decision 0026). Issue #14.
 
 - **Codes.** Every term in a curated dimension has a stable code (`MET-case-study`,
   `SET-mountains`, `ASA-food-security`); groups have codes too (`MET-G-…`). `Tag.term`
   stores the code. `vocab/curation/v0.3_codes.csv` maps every v0.2 label to its code.
 - **New layout** for the curated dimensions: `groups`, `terms` (with `definition`,
   `includes`, `related`, `source`) and `retired`.
-- **New dimension `additional_sub_area`** (decision 0026): 77 topics outside the strategy
+- **New dimension `additional_sub_area`** (decision 0027): 77 topics outside the strategy
   sub-areas, each with an `impact_area` (SL 26, cross_cutting 21, SG 11, JE 9, TE 5,
   outside 5). Most impact areas were drafted by Claude and reviewed by the curator.
   9 theme candidates were merged into sub-areas instead (their labels are now
@@ -37,7 +37,7 @@ Curated from the 353 open-extraction candidates in `vocab/candidates.yaml` (deci
   `MET-impact-and-sustainability-assessment`).
 - **Known limits, for v0.4:**
   - data_type, method, system, actors and additional_sub_area are above the 15–40 target
-    (additional_sub_area also above 0026's 25–35).
+    (additional_sub_area also above 0027's 25–35).
   - The terms added in v0.3 have no group.
   - 52 terms have no definition, mostly v0.2 seeds (all of scale and justice_lens).
   - Some additional sub-areas overlap a sub-area's scope (e.g. telecoupling and SL-d).

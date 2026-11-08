@@ -351,6 +351,8 @@ class EvaluationConfig(_Section):
 
     reference_set: ProjectPath
     questions: ProjectPath
+    results_dir: ProjectPath
+    min_question_pass_rate: float = Field(ge=0, le=1)
     min_precision: float
 
 

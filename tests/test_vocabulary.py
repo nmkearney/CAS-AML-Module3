@@ -2,7 +2,7 @@
 
 ``chatcde vocab apply`` validates the workbook before it writes the YAML; these
 tests guard the result in git, so a hand edit or a bad merge cannot break the
-codes that tags store (decisions 0025 and 0026).
+codes that tags store (decisions 0026 and 0027).
 """
 
 from __future__ import annotations
