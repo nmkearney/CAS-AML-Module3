@@ -318,10 +318,32 @@ class ToolsConfig(_Section):
 
 
 class GapsConfig(_Section):
-    """Gap analysis settings (decisions 0018 and 0021)."""
+    """Gap analysis and the ``chatcde gaps`` workflow (decisions 0018, 0021, 0024)."""
 
     exclude_types: list[str] = Field(default_factory=list)
     min_expected: float = Field(ge=0)
+    max_ratio: float = Field(ge=0)
+    dims: str
+    max_cells: int = Field(ge=1)
+    passages_per_cell: int = Field(ge=1)
+    prompt: str
+    structured_output: bool
+    temperature: float = Field(ge=0)
+    max_tokens: int = Field(ge=256)
+
+
+class AgentConfig(_Section):
+    """The tool-calling agent (decision 0022)."""
+
+    system_prompt: str
+    tools: list[str]
+    max_tool_calls: int = Field(ge=0)
+    temperature: float = Field(ge=0)
+    max_tokens: int = Field(ge=64)
+    max_tool_result_chars: int = Field(ge=500)
+    max_ids_per_list: int = Field(ge=1)
+    omit_fields: list[str] = Field(default_factory=list)
+    extra_body: dict[str, Any] = Field(default_factory=dict)
 
 
 class EvaluationConfig(_Section):
@@ -360,6 +382,7 @@ class Config(_Section):
     embedding: EmbeddingConfig
     tools: ToolsConfig
     gaps: GapsConfig
+    agent: AgentConfig
     evaluation: EvaluationConfig
     logging: LoggingConfig
 

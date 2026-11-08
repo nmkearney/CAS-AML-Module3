@@ -145,6 +145,24 @@ chatcde index search "living lab" --mode bm25 --no-rerank   # offline, keywords 
 user-facing search with citations is `chatcde search` (below). See
 `docs/decisions/0013-hybrid-search.md`.
 
+## Coverage
+
+See how much of the catalogue the assistant can actually read before trusting that a
+topic is rare:
+
+```bash
+chatcde coverage                          # totals, then by year, type, language, access
+chatcde coverage --by access --by type    # only these breakdowns
+chatcde coverage --year-from 2015 --unit "Sustainable Land Systems"
+chatcde coverage --json                   # the CoverageReport the agent's tool returns
+```
+
+Each record counts once, as **full text** (at least one parsed page with text),
+**abstract only** or **metadata only**. Until `chatcde parse` has run, a downloaded PDF
+stands in for full text, and the command says so. Each breakdown shows the three shares.
+A record counts under its first listed language. The heading names the edition: `open`
+when the data came from an open bundle, otherwise `full`. Filters: `--year-from`,
+`--year-to`, `--unit`, `--type`, `--lang`. See `docs/decisions/0015-coverage.md`.
 ## Search and read
 
 These commands call the same tools the assistant uses (`search_publications`,
@@ -247,6 +265,77 @@ chatcde vocab review --force --carry-from vocab/curation/v0.3.xlsx   # re-export
   - It gives the same file every time for the same workbook.
 - See `docs/decisions/0025-vocabulary-codes-and-curation.md` and
   `docs/decisions/0026-additional-sub-areas.md`.
+
+## Ask the assistant
+
+The local agent model (`models.agent`) answers questions by calling the tools above:
+it searches, reads and counts, then answers with numbered sources. It needs the key in
+`CHATCDE_LLM_API_KEY`.
+
+```bash
+chatcde ask "What has CDE found on large-scale land acquisitions in Laos?"
+chatcde ask "Welche Methoden nutzt CDE in der Landgovernance-Forschung?" --log data/logs/answers.jsonl
+chatcde ask "Which methods are rare in SL research?" --json --hide-tools > answer.json
+chatcde chat                                    # follow-up questions; /reset, /exit
+```
+
+Each tool call is shown as it runs (on stderr; `--hide-tools` turns this off). The
+answer is followed by:
+- its **sources**: number, title, year, cited pages, DOI and BORIS links;
+- **warnings** for anything unsupported: a record no tool returned, an ID not in the
+  catalogue, a used-up tool budget, or a cut-off answer;
+- a **data note**: which edition answered, and how many publications have full text,
+  only an abstract, or only metadata.
+
+`--json` prints the full result, including every tool call and the model, prompt,
+vocabulary and code versions. `--log FILE` appends that result as a JSON line.
+`--alternative` uses `model_alternatives.agent`.
+
+How the agent works: the tool definitions are generated from the tool functions' type
+hints and docstrings (`chatcde.tools.specs`). The model may make at most
+`agent.max_tool_calls` (12) calls per question; then it has to answer. It cites records
+as `[BORIS:<record_id>]` or `[BORIS:<record_id>, p. 4]`, and each cited ID is checked
+against the catalogue and the conversation's tool results. The system prompt is
+`src/chatcde/prompts/agent_system.v1.md`. From Python:
+
+```python
+from chatcde.agent import Agent
+from chatcde.config import load_config
+
+with Agent(load_config()) as agent:
+    result = agent.ask("What has CDE found on large-scale land acquisitions in Laos?")
+print(result.answer, [c.citation.record_id for c in result.citations])
+```
+
+See `docs/decisions/0022-agent-loop.md` and `docs/decisions/0023-ask-and-chat.md`.
+
+## Find gaps with the assistant
+
+`chatcde gaps` runs the gap analysis as a fixed chain, so every run takes the same
+steps:
+
+```bash
+chatcde gaps                                         # sub_area x method, all of CDE
+chatcde gaps --dims method,region --unit "Sustainable Land Systems"
+chatcde gaps --dims sub_area,method --year-from 2015 --max-cells 5 --json > gaps.json
+chatcde gaps --no-llm                                # counts and nearby records only
+```
+
+1. Code counts the two dimensions within the scope and finds the thin cells, as
+   `chatcde count ROW COL --gaps` does.
+2. For each of the first `gaps.max_cells` (8) cells, code searches the scope for the
+   two terms and lists the records found with their own tags.
+3. Code lists the caveats: untagged records, conference items left out, cells not
+   shown, and the data edition.
+4. The agent model judges each cell in one request with a JSON schema: a real gap, a
+   tagging artefact (the work exists but is tagged otherwise), a deliberate choice
+   (outside CDE's scope) or unclear, with a reason and the records behind it.
+
+Every number in the table comes from step 1; the model only judges. Record IDs it
+cites outside the cell's evidence are dropped and shown in red. The prompt is
+`src/chatcde/prompts/gaps.v1.md`, and the settings are in the `gaps` section of the
+config. `--alternative`, `--log FILE` and `--json` work as for `ask`. See
+`docs/decisions/0024-gaps-workflow.md`.
 
 ## Configuration
 
