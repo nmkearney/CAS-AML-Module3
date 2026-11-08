@@ -312,6 +312,9 @@ cites outside the cell's evidence are dropped and shown in red. The prompt is
 `src/chatcde/prompts/gaps.v1.md`, and the settings are in the `gaps` section of the
 config. `--alternative`, `--log FILE` and `--json` work as for `ask`. See
 `docs/decisions/0024-gaps-workflow.md`.
+```
+
+See `docs/decisions/0022-agent-loop.md` and `docs/decisions/0023-ask-and-chat.md`.
 
 ## Configuration
 
