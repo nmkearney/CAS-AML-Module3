@@ -1744,12 +1744,6 @@ system:
     group: SYS-G-economy-and-finance
     definition: null
     source: seed
-  - code: SYS-telecoupled-systems
-    label: Telecoupled systems
-    group: SYS-G-economy-and-finance
-    definition: Social-ecological systems characterized by long-distance interactions between distant
-      places, including flows of resources, information, and impacts.
-    source: candidate
   - code: SYS-tourism
     label: Tourism
     group: SYS-G-economy-and-finance
@@ -2103,6 +2097,12 @@ system:
     group: SYS-G-land-and-ecosystems
     definition: Soil resources, soil ecosystems, and interactions between soil, water, and vegetation.
       Excludes broader land-use categories like cropland or forests.
+    source: candidate
+  - code: SYS-telecoupled-systems
+    label: Telecoupled systems
+    group: SYS-G-land-and-ecosystems
+    definition: Social-ecological systems characterized by long-distance interactions between distant
+      places, including flows of resources, information, and impacts.
     source: candidate
   - code: SYS-wetlands
     label: Wetlands
