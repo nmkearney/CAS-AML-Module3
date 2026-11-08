@@ -159,6 +159,19 @@ gaps:
   exclude_types: [conference_item]  # left out of find_gaps unless the filters name types
   min_expected: 5                # cells expected to hold fewer records are not judged
 
+# --- Agent (see docs/decisions/0022-agent-loop.md) -------------------------
+agent:
+  system_prompt: "agent_system.v1"   # file <prompts.dir>/<name>.md
+  tools: [search_publications, get_publication, read_section, list_vocabulary,
+          count_by, find_gaps, coverage_report]
+  max_tool_calls: 12             # per question; then the model must answer
+  temperature: 0.2
+  max_tokens: 4096               # per reply; gpt-oss spends part of it on reasoning
+  max_tool_result_chars: 16000   # longer tool results are cut, with a note
+  max_ids_per_list: 20           # record_ids lists are cut, the count kept
+  omit_fields: [provenance, harvested_at]   # not sent to the model
+  extra_body: {}                 # extra request fields for models.agent
+
 # --- Evaluation -----------------------------------------------------------
 evaluation:
   reference_set: "data/reference/reference_tags.yaml"

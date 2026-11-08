@@ -157,6 +157,14 @@ Two developers work in parallel; see `CONTRIBUTING.md` for the full workflow.
 - Counts in candidates.yaml describe the oversampled sample, not corpus shares.
 - The model still puts some country names under settings ("Switzerland", "Global South").
 - 
+## Coverage (`chatcde coverage`, 2026-11-07)
+
+- Of 3,003 records: **1,542 full text (51%)**, 606 abstract only (20%), 855 metadata
+  only (28%). Full text = at least one parsed page with text (decision 0015).
+- Restricted (531) and metadata-only (899) records never have full text; 98% of the
+  1,573 open records do. Conference items are 50% metadata only.
+- `coverage_report()` is written by Track A and reused by Track B (#11, #24; pending
+  agreement). `CoverageReport` gained `by_type` and `by_access` (#43).
 ## Parse results (`chatcde parse`, 2026-11-07)
 
 - PyMuPDF text layer, vision-model OCR for scanned/garbled pages, lingua language per

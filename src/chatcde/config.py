@@ -314,6 +314,20 @@ class GapsConfig(_Section):
     min_expected: float = Field(ge=0)
 
 
+class AgentConfig(_Section):
+    """The tool-calling agent (decision 0022)."""
+
+    system_prompt: str
+    tools: list[str]
+    max_tool_calls: int = Field(ge=0)
+    temperature: float = Field(ge=0)
+    max_tokens: int = Field(ge=64)
+    max_tool_result_chars: int = Field(ge=500)
+    max_ids_per_list: int = Field(ge=1)
+    omit_fields: list[str] = Field(default_factory=list)
+    extra_body: dict[str, Any] = Field(default_factory=dict)
+
+
 class EvaluationConfig(_Section):
     """Reference sets and thresholds for ``chatcde evaluate``."""
 
@@ -350,6 +364,7 @@ class Config(_Section):
     embedding: EmbeddingConfig
     tools: ToolsConfig
     gaps: GapsConfig
+    agent: AgentConfig
     evaluation: EvaluationConfig
     logging: LoggingConfig
 

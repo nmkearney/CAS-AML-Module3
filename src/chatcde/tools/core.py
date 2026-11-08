@@ -180,9 +180,33 @@ def find_gaps(
 def coverage_report(filters: Filters | None = None) -> CoverageReport:
     """Report how complete the data is for a set of filters.
 
-    Use this before claiming that something is rare or missing.
+    Use this before claiming that something is rare or missing: a topic can look
+    rare only because few records of that kind have readable text.
+
+    Each matching record is counted once, as ``with_fulltext`` (parsed text),
+    ``abstract_only`` or ``metadata_only``; the three add up to
+    ``total_records``. ``by_year``, ``by_type``, ``by_language`` (first listed
+    language) and ``by_access`` count the same records. ``low_confidence_tags``
+    is the number of tags below ``filters.min_confidence`` on these records.
+    ``edition`` says whether restricted full texts are included (full) or not
+    (open).
 
     Args:
-        filters: Optional restrictions.
+        filters: Optional restrictions (years, units, types, languages, tags).
+
+    Returns:
+        Counts with their denominator, ``total_records``.
     """
-    raise NotImplementedError
+    # Implemented by Track A (issue #11); the logic is in chatcde.tools.coverage.
+    from chatcde import catalogue
+    from chatcde.config import load_config
+    from chatcde.tools import coverage
+
+    cfg = load_config()
+    if not cfg.data.catalogue.is_file():
+        raise FileNotFoundError(f"no catalogue at {cfg.data.catalogue}")
+    con = catalogue.connect(cfg.data.catalogue, read_only=True)
+    try:
+        return coverage.build_report(con, filters, coverage.local_edition(cfg.data.dir))
+    finally:
+        con.close()

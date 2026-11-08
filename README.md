@@ -145,6 +145,24 @@ chatcde index search "living lab" --mode bm25 --no-rerank   # offline, keywords 
 user-facing search with citations is `chatcde search` (below). See
 `docs/decisions/0013-hybrid-search.md`.
 
+## Coverage
+
+See how much of the catalogue the assistant can actually read before trusting that a
+topic is rare:
+
+```bash
+chatcde coverage                          # totals, then by year, type, language, access
+chatcde coverage --by access --by type    # only these breakdowns
+chatcde coverage --year-from 2015 --unit "Sustainable Land Systems"
+chatcde coverage --json                   # the CoverageReport the agent's tool returns
+```
+
+Each record counts once, as **full text** (at least one parsed page with text),
+**abstract only** or **metadata only**. Until `chatcde parse` has run, a downloaded PDF
+stands in for full text, and the command says so. Each breakdown shows the three shares.
+A record counts under its first listed language. The heading names the edition: `open`
+when the data came from an open bundle, otherwise `full`. Filters: `--year-from`,
+`--year-to`, `--unit`, `--type`, `--lang`. See `docs/decisions/0015-coverage.md`.
 ## Search and read
 
 These commands call the same tools the assistant uses (`search_publications`,
@@ -223,6 +241,31 @@ chatcde vocab extract --step propose          # cluster labels -> vocab/candidat
 
 `--force` redoes the chosen step. The candidates are curated by hand into
 `vocab/draft_vocabulary.yaml`. See `docs/decisions/0019-open-extraction.md`.
+## The agent
+
+The agent lets the `agent` role model (`models.agent`) answer questions by calling the
+tools above. `chatcde ask` and `chatcde chat` come with issue #26; until then, use it
+from Python (needs `CHATCDE_LLM_API_KEY`):
+
+```python
+from chatcde.agent import Agent
+from chatcde.config import load_config
+
+with Agent(load_config()) as agent:
+    result = agent.ask("What has CDE found on large-scale land acquisitions in Laos?")
+print(result.answer)
+for c in result.citations:
+    print(c.citation.record_id, c.citation.title, c.pages, c.from_tools)
+print([t.name for t in result.tool_calls], result.stop_reason)
+```
+
+The tool definitions are generated from the tool functions' type hints and docstrings
+(`chatcde.tools.specs`). The model may make at most `agent.max_tool_calls` (12) calls
+per question; then it has to answer. It cites records as `[BORIS:<record_id>]` or
+`[BORIS:<record_id>, p. 4]`. Each cited ID is checked against the catalogue and against
+the tool results of the conversation. The result also records the model, prompt
+version, vocabulary version, code version and every tool call. The system prompt is
+`src/chatcde/prompts/agent_system.v1.md`. See `docs/decisions/0022-agent-loop.md`.
 
 ## Configuration
 
