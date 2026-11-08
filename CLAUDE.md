@@ -259,7 +259,7 @@ Full definitions and scope notes are in `docs/schema_draft.md` and `vocab/draft_
 | 6 | research_mode | Strategy 1.3 (M1–M4) |
 | 7 | transformative_aspiration | Westerink et al. 2026 |
 | 8 | method | curated v0.3: 60 terms in 8 groups |
-| 9 | data_type | curated v0.3: 44 terms |
+| 9 | data_type | curated v0.3: 44 terms in 6 groups |
 | 10 | country | ISO 3166-1 alpha-3 |
 | 11 | region | derived: UN M49 + 4 CDE partner regions (decision 0017) |
 | 12 | setting | curated v0.3: 35 terms (mountains, drylands, …) |

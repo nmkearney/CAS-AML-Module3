@@ -1147,167 +1147,177 @@ method:
     replaced_by: MET-impact-and-sustainability-assessment
 
 data_type:
+  groups:
+  - code: DAT-G-documents-texts-and-media
+    label: Documents, texts and media
+  - code: DAT-G-environmental-measurements
+    label: Environmental measurements
+  - code: DAT-G-geospatial-and-remote-sensing
+    label: Geospatial and remote sensing
+  - code: DAT-G-no-empirical-data
+    label: No empirical data
+  - code: DAT-G-primary-social-data
+    label: Primary social data
+  - code: DAT-G-statistics-and-databases
+    label: Statistics and databases
   terms:
   - code: DAT-academic-literature
     label: Academic literature
+    group: DAT-G-documents-texts-and-media
     definition: Peer-reviewed articles, books, and other scholarly publications used as sources for review,
       synthesis, or theoretical grounding.
     source: candidate
     note: Too generic
-  - code: DAT-aerial-and-drone-imagery
-    label: Aerial and drone imagery
-    definition: Visual data captured from airborne platforms, including helicopters, fixed-wing aircraft,
-      and unmanned aerial vehicles (drones).
+  - code: DAT-conference-documents
+    label: Conference documents
+    group: DAT-G-documents-texts-and-media
+    definition: Proceedings, programs, and reports from academic conferences or symposia. Excludes general
+      policy documents or primary research data.
     source: candidate
-  - code: DAT-agricultural-statistics
-    label: Agricultural statistics
-    definition: Statistical data on crop production, land use, and agricultural censuses, typically derived
-      from national surveys or international organizations.
+  - code: DAT-documents-and-policies
+    label: Documents and policies
+    group: DAT-G-documents-texts-and-media
+    definition: Official government reports, strategies, agendas, and regulatory texts used as data sources
+      or objects of analysis.
+    source: seed
+  - code: DAT-international-legal-instruments
+    label: International legal instruments
+    group: DAT-G-documents-texts-and-media
+    definition: Treaties, conventions, and binding or non-binding international legal frameworks and norms.
+      Excludes national legislation and general policy documents without legal status.
+    source: candidate
+  - code: DAT-legal-frameworks
+    label: Legal frameworks
+    group: DAT-G-documents-texts-and-media
+    definition: Statutory laws, regulations, constitutions, and binding legal texts governing environmental
+      or development policy.
+    source: candidate
+  - code: DAT-media-articles
+    label: Media articles
+    group: DAT-G-documents-texts-and-media
+    definition: Newspaper, press, or online news articles used as primary data for content analysis or
+      discourse studies.
+    source: candidate
+  - code: DAT-policy-documents
+    label: Policy documents
+    group: DAT-G-documents-texts-and-media
+    definition: Official government reports, strategies, agendas, and regulatory texts used as data sources
+      or objects of analysis.
     related:
-    - DAT-secondary-statistics
+    - DAT-documents-and-policies
     source: candidate
-  - code: DAT-case-studies
-    label: Case studies
-    definition: In-depth investigations of specific instances, sites, or events used to illustrate broader
-      concepts or test hypotheses.
+  - code: DAT-project-documentation
+    label: Project documentation
+    group: DAT-G-documents-texts-and-media
+    definition: Internal records, reports, and case studies generated during specific research projects
+      or fieldwork, distinct from public policy documents or statistical datasets.
+    source: candidate
+  - code: DAT-project-reports
+    label: Project reports
+    group: DAT-G-documents-texts-and-media
+    definition: Internal or external documents detailing the progress, status, or outcomes of specific
+      research or development projects.
+    source: candidate
+  - code: DAT-secondary-qualitative
+    label: Secondary qualitative
+    group: DAT-G-documents-texts-and-media
+    definition: null
+    source: candidate
+  - code: DAT-visual-data
+    label: Visual data
+    group: DAT-G-documents-texts-and-media
+    definition: Images, maps, diagrams, or other graphical representations used to present or analyze
+      information.
+    source: candidate
+  - code: DAT-workshop-documentation
+    label: Workshop documentation
+    group: DAT-G-documents-texts-and-media
+    definition: Records, reports, evaluations, and findings generated from workshops, including participant
+      feedback and process documentation.
     source: candidate
   - code: DAT-climate-and-meteorological-data
     label: Climate and meteorological data
+    group: DAT-G-environmental-measurements
     definition: Observations and records of atmospheric conditions, including temperature, precipitation,
       and weather variables, used for analysis or modeling.
     source: candidate
   - code: DAT-climate-scenarios
     label: Climate scenarios
+    group: DAT-G-environmental-measurements
     definition: Hypothetical future climate states or projections derived from climate models, used for
       impact assessment or adaptation planning.
     source: candidate
-  - code: DAT-conference-documents
-    label: Conference documents
-    definition: Proceedings, programs, and reports from academic conferences or symposia. Excludes general
-      policy documents or primary research data.
-    source: candidate
-  - code: DAT-curated-databases
-    label: Curated databases
-    definition: null
-    source: seed
-  - code: DAT-demographic-statistics
-    label: Demographic statistics
-    definition: Statistical data on population size, structure, distribution, and changes, including census
-      results and estimates.
-    source: candidate
-  - code: DAT-documents-and-policies
-    label: Documents and policies
-    definition: Official government reports, strategies, agendas, and regulatory texts used as data sources
-      or objects of analysis.
-    source: seed
-  - code: DAT-elevation-data
-    label: Elevation data
-    definition: Digital datasets representing terrain height, including digital elevation models (DEMs)
-      and topographic maps. Excludes general geographic coordinates or land cover data.
-    source: candidate
-  - code: DAT-experiences
-    label: Experiences
-    definition: First-hand accounts, narratives, or lived realities of individuals or groups, typically
-      gathered through qualitative methods.
-    source: candidate
-  - code: DAT-expert-knowledge
-    label: Expert knowledge
-    definition: Information derived from interviews, consultations, or elicitation of specialized professional
-      or local expertise, distinct from general public opinion or statistical data.
-    source: candidate
-  - code: DAT-forest-change-data
-    label: Forest change data
-    definition: Quantitative data or statistics regarding deforestation, forest loss, or changes in forest
-      cover over time and space.
-    source: candidate
   - code: DAT-hydrological-data
     label: Hydrological data
+    group: DAT-G-environmental-measurements
     definition: Quantitative measurements and records of water movement, including river flow, runoff,
       and related hydrological variables.
     includes:
     - Hydrological time series
     - hydrological statistics
     source: candidate
-  - code: DAT-international-legal-instruments
-    label: International legal instruments
-    definition: Treaties, conventions, and binding or non-binding international legal frameworks and norms.
-      Excludes national legislation and general policy documents without legal status.
-    source: candidate
-  - code: DAT-interview-data
-    label: Interview data
-    definition: Data derived from recorded or transcribed conversations with individuals, including expert,
-      stakeholder, or participant interviews.
-    source: candidate
-  - code: DAT-land-cover-and-use-data
-    label: Land cover and use data
-    definition: Geospatial datasets and maps depicting land cover, land use, and related landscape features,
-      including historical and change data.
-    source: candidate
-  - code: DAT-land-deal-records
-    label: Land deal records
-    definition: Structured data or databases documenting specific land transactions, acquisitions, or
-      large-scale land acquisitions (LSLAs), including deal terms and status.
-    source: candidate
-  - code: DAT-legal-frameworks
-    label: Legal frameworks
-    definition: Statutory laws, regulations, constitutions, and binding legal texts governing environmental
-      or development policy.
-    source: candidate
-  - code: DAT-media-articles
-    label: Media articles
-    definition: Newspaper, press, or online news articles used as primary data for content analysis or
-      discourse studies.
-    source: candidate
-  - code: DAT-none
-    label: None (conceptual)
-    definition: null
-    source: seed
-  - code: DAT-field-data
-    label: Observation and field visits
-    definition: Data collected directly through on-site observation, measurement, or interaction in natural
-      or social settings, excluding remote sensing or secondary sources.
-    source: candidate
-  - code: DAT-policy-documents
-    label: Policy documents
-    definition: Official government reports, strategies, agendas, and regulatory texts used as data sources
-      or objects of analysis.
-    related:
-    - DAT-documents-and-policies
-    source: candidate
   - code: DAT-precipitation-data
     label: Precipitation data
+    group: DAT-G-environmental-measurements
     definition: Quantitative records, measurements, or spatial representations of rainfall and precipitation,
       including gauge data and maps.
     source: candidate
+  - code: DAT-sediment-data
+    label: Sediment data
+    group: DAT-G-environmental-measurements
+    definition: Quantitative measurements of sediment load, yield, or physical samples collected from
+      rivers or catchments.
+    source: candidate
+  - code: DAT-soil-data
+    label: Soil data
+    group: DAT-G-environmental-measurements
+    definition: Measurements, properties, or spectral libraries of soil characteristics, including organic
+      carbon, physiochemical parameters, and physical attributes.
+    source: candidate
+  - code: DAT-soil-samples
+    label: Soil samples
+    group: DAT-G-environmental-measurements
+    definition: Physical soil specimens, including depth samples and profiles, collected for laboratory
+      analysis or field characterization.
+    source: candidate
+  - code: DAT-aerial-and-drone-imagery
+    label: Aerial and drone imagery
+    group: DAT-G-geospatial-and-remote-sensing
+    definition: Visual data captured from airborne platforms, including helicopters, fixed-wing aircraft,
+      and unmanned aerial vehicles (drones).
+    source: candidate
+  - code: DAT-elevation-data
+    label: Elevation data
+    group: DAT-G-geospatial-and-remote-sensing
+    definition: Digital datasets representing terrain height, including digital elevation models (DEMs)
+      and topographic maps. Excludes general geographic coordinates or land cover data.
+    source: candidate
+  - code: DAT-forest-change-data
+    label: Forest change data
+    group: DAT-G-geospatial-and-remote-sensing
+    definition: Quantitative data or statistics regarding deforestation, forest loss, or changes in forest
+      cover over time and space.
+    source: candidate
+  - code: DAT-land-cover-and-use-data
+    label: Land cover and use data
+    group: DAT-G-geospatial-and-remote-sensing
+    definition: Geospatial datasets and maps depicting land cover, land use, and related landscape features,
+      including historical and change data.
+    source: candidate
   - code: DAT-primary-geospatial
     label: Primary geospatial
+    group: DAT-G-geospatial-and-remote-sensing
     definition: null
     source: seed
-  - code: DAT-primary-qualitative
-    label: Primary qualitative
-    definition: null
-    source: seed
-  - code: DAT-primary-quantitative
-    label: Primary quantitative
-    definition: null
-    source: seed
-  - code: DAT-project-documentation
-    label: Project documentation
-    definition: Internal records, reports, and case studies generated during specific research projects
-      or fieldwork, distinct from public policy documents or statistical datasets.
-    source: candidate
-  - code: DAT-project-reports
-    label: Project reports
-    definition: Internal or external documents detailing the progress, status, or outcomes of specific
-      research or development projects.
-    source: candidate
   - code: DAT-satellite-imagery
     label: Satellite imagery
+    group: DAT-G-geospatial-and-remote-sensing
     definition: Data derived from optical or radar sensors on satellites, including Landsat, MODIS, and
       high-resolution commercial imagery.
     source: candidate
   - code: DAT-secondary-geospatial
     label: Secondary geospatial
+    group: DAT-G-geospatial-and-remote-sensing
     definition: Geographic information including maps, distribution data, and spatial databases used to
       analyze location, extent, or spatial patterns.
     includes:
@@ -1316,52 +1326,72 @@ data_type:
     - spatial distribution data
     - spatial distribution maps
     source: seed
-  - code: DAT-secondary-qualitative
-    label: Secondary qualitative
-    definition: null
-    source: candidate
-  - code: DAT-secondary-statistics
-    label: Secondary statistics
-    definition: Statistical data on crop production, land use, and agricultural censuses, typically derived
-      from national surveys or international organizations.
-    includes:
-    - global statistics
-    - global production statistics
-    - national statistics
-    - official statistics
-    source: seed
-  - code: DAT-sediment-data
-    label: Sediment data
-    definition: Quantitative measurements of sediment load, yield, or physical samples collected from
-      rivers or catchments.
-    source: candidate
-  - code: DAT-socioeconomic-data
-    label: Socioeconomic data
-    definition: Quantitative or qualitative data describing social and economic conditions, such as income,
-      education, and demographics. Excludes purely biophysical or environmental measurements.
-    source: candidate
-  - code: DAT-soil-data
-    label: Soil data
-    definition: Measurements, properties, or spectral libraries of soil characteristics, including organic
-      carbon, physiochemical parameters, and physical attributes.
-    source: candidate
   - code: DAT-soil-maps
     label: Soil maps
+    group: DAT-G-geospatial-and-remote-sensing
     definition: Geospatial datasets or visualizations depicting soil properties, types, or erosion risks
       at various scales, including global and local maps.
     source: candidate
-  - code: DAT-soil-samples
-    label: Soil samples
-    definition: Physical soil specimens, including depth samples and profiles, collected for laboratory
-      analysis or field characterization.
-    source: candidate
   - code: DAT-species-distribution-data
     label: Species distribution data
+    group: DAT-G-geospatial-and-remote-sensing
     definition: Data describing the geographic occurrence, range, or distribution of specific species
       or biodiversity components.
     source: candidate
+  - code: DAT-vegetation-data
+    label: Vegetation data
+    group: DAT-G-geospatial-and-remote-sensing
+    definition: Data describing plant cover, including indices like EVI, maps, and community classifications.
+      Excludes soil or general land cover data.
+    source: candidate
+  - code: DAT-none
+    label: None (conceptual)
+    group: DAT-G-no-empirical-data
+    definition: null
+    source: seed
+  - code: DAT-case-studies
+    label: Case studies
+    group: DAT-G-primary-social-data
+    definition: In-depth investigations of specific instances, sites, or events used to illustrate broader
+      concepts or test hypotheses.
+    source: candidate
+  - code: DAT-experiences
+    label: Experiences
+    group: DAT-G-primary-social-data
+    definition: First-hand accounts, narratives, or lived realities of individuals or groups, typically
+      gathered through qualitative methods.
+    source: candidate
+  - code: DAT-expert-knowledge
+    label: Expert knowledge
+    group: DAT-G-primary-social-data
+    definition: Information derived from interviews, consultations, or elicitation of specialized professional
+      or local expertise, distinct from general public opinion or statistical data.
+    source: candidate
+  - code: DAT-interview-data
+    label: Interview data
+    group: DAT-G-primary-social-data
+    definition: Data derived from recorded or transcribed conversations with individuals, including expert,
+      stakeholder, or participant interviews.
+    source: candidate
+  - code: DAT-field-data
+    label: Observation and field visits
+    group: DAT-G-primary-social-data
+    definition: Data collected directly through on-site observation, measurement, or interaction in natural
+      or social settings, excluding remote sensing or secondary sources.
+    source: candidate
+  - code: DAT-primary-qualitative
+    label: Primary qualitative
+    group: DAT-G-primary-social-data
+    definition: null
+    source: seed
+  - code: DAT-primary-quantitative
+    label: Primary quantitative
+    group: DAT-G-primary-social-data
+    definition: null
+    source: seed
   - code: DAT-survey-data
     label: Survey data
+    group: DAT-G-primary-social-data
     definition: Data collected via structured questionnaires or interviews, including responses and results
       from primary or secondary survey instruments.
     includes:
@@ -1371,20 +1401,47 @@ data_type:
     - household data
     - household statistics
     source: candidate
-  - code: DAT-vegetation-data
-    label: Vegetation data
-    definition: Data describing plant cover, including indices like EVI, maps, and community classifications.
-      Excludes soil or general land cover data.
+  - code: DAT-agricultural-statistics
+    label: Agricultural statistics
+    group: DAT-G-statistics-and-databases
+    definition: Statistical data on crop production, land use, and agricultural censuses, typically derived
+      from national surveys or international organizations.
+    related:
+    - DAT-secondary-statistics
     source: candidate
-  - code: DAT-visual-data
-    label: Visual data
-    definition: Images, maps, diagrams, or other graphical representations used to present or analyze
-      information.
+  - code: DAT-curated-databases
+    label: Curated databases
+    group: DAT-G-statistics-and-databases
+    definition: null
+    source: seed
+  - code: DAT-demographic-statistics
+    label: Demographic statistics
+    group: DAT-G-statistics-and-databases
+    definition: Statistical data on population size, structure, distribution, and changes, including census
+      results and estimates.
     source: candidate
-  - code: DAT-workshop-documentation
-    label: Workshop documentation
-    definition: Records, reports, evaluations, and findings generated from workshops, including participant
-      feedback and process documentation.
+  - code: DAT-land-deal-records
+    label: Land deal records
+    group: DAT-G-statistics-and-databases
+    definition: Structured data or databases documenting specific land transactions, acquisitions, or
+      large-scale land acquisitions (LSLAs), including deal terms and status.
+    source: candidate
+  - code: DAT-secondary-statistics
+    label: Secondary statistics
+    group: DAT-G-statistics-and-databases
+    definition: Statistical data on crop production, land use, and agricultural censuses, typically derived
+      from national surveys or international organizations.
+    includes:
+    - global statistics
+    - global production statistics
+    - national statistics
+    - official statistics
+    source: seed
+  - code: DAT-socioeconomic-data
+    label: Socioeconomic data
+    group: DAT-G-statistics-and-databases
+    definition: Quantitative or qualitative data describing social and economic conditions, such as income,
+      education, and demographics. Excludes purely biophysical or environmental measurements.
     source: candidate
 
 country: {standard: ISO 3166-1 alpha-3, extra_flag: global_or_multi_country}

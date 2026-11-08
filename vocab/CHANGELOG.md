@@ -35,8 +35,10 @@ Curated from the 353 open-extraction candidates in `vocab/candidates.yaml` (deci
 - **Groups:** every method, system and actor term has a group. Groups for the terms added
   in v0.3 were drafted by Claude and reviewed by the curator. The v0.2 group labels
   regained their "and" (e.g. "Synthesis and theory", code `MET-G-synthesis-and-theory`).
-  New groups: `SYS-G-governance-and-institutions`, `ACT-G-public-and-households`.
-  Setting, data_type, scale and justice_lens have no groups.
+  New groups: `SYS-G-governance-and-institutions`, `ACT-G-public-and-households`, and six
+  for data_type (`DAT-G-…`: documents, texts and media; primary social data; statistics and
+  databases; geospatial and remote sensing; environmental measurements; no empirical
+  data). Setting, scale and justice_lens stay flat.
 - **Retired:** `MET-futures-methods` (no replacement; scenario work now goes to
   `MET-scenario-development-and-analysis`) and `MET-impact-evaluation` (merged into
   `MET-impact-and-sustainability-assessment`).
