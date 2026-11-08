@@ -128,11 +128,6 @@ tools:
   max_k: 20                      # most passages one search_publications call returns
   max_section_pages: 10          # widest page range one read_section call returns
 
-# --- Gap analysis (decisions 0018 and 0021) --------------------------------
-gaps:
-  exclude_types: [conference_item]  # left out of find_gaps unless the filters name types
-  min_expected: 5                # cells expected to hold fewer records are not judged
-
 # --- Evaluation -----------------------------------------------------------
 evaluation:
   reference_set: "data/reference/reference_tags.yaml"
