@@ -142,8 +142,32 @@ chatcde index search "living lab" --mode bm25 --no-rerank   # offline, keywords 
 
 `--mode` is `hybrid`, `bm25` or `vector`. Filters: `--year-from`, `--year-to`, `--unit`,
 `--type`, `--lang`, `--country`. This command is for checking the search. The
-user-facing search with citations is `chatcde search` (issue #23). See
+user-facing search with citations is `chatcde search` (below). See
 `docs/decisions/0013-hybrid-search.md`.
+
+## Search and read
+
+These commands call the same tools the assistant uses (`search_publications`,
+`get_publication` and `read_section`) and print what they return. Add `--json` to get
+the exact result the agent sees.
+
+```bash
+chatcde search "large-scale land acquisitions in Laos" -k 5
+chatcde search "Weidewirtschaft" --year-from 2015 --country KEN --sdg 15 --full
+chatcde show 10.1659/mrd.4204           # BORIS ID, DOI (publisher or BORIS) or handle
+chatcde read 2760e535-c973-4524-ab84-3a1c71b9bf3a 2 3   # pages 2-3, verbatim
+```
+
+`search` returns passages, best first. Each passage has a score, its pages, its source
+(full text, abstract or metadata), the BORIS ID and the DOI. The DOI is the publisher's
+when there is one, otherwise BORIS's own. Like `index search`, it needs the endpoint
+for the query embedding and the reranker. `show` and `read` run locally.
+
+`read` returns the full-text chunks that overlap the pages, so neighbouring passages
+share a few sentences. It reads at most `tools.max_section_pages` (10) pages per call,
+and `search` returns at most `tools.max_k` (20) passages. Records without parsed full
+text have no pages; `show` gives their abstract. See
+`docs/decisions/0020-search-and-reading-tools.md`.
 
 ## Configuration
 

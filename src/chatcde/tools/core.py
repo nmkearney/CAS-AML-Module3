@@ -1,8 +1,9 @@
 """Phase 1 tool signatures (DRAFT, to be agreed on day 1).
 
-These are the seven tools the prototype needs. Track B implements them; until
-then they raise ``NotImplementedError`` so the CLI and agent can be wired up
-against the signatures.
+These are the seven tools the prototype needs. Each is implemented in its own
+module and called here with the active
+:class:`~chatcde.tools.context.ToolContext` (config, catalogue, endpoint), so the
+signatures stay as agreed. Tools not built yet raise ``NotImplementedError``.
 
 Rules for every tool (see CLAUDE.md):
 
@@ -33,24 +34,45 @@ def search_publications(
 ) -> list[Passage]:
     """Search CDE publications for passages relevant to a question.
 
+    Combines keyword (BM25) and meaning (embedding) search, then reranks, so
+    exact names and paraphrases in other languages are both found. Each passage
+    is a chunk of an abstract, the full text, or (when a record has neither)
+    its title and keywords; ``chunk.source`` says which.
+
     Args:
         query: Natural-language search text, in any language.
-        filters: Optional restrictions (years, units, regions, ...).
-        k: Number of passages to return after reranking.
+        filters: Optional restrictions (years, units, types, languages,
+            countries, regions, sub-areas, methods, SDGs).
+        k: Number of passages to return after reranking (capped by the
+            `tools.max_k` setting, 20 by default).
 
     Returns:
-        Passages ranked by relevance, each with a citation.
+        Passages ranked by relevance, best first, each with a ``score`` and a
+        ``citation`` (BORIS ID, title, year, DOI, BORIS URL, page). Several
+        passages may come from the same publication.
     """
-    raise NotImplementedError
+    from chatcde.tools import publications
+    from chatcde.tools.context import get_context
+
+    return publications.search_publications(get_context(), query, filters, k)
 
 
 def get_publication(record_id: str) -> PublicationDetail:
     """Return metadata, authors, tags and download status for one publication.
 
+    Use it to see the abstract, authors and CDE units of a search hit, its
+    controlled-vocabulary tags with confidence and evidence, and whether its
+    full text is available (``record.has_fulltext``, ``record.access``,
+    ``download.status``).
+
     Args:
-        record_id: BORIS item UUID (or a DOI, which is resolved to a record).
+        record_id: BORIS item UUID, a DOI (publisher's or BORIS's own, with or
+            without ``https://doi.org/``) or a BORIS handle.
     """
-    raise NotImplementedError
+    from chatcde.tools import publications
+    from chatcde.tools.context import get_context
+
+    return publications.get_publication(get_context(), record_id)
 
 
 def read_section(
@@ -58,12 +80,21 @@ def read_section(
 ) -> list[Chunk]:
     """Return the text of a page range of one publication, for quoting.
 
+    Gives the full-text passages that overlap the pages, verbatim and in
+    reading order, at most `tools.max_section_pages` (10 by default) pages per
+    call. Neighbouring passages share a few sentences. Only records with parsed
+    full text have pages; for the others, use the abstract from
+    ``get_publication``.
+
     Args:
-        record_id: BORIS item UUID.
-        page_start: First page (1-based).
+        record_id: BORIS item UUID (a DOI or handle also works).
+        page_start: First page (1-based, as in the PDF).
         page_end: Last page; defaults to ``page_start``.
     """
-    raise NotImplementedError
+    from chatcde.tools import publications
+    from chatcde.tools.context import get_context
+
+    return publications.read_section(get_context(), record_id, page_start, page_end)
 
 
 def list_vocabulary(dimension: Dimension) -> list[VocabTerm]:
