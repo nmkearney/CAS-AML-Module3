@@ -22,9 +22,6 @@ from chatcde.schemas import Dimension
 if TYPE_CHECKING:
     from chatcde.config import Config
 
-
-
-
 app = typer.Typer()
 
 JsonOption = Annotated[
@@ -149,88 +146,6 @@ def search(
         if not full:
             text = textwrap.shorten(text, width=300, placeholder=" ...")
         typer.echo(textwrap.indent(textwrap.fill(text, width=85), "   "))
-        typer.echo("")
-
-
-@app.command(rich_help_panel=PANEL_QUERY)
-def show(
-    ctx: typer.Context,
-    record: Annotated[
-        str, typer.Argument(help="BORIS ID, DOI or handle of the publication.")
-    ],
-    as_json: JsonOption = False,
-) -> None:
-    """Show one publication: metadata, authors, abstract, tags, full-text status.
-
-    The same data the assistant gets from get_publication. No endpoint needed.
-    """
-    from chatcde.tools import core
-
-    d = _call(ctx.obj, lambda: core.get_publication(record))
-    if as_json:
-        typer.echo(_dump(d))
-        return
-    r = d.record
-    typer.echo(r.title + (f" ({r.year})" if r.year else ""))
-    if d.authors:
-        names = [a.name + ("*" if a.is_cde else "") for a in d.authors]
-        typer.echo("Authors:   " + "; ".join(names) + "   (* = CDE)")
-    rows = [
-        ("Type", r.pub_type),
-        ("In", r.container),
-        ("Languages", ", ".join(r.languages)),
-        ("CDE units", ", ".join(r.cde_units)),
-        ("Keywords", ", ".join(r.keywords)),
-        ("DOI", r.publisher_doi),
-        ("BORIS DOI", r.doi),
-        ("BORIS", f"{r.boris_url}  ({r.record_id})"),
-        ("Access", r.access.value),
-        ("Full text", "yes" if r.has_fulltext else "no"),
-        ("Download", d.download.status.value if d.download else None),
-    ]
-    for label, value in rows:
-        if value:
-            typer.echo(f"{label + ':':<11}{value}")
-    if r.abstract:
-        source = r.abstract_source.value if r.abstract_source else "unknown"
-        typer.echo(f"\nAbstract ({source}):")
-        typer.echo(textwrap.fill(" ".join(r.abstract.split()), width=88))
-    if d.tags:
-        typer.echo("\nTags (confidence):")
-        by_dim: dict[str, list[str]] = {}
-        for t in d.tags:
-            label = t.other_label if t.term == "other" and t.other_label else t.term
-            role = f", {t.role.value}" if t.role else ""
-            by_dim.setdefault(t.dimension.value, []).append(
-                f"{label} ({t.confidence:.2f}{role})"
-            )
-        for dim, terms in by_dim.items():
-            typer.echo(f"  {dim + ':':<27}{'; '.join(terms)}")
-
-
-@app.command(rich_help_panel=PANEL_QUERY)
-def read(
-    ctx: typer.Context,
-    record: Annotated[str, typer.Argument(help="BORIS ID, DOI or handle.")],
-    page_start: Annotated[int, typer.Argument(min=1, help="First page (1-based).")],
-    page_end: Annotated[
-        int | None, typer.Argument(min=1, help="Last page (default: first page).")
-    ] = None,
-    as_json: JsonOption = False,
-) -> None:
-    """Print the full text of a page range of one publication, for quoting.
-
-    The same passages the assistant gets from read_section. No endpoint needed.
-    """
-    from chatcde.tools import core
-
-    chunks = _call(ctx.obj, lambda: core.read_section(record, page_start, page_end))
-    if as_json:
-        typer.echo(_dump(chunks))
-        return
-    for c in chunks:
-        typer.echo(f"--- {_pages(c.page_start, c.page_end)} ({c.chunk_id}) ---")
-        typer.echo(textwrap.fill(c.text, width=88))
         typer.echo("")
 
 

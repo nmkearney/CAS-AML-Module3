@@ -34,7 +34,6 @@ def test_version():
 @pytest.mark.parametrize(
     "args",
     [
-        ["vocab"],
         ["vocab", "extract"],
         ["evaluate", "tagging"],
         ["evaluate", "questions"],
