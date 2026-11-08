@@ -205,7 +205,7 @@ counts, checksums); `chatcde info` and `coverage_report` report the edition.
 |---|---|
 | `chatcde ask "…"` / `chatcde chat` | Free questions; the agent calls tools and answers with citations |
 | `chatcde gaps`, `frontier`, `brief`, `experts` | Fixed workflows with a set tool chain and output format |
-| `chatcde search`, `count`, `vocab`, `schema`, `coverage`, `info` | Direct tool calls, no LLM |
+| `chatcde search`, `show`, `read`, `count`, `vocab`, `schema`, `coverage`, `info` | Direct tool calls, no LLM (`search` uses the embedding and reranker models) |
 | `chatcde harvest`, `parse`, `tag`, `index`, `evaluate` | Pipeline stages |
 | `chatcde vocab extract` | Open extraction on the sample, for vocabulary drafting |
 | `chatcde fetch-data [--edition full\|open] [--top-up]` | Download a prebuilt data bundle (full on VPN, else open) |
