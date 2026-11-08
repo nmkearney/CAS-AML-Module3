@@ -103,7 +103,8 @@ Two developers work in parallel; see `CONTRIBUTING.md` for the full workflow.
 - **~70% of a 60-record sample have a file attached** (±12 points). Whether the
   files can actually be downloaded is not yet confirmed.
 - Language: en 1,935, de 432, es 55, fr 54; "me" (44) and "an" (2) are likely
-  miscoded. The pipeline must be multilingual (at least EN + DE).
+  miscoded ("me" mixes de/fr/en/es records; see the parse results). The pipeline
+  must be multilingual (at least EN + DE).
 - **Only about 600 publications carry a CDE unit** (232 Just Economies & Human Well Being,
   214 Sustainable Governance, 188 Sustainable Land Systems, 81 Transformative
   Education & Science, 45 Services).
@@ -132,7 +133,8 @@ Two developers work in parallel; see `CONTRIBUTING.md` for the full workflow.
 ## OpenAlex enrichment results (`chatcde harvest openalex`, 2026-11-07)
 
 - `Record.doi` is **BORIS's own DataCite DOI** (10.7892, 10.48350, 10.48620); the
-  publisher DOI is `dc.identifier.publisherDOI` (981 records), read from the raw cache.
+  publisher DOI (`dc.identifier.publisherDOI`, 981 records) is `Record.publisher_doi`
+  (#38), bare and lower-case.
 - **210 of 1,665 missing abstracts filled** (abstracts now 1,548 / 3,003); 606 works
   have no abstract in OpenAlex, 602 records have no DOI at all (decision 0010).
 - 1,698 OA links in `data/raw/openalex/oa_links.csv`; 183 point outside BORIS for
@@ -154,6 +156,20 @@ Two developers work in parallel; see `CONTRIBUTING.md` for the full workflow.
   definitions to ~18 words and notes to the 15 cases that need action (315 KB).
 - Counts in candidates.yaml describe the oversampled sample, not corpus shares.
 - The model still puts some country names under settings ("Switzerland", "Global South").
+- 
+## Parse results (`chatcde parse`, 2026-11-07)
+
+- PyMuPDF text layer, vision-model OCR for scanned/garbled pages, lingua language per
+  page (decision 0014). One `PageText` per page; per-record state in `parse_state`.
+- 1,542 PDFs → **47,596 pages**, 0 errors: text 44,742, ocr 1,719, garbled 155, blank 980.
+  **OCR: 1,801 of 1,874 pages transcribed** (42 min, qwen3-vl); 73 stay pending: 51 Lao
+  pages (the model writes Thai, so Thai answers are rejected) and 22 that loop.
+- Pages by language: en 35,250, de 4,657, fr 3,127, es 2,526, pt 393, it 41, none 1,602.
+- BORIS `me` is not one language (de 14, fr 10, en 8 of the 34 with a PDF): probably
+  *mehrsprachig*. Use page languages, not BORIS codes, for language counts.
+- The 126 real fixture pages match the parsed pages exactly (same extractor).
+- The API key lives in `~/.zshrc`, which Claude's non-interactive shell does not read; load
+  it with `eval "$(grep '^export CHATCDE_LLM_API_KEY=' ~/.zshrc | tail -1)"`.
 
 ## Architecture
 
@@ -225,7 +241,7 @@ Full definitions and scope notes are in `docs/schema_draft.md` and `vocab/draft_
 | 7 | method | proposed 34 terms in 8 groups |
 | 8 | data_type | proposed |
 | 9 | country | ISO 3166-1 alpha-3 |
-| 10 | region | derived: UN M49 + CDE partner regions |
+| 10 | region | derived: UN M49 + 4 CDE partner regions (decision 0017) |
 | 11 | setting | proposed (mountains, drylands, …) |
 | 12 | scale | proposed |
 | 13 | system | proposed + strategy terms |
@@ -301,5 +317,6 @@ data/             local only; gitignored (raw/, text/, index/, catalogue.duckdb)
 - Does the University Library confirm that restricted publisher texts may be
   copied to staff machines (full edition)? If not, use `--top-up`.
 - ~~Can files marked "restricted" in BORIS be downloaded on the VPN?~~ No (decision 0009).
-- Older work: tag with 2025–2028 categories? (Proposal: yes, keeping the BORIS unit as recorded. Record as a decision.)
-- Are there four or five CDE partner regions, and which countries belong to each? (Record as a decision.)
+- ~~Older work: tag with 2025–2028 categories?~~ Yes, keeping the BORIS unit as recorded (decision 0016).
+- ~~Are there four or five CDE partner regions, and which countries belong to each?~~ Four, plus a partner-country flag (decision 0017).
+- Conference items are left out of gap counts by default (decision 0018; Track B implements).

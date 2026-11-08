@@ -210,9 +210,32 @@ class DataConfig(_Section):
     dir: ProjectPath
     raw_dir: ProjectPath
     files_dir: ProjectPath
+    text_dir: ProjectPath
     catalogue: ProjectPath
     editions: dict[Literal["full", "open"], EditionLocation]
     default_edition: Literal["auto", "full", "open"]
+
+
+class ParseConfig(_Section):
+    """How PDFs become page text (docs/decisions/0014-parsing.md)."""
+
+    min_chars: int = Field(ge=0)
+    min_image_coverage: float = Field(ge=0.0, le=1.0)
+    min_drawings: int = Field(ge=1)
+    max_garbage_ratio: float = Field(ge=0.0, le=1.0)
+    min_alnum_ratio: float = Field(ge=0.0, le=1.0)
+    ocr_prompt: str
+    ocr_dpi: int = Field(ge=36)
+    ocr_max_px: int = Field(ge=256)
+    ocr_max_tokens: int = Field(ge=1)
+    ocr_retry_repetition_penalty: float | None = Field(default=None, gt=1.0)
+    ocr_reject_scripts: list[str] = Field(default_factory=list)
+    max_retries: int = Field(ge=0)
+    max_consecutive_failures: int = Field(ge=1)
+    languages: list[str] = Field(min_length=2)
+    min_chars_language: int = Field(ge=0)
+    min_language_confidence: float = Field(ge=0.0, le=1.0)
+    language_sample_chars: int = Field(ge=1)
 
 
 class VocabConfig(_Section):
@@ -305,6 +328,7 @@ class Config(_Section):
     boris: BorisConfig
     openalex: OpenAlexConfig
     data: DataConfig
+    parse: ParseConfig
     vocab: VocabConfig
     prompts: PromptsConfig
     vocab_extract: VocabExtractConfig

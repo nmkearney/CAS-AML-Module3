@@ -70,6 +70,8 @@ in review. "Open access" in BORIS mostly means free to read, not openly licensed
 | Licence | CC BY 4.0 27, CC BY-NC 4.0 3 |
 
 - Records before 2000 carry no open licence in BORIS, so the fixtures have none.
+- `doi` is BORIS's own DOI (all 30 real records have one). 12 of the 30 also have a
+  `publisher_doi`; the synthetic records have none.
 - French appears only as a second language: `82d7bbd0` is coded `de; fr` and
   `d012a8d7` is coded `me`, and both PDFs are the French edition of a German report.
 - Many records have one unit-less CDE author, so the unit axis is uneven; this mirrors

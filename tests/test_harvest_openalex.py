@@ -8,7 +8,6 @@ OpenAlex is served through ``httpx.MockTransport``.
 from __future__ import annotations
 
 import csv
-import json
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
@@ -60,10 +59,16 @@ def work(doi: str, abstract: str | None = None, **extra: Any) -> dict[str, Any]:
     }
 
 
-def rec(rid: str, doi: str | None, abstract: str | None = None) -> Record:
+def rec(
+    rid: str,
+    doi: str | None,
+    abstract: str | None = None,
+    publisher_doi: str | None = None,
+) -> Record:
     return Record(
         record_id=rid,
         doi=doi,
+        publisher_doi=publisher_doi,
         title=f"Title {rid}",
         abstract=abstract,
         abstract_source=TextSource.ABSTRACT_BORIS if abstract else None,
@@ -94,32 +99,6 @@ class FakeOpenAlex:
         return httpx.Response(200, json={"meta": {}, "results": results})
 
 
-def write_boris_page(raw: Path, publisher: dict[str, str]) -> None:
-    """A saved BORIS search page holding items with ``publisherDOI`` only."""
-    objects = [
-        {
-            "_embedded": {
-                "indexableObject": {
-                    "uuid": rid,
-                    "metadata": {
-                        "dc.identifier.publisherDOI": [
-                            {"value": f"https://doi.org/{d}"}
-                        ]
-                    },
-                }
-            }
-        }
-        for rid, d in publisher.items()
-    ]
-    path = raw / "boris" / "search" / "page-0000.json"
-    path.parent.mkdir(parents=True)
-    reply = {"_embedded": {"searchResult": {"_embedded": {"objects": objects}}}}
-    path.write_text(
-        json.dumps({"page": 0, "fetched_at": T0.isoformat(), "reply": reply}),
-        encoding="utf-8",
-    )
-
-
 @pytest.fixture
 def cfg(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> Config:
     monkeypatch.delenv("CHATCDE_OPENALEX_API_KEY", raising=False)
@@ -134,8 +113,14 @@ def cfg(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> Config:
     )
     cfg = load_config(override)
     records = [
-        rec("r1", "10.7892/boris.1"),  # publisher DOI has the abstract
-        rec("r2", "10.7892/boris.2", abstract="BORIS abstract wins."),
+        # publisher DOI has the abstract (mixed case: matching is case-blind)
+        rec("r1", "10.7892/boris.1", publisher_doi="10.1000/Pub.1"),
+        rec(
+            "r2",
+            "10.7892/boris.2",
+            abstract="BORIS abstract wins.",
+            publisher_doi="10.1000/pub.2",
+        ),
         rec("r3", "10.48350/3"),  # only the BORIS DOI has an abstract
         rec("r4", "10.7892/boris.4"),  # abstract too short
         rec("r5", "10.7892/boris.5"),  # OpenAlex has no abstract
@@ -158,7 +143,6 @@ def cfg(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> Config:
         },
     )
     con.close()
-    write_boris_page(cfg.data.raw_dir, {"r1": "10.1000/Pub.1", "r2": "10.1000/pub.2"})
     return cfg
 
 
@@ -362,6 +346,14 @@ def test_offline_with_higher_threshold_removes_earlier_fills(cfg: Config):
     a = abstracts(cfg)
     assert a["r1"] == (None, None)
     assert a["r2"] == ("BORIS abstract wins.", "abstract_boris")
+
+
+def test_catalogue_from_before_publisher_doi_needs_rebuild(cfg: Config):
+    con = catalogue.connect(cfg.data.catalogue)
+    con.execute("ALTER TABLE records DROP COLUMN publisher_doi")
+    con.close()
+    with pytest.raises(HarvestError, match="harvest metadata --offline"):
+        harvest_openalex(cfg, client=client_for(cfg, FakeOpenAlex(fake_works())))
 
 
 def test_offline_without_cache_and_offline_force_fail(cfg: Config):

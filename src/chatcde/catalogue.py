@@ -128,6 +128,16 @@ def connect(path: Path, *, read_only: bool = False) -> duckdb.DuckDBPyConnection
     return duckdb.connect(str(path), read_only=read_only)
 
 
+def columns(con: duckdb.DuckDBPyConnection, table: str) -> list[str]:
+    """Column names of ``table`` in order; empty if the table does not exist."""
+    rows = con.execute(
+        "SELECT column_name FROM information_schema.columns "
+        "WHERE table_name = ? ORDER BY ordinal_position",
+        [table],
+    ).fetchall()
+    return [r[0] for r in rows]
+
+
 def ensure_tables(con: duckdb.DuckDBPyConnection, names: Iterable[str]) -> None:
     """Create the named tables if they do not exist yet (existing data is kept)."""
     for name in names:
@@ -153,12 +163,21 @@ def replace_tables(
     Used by stages that rebuild whole tables from their own cache (for example
     ``chatcde harvest metadata`` for ``records`` and ``authors``). Either every
     table is replaced or, on any error, all are left as they were.
+
+    A table whose columns no longer match its model (a field was added to
+    ``schemas.py``) is dropped and created again; its rows are replaced anyway,
+    so nothing is lost and old catalogues need no separate migration.
     """
     ensure_tables(con, tables)
     con.execute("BEGIN TRANSACTION")
     try:
         for table, rows in tables.items():
-            con.execute(f"DELETE FROM {table}")
+            model = TABLES[table]
+            if columns(con, table) != list(model.model_fields):
+                con.execute(f"DROP TABLE {table}")
+                con.execute(create_table_sql(table, model))
+            else:
+                con.execute(f"DELETE FROM {table}")
             insert(con, table, rows)
         con.execute("COMMIT")
     except BaseException:
