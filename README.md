@@ -122,6 +122,35 @@ chatcde index search "living lab" --mode bm25 --no-rerank   # offline, keywords 
 user-facing search with citations is `chatcde search` (issue #23). See
 `docs/decisions/0013-hybrid-search.md`.
 
+## Vocabulary drafting
+
+Draft vocabulary terms from CDE's own publications (needs the key in
+`CHATCDE_LLM_API_KEY`). The command runs three steps, each resumable:
+
+```bash
+chatcde vocab extract                         # all three steps in order
+chatcde vocab extract --step sample           # draw the stratified sample (no network)
+chatcde vocab extract --step label --limit 10 # trial: label 10 sampled records
+chatcde vocab extract --step label            # label the rest
+chatcde vocab extract --step propose          # cluster labels -> vocab/candidates.yaml
+```
+
+- **sample:** about 250 records with an abstract or page text, stratified by CDE unit ×
+  decade × language. Every stratum gets at least `vocab_extract.stratum_floor` records,
+  and the rest are shared out in proportion. The draw is seeded and stored in
+  `vocab_sample`, with a copy in `data/vocab/sample.csv`.
+- **label:** the `tagging` model writes short English labels for methods, themes, data
+  types, settings, systems and actors. Each label comes with a quote in the original
+  language, and the code checks that the quote occurs in the text. Results go to
+  `vocab_labels`, and records already labelled are skipped.
+- **propose:** labels are embedded and clustered (average linkage, cosine
+  ≥ `cluster_threshold`). The `tagging` model names and defines each cluster and
+  compares it with the draft terms. The result is `vocab/candidates.yaml`, with counts
+  taken from the catalogue.
+
+`--force` redoes the chosen step. The candidates are curated by hand into
+`vocab/draft_vocabulary.yaml`. See `docs/decisions/0019-open-extraction.md`.
+
 ## Configuration
 
 Settings are merged from these files, later ones winning:

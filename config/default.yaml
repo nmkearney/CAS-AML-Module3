@@ -77,6 +77,32 @@ vocab:
 prompts:
   dir: "src/chatcde/prompts"
 
+# --- Open extraction for vocabulary drafting (docs/decisions/0019-open-extraction.md)
+# `chatcde vocab extract`: sample -> label (LLM, models.tagging) -> propose
+# (embeddings + clustering + LLM) -> vocab/candidates.yaml for curation.
+vocab_extract:
+  sample_size: 250               # target number of records
+  stratum_floor: 3               # every non-empty unit x decade x language stratum gets this many
+  seed: 13                       # random seed for the draw; change it for a new sample
+  pool_before: 2000              # years before this form one "<2000" decade stratum
+  languages: ["en", "de"]        # own language strata; all others are pooled as "other"
+  max_fulltext_chars: 6000       # characters of parsed page text given to the model
+  max_input_chars: 12000         # cap on the whole input (title + abstract + pages)
+  labels_per_kind: 6             # at most this many labels per kind and record
+  max_tokens: 2048               # answer budget per record
+  max_consecutive_failures: 5    # stop if the endpoint keeps failing
+  extract_prompt: "vocab_extract.v1"   # file <prompts.dir>/<name>.md
+  propose_prompt: "vocab_propose.v1"
+  cluster_threshold: 0.80        # average-linkage cosine similarity at which merging stops
+  min_records: 3                 # clusters seen in fewer records are listed as unclustered
+  example_labels: 12             # member labels shown per candidate
+  example_records: 5             # record IDs shown per candidate
+  output: "vocab/candidates.yaml"
+  sample_csv: "data/vocab/sample.csv"
+  # Extra request fields for models.tagging; qwen3 thinks unless told not to (0003).
+  extra_body:
+    chat_template_kwargs: {enable_thinking: false}
+
 # --- Retrieval ------------------------------------------------------------
 retrieval:
   chunk_tokens: 500              # fits the reranker's 1K context

@@ -19,6 +19,7 @@ dependencies = [
     "duckdb>=1.1",    # catalogue (data/catalogue.duckdb) and the test fixture DB
     "httpx>=0.27",    # BORIS and OpenAlex APIs
     "certifi",        # python.org builds on macOS lack root certificates
+    "numpy>=1.26",    # label clustering in `vocab extract` (decision 0019)
 ]
 
 [project.optional-dependencies]

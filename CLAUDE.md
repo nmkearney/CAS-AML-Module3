@@ -140,6 +140,20 @@ Two developers work in parallel; see `CONTRIBUTING.md` for the full workflow.
 - OpenAlex now uses API keys and a daily budget instead of the mailto polite pool; a
   full run costs ~$0.003 and needs no key.
 
+## Open extraction results (`chatcde vocab extract`, 2026-11-08)
+
+- Sample: **250 of 2,148 eligible records** (abstract or page text) in 29 unit x decade x
+  language strata, seed 13, floor 3. 78 have a CDE unit, 54 are German, 27 other
+  languages, 8 pre-2000; 239 have page text (decision 0019).
+- Labels (qwen3.8-27b, `vocab_extract.v1`): 250/250 records, 0 failures, 4,350 labels
+  (method 786, theme 1,203, data_type 492, setting 516, system 552, actors 801);
+  **98% of quotes found** in the input text. About 20 min at 4 parallel requests.
+- Propose (qwen3-embedding-4b, average linkage at 0.80, min 3 records):
+  **353 candidates** in `vocab/candidates.yaml` (method 55, theme 86, data_type 42,
+  setting 40, system 57, actors 73); 638 proposals cached, about 8 min.
+- Counts in candidates.yaml describe the oversampled sample, not corpus shares.
+- The model still puts some country names under settings ("Switzerland", "Global South").
+
 ## Architecture
 
 ```

@@ -36,7 +36,6 @@ def test_version():
     [
         ["search", "land use"],
         ["vocab"],
-        ["vocab", "extract"],
         ["evaluate", "tagging"],
         ["evaluate", "questions"],
         ["export", "--edition", "open"],
