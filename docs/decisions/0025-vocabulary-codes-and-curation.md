@@ -1,6 +1,7 @@
 # 0025: Vocabulary codes and curation in an Excel workbook
 
-- Status: accepted. The change to `Tag.term` in the shared formats is proposed in #49.
+- Status: accepted. The change to `Tag.term` in the shared formats was proposed in #49
+  and is made in PR #55 (fixtures remapped to codes).
 - Date: 2026-11-08
 
 ## Context
@@ -29,10 +30,12 @@ Two problems with the v0.2 file:
 - **Codes are never reused.** A term that is merged or retired moves to the dimension's
   `retired:` list, with `replaced_by` (or null), so old tags can be mapped forward.
 - **New layout for the curated dimensions:**
-  `{groups: [{code, label}], terms: [{code, label, group, definition, includes, source,
-  note}], retired: [...]}`.
+  `{groups: [{code, label}], terms: [{code, label, group, definition, includes, related,
+  source, note}], retired: [...]}`.
   - `includes` lists merged labels and synonyms (at most 12, deduplicated ignoring
     case). They help the tagging prompt.
+  - `related` lists codes of related terms or sub-areas (a pointer, not a merge; see
+    below).
   - `source` is `seed` (from the v0.2 draft) or `candidate` (from open extraction).
   - `actors` keeps `roles`.
 - **Decide in Excel, apply with code. The flow runs one way:**
@@ -53,6 +56,12 @@ Two problems with the v0.2 file:
       (retired, with `replaced_by`), `retire`
     - candidates: `accept`, `merge` (its labels become `includes` of the target, which
       may be a strategy sub-area), `reject`, `defer`
+    - `merge_into` on a `keep` or `accept` row means **related**, not merged: the
+      term stays and gets a `related` list (codes separated by `;`). Added while
+      applying v0.3, where 16 accepted additional sub-areas pointed to a sub-area or
+      term (e.g. Biodiversity conservation → SL-b). Re-exporting shows the links again.
+    - `merge_into` may hold a label if it names exactly one live term or sub-area; it
+      is read as that code, with a warning.
   - **The workbook keeps the vocabulary it was exported from** in a hidden `_base`
     sheet. `vocab apply` builds the curated blocks from that base plus the decisions,
     never from the current file. So:
@@ -64,7 +73,8 @@ Two problems with the v0.2 file:
     all the problems:
     - a missing decision, or one not allowed for the row type
     - a code that is missing, malformed or duplicated
-    - an unknown `merge_into` code
+    - an unknown `merge_into` code (or a label that matches no term, or several)
+    - a term related to itself
     - a retired code that is still live
     - an additional sub-area without an impact area, or one that repeats a sub-area
       label

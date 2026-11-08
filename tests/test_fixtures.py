@@ -55,6 +55,8 @@ def flatten(node: Any) -> set[str]:
             out |= {x["code"]} if isinstance(x, dict) else {str(x)}
         return out
     if isinstance(node, dict):
+        if "terms" in node:  # curated layout (vocab apply, decision 0025)
+            return {t["code"] for t in node["terms"]}
         return set().union(*(flatten(v) for v in node.values()))
     return set()
 
@@ -69,7 +71,7 @@ def allowed_terms() -> dict[Dimension, set[str] | None]:
             terms[d] = None
         elif d is Dimension.REGION:
             terms[d] = set(node["cde_partner_region"]) | M49
-        elif d is Dimension.ACTORS:
+        elif d is Dimension.ACTORS and "terms" not in node:
             terms[d] = flatten(node["groups"])
         elif d is Dimension.OUTPUT_TYPE:
             terms[d] = set(node["audience"])

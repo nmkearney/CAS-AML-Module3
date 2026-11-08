@@ -423,7 +423,7 @@ def count(
 
 
 def _overview() -> None:
-    """Print the 17 dimensions with vocabulary size and tag use."""
+    """Print the 18 dimensions with vocabulary size and tag use."""
     from rich.console import Console
     from rich.table import Table
 
@@ -452,7 +452,7 @@ def _overview() -> None:
 
 @app.command(rich_help_panel=PANEL_QUERY)
 def schema(ctx: typer.Context) -> None:
-    """Show the 17 schema dimensions with vocabulary size and how much is tagged.
+    """Show the 18 schema dimensions with vocabulary size and how much is tagged.
 
     Scope notes for each dimension are in docs/schema_draft.md.
     """

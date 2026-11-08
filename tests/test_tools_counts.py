@@ -310,7 +310,8 @@ def test_list_vocabulary_on_the_fixtures(fixture_ctx, fixture_db: Path):
     assert {t.code: t.record_count for t in terms if t.record_count} == expected
 
     methods = core.list_vocabulary(ME)
-    assert len([t for t in methods if not t.definition.startswith("Free")]) == 34
+    # vocabulary v0.3: 60 coded method terms (decision 0025)
+    assert len([t for t in methods if t.code.startswith("MET-")]) == 60
     other = next(t for t in methods if t.code == "other")
     assert other.label == "Other" and other.record_count > 0
 

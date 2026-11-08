@@ -107,7 +107,7 @@ def list_vocabulary(dimension: Dimension) -> list[VocabTerm]:
     at confidence 0.5 or more, over the whole catalogue.
 
     Args:
-        dimension: One of the 17 schema dimensions.
+        dimension: One of the 18 schema dimensions.
     """
     from chatcde.tools import counts
     from chatcde.tools.context import get_context

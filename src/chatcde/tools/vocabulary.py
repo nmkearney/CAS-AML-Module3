@@ -6,8 +6,12 @@
 * a list of strings (``setting``, ``justice_lens``): the string is code and label;
 * a list of mappings with ``code`` and ``label`` (``sub_area``, ``pathway``): the
   definition comes from ``definition``, ``scope`` or ``rule``;
-* groups of lists (``method``, ``system``, ``actors.groups``): the group name
-  becomes the definition;
+* groups of lists (``method``, ``system``, ``actors.groups``; up to v0.2): the
+  group name becomes the definition;
+* the curated layout written by ``chatcde vocab apply`` (v0.3, decision 0025):
+  ``{groups: [{code, label}], terms: [{code, label, group, definition, ...}],
+  retired: [...]}``. Only ``terms`` are entries; the group label is prefixed to
+  the definition, and retired codes are not listed;
 * standards: ``country`` (ISO 3166-1 alpha-3 plus a flag term), ``sdg`` (UN goals
   1-17, labelled here), ``region`` (CDE partner regions; UN M49 sub-regions are
   derived from countries and are listed as they occur in the tags), and
@@ -116,6 +120,20 @@ def _from_groups(groups: dict[str, Any]) -> list[Entry]:
     return out
 
 
+def _curated(node: dict[str, Any]) -> list[Entry]:
+    """Entries from the curated layout: ``terms``, with group labels as notes."""
+    groups = {g["code"]: g["label"] for g in node.get("groups") or []}
+    out = []
+    for t in node["terms"]:
+        group = groups.get(t.get("group"), t.get("group"))
+        note = f"Group: {group}" if group else None
+        definition = t.get("definition")
+        if note:
+            definition = f"{note}. {definition}" if definition else note
+        out.append(Entry(str(t["code"]), str(t.get("label") or t["code"]), definition))
+    return out
+
+
 def _regions(node: dict[str, Any]) -> list[Entry]:
     """CDE partner regions with the countries or M49 region they cover."""
     out = []
@@ -149,6 +167,8 @@ def dimension_entries(vocab: dict[str, Any], dimension: Dimension) -> list[Entry
         )
     if dimension is Dimension.REGION and isinstance(node, dict):
         return _regions(node)
+    if isinstance(node, dict) and "terms" in node:
+        return _curated(node)
     if dimension is Dimension.OUTPUT_TYPE and isinstance(node, dict):
         return _from_list(node.get("audience") or [])
     if dimension is Dimension.ACTORS and isinstance(node, dict):

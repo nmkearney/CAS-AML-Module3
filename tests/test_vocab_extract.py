@@ -206,8 +206,8 @@ def test_flatten_terms_handles_every_shape():
 def test_seed_terms_and_unit_codes_from_the_real_vocabulary():
     cfg = load_config()
     vocab = load_vocabulary(cfg.vocab.file)
-    assert "Case study" in seed_terms(vocab, "method")
-    assert "Pastoralists" in seed_terms(vocab, "actors")
+    assert "MET-case-study: Case study" in seed_terms(vocab, "method")
+    assert "ACT-pastoralists: Pastoralists" in seed_terms(vocab, "actors")
     assert any(t.startswith("SL-d:") for t in seed_terms(vocab, "sub_area"))
     assert unit_codes(vocab)["Sustainable Land Systems"] == "SL"
 
@@ -491,7 +491,9 @@ def test_propose_terms_writes_candidates(db: Path, tmp_path: Path):
 
     method = doc["method"]["candidates"]
     assert len(method) == 1 and method[0]["n_records"] == 12  # counts from code
-    assert method[0]["existing_term"] == "Interviews and focus groups"
+    assert method[0]["existing_term"] == (
+        "MET-interviews-and-focus-groups: Interviews and focus groups"
+    )
     assert method[0]["suggested_dimension"] == "method"  # fixed for non-themes
     themes = doc["theme"]["candidates"]
     erosion = [c for c in themes if "Erosion" in c["label"]]

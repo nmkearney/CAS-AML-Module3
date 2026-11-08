@@ -267,6 +267,8 @@ def _term_code_lookup(
     for dim in PREFIXES:
         for t in current_terms(vocab.get(dim)):
             out[t.label] = t.code or suggest_code(dim, t.label)
+            if t.code:  # from v0.3 the model sees "code: label" (seed_terms)
+                out[f"{t.code}: {t.label}"] = t.code
     for item in vocab.get("sub_area") or []:
         out[f"{item['code']}: {item['label']}"] = item["code"]
     return out

@@ -182,7 +182,7 @@ In the prototype, the developer sets the schema and curates the vocabularies, an
 
 | Layer | What it is | Who builds it |
 | --- | --- | --- |
-| Schema | The 17 dimensions, each with a definition, whether a record can carry several values, and its granularity | Developer, from the 2025–2028 strategy; choices logged as decision records |
+| Schema | The 18 dimensions, each with a definition, whether a record can carry several values, and its granularity | Developer, from the 2025–2028 strategy; choices logged as decision records |
 | Standard vocabularies | Country (ISO 3166), region (UN M49), SDGs, publication type (from BORIS) | Taken as they are; the LLM tags against them directly |
 | Interpretive vocabularies | Sub-areas, methods, systems, actors and similar | Drafted by the local LLM from the corpus, curated by the developer |
 

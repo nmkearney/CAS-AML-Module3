@@ -1,6 +1,7 @@
 # 0026: Additional sub-areas beyond the strategy
 
-- Status: proposed. The change to the shared formats is under discussion in #49.
+- Status: accepted (2026-11-08). The shared-format change (`Dimension.ADDITIONAL_SUB_AREA`)
+  was proposed in #49 and is made in PR #55, where Track B reviews it.
 - Date: 2026-11-08
 
 ## Context
@@ -42,6 +43,12 @@ and part of the frontier comparison with the wider field (use case 2).
   and `additional_sub_area` tags (SL-a → SL), not tagged separately. This keeps them
   consistent with the sub-areas. It changes the plan for #15, and is proposed in #49.
 - **The list is kept narrow, about 25–35 terms.**
+  - *Outcome in v0.3:* the curator accepted 77 terms (SL 26, cross_cutting 21, SG 11,
+    JE 9, TE 5, outside 5), well above the aim. They are kept for the trial in #16, and
+    narrowed if precision is low (see Revisit). Sixteen of them carry `related` links
+    to a sub-area or term (0025), and a few overlap a sub-area's scope (e.g.
+    Sustainability standards and certification and SG-b); the boundary rule is to be
+    re-checked in v0.4.
 
 ## Consequences
 - **Alignment can be measured, counted in code with denominators:** the share of

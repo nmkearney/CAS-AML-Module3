@@ -193,7 +193,7 @@ These commands count tags in the catalogue and need no model. They call the tool
 `list_vocabulary`, `count_by` and `find_gaps`.
 
 ```bash
-chatcde schema                                  # the 17 dimensions: terms, records tagged
+chatcde schema                                  # the 18 dimensions: terms, records tagged
 chatcde vocab -d method                         # one dimension's terms with record counts
 chatcde count sub_area                          # records per sub-area
 chatcde count impact_area method --year-from 2015 --lang de
@@ -257,8 +257,10 @@ chatcde vocab review --force --carry-from vocab/curation/v0.3.xlsx   # re-export
   - Rows: current terms start as `keep`; candidates are decided `accept`, `merge`,
     `reject` or `defer`. Current terms can also be `merge`d or `retire`d.
   - Grey columns show the model's evidence.
-- **Every term gets a stable code** such as `MET-remote-sensing`. Merged or retired
-  codes move to a `retired:` list.
+- **Every term gets a stable code** such as `MET-remote-sensing`, and tags store the
+  code. Merged or retired codes move to a `retired:` list.
+- **`merge_into` on a kept or accepted row** records related terms instead of a merge
+  (codes separated by `;`); the term gets a `related` list.
 - **`vocab apply`** works like this:
   - It writes nothing if any row is invalid.
   - It rewrites only the curated sections.
