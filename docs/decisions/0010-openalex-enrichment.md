@@ -12,8 +12,8 @@ Facts checked on 2026-11-07:
 - **`Record.doi` is BORIS's own DOI.** It comes from `dc.identifier.doi`, and
   every one of the 2,111 values has a BORIS DataCite prefix (`10.7892` for 1,341,
   `10.48350` for 478, `10.48620` for 292). The publisher's DOI is a separate field,
-  `dc.identifier.publisherDOI`. It is set on 981 records and is not in the shared
-  schema.
+  `dc.identifier.publisherDOI`. It is set on 981 records. It was not in the shared
+  schema at first; since #38 it is `Record.publisher_doi`.
 - **OpenAlex replaced the mailto "polite pool" with API keys** and a daily budget:
   - without a key, $0.10/day shared per IP, 10 requests/s;
   - with a free key, $1/day;
@@ -82,7 +82,8 @@ Facts checked on 2026-11-07:
   publisher PDF. `--top-up` or a later `harvest files` option could fetch these for
   the open edition.
 - Later:
-  - propose (issue labelled `schemas`) a `publisher_doi` field on `Record`, since
-    "traceable to DOIs" in CLAUDE.md is better served by the publisher DOI;
+  - ~~propose a `publisher_doi` field on `Record`~~: done in #38. `harvest openalex`
+    now reads it from `records` instead of the raw BORIS cache. Whether `Citation`
+    shows it and whether `get_publication` matches it are Track B's choices;
   - try title matching for the 602 records with no DOI;
   - re-run monthly; new DOIs are looked up incrementally.
