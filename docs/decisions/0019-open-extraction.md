@@ -87,8 +87,21 @@ Some constraints:
     review", "Case study" and "Mountains". They also add terms that are missing, such as
     transdisciplinary research, Global South / Global North, food security,
     deforestation, and soil and water conservation.
-  - The model's definitions and notes are often longer than the 1–2 sentences the prompt
-    asks for.
+  - With `vocab_propose.v1`, definitions had a median of 28 words, and 308 of 353
+    candidates had a note (median 45 words), mostly explaining the model's reasoning.
+    That made the file 450 KB.
+- **`vocab_propose.v2` (same day):**
+  - Definitions are capped at 30 words.
+  - A note is written only when the curator must act on it, in at most 20 words: a
+    mixed cluster, labels too vague to use, or places named instead of kinds of place.
+  - Result: definitions now have a median of 18 words, only 15 candidates have a note,
+    304 of 353 labels are unchanged, and the file is 315 KB. v1 stays in the repo for
+    provenance.
+- **The checks run when the file is written, not before caching.**
+  - `vocab_proposals` keeps the model's own answer, so a better check needs no new
+    model calls.
+  - `resolve_term` matches an existing term ignoring case and the `code: ` prefix. The
+    model wrote "Sustainable land use" for "SL-a: Sustainable land use" twice.
 - The developer curates from evidence: each candidate has a frequency in the sample,
   example labels and record IDs to check.
 - The counts in candidates.yaml describe the sample, not the corpus. Strata are

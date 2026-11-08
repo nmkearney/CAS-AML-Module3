@@ -12,7 +12,8 @@
    ``unclustered`` instead of being sent to the model.
 4. **Propose**: the ``tagging`` model names each cluster, defines it and says
    whether it matches, splits or adds to the current draft terms. Proposals are
-   cached in ``vocab_proposals`` by a hash of the cluster's members.
+   cached in ``vocab_proposals`` by a hash of the cluster's members, as the
+   model gave them; the code's checks (:func:`_check`) run when the file is written.
 5. **Write** ``vocab/candidates.yaml``: a header with provenance and the sample
    as denominator, then one section per kind, largest clusters first.
 
@@ -307,14 +308,49 @@ def _cluster_message(
     return "\n".join(lines)
 
 
+def resolve_term(name: str, terms: Sequence[str]) -> str | None:
+    """The draft term the model meant by ``name``, or ``None`` if there is none.
+
+    Matches exactly, then ignoring case and spacing, then against the label part
+    of ``"code: label"`` terms or the code alone (the model often drops or keeps
+    only the code, e.g. "Sustainable land use" for "SL-a: Sustainable land use").
+    """
+    if name in terms:
+        return name
+
+    def key(text: str) -> str:
+        return " ".join(text.lower().split())
+
+    wanted = key(name)
+    for term in terms:
+        code, _, label = term.partition(": ")
+        if wanted in {key(term), key(label) if label else None, key(code)}:
+            return term
+    return None
+
+
+def _checked(
+    proposal: Proposal | None, kind: str, seeds: dict[str, list[str]]
+) -> Proposal | None:
+    """:func:`_check` for an optional proposal (a failed call has none)."""
+    return None if proposal is None else _check(proposal, kind, seeds)
+
+
 def _check(proposal: Proposal, kind: str, seeds: dict[str, list[str]]) -> Proposal:
-    """Fix what code can check: an unknown existing term, the dimension of a kind."""
+    """Fix what code can check: the existing term's spelling, the dimension of a kind.
+
+    Applied when candidates.yaml is written, not before caching, so the cache
+    keeps the model's own answer and a better check needs no new model calls.
+    """
     note = proposal.note
     existing = proposal.existing_term
-    known = {t for terms in seeds.values() for t in terms}
-    if existing is not None and existing not in known:
-        note = (note + " " if note else "") + f"[model named unknown term {existing!r}]"
-        existing = None
+    known = [t for terms in seeds.values() for t in terms]
+    if existing is not None:
+        resolved = resolve_term(existing, known)
+        if resolved is None:
+            tag = f"[model named unknown term {existing!r}]"
+            note = f"{note} {tag}" if note else tag
+        existing = resolved
     action = proposal.action
     if action != "new" and existing is None:
         action = "new"
@@ -464,7 +500,7 @@ def propose_terms(
     cached = sum(len(big[k]) for k in kinds) - len(jobs)
 
     def ask(cluster: Cluster) -> Proposal:
-        answer = chat_json(
+        return chat_json(
             client,
             model=tagging,
             system=systems[cluster.kind],
@@ -473,7 +509,6 @@ def propose_terms(
             max_tokens=s.max_tokens,
             extra_body=s.extra_body,
         )
-        return _check(answer, cluster.kind, seeds[cluster.kind])
 
     failed = 0
     version, stamp = code_version(), now()
@@ -546,7 +581,10 @@ def propose_terms(
     sections: dict[str, Any] = {}
     for k in kinds:
         sections[k] = {
-            "candidates": [_candidate(c, cache.get(c.key()), cfg) for c in big[k]],
+            "candidates": [
+                _candidate(c, _checked(cache.get(c.key()), k, seeds[k]), cfg)
+                for c in big[k]
+            ],
             "unclustered": [_unclustered(c) for c in small[k]],
         }
     write_candidates(s.output, header, sections)

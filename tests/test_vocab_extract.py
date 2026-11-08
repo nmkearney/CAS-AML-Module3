@@ -33,7 +33,7 @@ from chatcde.tag.extract import (
     normalise,
 )
 from chatcde.tag.llm import LLMReplyError, chat_json, fill_prompt
-from chatcde.tag.propose import average_linkage, propose_terms
+from chatcde.tag.propose import average_linkage, propose_terms, resolve_term
 from chatcde.tag.sample import (
     Candidate,
     allocate,
@@ -462,6 +462,16 @@ def test_average_linkage_avoids_chaining():
     v = np.stack([np.cos(ang), np.sin(ang)], axis=1)
     groups = average_linkage(v, 0.85)  # cos 30 = 0.87, mean link to c ~ 0.71
     assert len(groups) == 2
+
+
+def test_resolve_term_tolerates_case_and_codes():
+    terms = ["SL-a: Sustainable land use", "Case study", "O2: Food systems"]
+    assert resolve_term("Case study", terms) == "Case study"
+    assert resolve_term("case  STUDY", terms) == "Case study"
+    assert resolve_term("Sustainable land use", terms) == "SL-a: Sustainable land use"
+    assert resolve_term("SL-a", terms) == "SL-a: Sustainable land use"
+    assert resolve_term("sl-a: sustainable land use", terms) == terms[0]
+    assert resolve_term("Land use", terms) is None
 
 
 def test_propose_terms_writes_candidates(db: Path, tmp_path: Path):

@@ -92,7 +92,7 @@ vocab_extract:
   max_tokens: 2048               # answer budget per record
   max_consecutive_failures: 5    # stop if the endpoint keeps failing
   extract_prompt: "vocab_extract.v1"   # file <prompts.dir>/<name>.md
-  propose_prompt: "vocab_propose.v1"
+  propose_prompt: "vocab_propose.v2"   # v2: short notes, only when actionable (0019)
   cluster_threshold: 0.80        # average-linkage cosine similarity at which merging stops
   min_records: 3                 # clusters seen in fewer records are listed as unclustered
   example_labels: 12             # member labels shown per candidate
