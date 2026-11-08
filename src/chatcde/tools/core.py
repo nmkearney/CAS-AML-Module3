@@ -100,10 +100,19 @@ def read_section(
 def list_vocabulary(dimension: Dimension) -> list[VocabTerm]:
     """List the controlled-vocabulary terms of one dimension with record counts.
 
+    Use it to learn the exact codes to pass in ``Filters`` and to see at a
+    glance which terms are rare. Terms come in vocabulary order; codes found in
+    the tags but not in the vocabulary (``other``, countries, UN M49 regions)
+    follow. ``record_count`` is the number of records with a tag of that term
+    at confidence 0.5 or more, over the whole catalogue.
+
     Args:
         dimension: One of the 17 schema dimensions.
     """
-    raise NotImplementedError
+    from chatcde.tools import counts
+    from chatcde.tools.context import get_context
+
+    return counts.list_vocabulary(get_context(), dimension)
 
 
 def count_by(
@@ -113,6 +122,13 @@ def count_by(
 ) -> CountMatrix:
     """Count publications by one or two dimensions.
 
+    Counts records, not tags: a record with two methods counts under both.
+    Only tags with confidence at least ``filters.min_confidence`` count. With
+    two dimensions, cells and totals count only records tagged on both;
+    combinations that never occur are left out (their count is 0). Every cell
+    lists the BORIS IDs behind it. All publication types count; use
+    ``find_gaps`` for gap analysis.
+
     Args:
         row: Dimension for the rows, e.g. ``sub_area``.
         col: Optional dimension for the columns, e.g. ``method``.
@@ -120,9 +136,13 @@ def count_by(
 
     Returns:
         A count matrix with row and column totals, the total number of matching
-        records, and the number of matching records without tags.
+        records, and the number of matching records without tags (on the row
+        dimension, or on either dimension when there are two).
     """
-    raise NotImplementedError
+    from chatcde.tools import counts
+    from chatcde.tools.context import get_context
+
+    return counts.count_by(get_context(), row, col, filters)
 
 
 def find_gaps(
@@ -134,15 +154,27 @@ def find_gaps(
     """Find combinations of two dimensions that CDE has rarely covered.
 
     A cell is a gap when its count is at most ``max_ratio`` times the count
-    expected if the two dimensions were independent.
+    expected if the two dimensions were independent: ``expected = row total x
+    column total / records tagged on both``. Cells expected to hold fewer than
+    5 records (``gaps.min_expected``) are not judged. Conference items are left
+    out unless ``filters.pub_types`` names the types to use. Before calling a
+    gap real, check ``coverage_report`` for the same filters and read a few
+    records with ``search_publications``.
 
     Args:
         row: First dimension, e.g. ``sub_area``.
         col: Second dimension, e.g. ``method``.
         filters: Optional restrictions.
         max_ratio: Threshold on count / expected.
+
+    Returns:
+        Gap cells, lowest ratio first, each with its count, expected count,
+        ratio and the BORIS IDs behind the count.
     """
-    raise NotImplementedError
+    from chatcde.tools import counts
+    from chatcde.tools.context import get_context
+
+    return counts.find_gaps(get_context(), row, col, filters, max_ratio)
 
 
 def coverage_report(filters: Filters | None = None) -> CoverageReport:

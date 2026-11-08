@@ -283,6 +283,13 @@ class ToolsConfig(_Section):
     max_section_pages: int = Field(ge=1)
 
 
+class GapsConfig(_Section):
+    """Gap analysis settings (decisions 0018 and 0021)."""
+
+    exclude_types: list[str] = Field(default_factory=list)
+    min_expected: float = Field(ge=0)
+
+
 class EvaluationConfig(_Section):
     """Reference sets and thresholds for ``chatcde evaluate``."""
 
@@ -317,6 +324,7 @@ class Config(_Section):
     retrieval: RetrievalConfig
     embedding: EmbeddingConfig
     tools: ToolsConfig
+    gaps: GapsConfig
     evaluation: EvaluationConfig
     logging: LoggingConfig
 
