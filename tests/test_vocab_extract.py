@@ -507,8 +507,15 @@ def test_propose_terms_writes_candidates(db: Path, tmp_path: Path):
     assert listed == n_theme  # each record carries one theme here
     assert doc["actors"]["candidates"][0]["roles"] == {"studied": 12}
 
+    ids = [c["id"] for k in doc if k != "generated" for c in doc[k]["candidates"]]
+    assert len(ids) == len(set(ids)) and all(len(i) == 10 for i in ids)
+
     chats, embeds = len(fake.chat), len(fake.embed)
     again = propose_terms(con, cfg, client)  # everything cached
+    doc2 = yaml.safe_load((tmp_path / "candidates.yaml").read_text())
+    assert [
+        c["id"] for k in doc2 if k != "generated" for c in doc2[k]["candidates"]
+    ] == ids
     assert again.cached == s.proposed and again.proposed == 0
     assert len(fake.chat) == chats and len(fake.embed) == embeds
     assert propose_terms(con, cfg, client, force=True).proposed == s.proposed

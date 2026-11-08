@@ -81,6 +81,10 @@ Dimension = Literal[
 ]
 
 
+#: Hex characters of the cluster key used as a candidate's ``id``.
+CANDIDATE_ID_CHARS = 10
+
+
 class Proposal(BaseModel):
     """The model's proposal for one cluster (the JSON schema sent to the server)."""
 
@@ -370,9 +374,13 @@ def _check(proposal: Proposal, kind: str, seeds: dict[str, list[str]]) -> Propos
 def _candidate(
     cluster: Cluster, proposal: Proposal | None, cfg: Config
 ) -> dict[str, Any]:
-    """One entry of candidates.yaml: proposal fields, then counts from code."""
+    """One entry of candidates.yaml: id, proposal fields, then counts from code.
+
+    The ``id`` (start of :meth:`Cluster.key`) depends only on the kind and the
+    member labels, so it is stable across runs; the curation workbook joins on it.
+    """
     s = cfg.vocab_extract
-    entry: dict[str, Any] = {}
+    entry: dict[str, Any] = {"id": cluster.key()[:CANDIDATE_ID_CHARS]}
     if proposal is not None:
         entry.update(proposal.model_dump())
     else:
