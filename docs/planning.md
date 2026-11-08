@@ -191,7 +191,7 @@ Granularity is the main schema decision. A vocabulary that's too fine creates ga
 **Building an interpretive vocabulary:**
 
 1. **Seed (code).** Start from `vocab/draft_vocabulary.yaml`, derived from the strategy, with OpenAlex's topic hierarchy as an outside reference.
-2. **Open extraction (LLM).** On a stratified sample of 200–300 records across units, decades and languages (at least English and German), the LLM writes free-text labels for methods and themes: `chatcde vocab extract`.
+2. **Open extraction (LLM).** On a stratified sample of 200–300 records across units, decades and languages (at least English and German), the LLM writes free-text labels for methods and themes, and for the other dimensions with proposed seed lists (data types, settings, systems, actors): `chatcde vocab extract` (decision 0019).
 3. **Draft terms (LLM).** Cluster the labels by embedding and have the LLM propose terms, definitions and merges into `vocab/candidates.yaml`.
 4. **Curate (developer).** Accept, merge, split or rename terms in the YAML, then commit with a changelog entry. Aim for 15–40 terms per dimension, with at most two levels.
 5. **Tag the corpus (LLM).** `chatcde tag` tags against the closed list using structured JSON output, recording a confidence score and a short supporting quote per tag, with an "other: …" option.

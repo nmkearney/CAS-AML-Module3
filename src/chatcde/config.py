@@ -251,6 +251,30 @@ class PromptsConfig(_Section):
     dir: ProjectPath
 
 
+class VocabExtractConfig(_Section):
+    """Open extraction on a stratified sample (decision 0019)."""
+
+    sample_size: int = Field(ge=1)
+    stratum_floor: int = Field(ge=0)
+    seed: int
+    pool_before: int
+    languages: list[str]
+    max_fulltext_chars: int = Field(ge=0)
+    max_input_chars: int = Field(ge=500)
+    labels_per_kind: int = Field(ge=1)
+    max_tokens: int = Field(ge=64)
+    max_consecutive_failures: int = Field(ge=1)
+    extract_prompt: str
+    propose_prompt: str
+    cluster_threshold: float = Field(gt=0.0, le=1.0)
+    min_records: int = Field(ge=1)
+    example_labels: int = Field(ge=1)
+    example_records: int = Field(ge=0)
+    output: ProjectPath
+    sample_csv: ProjectPath
+    extra_body: dict[str, Any] = Field(default_factory=dict)
+
+
 class RetrievalConfig(_Section):
     """Chunking and search settings (decisions 0011 and 0013)."""
 
@@ -335,6 +359,7 @@ class Config(_Section):
     parse: ParseConfig
     vocab: VocabConfig
     prompts: PromptsConfig
+    vocab_extract: VocabExtractConfig
     retrieval: RetrievalConfig
     embedding: EmbeddingConfig
     tools: ToolsConfig
