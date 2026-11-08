@@ -293,6 +293,7 @@ chatcde tag --ids <record_id> --batch how_where --force
 chatcde tag --all                          # every record; resumable, runs for hours
 chatcde tag --pilot --alternative          # model_alternatives.tagging, run "alt"
 chatcde tag --publish-only                 # rebuild the tags table from run "main"
+chatcde evaluate review-sheet              # Excel workbook to hand-check 20 pilot records
 ```
 
 - **One request per record and batch.** The three batches are strategy, how and where,

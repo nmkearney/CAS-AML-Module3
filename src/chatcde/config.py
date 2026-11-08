@@ -294,6 +294,15 @@ class TaggingPilotConfig(_Section):
     floor: int = Field(ge=0)
 
 
+class TaggingReviewConfig(_Section):
+    """The hand-check workbook of ``chatcde evaluate review-sheet`` (decision 0028)."""
+
+    records: dict[Literal["fulltext", "abstract", "metadata"], int]
+    seed: int
+    dir: ProjectPath
+    text_chars: int = Field(ge=200)
+
+
 class TaggingConfig(_Section):
     """Closed-list tagging of the corpus (``chatcde tag``, decision 0028)."""
 
@@ -304,6 +313,7 @@ class TaggingConfig(_Section):
     confidence: dict[Literal["explicit", "inferred", "weak"], float]
     unverified_cap: float = Field(ge=0, le=1)
     metadata_only_cap: float = Field(ge=0, le=1)
+    metadata_inferable: list[str] = Field(default_factory=list)
     max_fulltext_chars: int = Field(ge=0)
     max_input_chars: int = Field(ge=500)
     max_tokens: int = Field(ge=256)
@@ -311,6 +321,7 @@ class TaggingConfig(_Section):
     includes_shown: int = Field(ge=0)
     m49_file: ProjectPath
     pilot: TaggingPilotConfig
+    review: TaggingReviewConfig
     extra_body: dict[str, Any] = Field(default_factory=dict)
 
     @field_validator("batches")

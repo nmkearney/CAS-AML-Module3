@@ -136,6 +136,7 @@ vocab_app.command("apply")(tag_cli.vocab_apply)
 
 evaluate_app = typer.Typer(help="Evaluate tagging or the assistant's answers.")
 evaluate_app.command("tagging")(tag_cli.evaluate_tagging)
+evaluate_app.command("review-sheet")(tag_cli.review_sheet)
 evaluate_app.command("questions")(workflows_cli.evaluate_questions)
 
 for sub_app in (

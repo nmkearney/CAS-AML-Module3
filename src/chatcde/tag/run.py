@@ -10,7 +10,8 @@ quotes and an evidence strength. Code then (decision 0028):
 * maps the strength to a confidence (``tagging.confidence``); for a record with
   only metadata (no abstract, no page text), a tag that is not ``explicit`` is
   capped at ``tagging.metadata_only_cap``, because a title rarely supports an
-  inference (pilot, decision 0028);
+  inference, except in ``tagging.metadata_inferable`` (sub-areas, country,
+  setting), which titles show well (pilots 1 and 2, decision 0028);
 * looks for each quote in the abstract, the page text and the metadata, and sets
   ``Tag.source`` to the part it was found in. A quote found nowhere caps the
   tag's confidence at ``tagging.unverified_cap``, below the 0.5 that counts, so
@@ -184,7 +185,11 @@ def to_tags(
             evidence = item.evidence.strip() or None
             source = locate(evidence, record) if evidence else None
             confidence = s.confidence[item.strength]
-            if metadata_only and item.strength != "explicit":
+            if (
+                metadata_only
+                and item.strength != "explicit"
+                and dim not in s.metadata_inferable
+            ):
                 confidence = min(confidence, s.metadata_only_cap)
             if source is None:
                 unverified += 1

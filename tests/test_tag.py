@@ -335,8 +335,8 @@ def test_metadata_only_records_count_only_explicit_tags(
             "method": [{**q, "term": "MET-case-study", "strength": "inferred"}],
             "data_type": [],
             "setting": [{**q, "term": "SET-mountains", "strength": "explicit"}],
-            "scale": [],
-            "country": [],
+            "scale": [{**q, "term": "SCA-national", "strength": "inferred"}],
+            "country": [{"evidence": "Nepal", "term": "NPL", "strength": "inferred"}],
         }
     )
     title_only = RecordText(
@@ -356,7 +356,12 @@ def test_metadata_only_records_count_only_explicit_tags(
         run="main",
     )
     conf = {r.term: r.confidence for r in rows}
-    assert conf == {"MET-case-study": s.metadata_only_cap, "SET-mountains": 0.9}
+    assert conf == {
+        "MET-case-study": s.metadata_only_cap,
+        "SET-mountains": 0.9,
+        "SCA-national": s.metadata_only_cap,
+        "NPL": 0.6,  # country is in tagging.metadata_inferable
+    }
 
 
 # --- runs -----------------------------------------------------------------------
@@ -576,4 +581,47 @@ def test_cli_tag(db: Path, tmp_path: Path, monkeypatch: pytest.MonkeyPatch):
         con.execute("SELECT run, count(*) FROM tag_runs GROUP BY run").fetchall()
     )
     assert set(runs) == {"main", "alt"}
+    con.close()
+
+
+# --- review workbook ------------------------------------------------------------
+
+
+def test_review_sheet(db: Path, tmp_path: Path):
+    from openpyxl import load_workbook
+
+    from chatcde.tag.review import export_review
+
+    cfg, _ = make_cfg(
+        tmp_path,
+        db,
+        review={
+            "records": {"fulltext": 2, "abstract": 2, "metadata": 2},
+            "seed": 1,
+            "dir": str(tmp_path / "reference"),
+            "text_chars": 500,
+        },
+    )
+    con = duckdb.connect(str(db))
+    with pytest.raises(RuntimeError, match="no pilot records tagged"):
+        export_review(con, cfg)
+    draw_pilot(con, cfg)
+    tag_records(con, cfg, make_client(FakeLLM()), scope="pilot")
+    path, n_records, n_tags = export_review(con, cfg)
+    assert path == tmp_path / "reference" / "review_main.xlsx"
+    in_run = con.execute(
+        "SELECT count(*) FROM tag_runs WHERE run = 'main' AND record_id IN "
+        "(SELECT record_id FROM tag_pilot)"
+    ).fetchone()[0]
+    assert 0 < n_records <= 6 and 0 < n_tags <= in_run
+    wb = load_workbook(path)
+    assert wb.sheetnames == ["README", "records", "tags", "missing", "codes"]
+    tags = list(wb["tags"].iter_rows(values_only=True))
+    assert (
+        tags[0][:3] == ("decision", "correct_term", "note") and len(tags) == n_tags + 1
+    )
+    assert wb["tags"].data_validations.dataValidation  # decision dropdown
+    with pytest.raises(FileExistsError):
+        export_review(con, cfg)
+    assert export_review(con, cfg, force=True)[0] == path
     con.close()

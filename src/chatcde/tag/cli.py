@@ -389,6 +389,39 @@ def _propose_table(s: Any) -> Any:
     return t
 
 
+def review_sheet(
+    ctx: typer.Context,
+    run: Annotated[
+        str | None, typer.Option(help="Run to review (default tagging.run).")
+    ] = None,
+    out: Annotated[
+        Path | None, typer.Option(help="Workbook path (default tagging.review.dir).")
+    ] = None,
+    force: Annotated[
+        bool, typer.Option(help="Overwrite an existing workbook (and its decisions).")
+    ] = False,
+) -> None:
+    """Write a hand-check workbook for pilot records of a tagging run (Excel).
+
+    Picks pilot records per input kind (tagging.review.records), lists every tag
+    with its quote for an ok / wrong / unsure decision, and has a sheet for missing
+    tags. See decision 0028.
+    """
+    from chatcde import catalogue
+    from chatcde.tag.review import export_review
+
+    cfg = ctx.obj
+    con = catalogue.connect(cfg.data.catalogue)
+    try:
+        path, n_records, n_tags = export_review(con, cfg, run=run, out=out, force=force)
+    except (FileExistsError, RuntimeError) as exc:
+        typer.echo(f"review-sheet failed: {exc}", err=True)
+        raise typer.Exit(code=1) from exc
+    finally:
+        con.close()
+    typer.echo(f"{n_records} records, {n_tags} tags -> {path}")
+
+
 def evaluate_tagging() -> None:
     """Score LLM tags against the hand-tagged reference set."""
     not_implemented("evaluate tagging", 16)

@@ -152,12 +152,18 @@ tagging:
     weak: 0.3                    # plausible only
   unverified_cap: 0.4            # quote not found in the input: confidence capped (< 0.5 counts)
   metadata_only_cap: 0.4         # title/keywords only: non-explicit tags capped (pilot, 0028)
+  metadata_inferable: [sub_area, additional_sub_area, country, setting]  # ...except these
   max_fulltext_chars: 12000      # characters of parsed page text given to the model
   max_input_chars: 20000         # cap on the whole input (title + abstract + pages)
   max_tokens: 3072               # answer budget per record and batch
   max_consecutive_failures: 5    # stop if the endpoint keeps failing
   includes_shown: 6              # synonyms shown per term in the prompt
   m49_file: "vocab/m49.csv"      # UN M49 countries and regions (scripts/fetch_m49.py)
+  review:                        # `chatcde evaluate review-sheet`: hand-check workbook
+    records: {fulltext: 7, abstract: 7, metadata: 6}  # pilot records per input kind
+    seed: 31
+    dir: "data/reference"         # review_<run>.xlsx; local only (data/ is gitignored)
+    text_chars: 3000              # text shown per record in the records sheet
   pilot:                         # `chatcde tag --pilot`: a fresh stratified draw
     size: 100
     seed: 29                     # differs from vocab_extract.seed; the #13 sample is excluded

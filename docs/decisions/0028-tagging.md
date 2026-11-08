@@ -113,6 +113,30 @@ in parallel. The plan was agreed on #15 (comment of 2026-11-08).
   a tag that is not `explicit` is capped below the count threshold.
 - The v1 tags are kept as run `pilot_v1` for comparison.
 
+## Pilot 2 (tag.v2, 2026-11-08)
+- **Counted tags per record** (v1 → v2): full text 31 → 25, abstract only 23 → 18,
+  title only 16 → 3.7.
+  - On title-only records, data type, research mode, objective, SDG and stance now
+    count on 0–13% of records.
+  - `weak` is used (2%), and `other` is used a little (4 tags).
+- **Still loose:**
+  - an additional sub-area on 95% of full-text records;
+  - a pathway on 82% (mostly P1).
+  - Both are left for the hand check, not tuned by eye.
+- **The cap also hid good title tags.** It moved sub-areas from titles below the
+  threshold, and impact-area agreement with BORIS units fell from 22/26 to 17/26.
+  - A title never names a sub-area, so such tags are always `inferred`.
+  - **`tagging.metadata_inferable`** (sub_area, additional_sub_area, country,
+    setting) exempts these dimensions from the cap.
+  - After re-tagging the 38 title-only records: 19/26.
+  - The remaining mismatches are mostly papers whose topic lies in another impact
+    area than the author's unit.
+- **Hand check:** `chatcde evaluate review-sheet` writes `data/reference/review_main.xlsx`:
+  - 20 pilot records (7 full text, 7 abstract only, 6 title only), with every tag, its
+    quote and an ok / wrong / unsure column;
+  - a sheet for missing tags, and a code list.
+  - It gives the first precision per dimension and starts the #16 reference set.
+
 ## Consequences
 - **Cost:**
   - The full run is about 9,000 requests (3,003 × 3).
