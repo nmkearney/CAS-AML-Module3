@@ -132,10 +132,10 @@ def resolve_record(con: duckdb.DuckDBPyConnection, ref: str) -> Record:
     return Record.model_validate(rows[0])
 
 
-def _records_by_id(
+def records_by_id(
     con: duckdb.DuckDBPyConnection, record_ids: list[str]
 ) -> dict[str, Record]:
-    """Load records by ID."""
+    """Load records by ID (IDs not in the catalogue are left out)."""
     rows = _dicts(
         con,
         "SELECT * FROM records WHERE record_id IN (SELECT unnest(?::VARCHAR[]))",
@@ -180,7 +180,7 @@ def search_publications(
             raise ToolError(str(exc)) from exc
         except EndpointError as exc:
             raise ToolError(f"the search model endpoint failed: {exc}") from exc
-        records = _records_by_id(con, sorted({h.chunk.record_id for h in hits}))
+        records = records_by_id(con, sorted({h.chunk.record_id for h in hits}))
     passages = []
     for h in hits:
         rec = records.get(h.chunk.record_id)

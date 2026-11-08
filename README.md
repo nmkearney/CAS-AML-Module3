@@ -195,6 +195,32 @@ most `--max-ratio` × expected. Combinations expected to hold fewer than
 by `gaps.exclude_types` (decision 0018), unless you pass `--type` or `--all-types`. The
 output says how many were left out. See `docs/decisions/0021-counts-and-gaps.md`.
 
+## The agent
+
+The agent lets the `agent` role model (`models.agent`) answer questions by calling the
+tools above. `chatcde ask` and `chatcde chat` come with issue #26; until then, use it
+from Python (needs `CHATCDE_LLM_API_KEY`):
+
+```python
+from chatcde.agent import Agent
+from chatcde.config import load_config
+
+with Agent(load_config()) as agent:
+    result = agent.ask("What has CDE found on large-scale land acquisitions in Laos?")
+print(result.answer)
+for c in result.citations:
+    print(c.citation.record_id, c.citation.title, c.pages, c.from_tools)
+print([t.name for t in result.tool_calls], result.stop_reason)
+```
+
+The tool definitions are generated from the tool functions' type hints and docstrings
+(`chatcde.tools.specs`). The model may make at most `agent.max_tool_calls` (12) calls
+per question; then it has to answer. It cites records as `[BORIS:<record_id>]` or
+`[BORIS:<record_id>, p. 4]`. Each cited ID is checked against the catalogue and against
+the tool results of the conversation. The result also records the model, prompt
+version, vocabulary version, code version and every tool call. The system prompt is
+`src/chatcde/prompts/agent_system.v1.md`. See `docs/decisions/0022-agent-loop.md`.
+
 ## Configuration
 
 Settings are merged from these files, later ones winning:
