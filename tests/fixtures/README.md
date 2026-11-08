@@ -13,8 +13,8 @@ Design choices are recorded in `docs/decisions/0007-test-fixtures.md`.
 | `authors.jsonl` | `Author` | 141 |
 | `pages.jsonl` | `PageText`: pages 1–3 plus the first 3 body pages of each real PDF (PyMuPDF), 1 synthetic page | 127 |
 | `downloads.jsonl` | `ManifestEntry` | 34 |
-| `tags.jsonl` | `Tag`: hand-made tags on all 17 dimensions | 632 |
-| `tag_review.csv` | One row per tag: hand-check status, reviewer, date, note | 632 |
+| `tags.jsonl` | `Tag`: hand-made tags on all 18 dimensions | 654 |
+| `tag_review.csv` | One row per tag: hand-check status, reviewer, date, note | 654 |
 | `body_pages.csv` | First body page per record (`auto` heuristic or `manual` override) | 30 |
 | `synthetic.yaml` | Source of the 4 synthetic records | – |
 | `selection.csv` | Output of the selection script: 30 picks + 90 reserves | – |
@@ -99,8 +99,8 @@ record's title, keywords, abstract and stored pages, against
 `checked_on`). `tests/test_fixtures.py::test_every_tag_checked_by_hand` fails until
 that is done.
 
-- `term` is the vocabulary code where one exists (`SL-d`, `O2`, `TA1`, ISO alpha-3),
-  otherwise the exact YAML label (`Case study`, `Mountains`). SDGs are `"1"`–`"17"`;
+- `term` is the vocabulary code (`SL-d`, `O2`, `TA1`, `MET-case-study`,
+  `SET-mountains`, ISO alpha-3). SDGs are `"1"`–`"17"`;
   country may be `global_or_multi_country`; region is a CDE partner region or a
   UN M49 (sub-)region name.
 - `evidence` is a verbatim quote from the text named by `source` (pages for
@@ -111,11 +111,17 @@ that is done.
 - Only 14 of the 30 real records have a BORIS abstract; tags rely on pages for the
   rest. Many first pages are front matter, so some tags are thin by design.
 - `provenance.model` is `claude-opus-5-5 (session draft)`; `prompt_version` is empty.
-
+- **Vocabulary v0.3 (2026-11-08, #14).** The v0.2 labels were remapped to codes with
+  `scripts/remap_fixture_tags.py` and `vocab/curation/v0.3_codes.csv` (272 tags; review
+  note "remapped to v0.3 code"; `vocab_version` 0.3 on every tag). Merged terms take
+  the code they were merged into. The one tag on the retired *Futures methods*
+  (`fixture-synthetic-04`) became `MET-scenario-development-and-analysis`. 22
+  `additional_sub_area` tags were drafted by Claude the same day, with verbatim quotes,
+  and checked by hand.
 Tags per dimension: method 66, actors 57, sdg 55, sub_area 52, country 52,
 impact_area 44, system 42, justice_lens 39, output_type 33, region 31,
-research_mode 29, objective 28, data_type 28, scale 25, pathway 22, setting 19,
-transformative_aspiration 10.
+research_mode 29, objective 28, data_type 28, scale 25, additional_sub_area 22,
+pathway 22, setting 19, transformative_aspiration 10.
 
 ## Rebuilding
 
