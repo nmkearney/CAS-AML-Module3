@@ -103,7 +103,8 @@ Two developers work in parallel; see `CONTRIBUTING.md` for the full workflow.
 - **~70% of a 60-record sample have a file attached** (±12 points). Whether the
   files can actually be downloaded is not yet confirmed.
 - Language: en 1,935, de 432, es 55, fr 54; "me" (44) and "an" (2) are likely
-  miscoded. The pipeline must be multilingual (at least EN + DE).
+  miscoded ("me" mixes de/fr/en/es records; see the parse results). The pipeline
+  must be multilingual (at least EN + DE).
 - **Only about 600 publications carry a CDE unit** (232 Just Economies & Human Well Being,
   214 Sustainable Governance, 188 Sustainable Land Systems, 81 Transformative
   Education & Science, 45 Services).
@@ -132,7 +133,8 @@ Two developers work in parallel; see `CONTRIBUTING.md` for the full workflow.
 ## OpenAlex enrichment results (`chatcde harvest openalex`, 2026-11-07)
 
 - `Record.doi` is **BORIS's own DataCite DOI** (10.7892, 10.48350, 10.48620); the
-  publisher DOI is `dc.identifier.publisherDOI` (981 records), read from the raw cache.
+  publisher DOI (`dc.identifier.publisherDOI`, 981 records) is `Record.publisher_doi`
+  (#38), bare and lower-case.
 - **210 of 1,665 missing abstracts filled** (abstracts now 1,548 / 3,003); 606 works
   have no abstract in OpenAlex, 602 records have no DOI at all (decision 0010).
 - 1,698 OA links in `data/raw/openalex/oa_links.csv`; 183 point outside BORIS for
@@ -148,6 +150,20 @@ Two developers work in parallel; see `CONTRIBUTING.md` for the full workflow.
   1,573 open records do. Conference items are 50% metadata only.
 - `coverage_report()` is written by Track A and reused by Track B (#11, #24; pending
   agreement). `CoverageReport` gained `by_type` and `by_access` (#43).
+=======
+## Parse results (`chatcde parse`, 2026-11-07)
+
+- PyMuPDF text layer, vision-model OCR for scanned/garbled pages, lingua language per
+  page (decision 0014). One `PageText` per page; per-record state in `parse_state`.
+- 1,542 PDFs → **47,596 pages**, 0 errors: text 44,742, ocr 1,719, garbled 155, blank 980.
+  **OCR: 1,801 of 1,874 pages transcribed** (42 min, qwen3-vl); 73 stay pending: 51 Lao
+  pages (the model writes Thai, so Thai answers are rejected) and 22 that loop.
+- Pages by language: en 35,250, de 4,657, fr 3,127, es 2,526, pt 393, it 41, none 1,602.
+- BORIS `me` is not one language (de 14, fr 10, en 8 of the 34 with a PDF): probably
+  *mehrsprachig*. Use page languages, not BORIS codes, for language counts.
+- The 126 real fixture pages match the parsed pages exactly (same extractor).
+- The API key lives in `~/.zshrc`, which Claude's non-interactive shell does not read; load
+  it with `eval "$(grep '^export CHATCDE_LLM_API_KEY=' ~/.zshrc | tail -1)"`.
 
 ## Architecture
 

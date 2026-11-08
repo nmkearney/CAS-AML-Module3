@@ -19,6 +19,8 @@ dependencies = [
     "duckdb>=1.1",    # catalogue (data/catalogue.duckdb) and the test fixture DB
     "httpx>=0.27",    # BORIS and OpenAlex APIs
     "certifi",        # python.org builds on macOS lack root certificates
+    "pymupdf>=1.24",  # PDF text and page rendering (chatcde parse, decision 0014)
+    "lingua-language-detector>=2.0",  # offline language per page (decision 0014)
 ]
 
 [project.optional-dependencies]
@@ -27,9 +29,8 @@ dev = [
     "ruff==0.17.3",   # exact pin: local and CI must format identically
 ]
 # Only for rebuilding tests/fixtures/ from BORIS (scripts/fetch_fixture_records.py).
-fixtures = [
-    "pymupdf>=1.24",  # first pages of each fixture PDF
-]
+# PyMuPDF, which it needs, is now a main dependency.
+fixtures = []
 
 [project.scripts]
 chatcde = "chatcde.cli:main"
@@ -60,6 +61,10 @@ convention = "google"
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-ra --strict-markers -m 'not network'"
+# PyMuPDF's SWIG bindings warn on import under Python 3.12+; not our code.
+filterwarnings = [
+    "ignore:builtin type (SwigPyPacked|SwigPyObject|swigvarlink) has no __module__:DeprecationWarning",
+]
 markers = [
     "network: needs network access (BORIS, OpenAlex, GPUStack); deselected by default",
 ]
