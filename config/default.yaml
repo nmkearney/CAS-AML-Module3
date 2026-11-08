@@ -133,7 +133,7 @@ vocab_extract:
 # lists in vocab.file, in batches of dimensions; region and impact_area are
 # derived in code when the run is published to the `tags` table.
 tagging:
-  prompt: "tag.v1"               # file <prompts.dir>/<name>.md
+  prompt: "tag.v2"               # file <prompts.dir>/<name>.md; v2: stricter (pilot, 0028)
   run: "main"                    # run name in tag_runs; `main` is published to tags
   batches:                       # one request per record and batch
     strategy: [sub_area, additional_sub_area, objective, pathway, research_mode,
@@ -151,6 +151,7 @@ tagging:
     inferred: 0.6                # clearly implied
     weak: 0.3                    # plausible only
   unverified_cap: 0.4            # quote not found in the input: confidence capped (< 0.5 counts)
+  metadata_only_cap: 0.4         # title/keywords only: non-explicit tags capped (pilot, 0028)
   max_fulltext_chars: 12000      # characters of parsed page text given to the model
   max_input_chars: 20000         # cap on the whole input (title + abstract + pages)
   max_tokens: 3072               # answer budget per record and batch

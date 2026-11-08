@@ -7,7 +7,10 @@ quotes and an evidence strength. Code then (decision 0028):
 
 * drops repeated terms and keeps at most ``tagging.max_per_dimension`` per
   dimension; ``other`` needs a label, actors need a role;
-* maps the strength to a confidence (``tagging.confidence``);
+* maps the strength to a confidence (``tagging.confidence``); for a record with
+  only metadata (no abstract, no page text), a tag that is not ``explicit`` is
+  capped at ``tagging.metadata_only_cap``, because a title rarely supports an
+  inference (pilot, decision 0028);
 * looks for each quote in the abstract, the page text and the metadata, and sets
   ``Tag.source`` to the part it was found in. A quote found nowhere caps the
   tag's confidence at ``tagging.unverified_cap``, below the 0.5 that counts, so
@@ -161,6 +164,7 @@ def to_tags(
     s = cfg.tagging
     rows: list[tables.TagRunRow] = []
     unverified = 0
+    metadata_only = not record.abstract and not record.fulltext
     for dim in dimensions:
         seen: set[tuple[str, str | None]] = set()
         kept = 0
@@ -180,6 +184,8 @@ def to_tags(
             evidence = item.evidence.strip() or None
             source = locate(evidence, record) if evidence else None
             confidence = s.confidence[item.strength]
+            if metadata_only and item.strength != "explicit":
+                confidence = min(confidence, s.metadata_only_cap)
             if source is None:
                 unverified += 1
                 confidence = min(confidence, s.unverified_cap)

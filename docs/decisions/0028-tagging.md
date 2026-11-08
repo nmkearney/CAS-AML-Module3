@@ -89,6 +89,30 @@ in parallel. The plan was agreed on #15 (comment of 2026-11-08).
 - **No accidental full runs.** `chatcde tag` needs exactly one of `--pilot`, `--ids` or
   `--all`.
 
+## Pilot 1 (tag.v1, 2026-11-08) and the changes it led to
+- **The run:** 300 requests in about 12 minutes (about 25 a minute at 4 parallel), no
+  failures, 98% of quotes found. Derived impact areas match the BORIS unit for 22 of
+  the 26 pilot records that have one.
+- **Too loose:**
+  - The model almost never chose `weak` (under 1% of tags), so the 0.5 threshold
+    removed almost nothing.
+  - Title-only records got about 16 counted tags each: sub-area 92%, additional
+    sub-area 95%, SDG 84%.
+  - 95% of full-text records got a pathway (mostly P1 at "explicit", from closing
+    sentences about policy relevance).
+  - Additional sub-areas were filled for almost every record, with stretched terms
+    (*Smallholder agriculture* for artisanal fishers).
+  - `other` was never used.
+- **tag.v2:**
+  - each strength is defined with examples, and generic relevance is at most `weak`;
+  - "tag only the main things"; most publications need no additional sub-area;
+  - use `other` instead of stretching a term;
+  - stricter rules for pathway, objective and transformative aspiration;
+  - title-only input: tag only what the title names, as `explicit`.
+- **`tagging.metadata_only_cap` (0.4):** for records with neither abstract nor page text,
+  a tag that is not `explicit` is capped below the count threshold.
+- The v1 tags are kept as run `pilot_v1` for comparison.
+
 ## Consequences
 - **Cost:**
   - The full run is about 9,000 requests (3,003 × 3).

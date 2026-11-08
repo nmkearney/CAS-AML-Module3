@@ -303,6 +303,7 @@ class TaggingConfig(_Section):
     max_per_dimension: dict[str, int]
     confidence: dict[Literal["explicit", "inferred", "weak"], float]
     unverified_cap: float = Field(ge=0, le=1)
+    metadata_only_cap: float = Field(ge=0, le=1)
     max_fulltext_chars: int = Field(ge=0)
     max_input_chars: int = Field(ge=500)
     max_tokens: int = Field(ge=256)

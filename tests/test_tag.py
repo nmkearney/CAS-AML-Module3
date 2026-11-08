@@ -324,6 +324,41 @@ def test_to_tags_maps_strength_checks_quotes_and_drops_repeats(
     assert got[("country", "NPL")].source is TextSource.METADATA
 
 
+def test_metadata_only_records_count_only_explicit_tags(
+    cfg0: Config, vocab: dict[str, Any], countries: dict[str, Any]
+):
+    s = cfg0.tagging
+    model = batch_model("how_where", s.batches["how_where"], vocab, countries, s)
+    q = {"evidence": "Soil erosion in Nepal", "other_label": None}
+    answer = model.model_validate(
+        {
+            "method": [{**q, "term": "MET-case-study", "strength": "inferred"}],
+            "data_type": [],
+            "setting": [{**q, "term": "SET-mountains", "strength": "explicit"}],
+            "scale": [],
+            "country": [],
+        }
+    )
+    title_only = RecordText(
+        "r2",
+        "Title: Soil erosion in Nepal",
+        "metadata",
+        metadata="Title: Soil erosion in Nepal",
+    )
+    prov = Provenance(code_version="x", created_at="2026-11-09T00:00:00Z", model="m")
+    rows, _ = to_tags(
+        answer,
+        title_only,
+        batch="how_where",
+        dimensions=s.batches["how_where"],
+        cfg=cfg0,
+        provenance=prov,
+        run="main",
+    )
+    conf = {r.term: r.confidence for r in rows}
+    assert conf == {"MET-case-study": s.metadata_only_cap, "SET-mountains": 0.9}
+
+
 # --- runs -----------------------------------------------------------------------
 
 
