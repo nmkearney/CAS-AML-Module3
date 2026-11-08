@@ -163,7 +163,7 @@ Two developers work in parallel; see `CONTRIBUTING.md` for the full workflow.
   method 60, system 66, actors 61, scale 8, justice_lens 7, additional_sub_area 77 terms.
 - Terms have codes (`MET-case-study`); `Tag.term` stores the code, and the fixtures were
   remapped with `scripts/remap_fixture_tags.py` and the code map `v0.3_codes.csv`.
-- Open for v0.4: terms added in v0.3 have no group; 52 terms lack a definition; most
+- Open for v0.4: 52 terms lack a definition; most
   dimensions exceed the 15–40 target; some additional sub-areas overlap sub-area scopes.
 - `chatcde` on the PATH (python.org 3.14) lacks openpyxl; use `.venv/bin/chatcde`.
 
@@ -258,14 +258,14 @@ Full definitions and scope notes are in `docs/schema_draft.md` and `vocab/draft_
 | 5 | pathway | Strategy 2.2 (P1–P5), only when explicit |
 | 6 | research_mode | Strategy 1.3 (M1–M4) |
 | 7 | transformative_aspiration | Westerink et al. 2026 |
-| 8 | method | curated v0.3: 60 terms (32 in 8 groups) |
+| 8 | method | curated v0.3: 60 terms in 8 groups |
 | 9 | data_type | curated v0.3: 44 terms |
 | 10 | country | ISO 3166-1 alpha-3 |
 | 11 | region | derived: UN M49 + 4 CDE partner regions (decision 0017) |
 | 12 | setting | curated v0.3: 35 terms (mountains, drylands, …) |
 | 13 | scale | 8 terms |
-| 14 | system | curated v0.3: 66 terms |
-| 15 | actors | curated v0.3: 61 terms, each with a role: studied / co-producer / audience |
+| 14 | system | curated v0.3: 66 terms in 6 groups |
+| 15 | actors | curated v0.3: 61 terms in 6 groups, each with a role: studied / co-producer / audience |
 | 16 | justice_lens | strategy-derived, 7 terms |
 | 17 | sdg | UN 17 goals, max 3 |
 | 18 | output_type | BORIS type + audience |
