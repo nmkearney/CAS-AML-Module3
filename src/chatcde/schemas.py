@@ -358,3 +358,9 @@ class CoverageReport(BaseModel):
     low_confidence_tags: int
     by_year: dict[str, int]
     by_language: dict[str, int]
+    by_type: dict[str, int] = Field(
+        default_factory=dict, description="Records by BORIS type (pub_type)"
+    )
+    by_access: dict[str, int] = Field(
+        default_factory=dict, description="Records by access rights (AccessRights)"
+    )

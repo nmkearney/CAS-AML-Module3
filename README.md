@@ -145,6 +145,24 @@ chatcde index search "living lab" --mode bm25 --no-rerank   # offline, keywords 
 user-facing search with citations is `chatcde search` (below). See
 `docs/decisions/0013-hybrid-search.md`.
 
+## Coverage
+
+See how much of the catalogue the assistant can actually read before trusting that a
+topic is rare:
+
+```bash
+chatcde coverage                          # totals, then by year, type, language, access
+chatcde coverage --by access --by type    # only these breakdowns
+chatcde coverage --year-from 2015 --unit "Sustainable Land Systems"
+chatcde coverage --json                   # the CoverageReport the agent's tool returns
+```
+
+Each record counts once, as **full text** (at least one parsed page with text),
+**abstract only** or **metadata only**. Until `chatcde parse` has run, a downloaded PDF
+stands in for full text, and the command says so. Each breakdown shows the three shares.
+A record counts under its first listed language. The heading names the edition: `open`
+when the data came from an open bundle, otherwise `full`. Filters: `--year-from`,
+`--year-to`, `--unit`, `--type`, `--lang`. See `docs/decisions/0015-coverage.md`.
 ## Search and read
 
 These commands call the same tools the assistant uses (`search_publications`,
