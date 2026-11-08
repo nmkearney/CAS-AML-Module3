@@ -85,6 +85,7 @@ class HarvestSummary(BaseModel):
     authors: int
     removed: int = Field(description="Records in the old catalogue no longer found")
     with_doi: int
+    with_publisher_doi: int
     with_abstract: int
     with_cde_unit: int
     by_pub_type: dict[str, int]
@@ -371,6 +372,7 @@ def build_catalogue(
         authors=len(authors),
         removed=removed,
         with_doi=sum(r.doi is not None for r in records),
+        with_publisher_doi=sum(r.publisher_doi is not None for r in records),
         with_abstract=sum(r.abstract is not None for r in records),
         with_cde_unit=sum(bool(r.cde_units) for r in records),
         by_pub_type=dict(Counter(r.pub_type for r in records).most_common()),

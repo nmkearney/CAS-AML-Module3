@@ -27,7 +27,7 @@ record_id,dimension,term,role,confidence,status,note,checked_by,checked_on
 453f1ec7-d260-4d02-a003-6b95d48c26b2,data_type,Secondary geospatial,,0.6,ok,,Norman Kearney,06.11.2026
 453f1ec7-d260-4d02-a003-6b95d48c26b2,data_type,Primary qualitative,,0.5,ok,Type of field data not stated,Norman Kearney,06.11.2026
 453f1ec7-d260-4d02-a003-6b95d48c26b2,country,MDG,,0.95,ok,,Norman Kearney,06.11.2026
-453f1ec7-d260-4d02-a003-6b95d48c26b2,region,Madagascar,,0.95,ok,CDE partner region,Norman Kearney,06.11.2026
+453f1ec7-d260-4d02-a003-6b95d48c26b2,region,CDE-EAF,,0.95,changed,CDE partner region; Renamed from 'Madagascar' (decision 0017),Norman Kearney,06.11.2026
 453f1ec7-d260-4d02-a003-6b95d48c26b2,setting,Humid tropics and forest frontiers,,0.9,ok,,Norman Kearney,06.11.2026
 453f1ec7-d260-4d02-a003-6b95d48c26b2,scale,Subnational,,0.6,ok,,Norman Kearney,06.11.2026
 453f1ec7-d260-4d02-a003-6b95d48c26b2,system,Forests,,0.85,ok,,Norman Kearney,06.11.2026
@@ -90,7 +90,7 @@ record_id,dimension,term,role,confidence,status,note,checked_by,checked_on
 71c3358b-579b-4c24-b627-3b8d7f37e6fd,method,Case study,,0.6,ok,,Norman Kearney,06.11.2026
 71c3358b-579b-4c24-b627-3b8d7f37e6fd,data_type,None (conceptual),,0.5,ok,,Norman Kearney,06.11.2026
 71c3358b-579b-4c24-b627-3b8d7f37e6fd,country,CHE,,0.9,ok,,Norman Kearney,06.11.2026
-71c3358b-579b-4c24-b627-3b8d7f37e6fd,region,Europe and Switzerland,,0.9,ok,Derived from CHE,Norman Kearney,06.11.2026
+71c3358b-579b-4c24-b627-3b8d7f37e6fd,region,CDE-EUR,,0.9,changed,Derived from CHE; Renamed from 'Europe and Switzerland' (decision 0017),Norman Kearney,06.11.2026
 71c3358b-579b-4c24-b627-3b8d7f37e6fd,system,Higher education,,0.95,ok,,Norman Kearney,06.11.2026
 71c3358b-579b-4c24-b627-3b8d7f37e6fd,actors,Youth and students,studied,0.6,ok,,Norman Kearney,06.11.2026
 71c3358b-579b-4c24-b627-3b8d7f37e6fd,actors,Researchers and universities,audience,0.8,ok,Bulletin of the Swiss association of university lecturers,Norman Kearney,06.11.2026
@@ -147,7 +147,7 @@ record_id,dimension,term,role,confidence,status,note,checked_by,checked_on
 9db04558-724d-47f2-ae90-f350fe772fee,method,Literature and systematic review,,0.4,ok,Overview of an institute's research; weak fit,Norman Kearney,06.11.2026
 9db04558-724d-47f2-ae90-f350fe772fee,country,global_or_multi_country,,0.8,ok,,Norman Kearney,06.11.2026
 9db04558-724d-47f2-ae90-f350fe772fee,country,CHE,,0.7,ok,,Norman Kearney,06.11.2026
-9db04558-724d-47f2-ae90-f350fe772fee,region,Europe and Switzerland,,0.6,ok,Derived from CHE,Norman Kearney,06.11.2026
+9db04558-724d-47f2-ae90-f350fe772fee,region,CDE-EUR,,0.6,changed,Derived from CHE; Renamed from 'Europe and Switzerland' (decision 0017),Norman Kearney,06.11.2026
 9db04558-724d-47f2-ae90-f350fe772fee,setting,Mountains,,0.95,ok,,Norman Kearney,06.11.2026
 9db04558-724d-47f2-ae90-f350fe772fee,scale,Cross-scale (incl. telecoupling),,0.5,ok,,Norman Kearney,06.11.2026
 9db04558-724d-47f2-ae90-f350fe772fee,actors,Researchers and universities,studied,0.6,ok,,Norman Kearney,06.11.2026
@@ -165,7 +165,7 @@ a09e8861-8eec-4055-87a1-676e546e6541,research_mode,M2,,0.9,ok,,Norman Kearney,06
 a09e8861-8eec-4055-87a1-676e546e6541,method,Stakeholder and actor analysis,,0.85,ok,,Norman Kearney,06.11.2026
 a09e8861-8eec-4055-87a1-676e546e6541,method,Case study,,0.7,ok,,Norman Kearney,06.11.2026
 a09e8861-8eec-4055-87a1-676e546e6541,country,MDG,,0.95,ok,,Norman Kearney,06.11.2026
-a09e8861-8eec-4055-87a1-676e546e6541,region,Madagascar,,0.95,ok,Derived from MDG,Norman Kearney,06.11.2026
+a09e8861-8eec-4055-87a1-676e546e6541,region,CDE-EAF,,0.95,changed,Derived from MDG; Renamed from 'Madagascar' (decision 0017),Norman Kearney,06.11.2026
 a09e8861-8eec-4055-87a1-676e546e6541,setting,Humid tropics and forest frontiers,,0.55,ok,,Norman Kearney,06.11.2026
 a09e8861-8eec-4055-87a1-676e546e6541,scale,Cross-scale (incl. telecoupling),,0.95,ok,,Norman Kearney,06.11.2026
 a09e8861-8eec-4055-87a1-676e546e6541,system,Protected areas,,0.7,ok,,Norman Kearney,06.11.2026
@@ -187,7 +187,7 @@ ac8dbaec-da44-400b-aad5-1ac1d1838bb6,transformative_aspiration,TA1,,0.6,ok,Chang
 ac8dbaec-da44-400b-aad5-1ac1d1838bb6,method,Interviews and focus groups,,0.6,ok,Interview quotes in text,Norman Kearney,06.11.2026
 ac8dbaec-da44-400b-aad5-1ac1d1838bb6,data_type,Primary qualitative,,0.6,ok,,Norman Kearney,06.11.2026
 ac8dbaec-da44-400b-aad5-1ac1d1838bb6,country,CHE,,0.85,ok,,Norman Kearney,06.11.2026
-ac8dbaec-da44-400b-aad5-1ac1d1838bb6,region,Europe and Switzerland,,0.85,ok,Derived from CHE,Norman Kearney,06.11.2026
+ac8dbaec-da44-400b-aad5-1ac1d1838bb6,region,CDE-EUR,,0.85,changed,Derived from CHE; Renamed from 'Europe and Switzerland' (decision 0017),Norman Kearney,06.11.2026
 ac8dbaec-da44-400b-aad5-1ac1d1838bb6,system,Science systems and funding,,0.9,ok,,Norman Kearney,06.11.2026
 ac8dbaec-da44-400b-aad5-1ac1d1838bb6,system,Science-policy interfaces,,0.7,ok,,Norman Kearney,06.11.2026
 ac8dbaec-da44-400b-aad5-1ac1d1838bb6,actors,Researchers and universities,studied,0.9,ok,,Norman Kearney,06.11.2026
@@ -202,7 +202,7 @@ c45c2a72-d5ad-43b8-a113-3dc0a267aed8,pathway,P4,,0.5,ok,,Norman Kearney,06.11.20
 c45c2a72-d5ad-43b8-a113-3dc0a267aed8,transformative_aspiration,TA2,,0.45,ok,Calls for reorienting research funding,Norman Kearney,06.11.2026
 c45c2a72-d5ad-43b8-a113-3dc0a267aed8,data_type,None (conceptual),,0.5,ok,Conference report,Norman Kearney,06.11.2026
 c45c2a72-d5ad-43b8-a113-3dc0a267aed8,country,CHE,,0.9,ok,,Norman Kearney,06.11.2026
-c45c2a72-d5ad-43b8-a113-3dc0a267aed8,region,Europe and Switzerland,,0.9,ok,Derived from CHE,Norman Kearney,06.11.2026
+c45c2a72-d5ad-43b8-a113-3dc0a267aed8,region,CDE-EUR,,0.9,changed,Derived from CHE; Renamed from 'Europe and Switzerland' (decision 0017),Norman Kearney,06.11.2026
 c45c2a72-d5ad-43b8-a113-3dc0a267aed8,scale,National,,0.6,ok,,Norman Kearney,06.11.2026
 c45c2a72-d5ad-43b8-a113-3dc0a267aed8,system,Science systems and funding,,0.95,ok,,Norman Kearney,06.11.2026
 c45c2a72-d5ad-43b8-a113-3dc0a267aed8,system,Energy,,0.4,ok,Context only,Norman Kearney,06.11.2026
@@ -267,7 +267,7 @@ fixture-synthetic-01,impact_area,SL,,0.9,ok,,Norman Kearney,06.11.2026
 fixture-synthetic-01,sub_area,SL-a,,0.8,ok,,Norman Kearney,06.11.2026
 fixture-synthetic-01,method,Household and other surveys,,0.9,ok,,Norman Kearney,06.11.2026
 fixture-synthetic-01,country,NPL,,0.95,ok,,Norman Kearney,06.11.2026
-fixture-synthetic-01,region,South Asia and Himalaya,,0.95,ok,Derived from NPL,Norman Kearney,06.11.2026
+fixture-synthetic-01,region,Southern Asia,,0.95,changed,Derived from NPL; Nepal has no CDE partner region; M49 sub-region instead (decision 0017),Norman Kearney,06.11.2026
 fixture-synthetic-01,setting,Mountains,,0.8,ok,,Norman Kearney,06.11.2026
 fixture-synthetic-01,actors,Smallholders and land users,studied,0.8,ok,,Norman Kearney,06.11.2026
 fixture-synthetic-01,sdg,2,,0.7,ok,,Norman Kearney,06.11.2026
@@ -275,13 +275,13 @@ fixture-synthetic-01,output_type,Academic,,0.9,ok,Synthetic,Norman Kearney,06.11
 fixture-synthetic-02,impact_area,SG,,0.3,ok,Metadata only: deliberately low confidence,Norman Kearney,06.11.2026
 fixture-synthetic-02,system,Extractives and mining,,0.6,ok,,Norman Kearney,06.11.2026
 fixture-synthetic-02,country,LAO,,0.7,ok,,Norman Kearney,06.11.2026
-fixture-synthetic-02,region,Mainland Southeast Asia,,0.7,ok,Derived from LAO,Norman Kearney,06.11.2026
+fixture-synthetic-02,region,CDE-MSEA,,0.7,changed,Derived from LAO; Renamed from 'Mainland Southeast Asia' (decision 0017),Norman Kearney,06.11.2026
 fixture-synthetic-02,output_type,Policy,,0.6,ok,,Norman Kearney,06.11.2026
 fixture-synthetic-03,impact_area,SG,,0.7,ok,,Norman Kearney,06.11.2026
 fixture-synthetic-03,sub_area,SG-d,,0.7,ok,,Norman Kearney,06.11.2026
 fixture-synthetic-03,method,Interviews and focus groups,,0.8,ok,,Norman Kearney,06.11.2026
 fixture-synthetic-03,country,CHE,,0.8,ok,,Norman Kearney,06.11.2026
-fixture-synthetic-03,region,Europe and Switzerland,,0.8,ok,Derived from CHE,Norman Kearney,06.11.2026
+fixture-synthetic-03,region,CDE-EUR,,0.8,changed,Derived from CHE; Renamed from 'Europe and Switzerland' (decision 0017),Norman Kearney,06.11.2026
 fixture-synthetic-03,setting,Mountains,,0.8,ok,,Norman Kearney,06.11.2026
 fixture-synthetic-03,system,Freshwater and waterbodies,,0.7,ok,,Norman Kearney,06.11.2026
 fixture-synthetic-03,actors,Social enterprises and cooperatives,studied,0.7,ok,,Norman Kearney,06.11.2026
@@ -297,7 +297,7 @@ fixture-synthetic-04,method,Living labs and real-world labs,,0.9,ok,,Norman Kear
 fixture-synthetic-04,method,"Futures methods (visioning, scenarios, futures workshops)",,0.7,ok,,Norman Kearney,06.11.2026
 fixture-synthetic-04,method,other,,0.3,ok,,Norman Kearney,06.11.2026
 fixture-synthetic-04,country,CHE,,0.9,ok,,Norman Kearney,06.11.2026
-fixture-synthetic-04,region,Europe and Switzerland,,0.9,ok,Derived from CHE,Norman Kearney,06.11.2026
+fixture-synthetic-04,region,CDE-EUR,,0.9,changed,Derived from CHE; Renamed from 'Europe and Switzerland' (decision 0017),Norman Kearney,06.11.2026
 fixture-synthetic-04,setting,Urban,,0.9,ok,,Norman Kearney,06.11.2026
 fixture-synthetic-04,scale,Community or village,,0.6,ok,,Norman Kearney,06.11.2026
 fixture-synthetic-04,system,Urban areas and housing,,0.6,ok,,Norman Kearney,06.11.2026
@@ -315,7 +315,7 @@ fixture-synthetic-04,output_type,Academic,,0.6,ok,Synthetic working paper,Norman
 0674ad8c-bb2d-48d0-b866-8a07df79f5af,transformative_aspiration,TA1,,0.5,ok,Capacity building inside the institution; inferred,Norman Kearney,06.11.2026
 0674ad8c-bb2d-48d0-b866-8a07df79f5af,data_type,None (conceptual),,0.6,ok,"Guide, no data",Norman Kearney,06.11.2026
 0674ad8c-bb2d-48d0-b866-8a07df79f5af,country,CHE,,0.9,ok,,Norman Kearney,06.11.2026
-0674ad8c-bb2d-48d0-b866-8a07df79f5af,region,Europe and Switzerland,,0.9,ok,Derived from CHE,Norman Kearney,06.11.2026
+0674ad8c-bb2d-48d0-b866-8a07df79f5af,region,CDE-EUR,,0.9,changed,Derived from CHE; Renamed from 'Europe and Switzerland' (decision 0017),Norman Kearney,06.11.2026
 0674ad8c-bb2d-48d0-b866-8a07df79f5af,system,Higher education,,0.95,ok,,Norman Kearney,06.11.2026
 0674ad8c-bb2d-48d0-b866-8a07df79f5af,actors,Researchers and universities,audience,0.95,ok,,Norman Kearney,06.11.2026
 0674ad8c-bb2d-48d0-b866-8a07df79f5af,justice_lens,None explicit,,0.7,ok,Only front matter seen,Norman Kearney,06.11.2026
@@ -377,7 +377,7 @@ fixture-synthetic-04,output_type,Academic,,0.6,ok,Synthetic working paper,Norman
 25c17984-c6c0-4487-8638-5bb606748603,output_type,Policy,,0.6,ok,Policy-oriented MRD section,Norman Kearney,06.11.2026
 25c17984-c6c0-4487-8638-5bb606748603,country,BOL,,0.7,ok,One of three PRSP examples,Norman Kearney,06.11.2026
 25c17984-c6c0-4487-8638-5bb606748603,country,VNM,,0.7,ok,One of three PRSP examples,Norman Kearney,06.11.2026
-25c17984-c6c0-4487-8638-5bb606748603,region,South America and central Andes,,0.7,ok,Derived from BOL,Norman Kearney,06.11.2026
+25c17984-c6c0-4487-8638-5bb606748603,region,CDE-SAM,,0.7,changed,Derived from BOL; Renamed from 'South America and central Andes' (decision 0017),Norman Kearney,06.11.2026
 25c17984-c6c0-4487-8638-5bb606748603,region,South-eastern Asia,,0.7,ok,Derived from VNM (M49),Norman Kearney,06.11.2026
 25c17984-c6c0-4487-8638-5bb606748603,actors,Indigenous peoples and local communities,studied,0.6,ok,,Norman Kearney,06.11.2026
 25c17984-c6c0-4487-8638-5bb606748603,method,Poverty and well-being measurement,,0.6,ok,,Norman Kearney,06.11.2026
@@ -389,8 +389,8 @@ fixture-synthetic-04,output_type,Academic,,0.6,ok,Synthetic working paper,Norman
 5a56f17f-cbe3-4cc0-9511-ec2674dd2beb,data_type,Primary qualitative,,0.6,ok,,Norman Kearney,06.11.2026
 5a56f17f-cbe3-4cc0-9511-ec2674dd2beb,country,BOL,,0.55,ok,Consortium country; study site not seen,Norman Kearney,06.11.2026
 5a56f17f-cbe3-4cc0-9511-ec2674dd2beb,country,KEN,,0.55,ok,Consortium country; study site not seen,Norman Kearney,06.11.2026
-5a56f17f-cbe3-4cc0-9511-ec2674dd2beb,region,South America and central Andes,,0.5,ok,Derived from BOL,Norman Kearney,06.11.2026
-5a56f17f-cbe3-4cc0-9511-ec2674dd2beb,region,Eastern Africa and Horn of Africa,,0.5,ok,Derived from KEN,Norman Kearney,06.11.2026
+5a56f17f-cbe3-4cc0-9511-ec2674dd2beb,region,CDE-SAM,,0.5,changed,Derived from BOL; Renamed from 'South America and central Andes' (decision 0017),Norman Kearney,06.11.2026
+5a56f17f-cbe3-4cc0-9511-ec2674dd2beb,region,CDE-EAF,,0.5,changed,Derived from KEN; Renamed from 'Eastern Africa and Horn of Africa' (decision 0017),Norman Kearney,06.11.2026
 5a56f17f-cbe3-4cc0-9511-ec2674dd2beb,system,Food systems and agriculture,,0.95,ok,,Norman Kearney,06.11.2026
 5a56f17f-cbe3-4cc0-9511-ec2674dd2beb,actors,Smallholders and land users,studied,0.7,ok,,Norman Kearney,06.11.2026
 5a56f17f-cbe3-4cc0-9511-ec2674dd2beb,sdg,2,,0.85,ok,,Norman Kearney,06.11.2026
@@ -405,7 +405,7 @@ fixture-synthetic-04,output_type,Academic,,0.6,ok,Synthetic working paper,Norman
 8001ee4f-ae98-47a8-9347-26a6da9baa21,research_mode,M1,,0.6,ok,Accompanying research,Norman Kearney,06.11.2026
 8001ee4f-ae98-47a8-9347-26a6da9baa21,transformative_aspiration,TA1,,0.55,ok,,Norman Kearney,06.11.2026
 8001ee4f-ae98-47a8-9347-26a6da9baa21,country,CHE,,0.95,ok,,Norman Kearney,06.11.2026
-8001ee4f-ae98-47a8-9347-26a6da9baa21,region,Europe and Switzerland,,0.95,ok,Derived from CHE,Norman Kearney,06.11.2026
+8001ee4f-ae98-47a8-9347-26a6da9baa21,region,CDE-EUR,,0.95,changed,Derived from CHE; Renamed from 'Europe and Switzerland' (decision 0017),Norman Kearney,06.11.2026
 8001ee4f-ae98-47a8-9347-26a6da9baa21,system,Livelihoods and labour,,0.9,ok,,Norman Kearney,06.11.2026
 8001ee4f-ae98-47a8-9347-26a6da9baa21,system,Social security and care,,0.6,ok,Hospital = care sector,Norman Kearney,06.11.2026
 8001ee4f-ae98-47a8-9347-26a6da9baa21,actors,Companies and investors,studied,0.6,ok,Hospital as employer,Norman Kearney,06.11.2026
@@ -433,7 +433,7 @@ fixture-synthetic-04,output_type,Academic,,0.6,ok,Synthetic working paper,Norman
 8632a01d-8dad-40aa-9926-a9120617c29a,country,KEN,,0.6,ok,,Norman Kearney,06.11.2026
 8632a01d-8dad-40aa-9926-a9120617c29a,country,TJK,,0.7,ok,,Norman Kearney,06.11.2026
 8632a01d-8dad-40aa-9926-a9120617c29a,country,AZE,,0.5,ok,,Norman Kearney,06.11.2026
-8632a01d-8dad-40aa-9926-a9120617c29a,region,Eastern Africa and Horn of Africa,,0.7,ok,,Norman Kearney,06.11.2026
+8632a01d-8dad-40aa-9926-a9120617c29a,region,CDE-EAF,,0.7,changed,Renamed from 'Eastern Africa and Horn of Africa' (decision 0017),Norman Kearney,06.11.2026
 8632a01d-8dad-40aa-9926-a9120617c29a,region,Central Asia,,0.6,ok,Derived from TJK (M49),Norman Kearney,06.11.2026
 8632a01d-8dad-40aa-9926-a9120617c29a,setting,Mountains,,0.95,ok,,Norman Kearney,06.11.2026
 8632a01d-8dad-40aa-9926-a9120617c29a,scale,Transboundary or regional,,0.7,ok,,Norman Kearney,06.11.2026
@@ -448,8 +448,8 @@ fixture-synthetic-04,output_type,Academic,,0.6,ok,Synthetic working paper,Norman
 8632a01d-8dad-40aa-9926-a9120617c29a,country,LAO,,0.7,ok,,Norman Kearney,06.11.2026
 8632a01d-8dad-40aa-9926-a9120617c29a,country,BOL,,0.6,ok,,Norman Kearney,06.11.2026
 8632a01d-8dad-40aa-9926-a9120617c29a,country,PER,,0.6,ok,,Norman Kearney,06.11.2026
-8632a01d-8dad-40aa-9926-a9120617c29a,region,Mainland Southeast Asia,,0.7,ok,Derived from LAO,Norman Kearney,06.11.2026
-8632a01d-8dad-40aa-9926-a9120617c29a,region,South America and central Andes,,0.7,ok,"Derived from BOL, PER",Norman Kearney,06.11.2026
+8632a01d-8dad-40aa-9926-a9120617c29a,region,CDE-MSEA,,0.7,changed,Derived from LAO; Renamed from 'Mainland Southeast Asia' (decision 0017),Norman Kearney,06.11.2026
+8632a01d-8dad-40aa-9926-a9120617c29a,region,CDE-SAM,,0.7,changed,"Derived from BOL, PER; Renamed from 'South America and central Andes' (decision 0017)",Norman Kearney,06.11.2026
 8632a01d-8dad-40aa-9926-a9120617c29a,sub_area,SL-c,,0.55,ok,,Norman Kearney,06.11.2026
 8632a01d-8dad-40aa-9926-a9120617c29a,method,Database development,,0.5,ok,Lao DECIDE info,Norman Kearney,06.11.2026
 8632a01d-8dad-40aa-9926-a9120617c29a,system,Food systems and agriculture,,0.5,ok,,Norman Kearney,06.11.2026
@@ -461,7 +461,7 @@ fixture-synthetic-04,output_type,Academic,,0.6,ok,Synthetic working paper,Norman
 82d7bbd0-6e95-44c5-9fac-617c24dd3bd2,method,Case study,,0.7,ok,,Norman Kearney,06.11.2026
 82d7bbd0-6e95-44c5-9fac-617c24dd3bd2,data_type,Documents and policies,,0.85,ok,,Norman Kearney,06.11.2026
 82d7bbd0-6e95-44c5-9fac-617c24dd3bd2,country,CHE,,0.95,ok,,Norman Kearney,06.11.2026
-82d7bbd0-6e95-44c5-9fac-617c24dd3bd2,region,Europe and Switzerland,,0.95,ok,Derived from CHE,Norman Kearney,06.11.2026
+82d7bbd0-6e95-44c5-9fac-617c24dd3bd2,region,CDE-EUR,,0.95,changed,Derived from CHE; Renamed from 'Europe and Switzerland' (decision 0017),Norman Kearney,06.11.2026
 82d7bbd0-6e95-44c5-9fac-617c24dd3bd2,setting,Urban,,0.95,ok,,Norman Kearney,06.11.2026
 82d7bbd0-6e95-44c5-9fac-617c24dd3bd2,scale,Subnational,,0.8,ok,City level,Norman Kearney,06.11.2026
 82d7bbd0-6e95-44c5-9fac-617c24dd3bd2,system,Food systems and agriculture,,0.95,ok,,Norman Kearney,06.11.2026
@@ -483,7 +483,7 @@ d012a8d7-8b08-41fe-b46b-f551dd068417,pathway,P1,,0.6,ok,,Norman Kearney,06.11.20
 d012a8d7-8b08-41fe-b46b-f551dd068417,method,Case study,,0.7,ok,,Norman Kearney,06.11.2026
 d012a8d7-8b08-41fe-b46b-f551dd068417,data_type,Documents and policies,,0.85,ok,,Norman Kearney,06.11.2026
 d012a8d7-8b08-41fe-b46b-f551dd068417,country,CHE,,0.95,ok,,Norman Kearney,06.11.2026
-d012a8d7-8b08-41fe-b46b-f551dd068417,region,Europe and Switzerland,,0.95,ok,Derived from CHE,Norman Kearney,06.11.2026
+d012a8d7-8b08-41fe-b46b-f551dd068417,region,CDE-EUR,,0.95,changed,Derived from CHE; Renamed from 'Europe and Switzerland' (decision 0017),Norman Kearney,06.11.2026
 d012a8d7-8b08-41fe-b46b-f551dd068417,setting,Urban,,0.95,ok,,Norman Kearney,06.11.2026
 d012a8d7-8b08-41fe-b46b-f551dd068417,scale,Subnational,,0.8,ok,City level,Norman Kearney,06.11.2026
 d012a8d7-8b08-41fe-b46b-f551dd068417,system,Food systems and agriculture,,0.95,ok,,Norman Kearney,06.11.2026
@@ -524,7 +524,7 @@ bdf7b415-f133-4632-a184-ee6e0c62517b,sub_area,TE-c,,0.7,ok,,Norman Kearney,06.11
 bdf7b415-f133-4632-a184-ee6e0c62517b,objective,O5,,0.6,ok,,Norman Kearney,06.11.2026
 bdf7b415-f133-4632-a184-ee6e0c62517b,data_type,None (conceptual),,0.5,ok,,Norman Kearney,06.11.2026
 bdf7b415-f133-4632-a184-ee6e0c62517b,country,CHE,,0.9,ok,,Norman Kearney,06.11.2026
-bdf7b415-f133-4632-a184-ee6e0c62517b,region,Europe and Switzerland,,0.9,ok,Derived from CHE,Norman Kearney,06.11.2026
+bdf7b415-f133-4632-a184-ee6e0c62517b,region,CDE-EUR,,0.9,changed,Derived from CHE; Renamed from 'Europe and Switzerland' (decision 0017),Norman Kearney,06.11.2026
 bdf7b415-f133-4632-a184-ee6e0c62517b,system,Higher education,,0.95,ok,,Norman Kearney,06.11.2026
 bdf7b415-f133-4632-a184-ee6e0c62517b,actors,Researchers and universities,audience,0.9,ok,,Norman Kearney,06.11.2026
 bdf7b415-f133-4632-a184-ee6e0c62517b,justice_lens,None explicit,,0.5,ok,Only cover and TOC,Norman Kearney,06.11.2026
@@ -543,7 +543,7 @@ c191917c-34df-4dfe-8f2d-aaaffb20bb05,data_type,Curated databases,,0.9,ok,,Norman
 c191917c-34df-4dfe-8f2d-aaaffb20bb05,country,global_or_multi_country,,0.85,ok,,Norman Kearney,06.11.2026
 c191917c-34df-4dfe-8f2d-aaaffb20bb05,country,IDN,,0.6,ok,,Norman Kearney,06.11.2026
 c191917c-34df-4dfe-8f2d-aaaffb20bb05,country,MDG,,0.6,ok,,Norman Kearney,06.11.2026
-c191917c-34df-4dfe-8f2d-aaaffb20bb05,region,Madagascar,,0.6,ok,Derived from MDG,Norman Kearney,06.11.2026
+c191917c-34df-4dfe-8f2d-aaaffb20bb05,region,CDE-EAF,,0.6,changed,Derived from MDG; Renamed from 'Madagascar' (decision 0017),Norman Kearney,06.11.2026
 c191917c-34df-4dfe-8f2d-aaaffb20bb05,region,South-eastern Asia,,0.6,ok,Derived from IDN (M49),Norman Kearney,06.11.2026
 c191917c-34df-4dfe-8f2d-aaaffb20bb05,scale,Global,,0.7,ok,,Norman Kearney,06.11.2026
 c191917c-34df-4dfe-8f2d-aaaffb20bb05,system,Large-scale land investments,,0.95,ok,,Norman Kearney,06.11.2026
@@ -569,7 +569,7 @@ c7c9136f-52b3-40d4-893c-cb638a9c2147,research_mode,M4,,0.7,ok,,Norman Kearney,06
 c7c9136f-52b3-40d4-893c-cb638a9c2147,method,"Monitoring, evaluation and learning",,0.95,ok,,Norman Kearney,06.11.2026
 c7c9136f-52b3-40d4-893c-cb638a9c2147,method,Household and other surveys,,0.5,ok,Self-declaration by lecturers,Norman Kearney,06.11.2026
 c7c9136f-52b3-40d4-893c-cb638a9c2147,country,CHE,,0.95,ok,,Norman Kearney,06.11.2026
-c7c9136f-52b3-40d4-893c-cb638a9c2147,region,Europe and Switzerland,,0.95,ok,Derived from CHE,Norman Kearney,06.11.2026
+c7c9136f-52b3-40d4-893c-cb638a9c2147,region,CDE-EUR,,0.95,changed,Derived from CHE; Renamed from 'Europe and Switzerland' (decision 0017),Norman Kearney,06.11.2026
 c7c9136f-52b3-40d4-893c-cb638a9c2147,system,Higher education,,0.95,ok,,Norman Kearney,06.11.2026
 c7c9136f-52b3-40d4-893c-cb638a9c2147,actors,Researchers and universities,studied,0.85,ok,,Norman Kearney,06.11.2026
 c7c9136f-52b3-40d4-893c-cb638a9c2147,justice_lens,None explicit,,0.7,ok,,Norman Kearney,06.11.2026
@@ -607,7 +607,7 @@ e5176970-c1f2-4e83-82d7-3f7f779a1d08,method,Case study,,0.6,ok,,Norman Kearney,0
 e5176970-c1f2-4e83-82d7-3f7f779a1d08,data_type,Primary qualitative,,0.9,ok,,Norman Kearney,06.11.2026
 e5176970-c1f2-4e83-82d7-3f7f779a1d08,data_type,Documents and policies,,0.7,ok,,Norman Kearney,06.11.2026
 e5176970-c1f2-4e83-82d7-3f7f779a1d08,country,CHE,,0.95,ok,,Norman Kearney,06.11.2026
-e5176970-c1f2-4e83-82d7-3f7f779a1d08,region,Europe and Switzerland,,0.95,ok,Derived from CHE,Norman Kearney,06.11.2026
+e5176970-c1f2-4e83-82d7-3f7f779a1d08,region,CDE-EUR,,0.95,changed,Derived from CHE; Renamed from 'Europe and Switzerland' (decision 0017),Norman Kearney,06.11.2026
 e5176970-c1f2-4e83-82d7-3f7f779a1d08,setting,Mountains,,0.95,ok,,Norman Kearney,06.11.2026
 e5176970-c1f2-4e83-82d7-3f7f779a1d08,scale,Subnational,,0.6,ok,,Norman Kearney,06.11.2026
 e5176970-c1f2-4e83-82d7-3f7f779a1d08,system,Freshwater and waterbodies,,0.95,ok,,Norman Kearney,06.11.2026
@@ -621,7 +621,7 @@ f50a5dcd-3422-45f4-b579-4abef4dda308,sub_area,JE-a,,0.9,ok,Nature parks and prot
 f50a5dcd-3422-45f4-b579-4abef4dda308,research_mode,M2,,0.7,ok,,Norman Kearney,06.11.2026
 f50a5dcd-3422-45f4-b579-4abef4dda308,method,Conceptual and theoretical work,,0.6,ok,,Norman Kearney,06.11.2026
 f50a5dcd-3422-45f4-b579-4abef4dda308,country,CHE,,0.6,ok,Swiss research programme; cover shows a French park (Ballons des Vosges),Norman Kearney,06.11.2026
-f50a5dcd-3422-45f4-b579-4abef4dda308,region,Europe and Switzerland,,0.6,ok,Derived from CHE,Norman Kearney,06.11.2026
+f50a5dcd-3422-45f4-b579-4abef4dda308,region,CDE-EUR,,0.6,changed,Derived from CHE; Renamed from 'Europe and Switzerland' (decision 0017),Norman Kearney,06.11.2026
 f50a5dcd-3422-45f4-b579-4abef4dda308,scale,Subnational,,0.6,ok,,Norman Kearney,06.11.2026
 f50a5dcd-3422-45f4-b579-4abef4dda308,system,Protected areas,,0.95,ok,,Norman Kearney,06.11.2026
 f50a5dcd-3422-45f4-b579-4abef4dda308,justice_lens,Recognition,,0.4,ok,Weak; cultural diversity,Norman Kearney,06.11.2026

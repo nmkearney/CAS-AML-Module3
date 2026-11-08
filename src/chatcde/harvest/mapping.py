@@ -184,6 +184,18 @@ def normalise_doi(doi: str | None) -> str | None:
     return doi.strip() or None
 
 
+def doi_key(doi: str | None) -> str | None:
+    """A DOI in the form used for matching: bare ``10.x/y``, lower case.
+
+    DOIs are case-insensitive, so lower-casing makes the same DOI from BORIS
+    and OpenAlex compare equal.
+    """
+    bare = normalise_doi(doi.strip()) if doi else None
+    if bare:
+        bare = bare.removeprefix("https://dx.doi.org/")
+    return bare.lower() if bare else None
+
+
 def to_record(item: dict[str, Any], harvested_at: datetime) -> Record:
     """Map one BORIS item to a :class:`Record`.
 
@@ -198,6 +210,7 @@ def to_record(item: dict[str, Any], harvested_at: datetime) -> Record:
         record_id=item["uuid"],
         handle=handle,
         doi=normalise_doi(first(md, "dc.identifier.doi")),
+        publisher_doi=doi_key(first(md, "dc.identifier.publisherDOI")),
         title=clean(first(md, "dc.title") or item.get("name") or ""),
         abstract=clean(abstract) if abstract else None,
         abstract_source=TextSource.ABSTRACT_BORIS if abstract else None,

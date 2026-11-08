@@ -1,4 +1,4 @@
-# 0021: Additional sub-areas beyond the strategy
+# 0026: Additional sub-areas beyond the strategy
 
 - Status: proposed. The change to the shared formats is under discussion in #49.
 - Date: 2026-11-08
@@ -19,7 +19,7 @@ and part of the frontier comparison with the wider field (use case 2).
   replaces the idea of a general `theme` dimension, because its name and scope state
   how it relates to the strategy.
 - **Whether a topic is additional is decided once, at vocabulary level,** by the
-  curator in the workbook (0020). The tagger only applies the closed list, and tags
+  curator in the workbook (0025). The tagger only applies the closed list, and tags
   `sub_area` and `additional_sub_area` independently, so a record can carry both.
 - **Boundary rule:** an additional sub-area must not overlap a strategy sub-area's
   scope. A candidate that partly overlaps, such as "Sustainable land management" and

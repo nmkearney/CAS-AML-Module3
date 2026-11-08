@@ -1,4 +1,4 @@
-# 0020: Vocabulary codes and curation in an Excel workbook
+# 0025: Vocabulary codes and curation in an Excel workbook
 
 - Status: accepted. The change to `Tag.term` in the shared formats is proposed in #49.
 - Date: 2026-11-08
@@ -21,7 +21,7 @@ Two problems with the v0.2 file:
   `<PREFIX>-<kebab-slug>`, e.g. `MET-remote-sensing`, `SET-mountains`,
   `ASA-food-security`.
   - Prefixes: MET (method), DAT (data_type), SET (setting), SCA (scale), SYS (system),
-    ACT (actors), JUS (justice_lens), ASA (additional_sub_area, 0021).
+    ACT (actors), JUS (justice_lens), ASA (additional_sub_area, 0026).
   - Groups get codes too (`MET-G-<slug>`), so gaps can be counted per group.
   - Strategy dimensions keep their codes (JE, SL-a, O2, M1, TA1). Country, region and
     SDG keep their standards.

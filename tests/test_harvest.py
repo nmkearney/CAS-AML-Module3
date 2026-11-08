@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import copy
 import json
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
@@ -171,6 +172,26 @@ def test_normalise_doi():
     assert mapping.normalise_doi("") is None
 
 
+def test_doi_key_normalises_prefix_and_case():
+    assert mapping.doi_key("https://doi.org/10.1000/ABC") == "10.1000/abc"
+    assert mapping.doi_key("https://dx.doi.org/10.1000/x") == "10.1000/x"
+    assert mapping.doi_key("  ") is None
+    assert mapping.doi_key(None) is None
+
+
+def test_publisher_doi_is_kept_apart_from_boris_doi():
+    item = copy.deepcopy(load_items()[0])
+    md = item["metadata"]
+    md["dc.identifier.doi"] = [{"value": "https://doi.org/10.7892/boris.1"}]
+    md["dc.identifier.publisherDOI"] = [{"value": "https://doi.org/10.1016/J.X.1"}]
+    rec = mapping.to_record(item, datetime(2026, 11, 7, tzinfo=UTC))
+    assert rec.doi == "10.7892/boris.1"
+    assert rec.publisher_doi == "10.1016/j.x.1"
+    del md["dc.identifier.publisherDOI"]
+    rec = mapping.to_record(item, datetime(2026, 11, 7, tzinfo=UTC))
+    assert rec.publisher_doi is None
+
+
 # --- client -----------------------------------------------------------------
 
 
@@ -281,6 +302,11 @@ def test_build_filters_and_is_idempotent(cfg: Config):
         s = harvest_metadata(cfg, client=c)
     assert s.search_hits == 33  # the duplicate counted once
     assert s.records == 30
+    assert s.with_publisher_doi == sum(
+        r["publisher_doi"] is not None
+        for r in jsonl("records.jsonl")
+        if r["record_id"] in {i["uuid"] for i in load_items()}
+    )
     assert s.dropped == {"not_cde": 1, "entity_type:Dataset": 1, "withdrawn": 1}
     assert s.authors == len(
         [
@@ -323,6 +349,18 @@ def test_build_keeps_work_of_later_stages(cfg: Config):
         "SELECT has_fulltext, abstract, abstract_source FROM records "
         f"WHERE record_id = '{uid}'",
     ) == [(True, "From OpenAlex.", "abstract_openalex")]
+
+
+def test_rebuild_upgrades_catalogue_from_before_publisher_doi(cfg: Config):
+    with client_for(cfg, FakeBoris(load_items())) as c:
+        harvest_metadata(cfg, client=c)
+    before = table(cfg, "SELECT * FROM records ORDER BY record_id")
+    con = duckdb.connect(str(cfg.data.catalogue))
+    con.execute("ALTER TABLE records DROP COLUMN publisher_doi")
+    con.close()
+
+    harvest_metadata(cfg, offline=True)
+    assert table(cfg, "SELECT * FROM records ORDER BY record_id") == before
 
 
 def test_offline_without_fetch_fails_clearly(cfg: Config):

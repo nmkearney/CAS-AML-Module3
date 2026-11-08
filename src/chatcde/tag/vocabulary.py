@@ -48,7 +48,7 @@ def flatten_terms(node: Any) -> list[str]:
     if isinstance(node, list):
         return [t for t in (_term(i) for i in node) if t]
     if isinstance(node, dict):
-        if "terms" in node:  # layout written by `chatcde vocab apply` (0020)
+        if "terms" in node:  # layout written by `chatcde vocab apply` (0025)
             return flatten_terms(node["terms"])
         if "groups" in node:
             return flatten_terms(node["groups"])

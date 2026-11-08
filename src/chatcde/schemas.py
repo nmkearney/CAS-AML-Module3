@@ -145,7 +145,16 @@ class Record(BaseModel):
         description="BORIS item UUID; the ID used everywhere")
     handle: str | None = Field(
         default=None, description="e.g. '20.500.12422/176981'")
-    doi: str | None = None
+    doi: str | None = Field(
+        default=None,
+        description="BORIS's own DOI (dc.identifier.doi; DataCite, prefixes "
+        "10.7892, 10.48350, 10.48620), not the publisher's",
+    )
+    publisher_doi: str | None = Field(
+        default=None,
+        description="Publisher's DOI (dc.identifier.publisherDOI); bare, "
+        "lower-case '10.x/y'",
+    )
     title: str
     abstract: str | None = None
     abstract_source: TextSource | None = None

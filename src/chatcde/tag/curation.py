@@ -1,6 +1,6 @@
 """Curate the vocabulary in an Excel workbook, then apply it to the YAML (issue #14).
 
-The developer decides in Excel; code writes the YAML (decision 0020). The flow
+The developer decides in Excel; code writes the YAML (decision 0025). The flow
 runs one way:
 
     vocab/candidates.yaml + draft_vocabulary.yaml
@@ -62,7 +62,7 @@ PREFIXES: dict[str, str] = {
 }
 
 #: Candidate kind in candidates.yaml -> sheet. Theme candidates are the evidence
-#: for additional sub-areas (decision 0021).
+#: for additional sub-areas (decision 0026).
 KIND_SHEET: dict[str, str] = {
     "setting": "setting",
     "data_type": "data_type",
@@ -354,7 +354,7 @@ def _scope_rows(
 
 
 README = [
-    "Vocabulary curation workbook (chatcde vocab review / apply; decision 0020).",
+    "Vocabulary curation workbook (chatcde vocab review / apply; decision 0025).",
     "",
     "Edit only the white columns. Grey columns are evidence and are ignored.",
     "When done (or any time), run: chatcde vocab apply  -> rewrites "

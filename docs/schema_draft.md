@@ -28,7 +28,7 @@ All dimensions except output type allow several values per record. Free-text key
 | 16 | Output type | Publication type and main audience | BORIS type; proposed audiences | Metadata; audience by LLM |
 | 17 | Transformative aspiration | The stance the work takes towards existing systems: collaborate, challenge or disrupt | Westerink et al. 2026; see decision 0005 | LLM, closed list |
 
-Dimensions 1–5 use the current strategy's categories for all years. Older work will be tagged against categories that didn't exist when it was written; see the workshop questions.
+Dimensions 1–5 use the current strategy's categories for all years. Older work is tagged against categories that didn't exist when it was written, and the BORIS unit is kept as recorded; see decision 0016.
 
 ## Impact areas and sub-areas
 
@@ -111,16 +111,17 @@ Country is the base unit. Both region layers are derived from it in code, so the
 
 - **Country:** ISO 3166-1 alpha-3 codes, plus a "global or multi-country" flag for work with no single study country.
 - **World region:** UN M49 sub-regions (Eastern Africa, South-eastern Asia, South America, Western Europe…).
-- **CDE partner region:** a mapping from country to CDE's own regions. CDE's sources don't agree on the list: the strategy mentions "five regions" with four offices in Africa and Asia; the strategy web page says "four world regions"; the regions page names Eastern Africa, Mainland Southeast Asia and South America; and the 2020 annual report adds the Horn of Africa and the central Andes. The draft below needs confirming.
+- **CDE partner region:** four regions mapped from country (decision 0017). CDE's sources don't fully agree: the strategy web page says "four world regions" without naming them; the regions page names Eastern Africa, mainland Southeast Asia and South America, plus Europe and Switzerland; the 2020 annual report names East Africa, the Horn of Africa, mainland Southeast Asia and the central Andes.
+- **CDE partner country:** a flag for the seven countries with a main partner institution: Kenya (CETRAD, University of Nairobi), Ethiopia (WLRC), Laos (National University of Laos), Myanmar (Land Core Group), Nepal (ICIMOD, Nepal Centre for Contemporary Research), Bolivia (CIDES-UMSA) and Madagascar (ESSA-Forêts, Université d'Antananarivo).
 
-| CDE partner region (draft) | Countries with a main partner institution |
-| --- | --- |
-| Eastern Africa and Horn of Africa | Kenya (CETRAD, University of Nairobi), Ethiopia (WLRC) |
-| Madagascar | Madagascar (ESSA-Forêts, Université d'Antananarivo) |
-| Mainland Southeast Asia | Laos (National University of Laos), Myanmar (Land Core Group) |
-| South Asia and Himalaya | Nepal (ICIMOD, Nepal Centre for Contemporary Research) |
-| South America and central Andes | Bolivia (CIDES-UMSA); Peru also named on the regions page |
-| Europe and Switzerland | Switzerland and other European countries |
+| Code | CDE partner region | Countries |
+| --- | --- | --- |
+| CDE-EAF | Eastern Africa | UN M49 Eastern Africa (014), including the Horn of Africa and Madagascar |
+| CDE-MSEA | Mainland Southeast Asia | Cambodia, Laos, Myanmar, Thailand, Viet Nam |
+| CDE-SAM | South America | UN M49 South America (005), including the central Andes |
+| CDE-EUR | Europe and Switzerland | UN M49 Europe (150) |
+
+Countries outside these regions, such as Nepal, keep their country and M49 tags but get no partner region.
 
 **Setting** (proposed): mountains · drylands and rangelands · humid tropics and forest frontiers · coastal and marine · rural lowlands · peri-urban · urban. Mountains get their own term because of CDE's long mountain focus through *Mountain Research and Development* and the Mountain Research Initiative.
 
@@ -150,8 +151,8 @@ Each actor tag also records a **role**: *studied*, *engaged as co-producer* or *
 
 Each item becomes a file in `docs/decisions/` once decided.
 
-- [ ] **Older work.** Should all publications be tagged with the 2025–2028 categories, or should earlier strategy categories be mapped across too? Earlier areas included land resources, socio-economic transitions and education for sustainable development. Proposal: tag everything with the current categories and keep the BORIS unit as recorded, so historical shifts stay visible. This affects nearly the whole corpus: only about 250 publications date from 2025 or later, and about 270 predate 2010.
-- [ ] **Partner regions.** Are there four or five, and which countries belong to each?
+- [x] **Older work.** Should all publications be tagged with the 2025–2028 categories, or should earlier strategy categories be mapped across too? Decided in [0016](decisions/0016-older-work-current-categories.md): the current categories for all years, with the BORIS unit kept as recorded. This affects nearly the whole corpus: 268 publications date from 2025 or later, and 536 predate 2010.
+- [x] **Partner regions.** Are there four or five, and which countries belong to each? Decided in [0017](decisions/0017-partner-regions.md): four regions plus a partner-country flag.
 - [ ] **Objectives and pathways.** Can these be tagged reliably from publication text, or are they better recorded at project level from BORIS project records?
 - [ ] **Method granularity.** Are 34 terms in eight groups the right level of detail, or should gap counts use the eight groups and keep terms for drill-down?
 - [ ] **SDGs.** Cap at three per record, or tag all that apply?
