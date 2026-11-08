@@ -142,7 +142,7 @@ chatcde index search "living lab" --mode bm25 --no-rerank   # offline, keywords 
 
 `--mode` is `hybrid`, `bm25` or `vector`. Filters: `--year-from`, `--year-to`, `--unit`,
 `--type`, `--lang`, `--country`. This command is for checking the search. The
-user-facing search with citations is `chatcde search` (issue #23). See
+user-facing search with citations is `chatcde search` (below). See
 `docs/decisions/0013-hybrid-search.md`.
 
 ## Coverage
@@ -163,6 +163,55 @@ stands in for full text, and the command says so. Each breakdown shows the three
 A record counts under its first listed language. The heading names the edition: `open`
 when the data came from an open bundle, otherwise `full`. Filters: `--year-from`,
 `--year-to`, `--unit`, `--type`, `--lang`. See `docs/decisions/0015-coverage.md`.
+## Search and read
+
+These commands call the same tools the assistant uses (`search_publications`,
+`get_publication` and `read_section`) and print what they return. Add `--json` to get
+the exact result the agent sees.
+
+```bash
+chatcde search "large-scale land acquisitions in Laos" -k 5
+chatcde search "Weidewirtschaft" --year-from 2015 --country KEN --sdg 15 --full
+chatcde show 10.1659/mrd.4204           # BORIS ID, DOI (publisher or BORIS) or handle
+chatcde read 2760e535-c973-4524-ab84-3a1c71b9bf3a 2 3   # pages 2-3, verbatim
+```
+
+`search` returns passages, best first. Each passage has a score, its pages, its source
+(full text, abstract or metadata), the BORIS ID and the DOI. The DOI is the publisher's
+when there is one, otherwise BORIS's own. Like `index search`, it needs the endpoint
+for the query embedding and the reranker. `show` and `read` run locally.
+
+`read` returns the full-text chunks that overlap the pages, so neighbouring passages
+share a few sentences. It reads at most `tools.max_section_pages` (10) pages per call,
+and `search` returns at most `tools.max_k` (20) passages. Records without parsed full
+text have no pages; `show` gives their abstract. See
+`docs/decisions/0020-search-and-reading-tools.md`.
+
+## Count and find gaps
+
+These commands count tags in the catalogue and need no model. They call the tools
+`list_vocabulary`, `count_by` and `find_gaps`.
+
+```bash
+chatcde schema                                  # the 17 dimensions: terms, records tagged
+chatcde vocab -d method                         # one dimension's terms with record counts
+chatcde count sub_area                          # records per sub-area
+chatcde count impact_area method --year-from 2015 --lang de
+chatcde count sub_area method --gaps            # combinations far rarer than expected
+chatcde count region sub_area --gaps --max-ratio 0.5 --all-types --json
+```
+
+Counts are of records, not tags: a record with two methods counts under both. Only tags
+with confidence of at least `--min-confidence` (0.5) count. Every result states its
+denominator: the number of matching records and how many of them have no tag. With two
+dimensions, the matrix counts only records tagged on both.
+
+`--gaps` compares each combination with the count expected if the two dimensions were
+independent (row total × column total / records tagged on both). It lists those with at
+most `--max-ratio` × expected. Combinations expected to hold fewer than
+`gaps.min_expected` (5) records are not judged. Conference items are left out, as set
+by `gaps.exclude_types` (decision 0018), unless you pass `--type` or `--all-types`. The
+output says how many were left out. See `docs/decisions/0021-counts-and-gaps.md`.
 
 ## Configuration
 

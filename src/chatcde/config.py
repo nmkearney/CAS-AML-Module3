@@ -276,6 +276,20 @@ class EmbeddingConfig(_Section):
     query_instructions: dict[str, str] = Field(default_factory=dict)
 
 
+class ToolsConfig(_Section):
+    """Limits on what one tool call returns (decision 0020)."""
+
+    max_k: int = Field(ge=1)
+    max_section_pages: int = Field(ge=1)
+
+
+class GapsConfig(_Section):
+    """Gap analysis settings (decisions 0018 and 0021)."""
+
+    exclude_types: list[str] = Field(default_factory=list)
+    min_expected: float = Field(ge=0)
+
+
 class EvaluationConfig(_Section):
     """Reference sets and thresholds for ``chatcde evaluate``."""
 
@@ -309,6 +323,8 @@ class Config(_Section):
     prompts: PromptsConfig
     retrieval: RetrievalConfig
     embedding: EmbeddingConfig
+    tools: ToolsConfig
+    gaps: GapsConfig
     evaluation: EvaluationConfig
     logging: LoggingConfig
 

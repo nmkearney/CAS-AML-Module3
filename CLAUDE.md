@@ -214,7 +214,7 @@ counts, checksums); `chatcde info` and `coverage_report` report the edition.
 |---|---|
 | `chatcde ask "…"` / `chatcde chat` | Free questions; the agent calls tools and answers with citations |
 | `chatcde gaps`, `frontier`, `brief`, `experts` | Fixed workflows with a set tool chain and output format |
-| `chatcde search`, `count`, `vocab`, `schema`, `coverage`, `info` | Direct tool calls, no LLM |
+| `chatcde search`, `show`, `read`, `count`, `vocab`, `schema`, `coverage`, `info` | Direct tool calls, no LLM (`search` uses the embedding and reranker models) |
 | `chatcde harvest`, `parse`, `tag`, `index`, `evaluate` | Pipeline stages |
 | `chatcde vocab extract` | Open extraction on the sample, for vocabulary drafting |
 | `chatcde fetch-data [--edition full\|open] [--top-up]` | Download a prebuilt data bundle (full on VPN, else open) |
@@ -235,7 +235,7 @@ Full definitions and scope notes are in `docs/schema_draft.md` and `vocab/draft_
 | 7 | method | proposed 34 terms in 8 groups |
 | 8 | data_type | proposed |
 | 9 | country | ISO 3166-1 alpha-3 |
-| 10 | region | derived: UN M49 + CDE partner regions |
+| 10 | region | derived: UN M49 + 4 CDE partner regions (decision 0017) |
 | 11 | setting | proposed (mountains, drylands, …) |
 | 12 | scale | proposed |
 | 13 | system | proposed + strategy terms |
@@ -311,5 +311,6 @@ data/             local only; gitignored (raw/, text/, index/, catalogue.duckdb)
 - Does the University Library confirm that restricted publisher texts may be
   copied to staff machines (full edition)? If not, use `--top-up`.
 - ~~Can files marked "restricted" in BORIS be downloaded on the VPN?~~ No (decision 0009).
-- Older work: tag with 2025–2028 categories? (Proposal: yes, keeping the BORIS unit as recorded. Record as a decision.)
-- Are there four or five CDE partner regions, and which countries belong to each? (Record as a decision.)
+- ~~Older work: tag with 2025–2028 categories?~~ Yes, keeping the BORIS unit as recorded (decision 0016).
+- ~~Are there four or five CDE partner regions, and which countries belong to each?~~ Four, plus a partner-country flag (decision 0017).
+- Conference items are left out of gap counts by default (decision 0018; Track B implements).

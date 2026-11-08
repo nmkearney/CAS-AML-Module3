@@ -12,7 +12,7 @@ runner = CliRunner()
 
 TOP_LEVEL = [
     "ask", "chat", "gaps", "frontier", "brief", "experts",
-    "search", "count", "schema", "coverage", "vocab",
+    "search", "show", "read", "count", "schema", "coverage", "vocab",
     "harvest", "parse", "tag", "index", "evaluate",
     "export", "fetch-data", "info", "config",
 ]  # fmt: skip
@@ -34,8 +34,6 @@ def test_version():
 @pytest.mark.parametrize(
     "args",
     [
-        ["search", "land use"],
-        ["vocab"],
         ["vocab", "extract"],
         ["evaluate", "tagging"],
         ["evaluate", "questions"],
