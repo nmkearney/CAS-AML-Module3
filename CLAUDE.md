@@ -159,7 +159,7 @@ Two developers work in parallel; see `CONTRIBUTING.md` for the full workflow.
 
 ## Vocabulary v0.3 (`chatcde vocab apply`, 2026-11-08)
 
-- Curated in `vocab/curation/v0.3.xlsx` (decisions 0026, 0027): setting 35, data_type 44,
+- Curated in `vocab/curation/v0.3.xlsx` (decisions 0026, 0027): setting 27, data_type 44,
   method 60, system 66, actors 61, scale 8, justice_lens 7, additional_sub_area 77 terms.
 - Terms have codes (`MET-case-study`); `Tag.term` stores the code, and the fixtures were
   remapped with `scripts/remap_fixture_tags.py` and the code map `v0.3_codes.csv`.
@@ -262,7 +262,7 @@ Full definitions and scope notes are in `docs/schema_draft.md` and `vocab/draft_
 | 9 | data_type | curated v0.3: 44 terms in 6 groups |
 | 10 | country | ISO 3166-1 alpha-3 |
 | 11 | region | derived: UN M49 + 4 CDE partner regions (decision 0017) |
-| 12 | setting | curated v0.3: 35 terms in 6 groups (mountains, drylands, …) |
+| 12 | setting | curated v0.3: 27 terms in 5 groups (mountains, drylands, …) |
 | 13 | scale | 8 terms |
 | 14 | system | curated v0.3: 66 terms in 6 groups |
 | 15 | actors | curated v0.3: 61 terms in 6 groups, each with a role: studied / co-producer / audience |

@@ -1463,8 +1463,6 @@ setting:
     label: Biomes and ecosystems
   - code: SET-G-mountains-and-highlands
     label: Mountains and highlands
-  - code: SET-G-places-regions-and-scales
-    label: Places, regions and scales
   - code: SET-G-protected-and-governed-areas
     label: Protected and governed areas
   - code: SET-G-urban-settings-and-institutions
@@ -1650,62 +1648,6 @@ setting:
     group: SET-G-mountains-and-highlands
     definition: Landscapes characterized by significant slope gradients, including mountains, hills, and
       scree slopes, distinct from flat lowlands or specific biomes.
-    source: candidate
-  - code: SET-africa
-    label: Africa
-    group: SET-G-places-regions-and-scales
-    definition: The African continent, including specific regions such as Sub-Saharan Africa, East Africa,
-      and the Horn of Africa.
-    source: candidate
-  - code: SET-developing-countries
-    label: Developing countries
-    group: SET-G-places-regions-and-scales
-    definition: Geographic settings characterized by lower income levels, including developing, transition,
-      and low- and middle-income countries, excluding industrialized nations.
-    source: candidate
-  - code: SET-global
-    label: Global
-    group: SET-G-places-regions-and-scales
-    definition: Refers to worldwide or planetary scales, encompassing global systems, societies, and environmental
-      processes, rather than specific regional or local settings.
-    includes:
-    - Global scale
-    - global and national scales
-    source: candidate
-  - code: SET-global-economic-systems
-    label: Global economic systems
-    group: SET-G-places-regions-and-scales
-    definition: Macro-level economic structures, trade regimes, and globalized market environments. Excludes
-      specific national economies or local market settings.
-    source: candidate
-  - code: SET-global-north-and-south
-    label: Global North and South
-    group: SET-G-places-regions-and-scales
-    definition: Geopolitical or economic divisions of the world into developed (North) and developing
-      (South) regions, often used to contrast socio-economic contexts.
-    source: candidate
-  - code: SET-mainland-southeast-asia
-    label: Mainland Southeast Asia
-    group: SET-G-places-regions-and-scales
-    definition: The continental landmass of Southeast Asia, including the Mekong basin and upland regions,
-      excluding maritime islands.
-    source: candidate
-  - code: SET-national-and-subnational-scales
-    label: National and subnational scales
-    group: SET-G-places-regions-and-scales
-    definition: Geographic scopes of analysis or policy implementation ranging from subnational regions
-      to the entire country, excluding global or local scales.
-    source: candidate
-  - code: SET-switzerland
-    label: Switzerland
-    group: SET-G-places-regions-and-scales
-    definition: The national territory of Switzerland, including its specific administrative units, alpine
-      regions, and urban areas.
-    includes:
-    - swiss business environment
-    - swiss context
-    - swiss federal context
-    - swiss national context
     source: candidate
   - code: SET-indigenous-territories
     label: Indigenous territories

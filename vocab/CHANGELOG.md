@@ -23,7 +23,7 @@ Curated from the 353 open-extraction candidates in `vocab/candidates.yaml` (deci
 
 | Dimension | Terms | Added | Merged in | Retired |
 | --- | ---: | ---: | ---: | ---: |
-| setting | 35 | 28 | 11 | 0 |
+| setting | 27 | 20 | 9 | 0 |
 | data_type | 44 | 36 | 6 | 0 |
 | method | 60 | 28 | 28 | 2 |
 | system | 66 | 46 | 11 | 0 |
@@ -38,9 +38,13 @@ Curated from the 353 open-extraction candidates in `vocab/candidates.yaml` (deci
   New groups: `SYS-G-governance-and-institutions`, `ACT-G-public-and-households`, and six
   for data_type (`DAT-G-…`: documents, texts and media; primary social data; statistics and
   databases; geospatial and remote sensing; environmental measurements; no empirical
-  data) and six for setting (`SET-G-…`: mountains and highlands; biomes and ecosystems;
+  data) and five for setting (`SET-G-…`: mountains and highlands; biomes and ecosystems;
   agricultural and rural landscapes; urban settings and institutions; protected and
-  governed areas; places, regions and scales). Only scale and justice_lens stay flat.
+  governed areas). Only scale and justice_lens stay flat.
+- **Setting:** ten candidates that named places or scales (Africa, Mainland Southeast
+  Asia, Switzerland, Global, Global scale, Global North and South, Developing countries,
+  National and subnational scales, Global economic systems, and the Swiss-context
+  candidate) were rejected; country, region and scale cover them.
 - **Retired:** `MET-futures-methods` (no replacement; scenario work now goes to
   `MET-scenario-development-and-analysis`) and `MET-impact-evaluation` (merged into
   `MET-impact-and-sustainability-assessment`).
@@ -49,8 +53,6 @@ Curated from the 353 open-extraction candidates in `vocab/candidates.yaml` (deci
     (additional_sub_area also above 0027's 25–35).
   - 52 terms have no definition, mostly v0.2 seeds (all of scale and justice_lens).
   - Some additional sub-areas overlap a sub-area's scope (e.g. telecoupling and SL-d).
-  - Eight setting terms are places or scales (group `SET-G-places-regions-and-scales`:
-    Africa, Switzerland, Global, …) and overlap country, region and scale.
   - data_type near-duplicates: *Documents and policies* / *Policy documents*,
     *Secondary statistics* / *Agricultural statistics*.
 - **Fixtures:** `tests/fixtures/tags.jsonl` and `tag_review.csv` remapped from labels to

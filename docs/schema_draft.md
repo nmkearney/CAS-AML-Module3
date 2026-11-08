@@ -141,14 +141,13 @@ Country is the base unit. Both region layers are derived from it in code, so the
 
 Countries outside these regions, such as Nepal, keep their country and M49 tags but get no partner region.
 
-Setting stays a dimension of its own (v0.3: 35 terms in six groups). The group *Places, regions and scales* holds eight terms the model proposed that overlap country, region or scale (Africa, Switzerland, Global…); they are kept for now and should be retired or merged in v0.4. Mountains keep their own term because of CDE's long mountain focus through *Mountain Research and Development* and the Mountain Research Initiative.
+Setting stays a dimension of its own (v0.3: 27 terms in five groups). Ten candidates that named places or scales (Africa, Switzerland, Global, …) were rejected, because country, region and scale already cover them. Mountains keep their own term because of CDE's long mountain focus through *Mountain Research and Development* and the Mountain Research Initiative.
 
 | Dimension | Group | Terms |
 | --- | --- | --- |
 | Setting | Agricultural and rural landscapes | Agricultural landscapes; Heterogeneous landscapes; Rainfed agricultural areas; Rural areas; Rural lowlands; Smallholder farms (6) |
 | Setting | Biomes and ecosystems | Amazon biome; Coastal and marine; Drylands and rangelands; Forest landscapes; Grasslands and steppes; Humid tropics and forest frontiers; Lowlands; Rivers and wetlands (8) |
 | Setting | Mountains and highlands | Alpine and glacial landscapes; Andean highlands; High-altitude drylands; Highlands; Mountains; Steep and hilly terrain (6) |
-| Setting | Places, regions and scales | Africa; Developing countries; Global; Global economic systems; Global North and South; Mainland Southeast Asia; National and subnational scales; Switzerland (8) |
 | Setting | Protected and governed areas | Indigenous territories; Protected and conserved areas; Regional nature parks; World heritage sites (4) |
 | Setting | Urban settings and institutions | Higher education institutions; Peri-urban; Urban (3) |
 | Scale | — | Community or village; Cross-scale (incl. telecoupling); Global; Household or individual; Landscape or watershed; National; Subnational; Transboundary or regional (8) |
@@ -182,9 +181,9 @@ Each item becomes a file in `docs/decisions/` once decided.
 - [x] **Older work.** Should all publications be tagged with the 2025–2028 categories, or should earlier strategy categories be mapped across too? Decided in [0016](decisions/0016-older-work-current-categories.md): the current categories for all years, with the BORIS unit kept as recorded. This affects nearly the whole corpus: 268 publications date from 2025 or later, and 536 predate 2010.
 - [x] **Partner regions.** Are there four or five, and which countries belong to each? Decided in [0017](decisions/0017-partner-regions.md): four regions plus a partner-country flag.
 - [ ] **Objectives and pathways.** Can these be tagged reliably from publication text, or are they better recorded at project level from BORIS project records?
-- [x] **Method granularity.** Settled in curation (v0.3, decision 0026): 60 terms in eight groups; groups have codes (`MET-G-…`), so gap counts can roll up to groups. System gained a sixth group (governance and institutions) and actors a sixth (public and households). Data type and setting got six groups each in v0.3; scale and justice lens are short enough to stay flat. Every other dimension has groups or a fixed parent (sub-area and additional sub-area → impact area; country → region).
+- [x] **Method granularity.** Settled in curation (v0.3, decision 0026): 60 terms in eight groups; groups have codes (`MET-G-…`), so gap counts can roll up to groups. System gained a sixth group (governance and institutions) and actors a sixth (public and households). Data type got six groups and setting five in v0.3; scale and justice lens are short enough to stay flat. Every other dimension has groups or a fixed parent (sub-area and additional sub-area → impact area; country → region).
 - [ ] **SDGs.** Cap at three per record, or tag all that apply?
-- [x] **Mountains and setting.** Settled in curation (v0.3): setting stays a dimension of its own, with 35 terms in six groups, including *Mountains and highlands*.
+- [x] **Mountains and setting.** Settled in curation (v0.3): setting stays a dimension of its own, with 27 terms in five groups, including *Mountains and highlands*.
 - [ ] **Actor roles.** Is studied, engaged or audience a distinction CDE wants to measure, given how sensitive a "transdisciplinarity gap" could be?
 - [ ] **Output audience.** Add academic, policy, practitioner and public as audiences next to the BORIS publication type?
 
