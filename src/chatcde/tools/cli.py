@@ -16,7 +16,7 @@ from typing import TYPE_CHECKING, Annotated
 
 import typer
 
-from chatcde.cli_common import PANEL_QUERY, not_implemented
+from chatcde.cli_common import PANEL_QUERY
 from chatcde.schemas import Dimension
 
 if TYPE_CHECKING:
