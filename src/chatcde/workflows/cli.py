@@ -14,6 +14,8 @@ import typer
 from chatcde.cli_common import PANEL_ASSISTANT, not_implemented
 
 if TYPE_CHECKING:
+    from pydantic import BaseModel
+
     from chatcde.agent import Agent, AgentResult
     from chatcde.config import Config
 
@@ -84,8 +86,8 @@ def _ask_once(agent: Agent, question: str) -> AgentResult | None:
         return None
 
 
-def _log(path: Path | None, result: AgentResult) -> None:
-    """Append ``result`` as one JSON line to ``path`` (if given)."""
+def _log(path: Path | None, result: BaseModel) -> None:
+    """Append ``result`` (an answer or a gap analysis) as one JSON line to ``path``."""
     if path is None:
         return
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -181,9 +183,145 @@ def chat(
 
 
 @app.command(rich_help_panel=PANEL_ASSISTANT)
-def gaps() -> None:
-    """Find themes, methods, regions or actors CDE has rarely covered."""
-    not_implemented("gaps", 27)
+def gaps(
+    ctx: typer.Context,
+    dims: Annotated[
+        str | None,
+        typer.Option(
+            "--dims",
+            help="Row and column dimensions, e.g. sub_area,method (default: "
+            "gaps.dims).",
+        ),
+    ] = None,
+    year_from: Annotated[int | None, typer.Option(help="Earliest year.")] = None,
+    year_to: Annotated[int | None, typer.Option(help="Latest year.")] = None,
+    unit: Annotated[
+        list[str] | None, typer.Option(help="Scope: CDE unit (repeatable).")
+    ] = None,
+    pub_type: Annotated[
+        list[str] | None,
+        typer.Option("--type", help="Scope: BORIS type (repeatable)."),
+    ] = None,
+    lang: Annotated[
+        list[str] | None, typer.Option(help="Scope: language code (repeatable).")
+    ] = None,
+    country: Annotated[
+        list[str] | None,
+        typer.Option(help="Scope: country tag, ISO alpha-3 (repeatable)."),
+    ] = None,
+    region: Annotated[
+        list[str] | None, typer.Option(help="Scope: region tag (repeatable).")
+    ] = None,
+    sub_area: Annotated[
+        list[str] | None,
+        typer.Option(help="Scope: sub-area tag, e.g. SL-d (repeatable)."),
+    ] = None,
+    method: Annotated[
+        list[str] | None, typer.Option(help="Scope: method tag (repeatable).")
+    ] = None,
+    sdg: Annotated[
+        list[int] | None, typer.Option(help="Scope: SDG number (repeatable).")
+    ] = None,
+    min_confidence: Annotated[
+        float, typer.Option(min=0.0, max=1.0, help="Lowest tag confidence counted.")
+    ] = 0.5,
+    max_ratio: Annotated[
+        float | None,
+        typer.Option(
+            min=0.0, help="Largest count / expected (default: gaps.max_ratio)."
+        ),
+    ] = None,
+    max_cells: Annotated[
+        int | None,
+        typer.Option(min=1, help="Gap cells to judge (default gaps.max_cells)."),
+    ] = None,
+    all_types: Annotated[
+        bool,
+        typer.Option(
+            "--all-types", help="Keep conference items (left out by default)."
+        ),
+    ] = False,
+    no_llm: Annotated[
+        bool,
+        typer.Option(
+            "--no-llm",
+            help="Counts and nearby records only; no judgement by the model.",
+        ),
+    ] = False,
+    alternative: AlternativeOption = False,
+    log_file: LogOption = None,
+    as_json: Annotated[
+        bool, typer.Option("--json", help="Print the full GapsResult as JSON.")
+    ] = False,
+) -> None:
+    """Find themes, methods, regions or actors CDE has rarely covered.
+
+    A fixed chain: count the two dimensions within the scope (code), search
+    for records near each thin cell and show their tags (code), then ask the
+    agent model whether each gap is real, a tagging artefact or a deliberate
+    choice. Ends with an evidence table, numbered sources and coverage caveats.
+    Conference items are left out unless --type or --all-types (decision 0018).
+    """
+    from rich.console import Console
+
+    from chatcde.schemas import Filters
+    from chatcde.tools.context import ToolContext
+    from chatcde.workflows.gaps import GapsError, parse_dims, render_gaps, run_gaps
+
+    cfg = ctx.obj
+    try:
+        row, col = parse_dims(dims or cfg.gaps.dims)
+    except GapsError as exc:
+        typer.echo(str(exc), err=True)
+        raise typer.Exit(code=2) from exc
+    if not cfg.data.catalogue.is_file():
+        typer.echo(
+            f"No catalogue at {cfg.data.catalogue}; run `chatcde fetch-data` first.",
+            err=True,
+        )
+        raise typer.Exit(code=1)
+    model = cfg.model_alternatives.agent if alternative else None
+    if alternative and not model:
+        typer.echo("No alternative agent model is set in the config.", err=True)
+        raise typer.Exit(code=2)
+    filters = Filters(
+        year_from=year_from,
+        year_to=year_to,
+        cde_units=unit or [],
+        pub_types=pub_type or [],
+        languages=lang or [],
+        countries=country or [],
+        regions=region or [],
+        sub_areas=sub_area or [],
+        methods=method or [],
+        sdgs=sdg or [],
+        min_confidence=min_confidence,
+    )
+    tool_ctx = ToolContext(cfg)
+    err = Console(stderr=True)
+    try:
+        with err.status("Counting, searching and judging ...", spinner="dots"):
+            result = run_gaps(
+                tool_ctx,
+                row,
+                col,
+                filters,
+                max_ratio=max_ratio,
+                max_cells=max_cells,
+                all_types=all_types,
+                use_llm=not no_llm,
+                model=model,
+            )
+    except GapsError as exc:
+        err.print(f"[red]{exc}[/red]", highlight=False)
+        raise typer.Exit(code=1) from exc
+    finally:
+        tool_ctx.close()
+    _log(log_file, result)
+    if as_json:
+        typer.echo(result.model_dump_json(indent=2))
+        return
+    render_gaps(Console(), result)
 
 
 @app.command(rich_help_panel=PANEL_ASSISTANT)
