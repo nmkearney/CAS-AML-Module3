@@ -35,7 +35,6 @@ def test_version():
     "args",
     [
         ["evaluate", "tagging"],
-        ["evaluate", "questions"],
         ["export", "--edition", "open"],
         ["fetch-data", "--top-up"],
     ],

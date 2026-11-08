@@ -184,7 +184,9 @@ agent:
 # --- Evaluation -----------------------------------------------------------
 evaluation:
   reference_set: "data/reference/reference_tags.yaml"
-  questions: "tests/questions.yaml"
+  questions: "tests/questions.yaml"   # written by Track A (#19); format: decision 0025
+  results_dir: "data/eval"            # chatcde evaluate questions writes results here
+  min_question_pass_rate: 0.8         # TODO: confirm after the first real run (0025)
   min_precision: 0.7             # TODO: set and justify in a decision record
 
 # --- Logging --------------------------------------------------------------

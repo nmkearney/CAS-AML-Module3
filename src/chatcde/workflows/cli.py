@@ -18,6 +18,7 @@ if TYPE_CHECKING:
 
     from chatcde.agent import Agent, AgentResult
     from chatcde.config import Config
+    from chatcde.workflows.evaluate import ModelSummary, QuestionScore
 
 app = typer.Typer()
 
@@ -342,6 +343,164 @@ def experts() -> None:
     not_implemented("experts")
 
 
-def evaluate_questions() -> None:
-    """Run the test questions in tests/questions.yaml and score the answers."""
-    not_implemented("evaluate questions", 28)
+def evaluate_questions(
+    ctx: typer.Context,
+    file: Annotated[
+        Path | None,
+        typer.Option(
+            "--file",
+            dir_okay=False,
+            help="Questions file (default: evaluation.questions).",
+        ),
+    ] = None,
+    ids: Annotated[
+        list[str] | None, typer.Option("--id", help="Only this question (repeatable).")
+    ] = None,
+    kind: Annotated[
+        str | None,
+        typer.Option(help="Only questions of this kind (lookup, search, count, ...)."),
+    ] = None,
+    models: Annotated[
+        str,
+        typer.Option(
+            "--models",
+            help="Agent models to run: main, alternative or both (to compare them).",
+        ),
+    ] = "both",
+    runs: Annotated[
+        int, typer.Option(min=1, help="Times to ask each question per model.")
+    ] = 1,
+    out: Annotated[
+        Path | None,
+        typer.Option(
+            "--out",
+            dir_okay=False,
+            help="Results file (JSON lines). An existing file is resumed: answers "
+            "already in it are skipped. Default: a new file in evaluation.results_dir.",
+        ),
+    ] = None,
+    rescore_file: Annotated[
+        Path | None,
+        typer.Option(
+            "--rescore",
+            dir_okay=False,
+            help="Score the answers saved in this results file again; no model calls.",
+        ),
+    ] = None,
+    as_json: Annotated[
+        bool, typer.Option("--json", help="Print scores and summaries as JSON.")
+    ] = False,
+) -> None:
+    """Run the test questions through the agent and score the answers.
+
+    Each question has answers that code can check: records to cite, tools to
+    call, words and numbers to mention. Every answer must also finish, cite only
+    catalogue records, and cite only records a tool returned. Exits 1 if a
+    model's pass rate is below evaluation.min_question_pass_rate.
+    """
+    from rich.console import Console
+
+    from chatcde.harvest.common import now
+    from chatcde.workflows import evaluate as ev
+
+    cfg = ctx.obj
+    err = Console(stderr=True, highlight=False)
+    try:
+        qs = ev.load_questions(file or cfg.evaluation.questions)
+        chosen = ev.select(qs, ids, kind)
+        if rescore_file is not None:
+            if not rescore_file.is_file():
+                raise ev.EvaluationError(f"No results file at {rescore_file}.")
+            scores = ev.rescore(rescore_file, chosen)
+            path = rescore_file
+        else:
+            names = ev.resolve_models(cfg, models)
+    except ev.EvaluationError as exc:
+        err.print(f"[red]{exc}[/red]")
+        raise typer.Exit(code=2) from exc
+
+    if rescore_file is None:
+        if not cfg.data.catalogue.is_file():
+            err.print(
+                f"No catalogue at {cfg.data.catalogue}; run `chatcde fetch-data` first."
+            )
+            raise typer.Exit(code=1)
+        stamp = now().strftime("%Y%m%dT%H%M%SZ")
+        path = out or cfg.evaluation.results_dir / f"questions-{stamp}.jsonl"
+        err.print(
+            f"{len(chosen)} questions x {len(names)} models x {runs} runs -> {path}"
+        )
+
+        def progress(s: ev.QuestionScore) -> None:
+            mark = "[green]pass[/green]" if s.passed else "[red]fail[/red]"
+            err.print(
+                f"  {s.question_id} ({s.model}, run {s.run}): {mark} "
+                f"{s.score:.2f}, {s.tool_calls} tool calls, {s.seconds:.1f} s"
+            )
+
+        scores = ev.run_questions(
+            cfg, chosen, names, path, runs=runs, on_result=progress
+        )
+
+    threshold = cfg.evaluation.min_question_pass_rate
+    summaries = ev.summarise(scores)
+    if as_json:
+        typer.echo(ev.summary_json(scores, threshold))
+    else:
+        _print_evaluation(scores, summaries, threshold, path)
+    if any(m.pass_rate < threshold for m in summaries):
+        raise typer.Exit(code=1)
+
+
+def _print_evaluation(
+    scores: list[QuestionScore],
+    summaries: list[ModelSummary],
+    threshold: float,
+    path: Path,
+) -> None:
+    """Tables of answers and of models for ``chatcde evaluate questions``."""
+    from rich.console import Console
+    from rich.markup import escape
+    from rich.table import Table
+
+    console = Console(highlight=False)
+    t = Table(title="Answers")
+    for name in ("Question", "Kind", "Model", "Run"):
+        t.add_column(name)
+    t.add_column("Score", justify="right")
+    t.add_column("Failed checks")
+    for s in scores:
+        failed = "; ".join(
+            f"{c.name}" + (f" ({c.detail})" if c.detail else "")
+            for c in s.checks
+            if not c.passed
+        )
+        t.add_row(
+            s.question_id,
+            s.kind,
+            s.model,
+            str(s.run),
+            ("[green]" if s.passed else "[red]") + f"{s.score:.2f}[/]",
+            escape(failed),
+        )
+    console.print(t)
+    m = Table(title=f"Models (pass rate needed: {threshold:.0%})")
+    m.add_column("Model")
+    for name in ("Passed", "Pass rate", "Mean score", "Record recall",
+                 "Tool calls", "Seconds", "Tokens", "Errors"):  # fmt: skip
+        m.add_column(name, justify="right")
+    for x in summaries:
+        ok = x.pass_rate >= threshold
+        m.add_row(
+            x.model,
+            f"{x.passed} of {x.answers}",
+            ("[green]" if ok else "[red]") + f"{x.pass_rate:.0%}[/]",
+            f"{x.mean_score:.2f}",
+            "-" if x.mean_record_recall is None else f"{x.mean_record_recall:.2f}",
+            f"{x.mean_tool_calls:.1f}",
+            f"{x.mean_seconds:.1f}",
+            f"{x.total_tokens:,}",
+            str(x.errors),
+        )
+    console.print(m)
+    console.print(f"[dim]Results: {path}[/dim]")
