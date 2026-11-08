@@ -353,6 +353,50 @@ def test_apply_refuses_invalid_rows(
     assert files["vocab"].read_text() == before and not files["map"].exists()
 
 
+def test_apply_writes_related_links_and_reads_labels(files: dict[str, Path]):
+    """merge_into on an accepted row = related terms; a unique label means its code."""
+    export_workbook(files["vocab"], files["cands"], files["wb"])
+    fill(files["wb"], DECISIONS)
+    fill(
+        files["wb"],
+        {
+            "cand:dddddddddd": {"merge_into": "SL-a; Case study"},
+            "cand:aaaaaaaaaa": {"merge_into": "case study"},  # a label, not a code
+        },
+    )
+    s = apply(files)
+    note = "'Case study' read as the label of MET-case-study"
+    assert any(note in w for w in s.warnings)
+    vocab = load_vocabulary(files["vocab"])
+    food = vocab["additional_sub_area"]["terms"][0]
+    assert food["related"] == ["SL-a", "MET-case-study"]
+    case = next(t for t in vocab["method"]["terms"] if t["code"] == "MET-case-study")
+    assert "case study analysis" in case["includes"]  # the merge still happened
+
+    # Related links survive a re-export (kept terms show them in merge_into).
+    newer = files["wb"].with_name("v0.4.xlsx")
+    export_workbook(files["vocab"], files["cands"], newer)
+    asa = {r["key"]: r for r in read_workbook(newer)["additional_sub_area"]}
+    assert asa["term:Food security"]["merge_into"] == "SL-a; MET-case-study"
+
+
+@pytest.mark.parametrize(
+    ("merge_into", "message"),
+    [
+        ("MET-nothing", "not a live code"),
+        ("ASA-food-security", "cannot be related to itself"),
+    ],
+)
+def test_apply_refuses_bad_related_links(
+    files: dict[str, Path], merge_into: str, message: str
+):
+    export_workbook(files["vocab"], files["cands"], files["wb"])
+    fill(files["wb"], DECISIONS)
+    fill(files["wb"], {"cand:dddddddddd": {"merge_into": merge_into}})
+    with pytest.raises(CurationError, match=message):
+        apply(files)
+
+
 def test_apply_lists_every_problem_and_warns(files: dict[str, Path]):
     export_workbook(files["vocab"], files["cands"], files["wb"])
     with pytest.raises(CurationError) as exc:

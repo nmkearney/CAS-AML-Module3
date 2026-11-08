@@ -21,6 +21,9 @@ back; white columns are the developer's decisions.
 * ``merge``: the row's label and example labels become ``includes`` of the term
   named in ``merge_into`` (any live code, including strategy sub-areas). A
   current term that is merged is retired with ``replaced_by``.
+* ``merge_into`` on a ``keep`` or ``accept`` row lists **related** terms instead
+  (codes separated by ``;``): the term stays and gets a ``related`` list. A
+  label that names exactly one live term is read as its code, with a warning.
 * ``retire`` (current term): removed, kept under ``retired`` without replacement.
 * ``reject`` / ``defer`` (candidate): not added; ``defer`` marks it for later.
 
@@ -184,6 +187,7 @@ class Term:
     definition: str | None = None
     includes: list[str] = field(default_factory=list)
     impact_area: str | None = None
+    related: list[str] = field(default_factory=list)
     source: str | None = None
     note: str | None = None
 
@@ -212,6 +216,7 @@ def current_terms(node: Any) -> list[Term]:
                 definition=t.get("definition"),
                 includes=list(t.get("includes") or []),
                 impact_area=t.get("impact_area"),
+                related=list(t.get("related") or []),
                 source=t.get("source"),
                 note=t.get("note"),
             )
@@ -291,6 +296,7 @@ def build_rows(
                     "definition": t.definition or best_def.get(t.label, ""),
                     "group": t.group or "",
                     "impact_area": t.impact_area or "",
+                    "merge_into": "; ".join(t.related),
                     "suggestion": "keep",
                 }
             )
@@ -366,6 +372,8 @@ README = [
     "  accept  - candidate becomes a new term with the row's code/label/definition",
     "  merge   - row joins the term in merge_into (a code from any sheet, or a "
     "sub-area like SL-a); its labels become that term's 'includes'",
+    "  merge_into on a keep/accept row = related terms (codes, ';'-separated); "
+    "the term stays and links to them",
     "  retire  - current term is removed (kept under 'retired')",
     "  reject  - candidate is not added;  defer - not added now, revisit later",
     "",
@@ -651,6 +659,33 @@ def merge_names(existing: list[str], new: list[str], *, exclude: str = "") -> li
     return out
 
 
+def resolve_target(
+    value: str,
+    all_live: set[str],
+    label_index: dict[str, list[str]],
+    where: str,
+    problems: list[str],
+    warnings: list[str],
+) -> str | None:
+    """The code a ``merge_into`` entry points to, or None (with a problem recorded).
+
+    A live code or sub-area code is taken as it is. A label is accepted when it
+    matches exactly one live term or sub-area (any sheet, any case); it is turned
+    into that code and a warning says so, so the workbook can be corrected later.
+    """
+    if value in all_live:
+        return value
+    codes = label_index.get(value.strip().lower(), [])
+    if len(codes) == 1:
+        warnings.append(f"{where}: '{value}' read as the label of {codes[0]}")
+        return codes[0]
+    if codes:
+        problems.append(f"{where}: '{value}' matches several terms: {', '.join(codes)}")
+    else:
+        problems.append(f"{where}: merge_into '{value}' is not a live code")
+    return None
+
+
 def apply_workbook(
     workbook: Path,
     vocab_path: Path,
@@ -733,8 +768,17 @@ def apply_workbook(
                         )
                 if not row.get("definition"):
                     warnings.append(f"{where}: '{label}' has no definition")
-                live[dim][code] = {"row": row, "includes": []}
+                live[dim][code] = {"row": row, "includes": [], "related": []}
     all_live = {c for d in live.values() for c in d} | set(sub_area_codes)
+    label_index: dict[str, list[str]] = defaultdict(list)
+    for d in live.values():
+        for c, item in d.items():
+            label_index[item["row"]["label"].strip().lower()].append(c)
+    for c, s in sub_area_codes.items():
+        label_index[str(s["label"]).strip().lower()].append(c)
+
+    def target(value: str, where: str) -> str | None:
+        return resolve_target(value, all_live, label_index, where, problems, warnings)
 
     # Pass 2: merges and retirements.
     sub_area_includes: dict[str, list[str]] = defaultdict(list)
@@ -746,23 +790,37 @@ def apply_workbook(
             decision = row.get("decision", "").lower()
             key = row.get("key", "")
             label = row.get("label", "")
+            if decision in ("keep", "accept") and row.get("merge_into"):
+                # merge_into on a live term = related terms (0025), ';'-separated.
+                own = row.get("code", "")
+                if own not in live[dim]:
+                    continue  # the row already failed in pass 1
+                for value in row["merge_into"].split(";"):
+                    if not value.strip():
+                        continue
+                    code = target(value.strip(), where)
+                    if code == own:
+                        problems.append(f"{where}: a term cannot be related to itself")
+                    elif code and code not in live[dim][own]["related"]:
+                        live[dim][own]["related"].append(code)
+                continue
             if decision == "merge":
-                target = row.get("merge_into", "")
-                if target not in all_live:
-                    problems.append(
-                        f"{where}: merge_into '{target}' is not a live code"
-                    )
+                resolved = target(row.get("merge_into", ""), where)
+                if resolved is None:
                     continue
+                target_code = resolved
                 names = [label, row.get("model_label", "")]
                 names += [
                     re.sub(r"\s*\(\d+\)$", "", x).strip()
                     for x in row.get("example_labels", "").split(";")
                 ]
                 bucket = (
-                    sub_area_includes[target]
-                    if target in sub_area_codes
+                    sub_area_includes[target_code]
+                    if target_code in sub_area_codes
                     else next(
-                        live[d][target]["includes"] for d in live if target in live[d]
+                        live[d][target_code]["includes"]
+                        for d in live
+                        if target_code in live[d]
                     )
                 )
                 bucket[:] = merge_names(bucket, names)
@@ -772,10 +830,10 @@ def apply_workbook(
                         {
                             "code": row.get("code") or suggest_code(dim, old_label),
                             "label": old_label,
-                            "replaced_by": target,
+                            "replaced_by": target_code,
                         }
                     )
-                    code_map.append((dim, old_label, target, "merged"))
+                    code_map.append((dim, old_label, target_code, "merged"))
             elif decision == "retire":
                 old_label = key.removeprefix("term:")
                 retired[dim].append(
@@ -827,6 +885,8 @@ def apply_workbook(
             )
             if includes:
                 term["includes"] = includes[:MAX_INCLUDES]
+            if item["related"]:
+                term["related"] = item["related"]
             term["source"] = (
                 (old.source or "seed") if key.startswith("term:") else "candidate"
             )

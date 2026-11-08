@@ -1,0 +1,102 @@
+dimension,old_label,code,how
+actors,Companies and investors,ACT-companies-and-investors,kept
+actors,Displaced persons,ACT-displaced-persons,kept
+actors,Extension services,ACT-extension-services,kept
+actors,Financial sector,ACT-financial-sector,kept
+actors,Grassroots and urban-commons initiatives,ACT-grassroots-and-urban-commons-initiatives,kept
+actors,Human rights and environmental defenders,ACT-human-rights-and-environmental-defenders,kept
+actors,Indigenous peoples and local communities,ACT-indigenous-peoples-and-local-communities,kept
+actors,International organisations and UN conventions,ACT-international-organisations-and-un-conventions,kept
+actors,NGOs and civil society,ACT-ngos-and-civil-society,kept
+actors,National and local government,ACT-national-and-local-government,kept
+actors,Pastoralists,ACT-pastoralists,kept
+actors,Researchers and universities,ACT-researchers-and-universities,kept
+actors,Smallholders and land users,ACT-smallholders-and-land-users,kept
+actors,Social enterprises and cooperatives,ACT-social-enterprises-and-cooperatives,kept
+actors,Standard-setters,ACT-standard-setters,kept
+actors,Women,ACT-women,kept
+actors,Youth and students,ACT-youth-and-students,kept
+data_type,Curated databases,DAT-curated-databases,kept
+data_type,Documents and policies,DAT-documents-and-policies,kept
+data_type,None (conceptual),DAT-none,kept
+data_type,Primary geospatial,DAT-primary-geospatial,kept
+data_type,Primary qualitative,DAT-primary-qualitative,kept
+data_type,Primary quantitative,DAT-primary-quantitative,kept
+data_type,Secondary geospatial,DAT-secondary-geospatial,kept
+data_type,Secondary statistics,DAT-secondary-statistics,kept
+justice_lens,Decolonial,JUS-decolonial,kept
+justice_lens,Distributive,JUS-distributive,kept
+justice_lens,Gender,JUS-gender,kept
+justice_lens,None explicit,JUS-none-explicit,kept
+justice_lens,Power,JUS-power,kept
+justice_lens,Procedural,JUS-procedural,kept
+justice_lens,Recognition,JUS-recognition,kept
+method,Biodiversity field survey,MET-biodiversity-field-survey,kept
+method,Case study,MET-case-study,kept
+method,Conceptual and theoretical work,MET-conceptual-and-theoretical-work,kept
+method,Database development,MET-database-development,kept
+method,Deliberative formats,MET-deliberative-formats,kept
+method,Discourse and narrative analysis,MET-discourse-and-narrative-analysis,kept
+method,Document and policy analysis,MET-document-and-policy-analysis,kept
+method,Econometrics,MET-econometrics,kept
+method,Ecosystem service assessment and valuation,MET-ecosystem-service-assessment-and-valuation,kept
+method,Ethnography and participant observation,MET-ethnography-and-participant-observation,kept
+method,"Futures methods (visioning, scenarios, futures workshops)",,retired
+method,GIS and spatial analysis,MET-gis-and-spatial-analysis,kept
+method,Household and other surveys,MET-household-and-other-surveys,kept
+method,Impact and sustainability assessment,MET-impact-and-sustainability-assessment,kept
+method,Impact evaluation,MET-impact-and-sustainability-assessment,merged
+method,Interviews and focus groups,MET-interviews-and-focus-groups,kept
+method,Knowledge co-production,MET-knowledge-co-production,kept
+method,Land-use and land-cover change mapping,MET-land-use-and-land-cover,kept
+method,Legal analysis,MET-legal-analysis,kept
+method,Literature and systematic review,MET-literature-and-systematic-review,kept
+method,Living labs and real-world labs,MET-living-labs-and-real-world,kept
+method,Modelling and simulation,MET-modelling-and-simulation,kept
+method,"Monitoring, evaluation and learning",MET-monitoring-evaluation-and-learning,kept
+method,Multi-stakeholder processes,MET-multi-stakeholder-processes,kept
+method,Participatory action research,MET-participatory-action-research,kept
+method,Pilots and field experiments,MET-pilots-and-field-experiments,kept
+method,Poverty and well-being measurement,MET-poverty-and-well-being-measurement,kept
+method,Power-sensitive institutional analysis,MET-power-sensitive-institutional-analysis,kept
+method,Remote sensing,MET-remote-sensing,kept
+method,"Scientific assessment contributions (IPCC, IPBES, GEO)",MET-scientific-assessment-contributions,kept
+method,Soil and water assessment,MET-soil-and-water-assessment,kept
+method,Stakeholder and actor analysis,MET-stakeholder-and-actor-analysis,kept
+method,Systems analysis,MET-systems-analysis,kept
+method,Value chain analysis,MET-value-chain-analysis,kept
+scale,Community or village,SCA-community-or-village,kept
+scale,Cross-scale (incl. telecoupling),SCA-cross-scale,kept
+scale,Global,SCA-global,kept
+scale,Household or individual,SCA-household-or-individual,kept
+scale,Landscape or watershed,SCA-landscape-or-watershed,kept
+scale,National,SCA-national,kept
+scale,Subnational,SCA-subnational,kept
+scale,Transboundary or regional,SCA-transboundary-or-regional,kept
+setting,Coastal and marine,SET-coastal-and-marine,kept
+setting,Drylands and rangelands,SET-drylands-and-rangelands,kept
+setting,Humid tropics and forest frontiers,SET-humid-tropics-and-forest-frontiers,kept
+setting,Mountains,SET-mountains,kept
+setting,Peri-urban,SET-peri-urban,kept
+setting,Rural lowlands,SET-rural-lowlands,kept
+setting,Urban,SET-urban,kept
+system,Commodity value chains,SYS-commodity-value-chains,kept
+system,Cropland,SYS-cropland,kept
+system,Energy,SYS-energy,kept
+system,Extractives and mining,SYS-extractives-and-mining,kept
+system,Finance and investment,SYS-finance-and-investment,kept
+system,Food systems and agriculture,SYS-food-systems-and-agriculture,kept
+system,Forests,SYS-forests,kept
+system,Freshwater and waterbodies,SYS-freshwater-and-waterbodies,kept
+system,Grazing land and rangelands,SYS-grazing-land-and-rangelands,kept
+system,Higher education,SYS-higher-education,kept
+system,Infrastructure,SYS-infrastructure,kept
+system,Large-scale land investments,SYS-large-scale-land-investments,kept
+system,Livelihoods and labour,SYS-livelihoods-and-labour,kept
+system,Protected areas,SYS-protected-areas,kept
+system,Science systems and funding,SYS-science-systems-and-funding,kept
+system,Science-policy interfaces,SYS-science-policy-interfaces,kept
+system,Social security and care,SYS-social-security-and-care,kept
+system,Trade,SYS-trade,kept
+system,Urban areas and housing,SYS-urban-areas-and-housing,kept
+system,Wetlands,SYS-wetlands,kept
