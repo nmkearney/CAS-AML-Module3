@@ -148,8 +148,32 @@ chatcde vocab extract --step propose          # cluster labels -> vocab/candidat
   compares it with the draft terms. The result is `vocab/candidates.yaml`, with counts
   taken from the catalogue.
 
-`--force` redoes the chosen step. The candidates are curated by hand into
-`vocab/draft_vocabulary.yaml`. See `docs/decisions/0019-open-extraction.md`.
+`--force` redoes the chosen step. See `docs/decisions/0019-open-extraction.md`.
+
+### Curating the vocabulary
+
+Decisions are made in Excel, and code writes the YAML:
+
+```bash
+chatcde vocab review                 # candidates + vocabulary -> vocab/curation/v0.3.xlsx
+#   ... decide in Excel (white columns), save ...
+chatcde vocab apply --dry-run        # list every problem; write nothing
+chatcde vocab apply                  # write vocab/draft_vocabulary.yaml
+chatcde vocab review --force --carry-from vocab/curation/v0.3.xlsx   # re-export, keep decisions
+```
+
+- **The workbook** has one sheet per curated dimension.
+  - Rows: current terms start as `keep`; candidates are decided `accept`, `merge`,
+    `reject` or `defer`. Current terms can also be `merge`d or `retire`d.
+  - Grey columns show the model's evidence.
+- **Every term gets a stable code** such as `MET-remote-sensing`. Merged or retired
+  codes move to a `retired:` list.
+- **`vocab apply`** works like this:
+  - It writes nothing if any row is invalid.
+  - It rewrites only the curated sections.
+  - It gives the same file every time for the same workbook.
+- See `docs/decisions/0020-vocabulary-codes-and-curation.md` and
+  `docs/decisions/0021-additional-sub-areas.md`.
 
 ## Configuration
 

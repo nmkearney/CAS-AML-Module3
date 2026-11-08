@@ -20,6 +20,7 @@ dependencies = [
     "httpx>=0.27",    # BORIS and OpenAlex APIs
     "certifi",        # python.org builds on macOS lack root certificates
     "numpy>=1.26",    # label clustering in `vocab extract` (decision 0019)
+    "openpyxl>=3.1",  # vocabulary curation workbook (decision 0020)
 ]
 
 [project.optional-dependencies]

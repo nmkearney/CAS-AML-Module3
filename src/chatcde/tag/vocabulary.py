@@ -41,12 +41,15 @@ def flatten_terms(node: Any) -> list[str]:
     """All terms under a dimension's YAML node, in file order.
 
     Handles a list of strings, a list of ``{code, label}`` mappings, a mapping of
-    group name -> list, and ``actors`` (whose terms sit under ``groups``). Keys
+    group name -> list, ``actors`` (whose terms sit under ``groups``), and the
+    curated layout ``{groups: [...], terms: [...]}`` written by ``vocab apply``. Keys
     that are settings rather than terms (``roles``, ``standard``) are skipped.
     """
     if isinstance(node, list):
         return [t for t in (_term(i) for i in node) if t]
     if isinstance(node, dict):
+        if "terms" in node:  # layout written by `chatcde vocab apply` (0020)
+            return flatten_terms(node["terms"])
         if "groups" in node:
             return flatten_terms(node["groups"])
         terms: list[str] = []

@@ -207,6 +207,7 @@ counts, checksums); `chatcde info` and `coverage_report` report the edition.
 | `chatcde search`, `count`, `vocab`, `schema`, `coverage`, `info` | Direct tool calls, no LLM |
 | `chatcde harvest`, `parse`, `tag`, `index`, `evaluate` | Pipeline stages |
 | `chatcde vocab extract` | Open extraction on the sample, for vocabulary drafting |
+| `chatcde vocab review` / `vocab apply` | Curation workbook (Excel) from the candidates; write the vocabulary YAML from its decisions (decision 0020) |
 | `chatcde fetch-data [--edition full\|open] [--top-up]` | Download a prebuilt data bundle (full on VPN, else open) |
 | `chatcde export --edition full\|open` | Build a distributable bundle from the local index |
 

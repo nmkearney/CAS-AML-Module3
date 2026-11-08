@@ -11,3 +11,6 @@ dist/
 
 # Test fixture DB is rebuilt by tests/fixtures/build_fixture_db.py
 tests/fixtures/*.duckdb
+
+# Excel lock files while a workbook is open
+~$*
