@@ -10,8 +10,8 @@
   group name becomes the definition;
 * the curated layout written by ``chatcde vocab apply`` (v0.3, decision 0026):
   ``{groups: [{code, label}], terms: [{code, label, group, definition, ...}],
-  retired: [...]}``. Only ``terms`` are entries; the group label is prefixed to
-  the definition, and retired codes are not listed;
+  retired: [...]}``. Only ``terms`` are entries, each with its ``group`` code;
+  retired codes are not listed;
 * standards: ``country`` (ISO 3166-1 alpha-3 plus a flag term), ``sdg`` (UN goals
   1-17, labelled here), ``region`` (CDE partner regions; UN M49 sub-regions are
   derived from countries and are listed as they occur in the tags), and
@@ -29,7 +29,7 @@ from typing import Any
 
 import yaml
 
-from chatcde.schemas import Dimension
+from chatcde.schemas import Dimension, Filters
 
 #: Short names of the 17 Sustainable Development Goals (United Nations).
 SDG_NAMES: dict[int, str] = {
@@ -63,6 +63,7 @@ class Entry:
     code: str
     label: str
     definition: str | None = None
+    group: str | None = None
 
 
 class VocabularyError(Exception):
@@ -121,16 +122,18 @@ def _from_groups(groups: dict[str, Any]) -> list[Entry]:
 
 
 def _curated(node: dict[str, Any]) -> list[Entry]:
-    """Entries from the curated layout: ``terms``, with group labels as notes."""
-    groups = {g["code"]: g["label"] for g in node.get("groups") or []}
+    """Entries from the curated layout: ``terms``, each with its group code."""
     out = []
     for t in node["terms"]:
-        group = groups.get(t.get("group"), t.get("group"))
-        note = f"Group: {group}" if group else None
-        definition = t.get("definition")
-        if note:
-            definition = f"{note}. {definition}" if definition else note
-        out.append(Entry(str(t["code"]), str(t.get("label") or t["code"]), definition))
+        group = t.get("group") or t.get("impact_area")
+        out.append(
+            Entry(
+                str(t["code"]),
+                str(t.get("label") or t["code"]),
+                t.get("definition"),
+                str(group) if group else None,
+            )
+        )
     return out
 
 
@@ -178,3 +181,87 @@ def dimension_entries(vocab: dict[str, Any], dimension: Dimension) -> list[Entry
     if isinstance(node, dict):
         return _from_groups(node)
     return []
+
+
+# ---------------------------------------------------------------------------
+# Groups (decision 0030)
+# ---------------------------------------------------------------------------
+
+#: Labels of the groups of ``additional_sub_area``: its terms' ``impact_area``.
+IMPACT_AREA_GROUPS: dict[str, str] = {
+    "cross_cutting": "Cross-cutting",
+    "outside": "Outside the four impact areas",
+}
+
+
+def group_map(vocab: dict[str, Any], dimension: Dimension) -> dict[str, str] | None:
+    """Term code -> group code for a dimension with groups, else ``None``.
+
+    A dimension has groups when its curated terms carry a ``group``
+    (``method``, ``data_type``, ``setting``, ``system``, ``actors`` in v0.3) or,
+    for ``additional_sub_area``, an ``impact_area``. Everything else (sub-areas,
+    scale, justice lens, countries, SDGs, ...) is counted by term. Groups are
+    read from the vocabulary at query time, never stored in the tags, so a
+    regrouping needs no re-tagging.
+    """
+    mapping = {e.code: e.group for e in dimension_entries(vocab, dimension) if e.group}
+    return mapping or None
+
+
+def group_entries(vocab: dict[str, Any], dimension: Dimension) -> list[Entry]:
+    """The groups of ``dimension`` (code and label), in vocabulary order.
+
+    Empty if the dimension has no groups. The groups listed in ``groups:``
+    (for ``additional_sub_area``: the four impact areas, ``cross_cutting`` and
+    ``outside``) come first, even if no term uses them; group codes that terms
+    use but the list lacks follow in order of first use.
+    """
+    mapping = group_map(vocab, dimension)
+    if not mapping:
+        return []
+    node = vocab.get(dimension.value)
+    declared = node.get("groups") if isinstance(node, dict) else None
+    labels: dict[str, str] = {
+        str(g["code"]): str(g.get("label") or g["code"])
+        for g in declared or []
+        if isinstance(g, dict) and g.get("code")
+    }
+    if dimension is Dimension.ADDITIONAL_SUB_AREA:
+        areas = {
+            e.code: e.label for e in dimension_entries(vocab, Dimension.IMPACT_AREA)
+        }
+        labels |= {**areas, **IMPACT_AREA_GROUPS}
+    order = list(dict.fromkeys([*labels, *mapping.values()]))
+    return [Entry(code, labels.get(code, code), "Group") for code in order]
+
+
+def group_members(vocab: dict[str, Any], dimension: Dimension) -> dict[str, list[str]]:
+    """Group code -> its term codes, in vocabulary order (empty without groups)."""
+    out: dict[str, list[str]] = {}
+    for term, group in (group_map(vocab, dimension) or {}).items():
+        out.setdefault(group, []).append(term)
+    return out
+
+
+def expand_filters(filters: Filters | None, vocab: dict[str, Any]) -> Filters | None:
+    """Replace group codes in tag filters by the codes of their terms.
+
+    ``Filters(methods=["MET-G-biophysical"])`` becomes a filter on every
+    biophysical method. Term codes and unknown codes are kept as they are, so a
+    filter that names no group is returned unchanged.
+    """
+    from chatcde.store.filters import TAG_FIELDS
+
+    if filters is None:
+        return None
+    update: dict[str, list[Any]] = {}
+    for field, dimension in TAG_FIELDS.items():
+        values = getattr(filters, field)
+        members = group_members(vocab, dimension) if values else {}
+        if not any(str(v) in members for v in values):
+            continue
+        expanded: list[Any] = []
+        for v in values:
+            expanded += members.get(str(v), [v])
+        update[field] = list(dict.fromkeys(expanded))
+    return filters.model_copy(update=update) if update else filters

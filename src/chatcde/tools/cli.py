@@ -17,7 +17,7 @@ from typing import TYPE_CHECKING, Annotated
 import typer
 
 from chatcde.cli_common import PANEL_QUERY
-from chatcde.schemas import Dimension
+from chatcde.schemas import CountMatrix, Dimension, Level
 
 if TYPE_CHECKING:
     from chatcde.config import Config
@@ -27,6 +27,22 @@ app = typer.Typer()
 JsonOption = Annotated[
     bool, typer.Option("--json", help="Print the tool's result as JSON.")
 ]
+LevelOption = Annotated[
+    str,
+    typer.Option(
+        "--level",
+        help="group: count method, data_type, setting, system and actors by group "
+        "(additional_sub_area by impact area); term: term by term.",
+    ),
+]
+
+
+def _level(value: str) -> Level:
+    """Check a --level value; exit 2 if it is neither group nor term."""
+    if value not in ("group", "term"):
+        typer.echo(f"--level must be group or term, not {value!r}.", err=True)
+        raise typer.Exit(code=2)
+    return value  # type: ignore[return-value]
 
 
 def _call[T](cfg: Config, fn: Callable[[], T]) -> T:
@@ -294,6 +310,7 @@ def count(
     show_ids: Annotated[
         bool, typer.Option("--ids", help="List every record ID, not only a few.")
     ] = False,
+    level: LevelOption = "group",
     as_json: JsonOption = False,
 ) -> None:
     """Count publications by one or two schema dimensions, with denominators.
@@ -336,6 +353,7 @@ def count(
                 col,
                 filters,
                 max_ratio,
+                level=_level(level),
                 exclude_types=[] if all_types else None,
             ),
         )
@@ -348,6 +366,7 @@ def count(
             f"{m.total_records} matching records; {base} tagged on both "
             f"{row.value} and {col.value} (confidence >= {filters.min_confidence})."
         )
+        typer.echo(_levels_line(m))
         if b.excluded_types:
             typer.echo(
                 f"Left out: {b.excluded_records} records of type "
@@ -378,7 +397,7 @@ def count(
         console.print(t)
         return
 
-    m = _call(ctx.obj, lambda: core.count_by(row, col, filters))
+    m = _call(ctx.obj, lambda: core.count_by(row, col, filters, _level(level)))
     if as_json:
         typer.echo(_dump(m))
         return
@@ -387,6 +406,7 @@ def count(
         f"{m.total_records} matching records; {m.untagged_records} have no tag on "
         f"{dims} (confidence >= {filters.min_confidence})."
     )
+    typer.echo(_levels_line(m))
     base = m.total_records - m.untagged_records
     if col is None:
         t = Table(title=f"Records by {row.value}")
@@ -420,6 +440,14 @@ def count(
     )
     console.print(t)
     typer.echo("Empty cells are 0. Use --json for the record IDs behind each cell.")
+
+
+def _levels_line(m: CountMatrix) -> str:
+    """The line that says which level each axis was counted at."""
+    parts = [f"{m.row_dimension.value} {m.row_level}"]
+    if m.col_dimension is not None:
+        parts.append(f"{m.col_dimension.value} {m.col_level}")
+    return f"Counted by: {', '.join(parts)} (--level group|term)."
 
 
 def _overview() -> None:
@@ -582,13 +610,20 @@ def vocab_list(
         Dimension | None,
         typer.Option("--dimension", "-d", help="List this dimension's terms."),
     ] = None,
+    level: Annotated[
+        str,
+        typer.Option(
+            "--level", help="term: terms with their group; group: the groups only."
+        ),
+    ] = "term",
     as_json: JsonOption = False,
 ) -> None:
     """List vocabulary terms with record counts; ``vocab extract`` drafts new ones.
 
     Without --dimension, shows every dimension with its number of terms. With
-    it, shows each term's code, label, records tagged and definition (the same
-    list the assistant gets from list_vocabulary).
+    it, shows each term's code, label, group, records tagged and definition (the
+    same list the assistant gets from list_vocabulary); --level group lists the
+    groups with the records tagged with any of their terms.
     """
     if ctx.invoked_subcommand is not None:
         return
@@ -604,19 +639,27 @@ def vocab_list(
 
     from chatcde.tools import core
 
-    terms = _call(ctx.obj, lambda: core.list_vocabulary(dimension))
+    lvl = _level(level)
+    terms = _call(ctx.obj, lambda: core.list_vocabulary(dimension, lvl))
     if as_json:
         typer.echo(_dump(terms))
         return
-    t = Table(title=f"Vocabulary: {dimension.value}")
-    for name in ("Code", "Label", "Records", "Definition"):
+    grouped = any(t.group for t in terms)
+    title = "groups" if lvl == "group" and not grouped else "terms"
+    t = Table(title=f"Vocabulary: {dimension.value} ({title})")
+    names = ["Code", "Label", *(["Group"] if grouped else []), "Records", "Definition"]
+    for name in names:
         t.add_column(name, justify="right" if name == "Records" else "left")
     for term in terms:
         t.add_row(
             term.code,
             term.label if term.label != term.code else "",
+            *([term.group or ""] if grouped else []),
             str(term.record_count),
             textwrap.shorten(term.definition or "", width=70, placeholder=" ..."),
         )
     Console().print(t)
-    typer.echo("Records = records with a tag of the term at confidence >= 0.5.")
+    typer.echo(
+        "Records = records with a tag of the term (or of any term of the group) at "
+        "confidence >= 0.5."
+    )

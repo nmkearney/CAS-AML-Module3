@@ -249,6 +249,14 @@ def gaps(
             help="Counts and nearby records only; no judgement by the model.",
         ),
     ] = False,
+    level: Annotated[
+        str,
+        typer.Option(
+            "--level",
+            help="group: compare method, data_type, setting, system and actors by "
+            "group, with each cell's terms listed (default); term: term by term.",
+        ),
+    ] = "group",
     alternative: AlternativeOption = False,
     log_file: LogOption = None,
     as_json: Annotated[
@@ -272,6 +280,8 @@ def gaps(
     cfg = ctx.obj
     try:
         row, col = parse_dims(dims or cfg.gaps.dims)
+        if level not in ("group", "term"):
+            raise GapsError(f"--level must be group or term, not {level!r}")
     except GapsError as exc:
         typer.echo(str(exc), err=True)
         raise typer.Exit(code=2) from exc
@@ -312,6 +322,7 @@ def gaps(
                 all_types=all_types,
                 use_llm=not no_llm,
                 model=model,
+                level=level,  # type: ignore[arg-type]
             )
     except GapsError as exc:
         err.print(f"[red]{exc}[/red]", highlight=False)

@@ -194,10 +194,12 @@ These commands count tags in the catalogue and need no model. They call the tool
 
 ```bash
 chatcde schema                                  # the 18 dimensions: terms, records tagged
-chatcde vocab -d method                         # one dimension's terms with record counts
+chatcde vocab -d method                         # one dimension's terms, their groups and counts
+chatcde vocab -d method --level group           # the method groups with record counts
 chatcde count sub_area                          # records per sub-area
 chatcde count impact_area method --year-from 2015 --lang de
 chatcde count sub_area method --gaps            # combinations far rarer than expected
+chatcde count sub_area method --level term      # single methods instead of method groups
 chatcde count region sub_area --gaps --max-ratio 0.5 --all-types --json
 ```
 
@@ -205,6 +207,17 @@ Counts are of records, not tags: a record with two methods counts under both. On
 with confidence of at least `--min-confidence` (0.5) count. Every result states its
 denominator: the number of matching records and how many of them have no tag. With two
 dimensions, the matrix counts only records tagged on both.
+
+**Groups.** method, data_type, setting, system and actors sort their terms into groups
+(e.g. `MET-G-participatory-and-transdisciplinary`), and additional_sub_area's terms
+belong to impact areas. `count` (and the agent's `count_by` and `find_gaps`) count
+these dimensions **by group by default**: a record counts once per group, however many
+of its terms it has. 60 methods × 16 sub-areas leave most cells with 0–2 records, but 8
+method groups give counts that can be compared. `--level term` counts term by term.
+Other dimensions are always counted by term. The output says which level each axis
+used. A group code in a filter stands for all its terms (`--method MET-G-biophysical`).
+Groups are read from the vocabulary when you query, not stored in the tags, so a
+regrouping needs no re-tagging. See `docs/decisions/0030-group-level.md`.
 
 `--gaps` compares each combination with the count expected if the two dimensions were
 independent (row total × column total / records tagged on both). It lists those with at
@@ -321,12 +334,15 @@ chatcde gaps                                         # sub_area x method, all of
 chatcde gaps --dims method,region --unit "Sustainable Land Systems"
 chatcde gaps --dims sub_area,method --year-from 2015 --max-cells 5 --json > gaps.json
 chatcde gaps --no-llm                                # counts and nearby records only
+chatcde gaps --level term                            # single methods, not method groups
 ```
 
 1. Code counts the two dimensions within the scope and finds the thin cells, as
-   `chatcde count ROW COL --gaps` does.
+   `chatcde count ROW COL --gaps` does: by group by default (see "Groups" above).
 2. For each of the first `gaps.max_cells` (8) cells, code searches the scope for the
-   two terms and lists the records found with their own tags.
+   two terms (or groups) and lists the records found with their own tags. A group
+   cell also lists the group's terms with their record counts, so you can see what
+   it is made of.
 3. Code lists the caveats: untagged records, conference items left out, cells not
    shown, and the data edition.
 4. The agent model judges each cell in one request with a JSON schema: a real gap, a

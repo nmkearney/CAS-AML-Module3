@@ -23,6 +23,7 @@ from chatcde.schemas import (
     Dimension,
     Filters,
     GapCell,
+    Level,
     Passage,
     PublicationDetail,
     VocabTerm,
@@ -97,30 +98,46 @@ def read_section(
     return publications.read_section(get_context(), record_id, page_start, page_end)
 
 
-def list_vocabulary(dimension: Dimension) -> list[VocabTerm]:
-    """List the controlled-vocabulary terms of one dimension with record counts.
+def list_vocabulary(dimension: Dimension, level: Level = "term") -> list[VocabTerm]:
+    """List the controlled-vocabulary terms (or groups) of one dimension with counts.
 
     Use it to learn the exact codes to pass in ``Filters`` and to see at a
-    glance which terms are rare. Terms come in vocabulary order; codes found in
-    the tags but not in the vocabulary (``other``, countries, UN M49 regions)
-    follow. ``record_count`` is the number of records with a tag of that term
-    at confidence 0.5 or more, over the whole catalogue.
+    glance which terms are rare. method, data_type, setting, system and actors
+    sort their terms into groups (additional_sub_area into impact areas); the
+    other dimensions have no groups.
+
+    With ``level="term"``: terms in vocabulary order, each with its ``group``
+    code; codes found in the tags but not in the vocabulary (``other``,
+    countries, UN M49 regions) follow. With ``level="group"``: the groups, each
+    counting the records tagged with any of its terms (dimensions without
+    groups list their terms). ``record_count`` is the number of records with a
+    tag at confidence 0.5 or more, over the whole catalogue.
 
     Args:
         dimension: One of the 18 schema dimensions.
+        level: ``term`` (default) for terms, ``group`` for groups.
     """
     from chatcde.tools import counts
     from chatcde.tools.context import get_context
 
-    return counts.list_vocabulary(get_context(), dimension)
+    return counts.list_vocabulary(get_context(), dimension, level)
 
 
 def count_by(
     row: Dimension,
     col: Dimension | None = None,
     filters: Filters | None = None,
+    level: Level = "group",
 ) -> CountMatrix:
     """Count publications by one or two dimensions.
+
+    By default (``level="group"``) method, data_type, setting, system and
+    actors are counted by their groups (e.g. ``MET-G-biophysical``) and
+    additional_sub_area by impact area: a record counts once per group, so the
+    counts are large enough to compare. Use ``level="term"`` for single terms,
+    e.g. when the question names one method. Other dimensions are always
+    counted by term; ``row_level`` and ``col_level`` in the result say which
+    level was used.
 
     Counts records, not tags: a record with two methods counts under both.
     Only tags with confidence at least ``filters.min_confidence`` count. With
@@ -132,7 +149,9 @@ def count_by(
     Args:
         row: Dimension for the rows, e.g. ``sub_area``.
         col: Optional dimension for the columns, e.g. ``method``.
-        filters: Optional restrictions.
+        filters: Optional restrictions. A group code in a tag filter (e.g.
+            ``methods: ["MET-G-biophysical"]``) stands for all its terms.
+        level: ``group`` (default) or ``term``.
 
     Returns:
         A count matrix with row and column totals, the total number of matching
@@ -142,7 +161,7 @@ def count_by(
     from chatcde.tools import counts
     from chatcde.tools.context import get_context
 
-    return counts.count_by(get_context(), row, col, filters)
+    return counts.count_by(get_context(), row, col, filters, level)
 
 
 def find_gaps(
@@ -150,8 +169,13 @@ def find_gaps(
     col: Dimension,
     filters: Filters | None = None,
     max_ratio: float = 0.25,
+    level: Level = "group",
 ) -> list[GapCell]:
     """Find combinations of two dimensions that CDE has rarely covered.
+
+    By default grouped dimensions are compared by group (``level="group"``,
+    e.g. sub-areas x method groups), where counts are large enough for a gap
+    to mean something; use ``level="term"`` to look inside a group.
 
     A cell is a gap when its count is at most ``max_ratio`` times the count
     expected if the two dimensions were independent: ``expected = row total x
@@ -164,8 +188,9 @@ def find_gaps(
     Args:
         row: First dimension, e.g. ``sub_area``.
         col: Second dimension, e.g. ``method``.
-        filters: Optional restrictions.
+        filters: Optional restrictions; group codes stand for their terms.
         max_ratio: Threshold on count / expected.
+        level: ``group`` (default) or ``term``.
 
     Returns:
         Gap cells, lowest ratio first, each with its count, expected count,
@@ -174,7 +199,7 @@ def find_gaps(
     from chatcde.tools import counts
     from chatcde.tools.context import get_context
 
-    return counts.find_gaps(get_context(), row, col, filters, max_ratio)
+    return counts.find_gaps(get_context(), row, col, filters, max_ratio, level)
 
 
 def coverage_report(filters: Filters | None = None) -> CoverageReport:
@@ -201,10 +226,12 @@ def coverage_report(filters: Filters | None = None) -> CoverageReport:
     from chatcde import catalogue
     from chatcde.config import load_config
     from chatcde.tools import coverage
+    from chatcde.tools.context import ToolContext
 
     cfg = load_config()
     if not cfg.data.catalogue.is_file():
         raise FileNotFoundError(f"no catalogue at {cfg.data.catalogue}")
+    filters = ToolContext(cfg).expand(filters)  # group codes -> terms (0030)
     con = catalogue.connect(cfg.data.catalogue, read_only=True)
     try:
         return coverage.build_report(con, filters, coverage.local_edition(cfg.data.dir))
