@@ -173,6 +173,26 @@ The curator hand-checked pilot 2 (decision 0028) in `data/reference/review_main.
     - gpt-oss's were judged only where the two disagree, in a sheet framed as
       possible misses.
 
+### Precision and recall at term and group level (20 reviewed records)
+- Recall is an upper bound: tags both models missed are not seen. Precision counts
+  unsure tags as not ok.
+- **Term level, all dimensions:** precision 89% (98.5% without the unsure tags),
+  recall at most 79%.
+- **Group level for the grouped dimensions** (method, data_type, setting, system,
+  actors by group; sub_area and additional_sub_area by impact area):
+  - recall at most 89% (165/186), against 76% at term level;
+  - precision 87-96% per dimension.
+- **The flat dimensions have no groups** (scale, justice_lens, objective, pathway,
+  research_mode, transformative_aspiration, sdg, output_type, country):
+  - precision 87%, recall at most 84%;
+  - justice_lens 64% and scale 71% are the weakest.
+- **Limits:**
+  - 20 records only;
+  - the prompt was refined on these same records, so the numbers are probably
+    optimistic;
+  - an out-of-sample check is #16 (the reference set) and #29 (Simon's independent
+    tags).
+
 ## Researchers as co-producers (curator's rule, 2026-11-09)
 - In pilot 2 the curator marked researchers as co-producers ok on some records and wrong
   on others. The rule is now: **only researchers outside the author team count as
