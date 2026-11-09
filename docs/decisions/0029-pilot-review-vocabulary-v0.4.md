@@ -139,6 +139,40 @@ The curator hand-checked pilot 2 (decision 0028) in `data/reference/review_main.
   judged ok: the main run gave them below 0.5. The second model found none of the 5
   tags the curator had listed as missing.
 
+### Recall review (curator, 2026-11-09)
+- **Tags only gpt-oss gave:** of the 119, the curator marked 87 ok, 13 wrong and 19
+  unsure (73% ok, 11% wrong).
+- **Tags only qwen gave,** judged on the same 20 records in the precision reviews: of
+  151, 128 ok, 4 wrong and 19 unsure (85% ok, 3% wrong).
+- **Tags both gave:** 193 ok, 17 unsure, none wrong.
+- **qwen is the better tagger here.**
+  - It finds 321 of the 408 tags judged ok (79%) against gpt-oss's 280 (69%).
+  - It has 4 tags judged wrong against 13.
+  - Its quotes are verbatim: 1.6-2.2% not found in every pilot run, against 14.5%
+    for gpt-oss. gpt-oss's misses are real, not the matcher being strict: it
+    paraphrases or stitches fragments together (97 with ellipses, 95 paraphrased
+    or translated, 27 empty). A looser matcher recovers only 6 of 212.
+- **qwen's recall is at most 79%** (408 is a lower bound on the real tags). It is
+  lowest for:
+  - justice_lens (64%);
+  - system (70%), scale (71%) and sub_area (72%);
+  - method (74%) and data_type (75%).
+
+  Country is 100%. Only 10 of the 87 misses are qwen tags below 0.5; the rest qwen
+  never gave.
+- **How fair the comparison is:**
+  - The same:
+    - prompt (tag.v3), vocabulary (0.4) and input text;
+    - temperature 0, quote check and caps.
+  - Two advantages for qwen:
+    - the prompt was refined from qwen's errors on these same records (v1-v3);
+    - gpt-oss ran with `reasoning_effort: low`.
+  - The judging was asymmetric:
+    - qwen's tags were judged in the full review, many of them carried over from
+      pilot 2;
+    - gpt-oss's were judged only where the two disagree, in a sheet framed as
+      possible misses.
+
 ## Researchers as co-producers (curator's rule, 2026-11-09)
 - In pilot 2 the curator marked researchers as co-producers ok on some records and wrong
   on others. The rule is now: **only researchers outside the author team count as
