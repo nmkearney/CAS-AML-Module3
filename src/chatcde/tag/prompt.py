@@ -53,9 +53,14 @@ def _line(code: str, label: str, definition: str | None, includes: list[str]) ->
     return text
 
 
-def _curated(dimension: str, vocab: dict[str, Any], n_includes: int) -> list[str]:
-    """Curated terms under their group headings, in vocabulary order."""
-    terms = current_terms(vocab.get(dimension))
+def _curated(
+    dimension: str, vocab: dict[str, Any], n_includes: int, exclude: str | None = None
+) -> list[str]:
+    """Curated terms under their group headings, in vocabulary order.
+
+    ``exclude`` is a term filled in by code (``tagging.none_terms``), not listed.
+    """
+    terms = [t for t in current_terms(vocab.get(dimension)) if t.code != exclude]
     groups: dict[str, list[str]] = {}
     for t in terms:
         line = _line(t.code or t.label, t.label, t.definition, t.includes[:n_includes])
@@ -115,7 +120,7 @@ def term_lines(
     if dim is Dimension.ADDITIONAL_SUB_AREA:
         return _additional(vocab, n)
     if dimension in PREFIXES:
-        return _curated(dimension, vocab, n)
+        return _curated(dimension, vocab, n, settings.none_terms.get(dimension))
     if dim is Dimension.COUNTRY:
         return []
     if dim is Dimension.SDG:

@@ -3,7 +3,7 @@
 # cde.unibe.ch pages; terms marked `proposed: true` are not from a CDE source.
 # To be revised in the schema workshop and tested on a 200-300 record sample.
 
-version: 0.3
+version: 0.4
 
 impact_area:  # applies to all years, not only 2025 on (decision 0016)
   - {code: JE, label: Just economies and human well-being, boris_unit: "Just Economies & Human Well Being"}
@@ -382,6 +382,18 @@ additional_sub_area:
     - local ecological knowledge
     - traditional ecological knowledge
     source: candidate
+  - code: ASA-natural-hazards-and-disaster-risk
+    label: Natural hazards and disaster risk
+    impact_area: cross_cutting
+    definition: Floods, cyclones, landslides, droughts and other hazards, their impacts, and disaster
+      risk reduction.
+    includes:
+    - floods
+    - cyclones
+    - landslides
+    - disaster risk reduction
+    source: curator
+    note: 'Pilot review 2026-11-09 #19: cyclone-driven floods had no term'
   - code: ASA-natural-resource-governance
     label: Natural resource governance
     impact_area: SG
@@ -609,14 +621,31 @@ additional_sub_area:
     impact_area: SL
     definition: The planning, governance, and sustainable use of freshwater resources, including integrated
       management, conservation, and addressing scarcity.
+    includes:
+    - water security
+    - water scarcity
     source: candidate
+    note: 'Pilot review 2026-11-09 #17: water security'
 
 objective:
-  - {code: O1, label: Ecosystem regeneration for sustainable livelihoods}
-  - {code: O2, label: Sustainable food systems and land investments}
-  - {code: O3, label: Just and resource-light economies}
-  - {code: O4, label: Institutions for sustainability}
-  - {code: O5, label: Competencies for sustainability transformations}
+- code: O1
+  label: Ecosystem regeneration for sustainable livelihoods
+  definition: Regenerating ecosystems and land so that they sustain livelihoods; includes the livelihood
+    outcomes of land and ecosystem management.
+- code: O2
+  label: Sustainable food systems and land investments
+  definition: Sustainable food systems from production to consumption, and responsible large-scale land
+    investments; tag when the work serves either.
+- code: O3
+  label: Just and resource-light economies
+  definition: Economies that use fewer resources and share wealth and burdens fairly.
+- code: O4
+  label: Institutions for sustainability
+  definition: Policies, rules and organisations that enable sustainable development.
+- code: O5
+  label: Competencies for sustainability transformations
+  definition: Knowledge, skills and attitudes that enable people and organisations to take part in sustainability
+    transformations.
 
 pathway:  # tag only when explicit in the text
   - {code: P1, label: Knowledge-informed decision-making, rule: "Evidence meant to inform policy or practice decisions, incl. syntheses and assessments"}
@@ -626,10 +655,21 @@ pathway:  # tag only when explicit in the text
   - {code: P5, label: Partnerships in regions, rule: "Built on or explicitly strengthens long-term regional partnerships"}
 
 research_mode:
-  - {code: M1, label: Transformative research, definition: "Researchers take part in the processes they study and co-create solutions in specific contexts"}
-  - {code: M2, label: Transformation research, definition: "Analyses conditions, characteristics and drivers of societal and environmental change; theory development"}
-  - {code: M3, label: Transformative education, definition: "Reshapes education systems and curricula to build competencies for transformation"}
-  - {code: M4, label: Transformation education, definition: "Investigates how sustainability competencies can be fostered and assessed"}
+- code: M1
+  label: Transformative research (co-creating change)
+  definition: Researchers take part in the processes they study and co-create solutions with societal
+    actors in specific contexts (transdisciplinary, action-oriented).
+- code: M2
+  label: Research on transformations (analytical)
+  definition: Analyses the conditions, drivers and dynamics of societal change towards or away from sustainability;
+    theory development. Not for studies that do not address societal change.
+- code: M3
+  label: Transformative education (changing teaching)
+  definition: Develops or reshapes curricula, courses and education systems to build competencies for
+    transformation.
+- code: M4
+  label: Research on sustainability education
+  definition: Studies how sustainability competencies can be fostered and assessed.
 
 transformative_aspiration:  # Westerink et al. 2026; multi-valued, tag only when clear
   - code: TA1
@@ -1224,11 +1264,16 @@ data_type:
     definition: null
     source: candidate
   - code: DAT-visual-data
-    label: Visual data
+    label: Visual and audio data
     group: DAT-G-documents-texts-and-media
-    definition: Images, maps, diagrams, or other graphical representations used to present or analyze
-      information.
+    definition: Images, photos, maps, video or sound recordings used as data in the analysis.
+    includes:
+    - audio recordings
+    - sound recordings
+    - photographs
+    - video
     source: candidate
+    note: 'Pilot review 2026-11-09 #16: podcast with sound recordings had no term'
   - code: DAT-workshop-documentation
     label: Workshop documentation
     group: DAT-G-documents-texts-and-media
@@ -1376,9 +1421,10 @@ data_type:
   - code: DAT-field-data
     label: Observation and field visits
     group: DAT-G-primary-social-data
-    definition: Data collected directly through on-site observation, measurement, or interaction in natural
-      or social settings, excluding remote sensing or secondary sources.
+    definition: Notes and records from on-site observation and field visits in social settings. Ecological
+      or physical measurements go under soil, vegetation, species or hydrological data.
     source: candidate
+    note: 'Pilot review 2026-11-09 #5, #8: ecological measurements tagged as field data'
   - code: DAT-primary-qualitative
     label: Primary qualitative
     group: DAT-G-primary-social-data
@@ -1708,36 +1754,42 @@ scale:
   terms:
   - code: SCA-community-or-village
     label: Community or village
-    definition: null
+    definition: A village, community, neighbourhood or single local site.
     source: seed
   - code: SCA-cross-scale
     label: Cross-scale (incl. telecoupling)
-    definition: null
+    definition: Explicitly links levels (e.g. local to global) or distant places (telecoupling).
     source: seed
   - code: SCA-global
     label: Global
-    definition: null
+    definition: 'The whole world: worldwide analyses or global datasets.'
     source: seed
   - code: SCA-household-or-individual
     label: Household or individual
-    definition: null
+    definition: Individuals, households or farms as the units of analysis.
     source: seed
   - code: SCA-landscape-or-watershed
     label: Landscape or watershed
-    definition: null
+    definition: 'A biophysically defined area spanning several communities: a catchment, valley or landscape
+      mosaic. Not ''cultural landscape'' in the heritage sense.'
     source: seed
+    note: 'Pilot review 2026-11-09: #4 cultural landscape, #8 no landscape in quote'
   - code: SCA-national
     label: National
-    definition: null
+    definition: 'One country analysed as a whole: national policies, statistics or samples.'
     source: seed
   - code: SCA-subnational
     label: Subnational
-    definition: null
+    definition: 'An administrative unit below the country: district, province, state, canton, municipality
+      or city.'
     source: seed
+    note: 'Pilot review 2026-11-09 #2: kept, with cities named; #8, #15 should have been subnational'
   - code: SCA-transboundary-or-regional
     label: Transboundary or regional
-    definition: null
+    definition: Several countries or a world region (e.g. Mekong, East Africa, the Alps), or a cross-border
+      area; not the whole world.
     source: seed
+    note: 'Pilot review 2026-11-09 #13: global given for a Global South sample'
 
 system:
   groups:
@@ -1966,7 +2018,10 @@ system:
     group: SYS-G-governance-and-institutions
     definition: Social-ecological systems and governance institutions focused on the allocation, use,
       and protection of freshwater resources, including river basins and watersheds.
+    includes:
+    - water security
     source: candidate
+    note: 'Pilot review 2026-11-09 #17: water security'
   - code: SYS-academic-publishing
     label: Academic publishing
     group: SYS-G-knowledge-and-education
@@ -2286,9 +2341,10 @@ actors:
   - code: ACT-research-funders
     label: Research funders
     group: ACT-G-civil-society-and-science
-    definition: Organisations and bodies that provide financial support for scientific research, including
-      government research councils and private foundations.
+    definition: Organisations that fund research (research councils, foundations), only when the work
+      studies or addresses them; not when they fund the work itself.
     source: candidate
+    note: 'Pilot review 2026-11-09 #7'
   - code: ACT-research-institutions
     label: Research institutions
     group: ACT-G-civil-society-and-science
@@ -2304,8 +2360,8 @@ actors:
   - code: ACT-researchers-and-universities
     label: Researchers and universities
     group: ACT-G-civil-society-and-science
-    definition: Academic staff, scientists, and university-based research groups involved in knowledge
-      production, co-production, or analysis.
+    definition: Researchers and universities as the subject of the work or as non-author partners. Never
+      the authors themselves or their institutes (e.g. CDE).
     includes:
     - researchers
     - academic researchers
@@ -2313,13 +2369,13 @@ actors:
     - university researchers
     - research assistants
     - research scientists
-    - centre for development and environment
-    - united nations environment programme
     - academia
     - academics
     - commons scholars
     - scholars
     source: seed
+    note: 'Pilot review 2026-11-09: authors tagged on #4, #8, #10, #13; removed includes ''centre for
+      development and environment'' and ''united nations environment programme'''
   - code: ACT-soil-and-water-conservation-specialists
     label: Soil and water conservation specialists
     group: ACT-G-civil-society-and-science
@@ -2335,8 +2391,8 @@ actors:
   - code: ACT-swiss-national-science-foundation
     label: Swiss National Science Foundation
     group: ACT-G-civil-society-and-science
-    definition: The Swiss National Science Foundation (SNSF) and its funding programs. Excludes general
-      Swiss government bodies or other international funding agencies.
+    definition: The Swiss National Science Foundation (SNSF) and its programmes, only when the work studies
+      or addresses them; not when it funds the work itself.
     source: candidate
   - code: ACT-wocat
     label: WOCAT
@@ -2633,10 +2689,10 @@ actors:
       planning, or service delivery at the sub-national level.
     source: candidate
   - code: ACT-national-and-local-government
-    label: National and local government
+    label: National and regional government
     group: ACT-G-state-and-international
-    definition: State authorities, ministries, and public agencies at national, regional, or local levels
-      involved in policy, regulation, or service delivery.
+    definition: State authorities, ministries and agencies at national or regional (province, state, canton)
+      level. City and municipal bodies go under Municipal and local governments.
     includes:
     - governments
     - government agencies
@@ -2651,6 +2707,7 @@ actors:
     - african governments
     - Horn of Africa countries
     source: seed
+    note: 'Pilot review 2026-11-09 #7: split from municipal; code kept (no corpus tags yet)'
   - code: ACT-national-environmental-agencies
     label: National environmental agencies
     group: ACT-G-state-and-international
@@ -2678,42 +2735,50 @@ actors:
   - code: ACT-swiss-government-and-development-agencies
     label: Swiss government and development agencies
     group: ACT-G-state-and-international
-    definition: Swiss federal authorities, the Swiss Agency for Development and Cooperation (SDC), and
-      other Swiss public bodies involved in policy or funding.
+    definition: Swiss federal authorities, the Swiss Agency for Development and Cooperation (SDC) and
+      other Swiss public bodies, when studied, engaged or addressed; not as funders of the research.
     source: candidate
+    note: 'Pilot review 2026-11-09 #7: funder tagged as co-producer'
 
 justice_lens:
   terms:
   - code: JUS-decolonial
     label: Decolonial
-    definition: null
+    definition: Colonial legacies and North-South hierarchies in knowledge, economies or governance.
     source: seed
   - code: JUS-distributive
     label: Distributive
-    definition: null
+    definition: Who gets the benefits, burdens, resources and risks (income, land, environmental harm).
     source: seed
   - code: JUS-gender
     label: Gender
-    definition: null
+    definition: Inequalities, roles and relations between women, men and gender minorities.
     source: seed
   - code: JUS-none-explicit
     label: None explicit
-    definition: null
+    definition: Filled in by code when the abstract or full text addresses none of the lenses; never offered
+      to the model (tagging.none_terms).
     source: seed
+    note: 'Pilot review 2026-11-09: the model gave it with weak evidence (#1, #14), which says nothing'
   - code: JUS-power
     label: Power
-    definition: null
+    definition: 'Power relations and asymmetries among actors that shape outcomes: elite capture, corporate
+      influence, unequal bargaining.'
     includes:
     - Power dynamics
     - power asymmetries
     source: seed
+    note: 'Pilot review 2026-11-09 #1: should have been tagged'
   - code: JUS-procedural
     label: Procedural
-    definition: null
+    definition: 'Who takes part in decisions and how fairly: participation, consultation, consent, transparency,
+      accountability.'
     source: seed
+    note: 'Pilot review 2026-11-09: missed on #12, #14 (and #4 unsure)'
   - code: JUS-recognition
     label: Recognition
-    definition: null
+    definition: Respect for the identities, knowledge and status of groups, e.g. indigenous peoples or
+      marginalised groups.
     source: seed
 
 sdg: {standard: UN SDGs 1-17, max_per_record: 3}

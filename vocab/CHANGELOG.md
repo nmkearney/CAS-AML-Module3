@@ -4,6 +4,28 @@ Changes to `draft_vocabulary.yaml`, newest first. Each entry gives the version, 
 what changed and why. Version numbers follow `version:` in the YAML and `vocab.version`
 in `config/default.yaml`.
 
+## 0.4 (2026-11-09)
+
+Changes after the hand check of pilot 2 (20 records, 415 tags; decision 0029), decided in
+`vocab/curation/v0.4.xlsx`. The changes were proposed by Claude from the curator's notes;
+the curator reviews them. Each changed term has a `note` citing the pilot record.
+
+- **scale, justice_lens:** definitions for all 15 terms. `JUS-none-explicit` is now filled
+  in by code (`tagging.none_terms`) and no longer offered to the model.
+- **research_mode:** labels M1 "Transformative research (co-creating change)", M2
+  "Research on transformations (analytical)", M3 "Transformative education (changing
+  teaching)", M4 "Research on sustainability education", with sharper definitions.
+- **objective:** definitions for O1–O5 (proposed; to check against Strategy 1.4).
+- **actors:** `ACT-researchers-and-universities` excludes the authors and their institutes
+  (includes lose "centre for development and environment" and "united nations
+  environment programme"). `ACT-national-and-local-government` renamed "National and
+  regional government". The funder terms apply only when the work is about the funders.
+- **data_type:** `DAT-visual-data` renamed "Visual and audio data". `DAT-field-data`
+  limited to social field observation.
+- **additional_sub_area:** new `ASA-natural-hazards-and-disaster-risk` (cross-cutting).
+  "water security" added to the includes of the water-management terms.
+- No codes retired or renamed.
+
 ## 0.3 (2026-11-08)
 
 Curated from the 353 open-extraction candidates in `vocab/candidates.yaml` (decision

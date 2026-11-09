@@ -27,7 +27,7 @@ from chatcde.schemas import Dimension, Provenance, Tag, TextSource
 from chatcde.store.endpoint import EndpointClient
 from chatcde.tag import tables
 from chatcde.tag.answer import OTHER, batch_model, codes_for
-from chatcde.tag.derive import derive, publish
+from chatcde.tag.derive import derive, derived_provenance, none_tags, publish
 from chatcde.tag.extract import RecordText
 from chatcde.tag.llm import load_prompt
 from chatcde.tag.prompt import split_template, system_prompt
@@ -168,6 +168,8 @@ def test_batch_model_offers_only_live_codes(
     assert OTHER not in codes_for("sub_area", vocab, countries)
     assert {"CHE", GLOBAL_FLAG} <= set(codes_for("country", vocab, countries))
     assert codes_for("sdg", vocab, countries) == [str(n) for n in range(1, 18)]
+    jus = codes_for("justice_lens", vocab, countries, exclude={"JUS-none-explicit"})
+    assert "JUS-none-explicit" not in jus and "JUS-power" in jus
 
     s = cfg0.tagging
     model = batch_model("who_what", s.batches["who_what"], vocab, countries, s)
@@ -223,6 +225,8 @@ def test_system_prompt_lists_the_batch(cfg0: Config, vocab: dict[str, Any]):
     strategy = system_prompt(template, s.batches["strategy"], vocab, s)
     assert "#### SL: Sustainable land systems" in strategy
     assert "#### Cross-cutting" in strategy  # additional sub-areas by impact area
+    who = system_prompt(template, s.batches["who_what"], vocab, s)
+    assert "JUS-procedural" in who and "JUS-none-explicit" not in who  # none_terms
     with pytest.raises(ValueError, match="no '### region' rules"):
         system_prompt(template, ["region"], vocab, s)
 
@@ -528,6 +532,35 @@ def test_derive_region_and_impact_area(
     )
 
 
+def test_none_tags_fill_records_read_without_a_counted_tag(vocab: dict[str, Any]):
+    tags = [
+        _tag("r1", "justice_lens", "JUS-power", 0.9),  # counted lens: no "none"
+        _tag("r2", "justice_lens", "JUS-gender", 0.3),  # weak only: "none"
+        _tag("r3", "sdg", "1", 0.9),
+    ]
+    tags[2] = tags[2].model_copy(update={"source": TextSource.ABSTRACT_OPENALEX})
+    read = {
+        "justice_lens": {
+            "r1": "fulltext",
+            "r2": "abstract,fulltext",
+            "r3": "abstract",
+            "r4": "metadata",  # title only: absence says nothing
+        }
+    }
+    got = none_tags(
+        tags,
+        read,
+        {"justice_lens": "JUS-none-explicit"},
+        0.6,
+        derived_provenance(vocab),
+    )
+    assert [(t.record_id, t.term, t.source) for t in got] == [
+        ("r2", "JUS-none-explicit", TextSource.FULLTEXT),
+        ("r3", "JUS-none-explicit", TextSource.ABSTRACT_OPENALEX),
+    ]
+    assert all(t.confidence == 0.6 and t.evidence is None for t in got)
+
+
 def test_publish_replaces_tags(db: Path, tmp_path: Path):
     cfg, _ = make_cfg(tmp_path, db)
     con = duckdb.connect(str(db))
@@ -540,7 +573,8 @@ def test_publish_replaces_tags(db: Path, tmp_path: Path):
     rows = con.execute(
         "SELECT count(*), count(DISTINCT record_id) FROM tags"
     ).fetchone()
-    assert rows == (s.llm_tags + s.region_tags + s.impact_area_tags, 2)  # fixtures gone
+    derived = s.region_tags + s.impact_area_tags + s.none_tags
+    assert rows == (s.llm_tags + derived, 2)  # fixtures gone
     assert s.impact_area_tags == 2  # first sub_area code (JE-a) -> JE, per record
     units = con.execute(
         "SELECT count(*) FROM records WHERE list_contains(?, record_id) "

@@ -167,6 +167,17 @@ Two developers work in parallel; see `CONTRIBUTING.md` for the full workflow.
   dimensions exceed the 15–40 target; some additional sub-areas overlap sub-area scopes.
 - `chatcde` on the PATH (python.org 3.14) lacks openpyxl; use `.venv/bin/chatcde`.
 
+## Vocabulary v0.4 and tag.v3 (pilot review, 2026-11-09)
+
+- Hand check of pilot 2 (20 records, 415 tags): counted tags at 0.9 are 95% ok, at 0.6 only
+  68% ok. Recall was not checked systematically (left to #16). Decision 0029.
+- v0.4 (`vocab/curation/v0.4.xlsx`): definitions for scale and justice lens, sharper
+  research_mode labels, authors/funders kept out of actors, new
+  `ASA-natural-hazards-and-disaster-risk`. No codes changed.
+- `JUS-none-explicit` is filled in by code at publish (`tagging.none_terms`), never by the model.
+- Curation workbook gained an `includes` column, curator-added rows and a `strategy_terms` sheet.
+- Rename output_type → audience_type proposed in #60 (`schemas`).
+
 ## Coverage (`chatcde coverage`, 2026-11-07)
 
 - Of 3,003 records: **1,542 full text (51%)**, 606 abstract only (20%), 855 metadata

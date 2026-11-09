@@ -21,6 +21,7 @@ JSON-schema mode expects that.
 
 from __future__ import annotations
 
+from collections.abc import Collection
 from typing import Any, Literal
 
 from pydantic import BaseModel, ConfigDict, Field, create_model
@@ -41,9 +42,14 @@ def allows_other(dimension: str) -> bool:
 
 
 def codes_for(
-    dimension: str, vocab: dict[str, Any], countries: dict[str, Country]
+    dimension: str,
+    vocab: dict[str, Any],
+    countries: dict[str, Country],
+    exclude: Collection[str] = (),
 ) -> list[str]:
     """Codes the model may use for one dimension, in vocabulary order.
+
+    ``exclude`` drops codes filled in by code instead (``tagging.none_terms``).
 
     Raises:
         ValueError: The dimension has no codes (missing from the vocabulary).
@@ -52,7 +58,7 @@ def codes_for(
     if dim is Dimension.COUNTRY:
         codes = sorted(countries) + [GLOBAL_FLAG]
     else:
-        codes = [e.code for e in dimension_entries(vocab, dim)]
+        codes = [e.code for e in dimension_entries(vocab, dim) if e.code not in exclude]
     if allows_other(dimension):
         codes.append(OTHER)
     if not codes:
@@ -104,7 +110,9 @@ def batch_model(
     """The answer model for one batch: one capped list of tags per dimension."""
     fields: dict[str, Any] = {}
     for dim in dimensions:
-        item = item_model(dim, codes_for(dim, vocab, countries))
+        none = settings.none_terms.get(dim)
+        codes = codes_for(dim, vocab, countries, exclude={none} if none else ())
+        item = item_model(dim, codes)
         fields[dim] = (list[item], Field(max_length=settings.limit(dim)))  # type: ignore[valid-type]
     name = "Tags" + "".join(p.title() for p in batch.split("_"))
     return create_model(name, __config__=ConfigDict(extra="forbid"), **fields)

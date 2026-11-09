@@ -206,6 +206,7 @@ def _publish_table(s: Any) -> Any:
     t.add_row("LLM tags", str(s.llm_tags))
     t.add_row("Derived region tags", str(s.region_tags))
     t.add_row("Derived impact_area tags", str(s.impact_area_tags))
+    t.add_row("Derived 'none' tags", str(s.none_tags))
     if s.records_with_unit:
         t.add_row(
             "Impact area matches BORIS unit",
@@ -517,6 +518,7 @@ def vocab_apply(
         ]
         t.add_row(dim, f"{n} terms" + (f" ({', '.join(parts)})" if parts else ""))
     t.add_row("Sub-area scope notes changed", str(s.scope_notes_changed))
+    t.add_row("Strategy terms changed", str(s.strategy_terms_changed))
     t.add_row("Written to", "nothing (dry run)" if dry_run else s.output)
     Console().print(t)
     if s.warnings:

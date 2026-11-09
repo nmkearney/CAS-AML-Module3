@@ -26,6 +26,21 @@ back; white columns are the developer's decisions.
   label that names exactly one live term is read as its code, with a warning.
 * ``retire`` (current term): removed, kept under ``retired`` without replacement.
 * ``reject`` / ``defer`` (candidate): not added; ``defer`` marks it for later.
+* A row the curator adds at the bottom of a sheet (empty ``key``) with ``accept``
+  is a new term that no candidate proposed (``source: curator``).
+
+**Includes.** The ``includes`` column lists a term's synonyms (``;``-separated)
+and is pre-filled from the YAML; editing it replaces them (merged labels are
+added on top). A workbook without the column keeps the old includes.
+
+**Strategy terms.** The ``strategy_terms`` sheet holds the fixed strategy lists
+(objective, pathway, research mode, transformative aspiration): their codes
+never change, but labels and definitions can be sharpened there.
+
+**Rounds.** ``--carry-from`` an earlier round's workbook (its base has another
+version) carries only deferred and undecided candidates: accepted, merged and
+rejected ones are already in the vocabulary, and stay on record in the earlier
+workbook.
 
 **Apply** checks every row first and refuses to write anything if there is an
 error, listing all of them. It starts from the vocabulary the workbook was
@@ -78,6 +93,15 @@ KIND_SHEET: dict[str, str] = {
 #: Parent values for an additional sub-area.
 ASA_PARENTS = ["JE", "SL", "SG", "TE", "cross_cutting", "outside"]
 
+#: Strategy dimensions whose labels and definitions are edited in ``strategy_terms``
+#: (codes fixed), with the YAML key that holds each one's definition.
+STRATEGY_DIMS: dict[str, str] = {
+    "objective": "definition",
+    "pathway": "rule",
+    "research_mode": "definition",
+    "transformative_aspiration": "definition",
+}
+
 TERM_DECISIONS = ["keep", "merge", "retire"]
 CANDIDATE_DECISIONS = ["accept", "merge", "reject", "defer"]
 DECISIONS = ["keep", "accept", "merge", "retire", "reject", "defer"]
@@ -88,6 +112,7 @@ EDIT_COLUMNS = [
     "code",
     "label",
     "definition",
+    "includes",
     "group",
     "impact_area",
     "merge_into",
@@ -108,6 +133,15 @@ EVIDENCE_COLUMNS = [
 ]
 COLUMNS = EDIT_COLUMNS + EVIDENCE_COLUMNS
 SCOPE_COLUMNS = ["code", "label", "scope", "current_scope", "linked_themes"]
+STRATEGY_COLUMNS = [
+    "dimension",
+    "code",
+    "label",
+    "definition",
+    "comment",
+    "current_label",
+    "current_definition",
+]
 
 #: Hidden sheet holding the YAML the workbook was exported from.
 BASE_SHEET = "_base"
@@ -140,6 +174,7 @@ class ApplySummary(BaseModel):
     rejected: dict[str, int]
     deferred: dict[str, int]
     scope_notes_changed: int
+    strategy_terms_changed: int = 0
     warnings: list[str]
     output: str
     code_map: str
@@ -296,9 +331,11 @@ def build_rows(
                     "code": t.code or suggest_code(dim, t.label),
                     "label": t.label,
                     "definition": t.definition or best_def.get(t.label, ""),
+                    "includes": "; ".join(t.includes),
                     "group": t.group or "",
                     "impact_area": t.impact_area or "",
                     "merge_into": "; ".join(t.related),
+                    "comment": t.note or "",
                     "suggestion": "keep",
                 }
             )
@@ -361,6 +398,26 @@ def _scope_rows(
     ]
 
 
+def _strategy_rows(vocab: dict[str, Any]) -> list[dict[str, Any]]:
+    """Rows of the strategy_terms sheet: one per code of the fixed strategy lists."""
+    rows = []
+    for dim, key in STRATEGY_DIMS.items():
+        for item in vocab.get(dim) or []:
+            if not isinstance(item, dict):
+                continue
+            rows.append(
+                {
+                    "dimension": dim,
+                    "code": item["code"],
+                    "label": item.get("label", ""),
+                    "definition": item.get(key) or "",
+                    "current_label": item.get("label", ""),
+                    "current_definition": item.get(key) or "",
+                }
+            )
+    return rows
+
+
 README = [
     "Vocabulary curation workbook (chatcde vocab review / apply; decision 0026).",
     "",
@@ -378,6 +435,10 @@ README = [
     "the term stays and links to them",
     "  retire  - current term is removed (kept under 'retired')",
     "  reject  - candidate is not added;  defer - not added now, revisit later",
+    "  new term no candidate proposed: add a row at the bottom with key empty, "
+    "decision accept, code, label, definition (source: curator)",
+    "includes: synonyms shown to the tagging model, ';'-separated; edit to add or "
+    "remove (merged labels are added on top).",
     "",
     "code: <PREFIX>-<words-in-kebab-case>, e.g. MET-remote-sensing. Suggested; "
     "change it only before v0.3 is released. Codes are never reused.",
@@ -386,6 +447,8 @@ README = [
     "impact_area (additional_sub_area only): JE, SL, SG, TE, cross_cutting or outside.",
     "sub_area_scope: edit 'scope' to sharpen a strategy sub-area's scope note; "
     "linked_themes are theme candidates the model matched to it.",
+    "strategy_terms: objective, pathway, research mode and transformative "
+    "aspiration; codes are fixed, edit label and definition.",
     "",
     "Rules of thumb: accept or merge candidates with n_records >= 5; decide 3-4 "
     "case by case; reject country and place names; aim for 15-40 terms per sheet.",
@@ -441,6 +504,7 @@ _WIDTHS = {
     "impact_area": 12,
     "merge_into": 24,
     "comment": 24,
+    "includes": 40,
     "key": 18,
     "n_records": 8,
     "suggestion": 14,
@@ -482,17 +546,41 @@ def export_workbook(
     cands = _candidates(candidates_path)
     rows = build_rows(vocab, cands)
     scope = _scope_rows(vocab, cands)
+    strategy = _strategy_rows(vocab)
     if carry_from is not None:
         old = read_workbook(carry_from)
+        later_round = str(read_base(carry_from).get("version")) != str(
+            vocab.get("version")
+        )
         for sheet, sheet_rows in rows.items():
             previous = {r["key"]: r for r in old.get(sheet, [])}
+            kept = []
             for r in sheet_rows:
-                if r["key"] in previous:
-                    r.update({c: previous[r["key"]].get(c, "") for c in EDIT_COLUMNS})
-        old_scope = {r["code"]: r for r in old.get("sub_area_scope", [])}
-        for r in scope:
-            if r["code"] in old_scope:
-                r["scope"] = old_scope[r["code"]].get("scope", r["scope"])
+                prev = previous.get(r["key"])
+                if later_round:
+                    # Only open candidates move on; terms come from the new YAML.
+                    if not r["key"].startswith("cand:") or prev is None:
+                        kept.append(r)
+                        continue
+                    if prev.get("decision", "").lower() not in ("", "defer"):
+                        continue  # decided in the earlier round
+                if prev is not None:
+                    r.update({c: prev[c] for c in EDIT_COLUMNS if c in prev})
+                kept.append(r)
+            rows[sheet] = kept
+        if not later_round:
+            old_scope = {r["code"]: r for r in old.get("sub_area_scope", [])}
+            for r in scope:
+                if r["code"] in old_scope:
+                    r["scope"] = old_scope[r["code"]].get("scope", r["scope"])
+            old_strategy = {
+                (r.get("dimension"), r.get("code")): r
+                for r in old.get("strategy_terms", [])
+            }
+            for r in strategy:
+                prev = old_strategy.get((r["dimension"], r["code"]))
+                if prev:
+                    r.update({c: prev.get(c, r[c]) for c in ("label", "definition")})
     wb = Workbook()
     readme = wb.active
     readme.title = "README"
@@ -521,6 +609,15 @@ def export_workbook(
         widths=_WIDTHS,
         validations={},
     )
+    _write_sheet(
+        wb,
+        "strategy_terms",
+        STRATEGY_COLUMNS,
+        strategy,
+        grey={"dimension", "code", "current_label", "current_definition"},
+        widths={**_WIDTHS, "current_label": 30, "current_definition": 50},
+        validations={},
+    )
     base = wb.create_sheet(BASE_SHEET)
     for line in vocab_path.read_text(encoding="utf-8").splitlines():
         base.append([line])
@@ -529,6 +626,7 @@ def export_workbook(
     wb.save(out)
     counts = {dim: len(r) for dim, r in rows.items()}
     counts["sub_area_scope"] = len(scope)
+    counts["strategy_terms"] = len(strategy)
     return counts
 
 
@@ -573,7 +671,7 @@ def read_workbook(path: Path) -> dict[str, list[dict[str, str]]]:
     """Rows of each known sheet as ``{column: text}``, header row by name."""
     wb = load_workbook(path, data_only=True, read_only=True)
     out: dict[str, list[dict[str, str]]] = {}
-    for name in [*PREFIXES, "sub_area_scope"]:
+    for name in [*PREFIXES, "sub_area_scope", "strategy_terms"]:
         if name not in wb.sheetnames:
             continue
         it = wb[name].iter_rows(values_only=True)
@@ -882,16 +980,23 @@ def apply_workbook(
             if dim == "additional_sub_area":
                 term["impact_area"] = row["impact_area"]
             term["definition"] = row.get("definition") or None
+            if "includes" in row:  # the workbook's list replaces the old one
+                base_includes = [x.strip() for x in row["includes"].split(";")]
+            else:
+                base_includes = old.includes if old else []
             includes = merge_names(
-                old.includes if old else [], item["includes"], exclude=row["label"]
+                [x for x in base_includes if x], item["includes"], exclude=row["label"]
             )
             if includes:
                 term["includes"] = includes[:MAX_INCLUDES]
             if item["related"]:
                 term["related"] = item["related"]
-            term["source"] = (
-                (old.source or "seed") if key.startswith("term:") else "candidate"
-            )
+            if key.startswith("term:"):
+                term["source"] = (old.source if old else None) or "seed"
+            elif key.startswith("cand:"):
+                term["source"] = "candidate"
+            else:
+                term["source"] = "curator"  # a row the curator added
             if row.get("comment"):
                 term["note"] = row["comment"]
             terms.append(term)
@@ -931,6 +1036,43 @@ def apply_workbook(
         sub_area.append(item)
     blocks["sub_area"] = sub_area
 
+    strategy_changed = 0
+    by_code = {
+        (r.get("dimension"), r.get("code")): r for r in sheets.get("strategy_terms", [])
+    }
+    for dim, def_key in STRATEGY_DIMS.items():
+        items = vocab.get(dim)
+        if not isinstance(items, list):
+            continue
+        new_items, changed_here = [], 0
+        for item in items:
+            row = by_code.get((dim, item.get("code")))
+            item = dict(item)
+            if row:
+                if not row.get("label"):
+                    problems.append(f"strategy_terms {dim} {item['code']}: no label")
+                    continue
+                label, definition = row["label"], row.get("definition") or None
+                if label != item.get("label") or definition != (
+                    item.get(def_key) or None
+                ):
+                    changed_here += 1
+                    item["label"] = label
+                    if definition:
+                        item[def_key] = definition
+                    else:
+                        item.pop(def_key, None)
+            new_items.append(item)
+        if changed_here:
+            blocks[dim] = new_items
+            strategy_changed += changed_here
+    known = {(d, i.get("code")) for d in STRATEGY_DIMS for i in vocab.get(d) or []}
+    for key in by_code:
+        if key not in known:
+            problems.append(f"strategy_terms: unknown code {key[1]} in {key[0]}")
+    if problems:
+        raise CurationError(problems)
+
     text = vocab_path.read_text(encoding="utf-8")
     text = re.sub(r"(?m)^version: .*$", f"version: {version}", text, count=1)
     new_text = replace_blocks(text, blocks, insert_after="sub_area")
@@ -955,6 +1097,7 @@ def apply_workbook(
         rejected=per("reject"),
         deferred=per("defer"),
         scope_notes_changed=changed,
+        strategy_terms_changed=strategy_changed,
         warnings=warnings,
         output=str(vocab_path),
         code_map=str(code_map_path),

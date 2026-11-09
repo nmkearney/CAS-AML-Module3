@@ -314,6 +314,7 @@ class TaggingConfig(_Section):
     unverified_cap: float = Field(ge=0, le=1)
     metadata_only_cap: float = Field(ge=0, le=1)
     metadata_inferable: list[str] = Field(default_factory=list)
+    none_terms: dict[str, str] = Field(default_factory=dict)
     max_fulltext_chars: int = Field(ge=0)
     max_input_chars: int = Field(ge=500)
     max_tokens: int = Field(ge=256)

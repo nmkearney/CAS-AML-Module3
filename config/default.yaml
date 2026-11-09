@@ -96,7 +96,7 @@ parse:
 # --- Vocabulary and prompts ---------------------------------------------
 vocab:
   file: "vocab/draft_vocabulary.yaml"
-  version: "0.3"                 # curated in vocab/curation/v0.3.xlsx (decision 0026)
+  version: "0.4"                 # curated in vocab/curation/v0.4.xlsx (decisions 0026, 0029)
   curation_dir: "vocab/curation" # workbooks (v<version>.xlsx) and code maps
   terms_per_dimension: [15, 40]  # target range of live terms per curated dimension
 prompts:
@@ -133,7 +133,7 @@ vocab_extract:
 # lists in vocab.file, in batches of dimensions; region and impact_area are
 # derived in code when the run is published to the `tags` table.
 tagging:
-  prompt: "tag.v2"               # file <prompts.dir>/<name>.md; v2: stricter (pilot, 0028)
+  prompt: "tag.v3"               # file <prompts.dir>/<name>.md; v3: after pilot review (0029)
   run: "main"                    # run name in tag_runs; `main` is published to tags
   batches:                       # one request per record and batch
     strategy: [sub_area, additional_sub_area, objective, pathway, research_mode,
@@ -153,6 +153,8 @@ tagging:
   unverified_cap: 0.4            # quote not found in the input: confidence capped (< 0.5 counts)
   metadata_only_cap: 0.4         # title/keywords only: non-explicit tags capped (pilot, 0028)
   metadata_inferable: [sub_area, additional_sub_area, country, setting]  # ...except these
+  none_terms:                    # "none" terms filled in by code, never offered to the model:
+    justice_lens: JUS-none-explicit  # abstract/full text read, no counted lens (0028)
   max_fulltext_chars: 12000      # characters of parsed page text given to the model
   max_input_chars: 20000         # cap on the whole input (title + abstract + pages)
   max_tokens: 3072               # answer budget per record and batch

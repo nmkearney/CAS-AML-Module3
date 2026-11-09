@@ -95,14 +95,14 @@ Pathways describe how a piece of work aims to create change. Publications often 
 
 ## Research mode and methods
 
-Research mode uses the strategy's four definitions. Methods started as a seed list of 34 terms in eight groups, drawn mostly from the methods the strategy names. Curation of the open-extraction candidates (v0.3) gives 60 terms in the same eight groups.
+Research mode uses the strategy's four modes. In v0.4 their labels and definitions were sharpened after the pilot review, with the codes unchanged (decision 0029), and the tagger may leave research mode empty for work that fits none of them. Methods started as a seed list of 34 terms in eight groups, drawn mostly from the methods the strategy names. Curation of the open-extraction candidates (v0.3) gives 60 terms in the same eight groups.
 
 | Code | Research mode (strategy, section 1.3) | Definition |
 | --- | --- | --- |
-| M1 | Transformative research | Researchers take part in the processes they study and co-create solutions in specific contexts |
-| M2 | Transformation research | Analyses the conditions, characteristics and drivers of societal and environmental change; contributes to theory |
-| M3 | Transformative education | Reshapes education systems and curricula to build competencies for transformation |
-| M4 | Transformation education | Investigates how sustainability competencies can be fostered and assessed |
+| M1 | Transformative research (co-creating change) | Researchers take part in the processes they study and co-create solutions with societal actors in specific contexts |
+| M2 | Research on transformations (analytical) | Analyses the conditions, drivers and dynamics of societal change; theory development. Not for studies that do not address societal change |
+| M3 | Transformative education (changing teaching) | Develops or reshapes curricula, courses and education systems to build competencies for transformation |
+| M4 | Research on sustainability education | Studies how sustainability competencies can be fostered and assessed |
 
 | Dimension | Group | Terms |
 | --- | --- | --- |
