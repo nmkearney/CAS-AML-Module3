@@ -2374,9 +2374,10 @@ actors:
   - code: ACT-research-institutions
     label: Research institutions
     group: ACT-G-civil-society-and-science
-    definition: Organisations primarily engaged in scientific research, including universities, national
-      institutes, and R&D bodies. Excludes general government ministries or NGOs.
+    definition: Research organisations outside the author team, such as national institutes and R&D bodies.
+      Never the authors' own institutes. Excludes general government ministries or NGOs.
     source: candidate
+    note: 'Curator''s rule 2026-11-09: only researchers outside the author team count as co-producers'
   - code: ACT-research-networks
     label: Research networks
     group: ACT-G-civil-society-and-science
@@ -2386,8 +2387,9 @@ actors:
   - code: ACT-researchers-and-universities
     label: Researchers and universities
     group: ACT-G-civil-society-and-science
-    definition: Researchers and universities as the subject of the work or as non-author partners. Never
-      the authors themselves or their institutes (e.g. CDE).
+    definition: 'Researchers and universities outside the author team: as the subject of the work, or
+      as partners who took part in producing the knowledge (co-producers). Never the authors themselves
+      or their institutes (e.g. CDE).'
     includes:
     - researchers
     - academic researchers
@@ -2400,8 +2402,9 @@ actors:
     - commons scholars
     - scholars
     source: seed
-    note: 'Pilot review 2026-11-09: authors tagged on #4, #8, #10, #13; removed includes ''centre for
-      development and environment'' and ''united nations environment programme'''
+    note: 'Curator''s rule 2026-11-09: only researchers outside the author team count as co-producers.
+      Earlier: authors tagged on #4, #8, #10, #13; removed includes ''centre for development and environment''
+      and ''united nations environment programme'''
   - code: ACT-soil-and-water-conservation-specialists
     label: Soil and water conservation specialists
     group: ACT-G-civil-society-and-science

@@ -133,7 +133,7 @@ vocab_extract:
 # lists in vocab.file, in batches of dimensions; region and impact_area are
 # derived in code when the run is published to the `tags` table.
 tagging:
-  prompt: "tag.v3"               # file <prompts.dir>/<name>.md; v3: after pilot review (0029)
+  prompt: "tag.v4"               # file <prompts.dir>/<name>.md; v4: researcher co-producers (0029)
   run: "main"                    # run name in tag_runs; `main` is published to tags
   batches:                       # one request per record and batch
     strategy: [sub_area, additional_sub_area, objective, pathway, research_mode,

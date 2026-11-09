@@ -99,6 +99,16 @@ The curator hand-checked pilot 2 (decision 0028) in `data/reference/review_main.
   - "None explicit" on #1, filled in by code because the model again missed Power.
   - None of the 5 missing tags was added.
 
+## Researchers as co-producers (curator's rule, 2026-11-09)
+- In pilot 2 the curator marked researchers as co-producers ok on some records and wrong
+  on others. The rule is now: **only researchers outside the author team count as
+  co-producers**. The authors' own collaboration, and their institutes, never do.
+- It is written into the definitions of `ACT-researchers-and-universities` and
+  `ACT-research-institutions` (v0.4 workbook) and into prompt **tag.v4**, which the
+  full run uses.
+- tag.v3 already excluded the authors, so the rule makes tag.v3 explicit rather than
+  changing it. Pilot 3 (tag.v3) stays as it is, so that its review measures that run.
+
 ## Consequences
 - Pilot 3 reruns the same 100 records with v0.4 and tag.v3. Only changed tags need a
   second look.

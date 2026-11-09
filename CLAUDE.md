@@ -176,6 +176,7 @@ Two developers work in parallel; see `CONTRIBUTING.md` for the full workflow.
   `ASA-natural-hazards-and-disaster-risk`, three duplicate pairs merged. Retired with
   `replaced_by`: `DAT-visual-data`, `DAT-policy-documents`, `DAT-agricultural-statistics`,
   `SYS-agriculture-and-food-sector`.
+- Only researchers outside the author team count as co-producers (curator's rule, tag.v4).
 - `JUS-none-explicit` is filled in by code at publish (`tagging.none_terms`), never by the model.
 - Curation workbook gained an `includes` column, curator-added rows and a `strategy_terms` sheet.
 - Rename output_type → audience_type proposed in #60 (`schemas`).
