@@ -99,6 +99,24 @@ The curator hand-checked pilot 2 (decision 0028) in `data/reference/review_main.
   - "None explicit" on #1, filled in by code because the model again missed Power.
   - None of the 5 missing tags was added.
 
+## Pilot 3 review (2026-11-09)
+- The curator judged the 67 new tags: 61 ok, 2 wrong, 4 unsure. Objectives, which rose
+  from 43 to 67 tags, were 8 of 10 ok, so the new definitions did not make them too
+  loose.
+- Counted tags in the 20 records: 324 ok, 5 wrong, 37 unsure (89% ok), up from 304, 9
+  and 45 (85%) in pilot 2. Without the unsure ones: 98.5% against 97%.
+- Most unsure tags were carried over unchanged from pilot 2 (research_mode M2, data
+  collected or only cited, quotes that do not show the tag). The rerun did not change
+  them.
+- Still wrong:
+  - scale on #8 (national, should be subnational) and #13 (global, should be
+    transboundary or regional);
+  - SDG 2 on #13;
+  - O4 on #14;
+  - "None explicit" on #1, because the model misses Power there.
+- Recall: the 5 missing tags (4 SDGs, Procedural on #12) are still missing. Recall is
+  measured with the #16 reference set.
+
 ## Researchers as co-producers (curator's rule, 2026-11-09)
 - In pilot 2 the curator marked researchers as co-producers ok on some records and wrong
   on others. The rule is now: **only researchers outside the author team count as
