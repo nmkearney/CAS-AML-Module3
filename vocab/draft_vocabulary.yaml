@@ -710,7 +710,8 @@ method:
   - code: MET-biodiversity-field-survey
     label: Biodiversity field survey
     group: MET-G-biophysical
-    definition: null
+    definition: Recording species, vegetation or habitats in the field, e.g. with plots, transects, traps
+      or counts.
     source: seed
   - code: MET-ecosystem-service-assessment-and-valuation
     label: Ecosystem service assessment and valuation
@@ -766,7 +767,8 @@ method:
   - code: MET-database-development
     label: Database development
     group: MET-G-geospatial-and-land
-    definition: null
+    definition: Designing, compiling and maintaining a database or data platform as part of the research,
+      e.g. Land Matrix or WOCAT.
     source: seed
   - code: MET-gis-and-spatial-analysis
     label: GIS and spatial analysis
@@ -835,7 +837,8 @@ method:
   - code: MET-power-sensitive-institutional-analysis
     label: Power-sensitive institutional analysis
     group: MET-G-institutional-and-political-analysis
-    definition: null
+    definition: Analysis of rules, organisations and governance arrangements that explicitly examines
+      power relations, interests and who gains or loses.
     source: seed
   - code: MET-social-network-analysis
     label: Social network analysis
@@ -856,7 +859,8 @@ method:
   - code: MET-value-chain-analysis
     label: Value chain analysis
     group: MET-G-institutional-and-political-analysis
-    definition: null
+    definition: Tracing a product from production to consumption to analyse the actors, flows, value added
+      and governance along the chain.
     source: seed
   - code: MET-conferences-and-workshops
     label: Academic and professional events
@@ -883,12 +887,14 @@ method:
   - code: MET-knowledge-co-production
     label: Knowledge co-production
     group: MET-G-participatory-and-transdisciplinary
-    definition: null
+    definition: Researchers and societal actors jointly framing questions and producing knowledge. Specific
+      formats (workshops, living labs) have their own terms.
     source: seed
   - code: MET-living-labs-and-real-world
     label: Living labs and real-world labs
     group: MET-G-participatory-and-transdisciplinary
-    definition: null
+    definition: Real-world settings in which researchers and practitioners jointly design, test and learn
+      from interventions over time.
     source: seed
   - code: MET-multi-stakeholder-processes
     label: Multi-stakeholder processes
@@ -908,7 +914,8 @@ method:
   - code: MET-participatory-action-research
     label: Participatory action research
     group: MET-G-participatory-and-transdisciplinary
-    definition: null
+    definition: Research in cycles of action and reflection, in which participants study and change their
+      own situation together with the researchers.
     source: seed
   - code: MET-participatory-mapping-and-appraisal
     label: Participatory mapping and appraisal
@@ -996,7 +1003,8 @@ method:
   - code: MET-ethnography-and-participant-observation
     label: Ethnography and participant observation
     group: MET-G-qualitative-social-science
-    definition: null
+    definition: Extended immersion in a community or setting, observing and taking part in everyday life
+      to understand practices and meanings.
     source: seed
   - code: MET-expert-interviews
     label: Expert interviews
@@ -1046,7 +1054,8 @@ method:
   - code: MET-econometrics
     label: Econometrics
     group: MET-G-quantitative-social-science
-    definition: null
+    definition: Statistical estimation of economic relationships, e.g. regression on panel or cross-section
+      data to identify causal effects.
     source: seed
   - code: MET-expert-surveys-and-assessments
     label: Expert surveys and assessments
@@ -1072,12 +1081,14 @@ method:
   - code: MET-pilots-and-field-experiments
     label: Pilots and field experiments
     group: MET-G-quantitative-social-science
-    definition: null
+    definition: Testing an intervention or new practice under real conditions, with or without control
+      groups, including randomised trials.
     source: seed
   - code: MET-poverty-and-well-being-measurement
     label: Poverty and well-being measurement
     group: MET-G-quantitative-social-science
-    definition: null
+    definition: Measuring poverty, income, deprivation or well-being with indicators or indices, e.g.
+      a multidimensional poverty index.
     source: seed
   - code: MET-statistical-analysis
     label: Statistical analysis
@@ -1125,7 +1136,8 @@ method:
   - code: MET-scientific-assessment-contributions
     label: Scientific assessment contributions (IPCC, IPBES, GEO)
     group: MET-G-synthesis-and-theory
-    definition: null
+    definition: Contributing to global or regional scientific assessments such as IPCC, IPBES or GEO,
+      e.g. as chapter authors or with syntheses.
     source: seed
   - code: MET-scoping-review
     label: Scoping review
@@ -1148,14 +1160,16 @@ method:
   - code: MET-impact-and-sustainability-assessment
     label: Impact and sustainability assessment
     group: MET-G-systems-assessment-and-evaluation
-    definition: null
+    definition: Assessing the effects of a policy, project or practice on environmental, social or economic
+      outcomes, including impact evaluation.
     includes:
     - Impact evaluation
     source: seed
   - code: MET-modelling-and-simulation
     label: Modelling and simulation
     group: MET-G-systems-assessment-and-evaluation
-    definition: null
+    definition: Building or applying computational or mathematical models to simulate processes or scenarios.
+      Hydrological models have their own term.
     source: seed
   - code: MET-monitoring-evaluation-and-learning
     label: Monitoring, evaluation and learning
@@ -1170,7 +1184,8 @@ method:
   - code: MET-systems-analysis
     label: Systems analysis
     group: MET-G-systems-assessment-and-evaluation
-    definition: null
+    definition: Analysing a system as interacting parts with feedbacks, e.g. with causal loop diagrams
+      or system dynamics, to understand its behaviour.
     source: seed
   - code: MET-telecoupling-analysis
     label: Telecoupling analysis
@@ -1261,9 +1276,10 @@ data_type:
   - code: DAT-secondary-qualitative
     label: Secondary qualitative
     group: DAT-G-documents-texts-and-media
-    definition: null
+    definition: Qualitative material produced by others and reanalysed in the work, such as earlier transcripts,
+      reports or archival texts, when no more specific document term fits.
     source: candidate
-  - code: DAT-visual-data
+  - code: DAT-visual-audio-data
     label: Visual and audio data
     group: DAT-G-documents-texts-and-media
     definition: Images, photos, maps, video or sound recordings used as data in the analysis.
@@ -1352,7 +1368,8 @@ data_type:
   - code: DAT-primary-geospatial
     label: Primary geospatial
     group: DAT-G-geospatial-and-remote-sensing
-    definition: null
+    definition: Spatial data the work collects itself, such as GPS points, field mapping or participatory
+      maps. Satellite and aerial images have their own terms.
     source: seed
   - code: DAT-satellite-imagery
     label: Satellite imagery
@@ -1392,7 +1409,8 @@ data_type:
   - code: DAT-none
     label: None (conceptual)
     group: DAT-G-no-empirical-data
-    definition: null
+    definition: 'No empirical data: conceptual, theoretical or opinion pieces that analyse no data of
+      their own or of others.'
     source: seed
   - code: DAT-case-studies
     label: Case studies
@@ -1428,12 +1446,14 @@ data_type:
   - code: DAT-primary-qualitative
     label: Primary qualitative
     group: DAT-G-primary-social-data
-    definition: null
+    definition: Qualitative data the work collects itself, when no more specific term fits (interviews,
+      field observation and experiences have their own terms).
     source: seed
   - code: DAT-primary-quantitative
     label: Primary quantitative
     group: DAT-G-primary-social-data
-    definition: null
+    definition: Numerical data the work collects or measures itself, when no more specific term fits (surveys
+      and environmental measurements have their own terms).
     source: seed
   - code: DAT-survey-data
     label: Survey data
@@ -1458,7 +1478,8 @@ data_type:
   - code: DAT-curated-databases
     label: Curated databases
     group: DAT-G-statistics-and-databases
-    definition: null
+    definition: Structured databases compiled and maintained by an organisation or project and used as
+      a source, e.g. WOCAT or global biodiversity databases. Land deal records have their own term.
     source: seed
   - code: DAT-demographic-statistics
     label: Demographic statistics
@@ -1489,6 +1510,10 @@ data_type:
     definition: Quantitative or qualitative data describing social and economic conditions, such as income,
       education, and demographics. Excludes purely biophysical or environmental measurements.
     source: candidate
+  retired:
+  - code: DAT-visual-data
+    label: Visual data
+    replaced_by: DAT-visual-audio-data
 
 country: {standard: ISO 3166-1 alpha-3, extra_flag: global_or_multi_country}
 
@@ -1541,7 +1566,8 @@ setting:
   - code: SET-rural-lowlands
     label: Rural lowlands
     group: SET-G-agricultural-and-rural-landscapes
-    definition: null
+    definition: Rural areas on plains, valley floors and other low-lying land, in contrast to highlands.
+      Use Lowlands for low-lying land as an ecological setting.
     source: seed
   - code: SET-smallholder-farms
     label: Smallholder farms
@@ -1830,7 +1856,8 @@ system:
   - code: SYS-finance-and-investment
     label: Finance and investment
     group: SYS-G-economy-and-finance
-    definition: null
+    definition: Financial flows, markets and investment decisions, including development finance, green
+      finance and payments for ecosystem services.
     source: seed
   - code: SYS-hydropower
     label: Hydropower
@@ -1841,7 +1868,8 @@ system:
   - code: SYS-infrastructure
     label: Infrastructure
     group: SYS-G-economy-and-finance
-    definition: null
+    definition: Roads, dams, energy grids, water supply and other built infrastructure, including its
+      planning and effects.
     source: seed
   - code: SYS-tourism
     label: Tourism
@@ -1915,7 +1943,8 @@ system:
   - code: SYS-large-scale-land-investments
     label: Large-scale land investments
     group: SYS-G-food-and-commodities
-    definition: null
+    definition: Acquisitions or long-term leases of large areas of land by companies, investors or states,
+      and the land use and governance that follow.
     source: seed
   - code: SYS-livestock-systems
     label: Livestock systems
@@ -2098,7 +2127,8 @@ system:
   - code: SYS-cropland
     label: Cropland
     group: SYS-G-land-and-ecosystems
-    definition: null
+    definition: Land used to grow annual or perennial crops, including fields, plantations and agroforestry
+      plots.
     source: seed
   - code: SYS-ecosystem-services
     label: Ecosystem services
@@ -2133,7 +2163,7 @@ system:
   - code: SYS-freshwater-and-waterbodies
     label: Freshwater and waterbodies
     group: SYS-G-land-and-ecosystems
-    definition: null
+    definition: Rivers, lakes, groundwater and other freshwater bodies as ecosystems or resources.
     source: seed
   - code: SYS-glaciers-and-cryosphere
     label: Glaciers and cryosphere
@@ -2209,7 +2239,8 @@ system:
   - code: SYS-wetlands
     label: Wetlands
     group: SYS-G-land-and-ecosystems
-    definition: null
+    definition: Marshes, swamps, peatlands, floodplains and other land that is periodically or permanently
+      covered by water.
     source: seed
   - code: SYS-labour-markets
     label: Labour markets
@@ -2255,12 +2286,12 @@ system:
   - code: SYS-social-security-and-care
     label: Social security and care
     group: SYS-G-settlements-and-society
-    definition: null
+    definition: Social protection, pensions, health care and paid or unpaid care work.
     source: seed
   - code: SYS-urban-areas-and-housing
     label: Urban areas and housing
     group: SYS-G-settlements-and-society
-    definition: null
+    definition: 'Cities and towns as systems: urban land, housing, services and urban development.'
     source: seed
 
 actors:
@@ -2414,7 +2445,8 @@ actors:
   - code: ACT-human-rights-and-environmental-defenders
     label: Human rights and environmental defenders
     group: ACT-G-justice-groups
-    definition: null
+    definition: People and groups who defend human rights, land or the environment, often at personal
+      risk, e.g. activists and land defenders.
     source: seed
   - code: ACT-marginalized-and-vulnerable-groups
     label: Marginalized and vulnerable groups
@@ -2431,7 +2463,7 @@ actors:
   - code: ACT-women
     label: Women
     group: ACT-G-justice-groups
-    definition: null
+    definition: Women and girls as a group, e.g. women farmers, women workers or women's organisations.
     source: seed
   - code: ACT-youth-and-students
     label: Youth and students
@@ -2470,7 +2502,8 @@ actors:
   - code: ACT-grassroots-and-urban-commons-initiatives
     label: Grassroots and urban-commons initiatives
     group: ACT-G-land-users-and-communities
-    definition: null
+    definition: Citizen-led local initiatives that organise collective action or share resources, e.g.
+      community gardens, housing cooperatives or urban commons.
     source: seed
   - code: ACT-indigenous-peoples-and-local-communities
     label: Indigenous peoples and local communities
@@ -2579,7 +2612,8 @@ actors:
   - code: ACT-financial-sector
     label: Financial sector
     group: ACT-G-private-sector
-    definition: null
+    definition: Banks, investment funds, insurers and other financial institutions, including development
+      finance institutions.
     source: seed
   - code: ACT-private-sector
     label: Private sector
@@ -2592,12 +2626,14 @@ actors:
   - code: ACT-social-enterprises-and-cooperatives
     label: Social enterprises and cooperatives
     group: ACT-G-private-sector
-    definition: null
+    definition: Businesses with a social or environmental purpose, and member-owned cooperatives outside
+      farming (farmer cooperatives go under producer organisations).
     source: seed
   - code: ACT-standard-setters
     label: Standard-setters
     group: ACT-G-private-sector
-    definition: null
+    definition: Organisations that set or certify voluntary sustainability standards, e.g. Fairtrade,
+      Rainforest Alliance or RSPO.
     source: seed
   - code: ACT-swiss-companies
     label: Swiss companies
@@ -2654,7 +2690,8 @@ actors:
   - code: ACT-extension-services
     label: Extension services
     group: ACT-G-state-and-international
-    definition: null
+    definition: Public or private agricultural advisory services as organisations. Individual advisers
+      go under Agricultural practitioners and extension agents.
     source: seed
   - code: ACT-international-donors-and-aid-agencies
     label: International donors and aid agencies

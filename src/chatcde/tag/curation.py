@@ -949,6 +949,18 @@ def apply_workbook(
                 code_map.append((dim, old_label, row["code"], "kept"))
                 if old_label != label:
                     stats[dim]["renamed"] += 1
+                old = old_terms[dim].get(old_label)
+                if old and old.code and old.code != row.get("code"):
+                    # A new code for a kept term: the old one is retired, never
+                    # reused, and maps forward to the new one (0026).
+                    retired[dim].append(
+                        {
+                            "code": old.code,
+                            "label": old_label,
+                            "replaced_by": row.get("code", ""),
+                        }
+                    )
+                    stats[dim]["recoded"] += 1
     for dim, items in retired.items():
         for item in items:
             if item["code"] in all_live:

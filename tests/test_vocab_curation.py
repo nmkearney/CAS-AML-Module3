@@ -569,3 +569,30 @@ def test_carry_into_a_later_round_keeps_only_open_candidates(
     assert "term:Transdisciplinary research" in keys
     assert keys["term:Transdisciplinary research"]["comment"] == ""
     assert keys["term:Interviews and focus group discussions"]["comment"] == ""
+
+
+def test_new_code_for_a_kept_term_retires_the_old_one(
+    files: dict[str, Path], tmp_path: Path
+):
+    export_workbook(files["vocab"], files["cands"], files["wb"])
+    fill(files["wb"], DECISIONS)
+    apply(files)  # v0.3: every term has a code
+    newer = tmp_path / "v0.4.xlsx"
+    export_workbook(files["vocab"], files["cands"], newer, carry_from=files["wb"])
+    fill(newer, {"term:Pastoralists": {"code": "ACT-herders"}})
+    apply_workbook(
+        newer,
+        files["vocab"],
+        version="0.4",
+        terms_range=(1, 40),
+        code_map_path=tmp_path / "map.csv",
+    )
+    actors = yaml.safe_load(files["vocab"].read_text(encoding="utf-8"))["actors"]
+    assert [t["code"] for t in actors["terms"]] == ["ACT-herders"]
+    assert actors["retired"] == [
+        {
+            "code": "ACT-pastoralists",
+            "label": "Pastoralists",
+            "replaced_by": "ACT-herders",
+        }
+    ]

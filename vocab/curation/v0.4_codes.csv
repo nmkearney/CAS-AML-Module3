@@ -160,7 +160,7 @@ data_type,Soil samples,DAT-soil-samples,kept
 data_type,Species distribution data,DAT-species-distribution-data,kept
 data_type,Survey data,DAT-survey-data,kept
 data_type,Vegetation data,DAT-vegetation-data,kept
-data_type,Visual data,DAT-visual-data,kept
+data_type,Visual data,DAT-visual-audio-data,kept
 data_type,Workshop documentation,DAT-workshop-documentation,kept
 justice_lens,Decolonial,JUS-decolonial,kept
 justice_lens,Distributive,JUS-distributive,kept

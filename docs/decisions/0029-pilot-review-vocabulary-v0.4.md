@@ -27,7 +27,8 @@ The curator hand-checked pilot 2 (decision 0028) in `data/reference/review_main.
 ## Decision
 - **Vocabulary v0.4** (`vocab/curation/v0.4.xlsx`; CHANGELOG). Every change carries a
   note citing the pilot record.
-  - **Definitions** for the 8 scale and 7 justice-lens terms, which had none.
+  - **Definitions** for every term: the 8 scale and 7 justice-lens terms, and the
+    37 other terms that had none (drafted by Claude for the curator to review).
   - **research_mode:** clearer labels and definitions for M1–M4 (codes unchanged).
   - **Actors:**
     - `ACT-researchers-and-universities` excludes the authors and their institutes. Its
@@ -37,7 +38,9 @@ The curator hand-checked pilot 2 (decision 0028) in `data/reference/review_main.
       government". Cities go to `ACT-municipal-and-local-governments`. The code stays,
       because no corpus tags exist yet.
   - **Data types:**
-    - `DAT-visual-data` becomes "Visual and audio data".
+    - `DAT-visual-data` becomes `DAT-visual-audio-data`, "Visual and audio data". The
+      old code is retired with `replaced_by`. `vocab apply` now does this whenever a
+      kept term gets a new code.
     - `DAT-field-data` covers social field observation only.
   - **New terms and synonyms:**
     - New additional sub-area `ASA-natural-hazards-and-disaster-risk`.
@@ -74,7 +77,7 @@ The curator hand-checked pilot 2 (decision 0028) in `data/reference/review_main.
   second look.
 - Rewritten strategy blocks (objective, research_mode) are now in block-style YAML.
 - Still open:
-  - 37 terms lack a definition.
+  - Three pairs of terms share a definition and may be duplicates (CHANGELOG 0.4).
   - data_type, method, system, actors and additional_sub_area exceed 40 terms.
   - TA0 ("None explicit" under transformative aspiration) could also be filled in
     by code.
