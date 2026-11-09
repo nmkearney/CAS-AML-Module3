@@ -45,6 +45,8 @@ The curator hand-checked pilot 2 (decision 0028) in `data/reference/review_main.
   - **New terms and synonyms:**
     - New additional sub-area `ASA-natural-hazards-and-disaster-risk`.
     - "water security" is a synonym of the water-management terms.
+  - **Duplicates:** three pairs with the same definition were merged into the older
+    seed term (CHANGELOG 0.4).
   - **Objectives:** the codes and labels stay as the Strategy has them. The curator
     asked about splitting O2 and SG-d, but those lists are fixed. They get
     definitions instead, which are proposals to check against Strategy 1.4.
@@ -77,7 +79,6 @@ The curator hand-checked pilot 2 (decision 0028) in `data/reference/review_main.
   second look.
 - Rewritten strategy blocks (objective, research_mode) are now in block-style YAML.
 - Still open:
-  - Three pairs of terms share a definition and may be duplicates (CHANGELOG 0.4).
   - data_type, method, system, actors and additional_sub_area exceed 40 terms.
   - TA0 ("None explicit" under transformative aspiration) could also be filled in
     by code.

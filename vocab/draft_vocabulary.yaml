@@ -1234,7 +1234,10 @@ data_type:
     group: DAT-G-documents-texts-and-media
     definition: Official government reports, strategies, agendas, and regulatory texts used as data sources
       or objects of analysis.
+    includes:
+    - Policy documents
     source: seed
+    note: 'Duplicate pair, same definition; merged on the curator''s request 2026-11-09: absorbs DAT-policy-documents'
   - code: DAT-international-legal-instruments
     label: International legal instruments
     group: DAT-G-documents-texts-and-media
@@ -1252,14 +1255,6 @@ data_type:
     group: DAT-G-documents-texts-and-media
     definition: Newspaper, press, or online news articles used as primary data for content analysis or
       discourse studies.
-    source: candidate
-  - code: DAT-policy-documents
-    label: Policy documents
-    group: DAT-G-documents-texts-and-media
-    definition: Official government reports, strategies, agendas, and regulatory texts used as data sources
-      or objects of analysis.
-    related:
-    - DAT-documents-and-policies
     source: candidate
   - code: DAT-project-documentation
     label: Project documentation
@@ -1467,14 +1462,6 @@ data_type:
     - household data
     - household statistics
     source: candidate
-  - code: DAT-agricultural-statistics
-    label: Agricultural statistics
-    group: DAT-G-statistics-and-databases
-    definition: Statistical data on crop production, land use, and agricultural censuses, typically derived
-      from national surveys or international organizations.
-    related:
-    - DAT-secondary-statistics
-    source: candidate
   - code: DAT-curated-databases
     label: Curated databases
     group: DAT-G-statistics-and-databases
@@ -1496,14 +1483,17 @@ data_type:
   - code: DAT-secondary-statistics
     label: Secondary statistics
     group: DAT-G-statistics-and-databases
-    definition: Statistical data on crop production, land use, and agricultural censuses, typically derived
-      from national surveys or international organizations.
+    definition: Statistics compiled by others, e.g. national statistical offices, censuses, FAO or the
+      World Bank, including agricultural statistics. Demographic statistics have their own term.
     includes:
     - global statistics
     - global production statistics
     - national statistics
     - official statistics
+    - Agricultural statistics
     source: seed
+    note: 'Duplicate pair, same definition; merged on the curator''s request 2026-11-09: absorbs DAT-agricultural-statistics;
+      its definition had been copied from it, so it is rewritten to cover all secondary statistics'
   - code: DAT-socioeconomic-data
     label: Socioeconomic data
     group: DAT-G-statistics-and-databases
@@ -1511,9 +1501,15 @@ data_type:
       education, and demographics. Excludes purely biophysical or environmental measurements.
     source: candidate
   retired:
+  - code: DAT-policy-documents
+    label: Policy documents
+    replaced_by: DAT-documents-and-policies
   - code: DAT-visual-data
     label: Visual data
     replaced_by: DAT-visual-audio-data
+  - code: DAT-agricultural-statistics
+    label: Agricultural statistics
+    replaced_by: DAT-secondary-statistics
 
 country: {standard: ISO 3166-1 alpha-3, extra_flag: global_or_multi_country}
 
@@ -1905,14 +1901,6 @@ system:
     definition: Social-ecological systems focused on crop and livestock production, including land management,
       agroforestry, and integrated farming practices.
     source: candidate
-  - code: SYS-agriculture-and-food-sector
-    label: Agriculture and food sector
-    group: SYS-G-food-and-commodities
-    definition: The economic and social system encompassing agricultural production, agribusiness, and
-      the broader food supply chain, excluding specific land cover types.
-    related:
-    - SYS-food-systems-and-agriculture
-    source: candidate
   - code: SYS-commodity-value-chains
     label: Commodity value chains
     group: SYS-G-food-and-commodities
@@ -1933,7 +1921,10 @@ system:
     group: SYS-G-food-and-commodities
     definition: The economic and social system encompassing agricultural production, agribusiness, and
       the broader food supply chain, excluding specific land cover types.
+    includes:
+    - Agriculture and food sector
     source: seed
+    note: 'Duplicate pair, same definition; merged on the curator''s request 2026-11-09: absorbs SYS-agriculture-and-food-sector'
   - code: SYS-irrigation-systems
     label: Irrigation systems
     group: SYS-G-food-and-commodities
@@ -2293,6 +2284,10 @@ system:
     group: SYS-G-settlements-and-society
     definition: 'Cities and towns as systems: urban land, housing, services and urban development.'
     source: seed
+  retired:
+  - code: SYS-agriculture-and-food-sector
+    label: Agriculture and food sector
+    replaced_by: SYS-food-systems-and-agriculture
 
 actors:
   roles:

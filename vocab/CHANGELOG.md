@@ -28,11 +28,15 @@ the curator reviews them. Each changed term has a `note` citing the pilot record
 - **Definitions for every term.** The 37 terms that had none (setting 1, data_type 6,
   method 15, system 8, actors 7) now have one. They were drafted by Claude, with
   boundaries to neighbouring terms, for the curator to review.
-- One code retired (`DAT-visual-data` → `DAT-visual-audio-data`). No other code changed.
-- Still open: three pairs share a definition word for word and probably duplicate each
-  other: `DAT-documents-and-policies` / `DAT-policy-documents`,
-  `DAT-agricultural-statistics` / `DAT-secondary-statistics` (the latter's definition
-  looks copied), and `SYS-agriculture-and-food-sector` / `SYS-food-systems-and-agriculture`.
+- **Duplicates merged.** Three pairs had the same definition word for word. In each, the
+  candidate term was merged into the older seed term (also used in the test fixtures), and
+  its label became an `includes` synonym:
+  - `DAT-policy-documents` → `DAT-documents-and-policies`
+  - `DAT-agricultural-statistics` → `DAT-secondary-statistics`, whose definition (copied
+    from agricultural statistics) now covers all statistics compiled by others
+  - `SYS-agriculture-and-food-sector` → `SYS-food-systems-and-agriculture`
+- Four codes retired, each with `replaced_by`: the three merged ones and `DAT-visual-data`
+  → `DAT-visual-audio-data`. data_type now has 42 terms, system 65.
 
 ## 0.3 (2026-11-08)
 

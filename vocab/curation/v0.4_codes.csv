@@ -122,6 +122,7 @@ additional_sub_area,Urban food systems,ASA-urban-food-systems,kept
 additional_sub_area,Water resources management,ASA-water-resources-management,kept
 data_type,Academic literature,DAT-academic-literature,kept
 data_type,Aerial and drone imagery,DAT-aerial-and-drone-imagery,kept
+data_type,Agricultural statistics,DAT-secondary-statistics,merged
 data_type,Case studies,DAT-case-studies,kept
 data_type,Climate and meteorological data,DAT-climate-and-meteorological-data,kept
 data_type,Climate scenarios,DAT-climate-scenarios,kept
@@ -142,6 +143,7 @@ data_type,Legal frameworks,DAT-legal-frameworks,kept
 data_type,Media articles,DAT-media-articles,kept
 data_type,None (conceptual),DAT-none,kept
 data_type,Observation and field visits,DAT-field-data,kept
+data_type,Policy documents,DAT-documents-and-policies,merged
 data_type,Precipitation data,DAT-precipitation-data,kept
 data_type,Primary geospatial,DAT-primary-geospatial,kept
 data_type,Primary qualitative,DAT-primary-qualitative,kept
@@ -269,6 +271,7 @@ system,Agri-food value chains,SYS-agri-food-value-chains,kept
 system,Agricultural and commodity trade,SYS-agricultural-and-commodity-trade,kept
 system,Agricultural knowledge systems,SYS-agricultural-knowledge-systems,kept
 system,Agricultural systems,SYS-agricultural-systems,kept
+system,Agriculture and food sector,SYS-food-systems-and-agriculture,merged
 system,Biodiversity governance,SYS-biodiversity-governance,kept
 system,Commodity value chains,SYS-commodity-value-chains,kept
 system,Commons,SYS-commons,kept

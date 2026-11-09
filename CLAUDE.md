@@ -173,8 +173,9 @@ Two developers work in parallel; see `CONTRIBUTING.md` for the full workflow.
   68% ok. Recall was not checked systematically (left to #16). Decision 0029.
 - v0.4 (`vocab/curation/v0.4.xlsx`): every term has a definition, sharper
   research_mode labels, authors/funders kept out of actors, new
-  `ASA-natural-hazards-and-disaster-risk`. One code changed: `DAT-visual-data` →
-  `DAT-visual-audio-data` (retired with `replaced_by`).
+  `ASA-natural-hazards-and-disaster-risk`, three duplicate pairs merged. Retired with
+  `replaced_by`: `DAT-visual-data`, `DAT-policy-documents`, `DAT-agricultural-statistics`,
+  `SYS-agriculture-and-food-sector`.
 - `JUS-none-explicit` is filled in by code at publish (`tagging.none_terms`), never by the model.
 - Curation workbook gained an `includes` column, curator-added rows and a `strategy_terms` sheet.
 - Rename output_type → audience_type proposed in #60 (`schemas`).
