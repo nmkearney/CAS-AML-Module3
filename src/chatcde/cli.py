@@ -131,6 +131,8 @@ def config_path(ctx: typer.Context) -> None:
 vocab_app = typer.Typer(help="List vocabulary terms, or draft new ones.")
 vocab_app.callback(invoke_without_command=True)(tools_cli.vocab_list)
 vocab_app.command("extract")(tag_cli.vocab_extract)
+vocab_app.command("review")(tag_cli.vocab_review)
+vocab_app.command("apply")(tag_cli.vocab_apply)
 
 evaluate_app = typer.Typer(help="Evaluate tagging or the assistant's answers.")
 evaluate_app.command("tagging")(tag_cli.evaluate_tagging)

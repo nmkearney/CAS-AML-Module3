@@ -3,7 +3,7 @@
 # cde.unibe.ch pages; terms marked `proposed: true` are not from a CDE source.
 # To be revised in the schema workshop and tested on a 200-300 record sample.
 
-version: 0.2
+version: 0.3
 
 impact_area:  # applies to all years, not only 2025 on (decision 0016)
   - {code: JE, label: Just economies and human well-being, boris_unit: "Just Economies & Human Well Being"}
@@ -12,54 +12,604 @@ impact_area:  # applies to all years, not only 2025 on (decision 0016)
   - {code: TE, label: Transformative education and science, boris_unit: "Transformative Education & Science"}
 
 sub_area:
-  - code: JE-a
-    label: Human well-being on a healthy planet
-    scope: Quality of life versus planetary boundaries; social-ecological interactions in mountains, nature parks and protected areas.
-  - code: JE-b
-    label: Just societies on global and local levels
-    scope: Justice and inequality in transitions; distribution of scarce resources; concepts of well-being and prosperity.
-  - code: JE-c
-    label: Deliberation of future economies
-    scope: Solidarity-based, growth-independent and regenerative economies; work, care, social security; visioning, scenarios, deliberative formats.
-  - code: JE-d
-    label: Pathways towards just and regenerative production and consumption systems
-    scope: Real-world labs, incubators, start-ups, grassroots and urban-commons initiatives; niche innovations and scaling.
-  - code: SL-a
-    label: Sustainable land use
-    scope: Cropland, grazing land, forests, wetlands, waterbodies; sustainable land management practices; WOCAT; land degradation neutrality.
-  - code: SL-b
-    label: Biodiversity and ecosystem services
-    scope: Synergies and trade-offs; ecosystem service values and value pluralism; agroecology; land-use policy.
-  - code: SL-c
-    label: Multifunctional landscapes
-    scope: Integrated landscape planning across sectors; participatory visioning; blended, private-sector and impact finance.
-  - code: SL-d
-    label: Catalysts of land system change
-    scope: Tenure security, gender, power asymmetries, telecoupling; change agents and social learning.
-  - code: SG-a
-    label: Public governance of sustainable economy, including trade and finance
-    scope: Trade rules, model rules for agricultural trade; international and illicit financial flows; due diligence regulation.
-  - code: SG-b
-    label: Sustainability governance in the private sector
-    scope: Certification, corporate sustainability programmes, social enterprises, cooperatives, direct trade; greenwashing; pricing and procurement.
-  - code: SG-c
-    label: Transparency and accountability mechanisms
-    scope: Land Matrix and large-scale land investments; multi-stakeholder platforms (cocoa, coffee, seafood); monitoring, evaluation and learning.
-  - code: SG-d
-    label: Community-based and collaborative governance
-    scope: Indigenous and local knowledge; self-organised governance of fisheries, agroecology, housing, green spaces; mega-infrastructure.
-  - code: TE-a
-    label: Transformative learning and teaching for change
-    scope: Curricula, competencies, change agency; BSc/MSc/PhD/CAS programmes; decolonisation and inclusive education.
-  - code: TE-b
-    label: Spaces for science-society collaboration
-    scope: Living labs, forums, knowledge and stakeholder platforms; joint-learning methods; student-led innovation.
-  - code: TE-c
-    label: Higher education for sustainable development
-    scope: Whole-institution approach at UniBe; sustainability-oriented universities; summer schools; training of trainers.
-  - code: TE-d
-    label: Science-policy engagement for sustainability transformations
-    scope: Policy forums, scientific assessments, research funding schemes; networks such as GLP, WOCAT, MRI, Earth System Governance.
+- code: JE-a
+  label: Human well-being on a healthy planet
+  scope: Quality of life versus planetary boundaries; social-ecological interactions in mountains, nature
+    parks and protected areas.
+  includes:
+  - Human well-being
+  - human wellbeing
+- code: JE-b
+  label: Just societies on global and local levels
+  scope: Justice and inequality in transitions; distribution of scarce resources; concepts of well-being
+    and prosperity.
+- code: JE-c
+  label: Deliberation of future economies
+  scope: Solidarity-based, growth-independent and regenerative economies; work, care, social security;
+    visioning, scenarios, deliberative formats.
+- code: JE-d
+  label: Pathways towards just and regenerative production and consumption systems
+  scope: Real-world labs, incubators, start-ups, grassroots and urban-commons initiatives; niche innovations
+    and scaling.
+- code: SL-a
+  label: Sustainable land use
+  scope: Cropland, grazing land, forests, wetlands, waterbodies; sustainable land management practices;
+    WOCAT; land degradation neutrality.
+- code: SL-b
+  label: Biodiversity and ecosystem services
+  scope: Synergies and trade-offs; ecosystem service values and value pluralism; agroecology; land-use
+    policy.
+  includes:
+  - Ecosystem services and functioning
+  - ecosystem services
+  - ecosystem functioning
+  - biodiversity and ecological infrastructure
+  - ecological infrastructure planning
+  - ecosystem multifunctionality
+  - ecosystem resilience
+  - ecosystem service supply
+  - ecosystem service trade-offs
+  - ecosystem services preservation
+  - ecosystem services quantification
+  - social-ecological system resilience
+- code: SL-c
+  label: Multifunctional landscapes
+  scope: Integrated landscape planning across sectors; participatory visioning; blended, private-sector
+    and impact finance.
+- code: SL-d
+  label: Catalysts of land system change
+  scope: Tenure security, gender, power asymmetries, telecoupling; change agents and social learning.
+- code: SG-a
+  label: Public governance of sustainable economy, including trade and finance
+  scope: Trade rules, model rules for agricultural trade; international and illicit financial flows; due
+    diligence regulation.
+  includes:
+  - Global trade governance
+  - international governance
+  - international trade governance
+  - transnational governance
+- code: SG-b
+  label: Sustainability governance in the private sector
+  scope: Certification, corporate sustainability programmes, social enterprises, cooperatives, direct
+    trade; greenwashing; pricing and procurement.
+- code: SG-c
+  label: Transparency and accountability mechanisms
+  scope: Land Matrix and large-scale land investments; multi-stakeholder platforms (cocoa, coffee, seafood);
+    monitoring, evaluation and learning.
+- code: SG-d
+  label: Community-based and collaborative governance
+  scope: Indigenous and local knowledge; self-organised governance of fisheries, agroecology, housing,
+    green spaces; mega-infrastructure.
+- code: TE-a
+  label: Transformative learning and teaching for change
+  scope: Curricula, competencies, change agency; BSc/MSc/PhD/CAS programmes; decolonisation and inclusive
+    education.
+  includes:
+  - transformative learning
+- code: TE-b
+  label: Spaces for science-society collaboration
+  scope: Living labs, forums, knowledge and stakeholder platforms; joint-learning methods; student-led
+    innovation.
+- code: TE-c
+  label: Higher education for sustainable development
+  scope: Whole-institution approach at UniBe; sustainability-oriented universities; summer schools; training
+    of trainers.
+  includes:
+  - education for sustainable development
+  - education for sustainability
+  - learning for sustainability
+  - sustainability implementation in higher education
+  - sustainability integration in higher education
+  - sustainable development education
+  - sustainable university culture
+  - university sustainability
+- code: TE-d
+  label: Science-policy engagement for sustainability transformations
+  scope: Policy forums, scientific assessments, research funding schemes; networks such as GLP, WOCAT,
+    MRI, Earth System Governance.
+
+additional_sub_area:
+  terms:
+  - code: ASA-adaptive-and-transformative-capacity
+    label: Adaptive and transformative capacity
+    impact_area: cross_cutting
+    definition: The ability of social, ecological, or socio-ecological systems to adjust to changes or
+      undergo fundamental structural shifts to improve sustainability and resilience.
+    source: candidate
+  - code: ASA-agricultural-development-and-planning
+    label: Agricultural development and planning
+    impact_area: SL
+    definition: Strategies, services, and policies aimed at improving agricultural productivity, sector
+      growth, and institutional support for farming systems.
+    source: candidate
+  - code: ASA-agricultural-expansion
+    label: Agricultural expansion
+    impact_area: SL
+    definition: The spatial increase of agricultural land use, including frontier expansion, clearing,
+      and boom-crop plantation growth, excluding intensification on existing land.
+    source: candidate
+  - code: ASA-agrobiodiversity-and-agroecology
+    label: Agrobiodiversity and agroecology
+    impact_area: SL
+    definition: The conservation, management, and promotion of biological diversity in agricultural systems,
+      including agroecological practices, agroforestry, and the maintenance of crop and non-crop diversity.
+    source: candidate
+  - code: ASA-biodiversity-conservation
+    label: Biodiversity conservation
+    impact_area: SL
+    definition: Strategies, governance, and finance aimed at protecting biological diversity and mitigating
+      its loss, including ecosystem restoration.
+    related:
+    - SL-b
+    source: candidate
+  - code: ASA-carbon-sequestration
+    label: Carbon sequestration
+    impact_area: SL
+    definition: The process of capturing and storing atmospheric carbon dioxide in biological or geological
+      reservoirs, such as soils, vegetation, or oceans.
+    source: candidate
+  - code: ASA-cash-crop-dynamics
+    label: Cash crop dynamics
+    impact_area: SL
+    definition: Economic and production processes related to cash crops, including price fluctuations,
+      booms, lock-in effects, and intensification of production.
+    source: candidate
+  - code: ASA-climate-and-environmental-justice
+    label: Climate and environmental justice
+    impact_area: JE
+    definition: Fairness and equity in the distribution of environmental burdens and benefits, and in
+      the processes governing climate change mitigation and adaptation.
+    source: candidate
+  - code: ASA-climate-change
+    label: Climate change
+    impact_area: cross_cutting
+    definition: The study of global climate change, including its physical drivers, scenarios, and impacts
+      on environmental and social systems.
+    source: candidate
+  - code: ASA-climate-change-adaptation
+    label: Climate change adaptation
+    impact_area: cross_cutting
+    definition: Strategies, measures, and processes to adjust to actual or expected climate stimuli and
+      their effects, including vulnerability assessment and resilience building.
+    source: candidate
+  - code: ASA-climate-change-mitigation
+    label: Climate change mitigation
+    impact_area: cross_cutting
+    definition: Strategies, policies, and actions aimed at reducing greenhouse gas emissions or enhancing
+      carbon sinks to limit global warming.
+    source: candidate
+  - code: ASA-conservation-policy-and-interventions
+    label: Conservation policy and interventions
+    impact_area: SL
+    definition: Strategies, policies, and management actions designed to protect biodiversity, ecosystems,
+      or protected areas, including prevention of land conversion and NGO-led schemes.
+    source: candidate
+  - code: ASA-conservation-development-trade-offs
+    label: Conservation-development trade-offs
+    impact_area: SL
+    definition: Tensions, balances, and governance challenges arising from the interaction between nature
+      conservation objectives and economic or regional development activities.
+    source: candidate
+  - code: ASA-deforestation-and-forest-degradation
+    label: Deforestation and forest degradation
+    impact_area: SL
+    definition: Processes, drivers, monitoring, and regulation of forest loss and degradation, including
+      reforestation and land-use change impacts on forest cover.
+    source: candidate
+  - code: ASA-energy-transition
+    label: Energy transition
+    impact_area: outside
+    definition: The shift from fossil fuels to renewable energy sources, including the environmental,
+      social, and economic impacts of this transformation.
+    related:
+    - SYS-energy
+    source: candidate
+  - code: ASA-environmental-degradation-and-impacts
+    label: Environmental degradation and impacts
+    impact_area: SL
+    definition: The assessment and analysis of negative effects on the environment, including degradation
+      of natural resources and ecosystems.
+    source: candidate
+  - code: ASA-environmental-policy-design-and-implementation
+    label: Environmental policy design and implementation
+    impact_area: SG
+    definition: The formulation, integration, and execution of environmental regulations and strategies,
+      including policy mixes and governance frameworks for sustainability.
+    source: candidate
+  - code: ASA-food-security
+    label: Food security
+    impact_area: cross_cutting
+    definition: The availability, access, and utilization of sufficient, safe, and nutritious food to
+      meet dietary needs for an active and healthy life.
+    source: candidate
+  - code: ASA-food-waste
+    label: Food waste
+    impact_area: JE
+    definition: The loss or discarding of food that is fit for human consumption, including reduction
+      strategies and management of food waste streams.
+    source: candidate
+  - code: ASA-forest-governance-and-policy
+    label: Forest governance and policy
+    impact_area: SG
+    definition: Institutions, management practices, partnerships, and international policies regulating
+      forest resources and their use.
+    source: candidate
+  - code: ASA-gender-and-labor
+    label: Gender and labor
+    impact_area: JE
+    definition: Gender-based inequalities, roles, and divisions of labor, particularly regarding access
+      to resources, working hours, and rights in production contexts.
+    source: candidate
+  - code: ASA-glaciers-and-snow-cover
+    label: Glaciers and snow cover
+    impact_area: outside
+    definition: Physical changes in glaciers and snowpack, including retreat, fluctuations, and loss,
+      and their immediate hydrological impacts.
+    source: candidate
+  - code: ASA-global-change-syndromes
+    label: Global change syndromes
+    impact_area: cross_cutting
+    definition: Complex, interacting problems arising from global change, such as climate change, biodiversity
+      loss, and land degradation, requiring integrated mitigation strategies.
+    source: candidate
+  - code: ASA-governance-structures-and-processes
+    label: Governance structures and processes
+    impact_area: SG
+    definition: The institutional arrangements, decision-making mechanisms, and administrative processes
+      that organize collective action and resource management.
+    source: candidate
+  - code: ASA-greenhouse-gas-emissions
+    label: Greenhouse gas emissions
+    impact_area: cross_cutting
+    definition: The release of gases into the atmosphere that contribute to the greenhouse effect and
+      climate change, including sources, sinks, and mitigation strategies.
+    source: candidate
+  - code: ASA-human-environment-interactions
+    label: Human-environment interactions
+    impact_area: cross_cutting
+    definition: The dynamic feedbacks and linkages between human societies and natural systems, including
+      land cover changes and socio-ecological coupling.
+    source: candidate
+  - code: ASA-hydrological-processes
+    label: Hydrological processes
+    impact_area: outside
+    definition: Physical processes governing water movement, including runoff generation, surface flow
+      dynamics, and catchment-scale water balance.
+    source: candidate
+  - code: ASA-indigenous-rights-and-identity
+    label: Indigenous rights and identity
+    impact_area: JE
+    definition: Legal, political, and cultural aspects concerning the rights, land tenure, and identity
+      preservation of indigenous peoples.
+    source: candidate
+  - code: ASA-inter-and-transdisciplinary-collaboration
+    label: Inter- and transdisciplinary collaboration
+    impact_area: TE
+    definition: Research approaches and practices involving collaboration between academic disciplines
+      or between science and society to address complex sustainability challenges.
+    related:
+    - TE-b
+    source: candidate
+  - code: ASA-invasive-species
+    label: Invasive species
+    impact_area: SL
+    definition: The study of non-native species that cause harm to the environment, economy, or human
+      health, including their spread, impact, and management strategies.
+    source: candidate
+  - code: ASA-irrigation
+    label: Irrigation
+    impact_area: SL
+    definition: The supply of water to crops and the management of irrigation infrastructure and water
+      sourcing for agricultural production.
+    source: candidate
+  - code: ASA-knowledge-co-production
+    label: Knowledge co-production
+    impact_area: TE
+    definition: Collaborative processes involving diverse stakeholders in generating, validating, and
+      applying knowledge, distinct from general science-policy engagement or academic teaching.
+    related:
+    - TE-b
+    source: candidate
+  - code: ASA-knowledge-exchange-and-communication
+    label: Knowledge exchange and communication
+    impact_area: TE
+    definition: Processes of generating, sharing, and managing scientific knowledge and information between
+      researchers, stakeholders, and the public.
+    source: candidate
+  - code: ASA-land-and-natural-resource-governance
+    label: Land and natural resource governance
+    impact_area: cross_cutting
+    definition: Institutional arrangements, policies, and decision-making processes governing the use,
+      management, and allocation of land and associated natural resources.
+    source: candidate
+  - code: ASA-land-and-soil-degradation
+    label: Land and soil degradation
+    impact_area: SL
+    definition: The deterioration of land and soil quality due to natural or anthropogenic factors, including
+      prevention, mitigation, and neutrality strategies.
+    related:
+    - SL-d
+    source: candidate
+  - code: ASA-land-restoration
+    label: Land restoration
+    impact_area: SL
+    definition: Processes and policies aimed at recovering the ecological function and productivity of
+      degraded land, including rangelands and croplands.
+    source: candidate
+  - code: ASA-land-tenure-and-rights
+    label: Land tenure and rights
+    impact_area: cross_cutting
+    definition: Legal and customary frameworks governing land ownership, access, and security, including
+      issues of dispossession and inequality.
+    source: candidate
+  - code: ASA-land-use-and-cover-change
+    label: Land use and cover change
+    impact_area: SL
+    definition: Processes, drivers, and monitoring of transformations in land use, land cover, and landscape
+      structure, including degradation and vegetation dynamics.
+    related:
+    - SL-d
+    source: candidate
+  - code: ASA-land-use-competition
+    label: Land use competition
+    impact_area: SL
+    definition: Conflicts and trade-offs arising from competing demands for land resources among different
+      users, sectors, or land uses.
+    source: candidate
+  - code: ASA-land-use-intensification
+    label: Land use intensification
+    impact_area: SL
+    definition: Processes increasing input or output per unit area in land systems, including agricultural
+      and non-agricultural contexts, and their ecological and social impacts.
+    source: candidate
+  - code: ASA-large-scale-land-acquisitions
+    label: Large-scale land acquisitions
+    impact_area: cross_cutting
+    definition: The acquisition of large tracts of land for agricultural, industrial, or conservation
+      purposes, often involving significant displacement or changes in land tenure.
+    related:
+    - SYS-large-scale-land-investments
+    source: candidate
+  - code: ASA-local-and-indigenous-knowledge
+    label: Local and indigenous knowledge
+    impact_area: cross_cutting
+    definition: Traditional, community-based, or indigenous knowledge systems and their integration into
+      research, governance, or practice. Excludes general scientific knowledge or purely technical data.
+    includes:
+    - Indigenous and local knowledge
+    - indigenous knowledge
+    - indigenous knowledge systems
+    - local ecological knowledge
+    - traditional ecological knowledge
+    source: candidate
+  - code: ASA-natural-resource-governance
+    label: Natural resource governance
+    impact_area: SG
+    definition: The management, access, and depletion of natural resources, including ecosystems and raw
+      materials, within socio-economic and political contexts.
+    source: candidate
+  - code: ASA-participatory-governance
+    label: Participatory governance
+    impact_area: SG
+    definition: Processes and mechanisms for involving citizens, communities, and civil society in decision-making,
+      management, and research activities.
+    related:
+    - SG-d
+    source: candidate
+  - code: ASA-policy-coherence-and-synergies
+    label: Policy coherence and synergies
+    impact_area: SG
+    definition: The alignment, integration, and positive interactions between different policy domains,
+      sectors, or levels of governance to achieve sustainability goals.
+    source: candidate
+  - code: ASA-population-mobility
+    label: Population mobility
+    impact_area: outside
+    definition: The movement of people between locations, including rural-urban, urban-rural, and international
+      migration for work, education, or settlement.
+    source: candidate
+  - code: ASA-poverty-reduction
+    label: Poverty reduction
+    impact_area: JE
+    definition: Strategies, policies, and outcomes aimed at alleviating poverty, improving livelihoods,
+      and reducing economic deprivation and vulnerability among populations.
+    source: candidate
+  - code: ASA-protected-area-governance
+    label: Protected area governance
+    impact_area: SG
+    definition: The institutional arrangements, management practices, and policy processes involved in
+      establishing, maintaining, and governing protected areas, including issues of downgrading and equity.
+    source: candidate
+  - code: ASA-public-procurement
+    label: Public procurement
+    impact_area: SG
+    definition: Policies, regulations, and practices governing the purchasing of goods and services by
+      public authorities to achieve sustainability goals.
+    source: candidate
+  - code: ASA-regional-development
+    label: Regional development
+    impact_area: cross_cutting
+    definition: Strategies, paradigms, and pathways for the economic, social, and environmental development
+      of specific geographic regions, including rural and mountain areas.
+    source: candidate
+  - code: ASA-research-funding-policy
+    label: Research funding policy
+    impact_area: TE
+    definition: Policies, processes, and reforms governing the allocation, management, and strategic direction
+      of public and private research funding.
+    related:
+    - SYS-science-systems-and-funding
+    source: candidate
+  - code: ASA-resource-consumption
+    label: Resource consumption
+    impact_area: JE
+    definition: The use of natural resources and materials, including assessments of sustainability, footprints,
+      and limits to consumption.
+    source: candidate
+  - code: ASA-sediment-dynamics
+    label: Sediment dynamics
+    impact_area: SL
+    definition: Processes of soil erosion, sediment transport, and deposition in terrestrial and aquatic
+      systems, including prediction models and impacts on water quality.
+    source: candidate
+  - code: ASA-shifting-cultivation
+    label: Shifting cultivation
+    impact_area: SL
+    definition: Agricultural practices involving the temporary cultivation of land followed by fallow
+      periods, including swidden systems and their dynamics.
+    source: candidate
+  - code: ASA-smallholder-agriculture
+    label: Smallholder agriculture
+    impact_area: cross_cutting
+    definition: Research focusing on the livelihoods, agency, food security, and rights of small-scale
+      farmers and their agricultural practices.
+    source: candidate
+  - code: ASA-social-norms-and-institutions
+    label: Social norms and institutions
+    impact_area: cross_cutting
+    definition: The role of shared expectations, cultural practices, trust, and formal or informal rules
+      in shaping behavior, governance, and the acceptability of sustainability interventions.
+    source: candidate
+  - code: ASA-societal-transformation
+    label: Societal transformation
+    impact_area: cross_cutting
+    definition: Broad-scale shifts in social structures, norms, and institutions towards sustainability.
+      Excludes specific governance mechanisms or educational methods.
+    source: candidate
+  - code: ASA-socioeconomic-drivers-and-marginality
+    label: Socioeconomic drivers and marginality
+    impact_area: JE
+    definition: Factors influencing economic and social development, including poverty, inequality, and
+      the marginalization of specific groups or regions.
+    source: candidate
+  - code: ASA-soil-and-water-conservation
+    label: Soil and water conservation
+    impact_area: SL
+    definition: Practices and research focused on preventing soil erosion, maintaining soil fertility,
+      and managing water resources to sustain land productivity.
+    related:
+    - SL-a
+    source: candidate
+  - code: ASA-soil-erosion
+    label: Soil erosion
+    impact_area: SL
+    definition: Processes of soil loss by water or wind, including risk assessment, measurement, and control
+      measures. Excludes general soil fertility or land degradation not specifically focused on erosion.
+    source: candidate
+  - code: ASA-spatial-and-land-use-planning
+    label: Spatial and land use planning
+    impact_area: SL
+    definition: Strategic processes for organizing land use, settlement, and infrastructure at local,
+      regional, or national scales, including participatory development planning.
+    source: candidate
+  - code: ASA-stakeholder-engagement
+    label: Stakeholder engagement
+    impact_area: cross_cutting
+    definition: Processes involving the inclusion, dialogue, negotiation, and management of diverse stakeholder
+      interests, perspectives, and conflicts in sustainability contexts.
+    source: candidate
+  - code: ASA-sustainability-competencies
+    label: Sustainability competencies
+    impact_area: TE
+    definition: Skills, knowledge, and attitudes required for sustainable development, specifically within
+      the context of education and learning processes.
+    related:
+    - TE-c
+    source: candidate
+  - code: ASA-sustainability-standards-and-certification
+    label: Sustainability standards and certification
+    impact_area: SG
+    definition: Normative frameworks, criteria, and certification schemes used to assess and verify the
+      environmental and social performance of products, services, or organizations.
+    source: candidate
+  - code: ASA-sustainable-consumption-and-production
+    label: Sustainable consumption and production
+    impact_area: JE
+    definition: Patterns of resource use, lifestyle choices, and value chain dynamics that balance human
+      well-being with ecological limits.
+    related:
+    - JE-d
+    source: candidate
+  - code: ASA-sustainable-development
+    label: Sustainable development
+    impact_area: cross_cutting
+    definition: The overarching concept of meeting present needs without compromising future generations,
+      including the SDGs, sustainability science, and systemic approaches to achieving sustainability.
+    source: candidate
+  - code: ASA-sustainable-food-systems
+    label: Sustainable food systems
+    impact_area: cross_cutting
+    definition: The study of food production, distribution, and consumption systems with a focus on sustainability,
+      sovereignty, and resilience, including agricultural practices and diets.
+    related:
+    - SYS-food-systems-and-agriculture
+    source: candidate
+  - code: ASA-sustainable-land-management
+    label: Sustainable land management
+    impact_area: SL
+    definition: Practices, governance, and development strategies aimed at maintaining or improving land
+      productivity and ecosystem health while meeting human needs.
+    related:
+    - SL-a
+    source: candidate
+  - code: ASA-sustainable-mobility
+    label: Sustainable mobility
+    impact_area: outside
+    definition: Research on transport systems, transitions, and reforms aimed at reducing resource use
+      and environmental impact while ensuring access and safety.
+    source: candidate
+  - code: ASA-sustainable-mountain-development
+    label: Sustainable mountain development
+    impact_area: cross_cutting
+    definition: Development challenges, livelihoods, and sustainability issues specific to mountain regions,
+      including poverty, hazards, and tourism.
+    source: candidate
+  - code: ASA-sustainable-natural-resource-management
+    label: Sustainable natural resource management
+    impact_area: SL
+    definition: The governance, planning, and utilization of natural resources (water, minerals, energy,
+      land) to ensure long-term ecological integrity and social benefit.
+    source: candidate
+  - code: ASA-sustainable-trade
+    label: Sustainable trade
+    impact_area: SG
+    definition: The study of trade policies, flows, and systems with a focus on environmental, social,
+      and economic sustainability, including agricultural and food trade.
+    related:
+    - SYS-trade
+    source: candidate
+  - code: ASA-telecoupling
+    label: Telecoupling
+    impact_area: SL
+    definition: Long-distance interactions between socio-ecological systems, including flows of goods,
+      people, information, and impacts across spatial scales.
+    source: candidate
+  - code: ASA-trade-policy-and-agreements
+    label: Trade policy and agreements
+    impact_area: SG
+    definition: The analysis of international trade rules, agreements, and the political space for national
+      policy-making within global trade frameworks.
+    related:
+    - SYS-trade
+    source: candidate
+  - code: ASA-trade-offs-and-co-benefits
+    label: Trade-offs and co-benefits
+    impact_area: cross_cutting
+    definition: The analysis of conflicting or complementary outcomes, including negative side effects
+      and positive synergies, arising from sustainability interventions or policy decisions.
+    source: candidate
+  - code: ASA-urban-food-systems
+    label: Urban food systems
+    impact_area: JE
+    definition: The production, distribution, and governance of food within urban areas, including urban
+      agriculture and gardening. Excludes rural food production.
+    source: candidate
+  - code: ASA-water-resources-management
+    label: Water resources management
+    impact_area: SL
+    definition: The planning, governance, and sustainable use of freshwater resources, including integrated
+      management, conservation, and addressing scarcity.
+    source: candidate
 
 objective:
   - {code: O1, label: Ecosystem regeneration for sustainable livelihoods}
@@ -98,59 +648,801 @@ transformative_aspiration:  # Westerink et al. 2026; multi-valued, tag only when
     label: None explicit
     definition: "The work states no aspiration to change the systems it studies, as in much purely analytical research."
 
-method:  # proposed seed list, 34 terms in 8 groups
-  participatory_transdisciplinary:
-    - Knowledge co-production
-    - Participatory action research
-    - Living labs and real-world labs
-    - Multi-stakeholder processes
-    - Futures methods (visioning, scenarios, futures workshops)
-    - Deliberative formats
-  qualitative_social_science:
-    - Interviews and focus groups
-    - Ethnography and participant observation
-    - Case study
-    - Document and policy analysis
-    - Discourse and narrative analysis
-    - Legal analysis
-  quantitative_social_science:
-    - Household and other surveys
-    - Econometrics
+method:
+  groups:
+  - code: MET-G-biophysical
+    label: Biophysical
+  - code: MET-G-geospatial-and-land
+    label: Geospatial and land
+  - code: MET-G-institutional-and-political-analysis
+    label: Institutional and political analysis
+  - code: MET-G-participatory-and-transdisciplinary
+    label: Participatory and transdisciplinary
+  - code: MET-G-qualitative-social-science
+    label: Qualitative social science
+  - code: MET-G-quantitative-social-science
+    label: Quantitative social science
+  - code: MET-G-synthesis-and-theory
+    label: Synthesis and theory
+  - code: MET-G-systems-assessment-and-evaluation
+    label: Systems, assessment and evaluation
+  terms:
+  - code: MET-biodiversity-field-survey
+    label: Biodiversity field survey
+    group: MET-G-biophysical
+    definition: null
+    source: seed
+  - code: MET-ecosystem-service-assessment-and-valuation
+    label: Ecosystem service assessment and valuation
+    group: MET-G-biophysical
+    definition: Methods for evaluating the supply, demand, and economic value of ecosystem services, including
+      quantitative assessments and valuation techniques.
+    includes:
+    - economic valuation of ecosystem services
+    - ecosystem service assessment
+    - ecosystem services assessment
+    - ecosystem services assessment methodology
+    source: seed
+  - code: MET-field-survey
+    label: Field survey
+    group: MET-G-biophysical
+    definition: Systematic collection of primary data through direct observation, measurement, or sampling
+      in natural or built environments, excluding remote sensing and laboratory analysis.
+    source: candidate
+  - code: MET-field-visits-and-site-inspections
+    label: Field visits and site inspections
+    group: MET-G-biophysical
+    definition: Direct physical observation and data collection at specific locations, including agricultural
+      fields, forests, water sources, and urban areas, to assess conditions or verify information.
+    includes:
+    - Field walks and transects
+    - field walks
+    - intensive field walks
+    - transect walks
+    source: candidate
+  - code: MET-soil-and-water-assessment
+    label: Soil and water assessment
+    group: MET-G-biophysical
+    definition: Field-based methods for sampling, analyzing, and surveying soil properties, profiles,
+      and physiochemical parameters to assess land quality and degradation.
+    includes:
+    - soil depth sampling
+    - soil physiochemical analysis
+    - soil profile analysis
+    - soil property measurement
+    - soil sampling
+    - soil surveys
+    - erosion damage mapping
+    - runoff and erosion monitoring
+    - soil erosion mapping
+    - soil erosion monitoring
+    source: seed
+  - code: MET-soil-spectroscopy
+    label: Soil spectroscopy
+    group: MET-G-biophysical
+    definition: Use of optical or reflectance spectroscopy to measure soil properties, such as organic
+      carbon content, for rapid analysis and prediction.
+    source: candidate
+  - code: MET-database-development
+    label: Database development
+    group: MET-G-geospatial-and-land
+    definition: null
+    source: seed
+  - code: MET-gis-and-spatial-analysis
+    label: GIS and spatial analysis
+    group: MET-G-geospatial-and-land
+    definition: Methods for analyzing geographic data, including spatial variation, displacement patterns,
+      and spatiotemporal trends using GIS tools.
+    includes:
+    - spatial analysis of displacement
+    - spatial variation analysis
+    - spatiotemporal analysis
+    source: seed
+  - code: MET-land-degradation-and-resource-assessment
+    label: Land degradation and resource assessment
+    group: MET-G-geospatial-and-land
+    definition: Systematic evaluation of land condition, degradation processes, and resource availability,
+      often using multi-scale or participatory approaches.
+    source: candidate
+  - code: MET-land-use-and-land-cover
+    label: Land-use and land-cover change mapping
+    group: MET-G-geospatial-and-land
+    definition: Methods for mapping, classifying, and analyzing changes in land use and land cover, including
+      remote sensing-based assessments and spatial analysis of transitions.
+    includes:
+    - land use prediction modeling
+    - empirical land cover analysis
+    - forest cover change analysis
+    - land change modeling
+    - land cover assessment
+    - land cover change analysis
+    - land use change analysis
+    - land use classification review
+    - land use mapping
+    - land use transition reconstruction
+    - land-use change simulation
+    - landuse change modeling
+    source: seed
+  - code: MET-landscape-visualization-and-appraisal
+    label: Landscape visualization and appraisal
+    group: MET-G-geospatial-and-land
+    definition: Methods for creating visual representations of landscapes and assessing their visual quality,
+      attributes, or aesthetic value.
+    source: candidate
+  - code: MET-remote-sensing
+    label: Remote sensing
+    group: MET-G-geospatial-and-land
+    definition: Acquisition and analysis of data from satellite or aerial platforms, including image processing
+      and classification.
+    includes:
+    - remote sensing analysis
+    - remote sensing classification
+    - satellite imagery analysis
+    source: seed
+  - code: MET-spatially-explicit-assessment
+    label: Spatially explicit assessment
+    group: MET-G-geospatial-and-land
+    definition: Quantitative analysis of environmental or land-use dynamics using geographic coordinates
+      to map extent, distribution, and change over space and time.
+    source: candidate
+  - code: MET-wocat-methodology
+    label: WOCAT methodology
+    group: MET-G-geospatial-and-land
+    definition: Standardized methods for documenting, monitoring, and evaluating sustainable land management
+      practices and technologies, specifically using the World Overview of Conservation Approaches and
+      Technologies framework.
+    source: candidate
+  - code: MET-power-sensitive-institutional-analysis
+    label: Power-sensitive institutional analysis
+    group: MET-G-institutional-and-political-analysis
+    definition: null
+    source: seed
+  - code: MET-social-network-analysis
+    label: Social network analysis
+    group: MET-G-institutional-and-political-analysis
+    definition: Quantitative and qualitative methods for mapping and analyzing relationships, interactions,
+      and structures among actors, organizations, or entities within a network.
+    source: candidate
+  - code: MET-stakeholder-and-actor-analysis
+    label: Stakeholder and actor analysis
+    group: MET-G-institutional-and-political-analysis
+    definition: Methods for identifying, mapping, and analyzing the roles, interests, and power dynamics
+      of stakeholders and actors in a specific context.
+    includes:
+    - stakeholder analysis
+    - stakeholder mapping
+    - stakeholder valuation
+    source: seed
+  - code: MET-value-chain-analysis
+    label: Value chain analysis
+    group: MET-G-institutional-and-political-analysis
+    definition: null
+    source: seed
+  - code: MET-conferences-and-workshops
+    label: Academic and professional events
+    group: MET-G-participatory-and-transdisciplinary
+    definition: Organized academic or professional events, including international conferences, expert
+      workshops, and similar gatherings, used for knowledge exchange or research coordination.
+    source: candidate
+  - code: MET-collaborative-learning
+    label: Collaborative learning
+    group: MET-G-participatory-and-transdisciplinary
+    definition: Processes where diverse actors jointly generate, share, and apply knowledge through interaction,
+      distinct from formal co-production of research outputs.
+    source: candidate
+  - code: MET-deliberative-formats
+    label: Deliberative formats
+    group: MET-G-participatory-and-transdisciplinary
+    definition: Structured group discussions, panels, or plenary sessions designed to facilitate dialogue,
+      exchange views, or reach consensus among participants.
+    includes:
+    - moderated plenary discussion
+    - panel discussion
+    - podium discussion
+    source: seed
+  - code: MET-knowledge-co-production
+    label: Knowledge co-production
+    group: MET-G-participatory-and-transdisciplinary
+    definition: null
+    source: seed
+  - code: MET-living-labs-and-real-world
+    label: Living labs and real-world labs
+    group: MET-G-participatory-and-transdisciplinary
+    definition: null
+    source: seed
+  - code: MET-multi-stakeholder-processes
+    label: Multi-stakeholder processes
+    group: MET-G-participatory-and-transdisciplinary
+    definition: Structured methods for engaging, consulting, or collaborating with diverse stakeholders
+      to co-produce knowledge or inform decision-making.
+    includes:
+    - stakeholder engagement
+    - participatory stakeholder engagement
+    - stakeholder collaboration
+    - stakeholder consultation
+    - stakeholder consultation framework
+    - stakeholder coordination mechanisms
+    - stakeholder interaction
+    - stakeholder meetings
+    source: seed
+  - code: MET-participatory-action-research
+    label: Participatory action research
+    group: MET-G-participatory-and-transdisciplinary
+    definition: null
+    source: seed
+  - code: MET-participatory-mapping-and-appraisal
+    label: Participatory mapping and appraisal
+    group: MET-G-participatory-and-transdisciplinary
+    definition: Methods involving community members in creating maps or collecting field data through
+      workshops, field walks, and rural appraisals.
+    source: candidate
+  - code: MET-participatory-methods
+    label: Participatory methods
+    group: MET-G-participatory-and-transdisciplinary
+    definition: Research approaches involving active engagement of stakeholders in data collection, analysis,
+      decision-making, or co-creation of knowledge, excluding purely observational or expert-led assessments.
+    source: candidate
+  - code: MET-participatory-workshops
+    label: Participatory workshops
+    group: MET-G-participatory-and-transdisciplinary
+    definition: Structured interactive sessions involving diverse stakeholders to facilitate dialogue,
+      co-creation, or consensus-building, distinct from individual interviews or long-term action research.
+    includes:
+    - Workshops and consultations
+    - workshops
+    - consultation workshop
+    - future workshops
+    - workshop
+    - workshop facilitation
+    source: candidate
+  - code: MET-scenario-development-and-analysis
+    label: Scenario development and analysis
+    group: MET-G-participatory-and-transdisciplinary
+    definition: The creation, simulation, and evaluation of alternative future states or pathways to support
+      decision-making and policy planning.
+    includes:
+    - Climate scenario analysis
+    - climate scenario modeling
+    - regional climate scenarios
+    - Qualitative scenario development
+    - transdisciplinary scenario development
+    source: candidate
+  - code: MET-transdisciplinary-research
+    label: Transdisciplinary research
+    group: MET-G-participatory-and-transdisciplinary
+    definition: Research approaches involving collaboration between academic disciplines and non-academic
+      stakeholders to co-produce knowledge and address complex sustainability challenges.
+    source: candidate
+  - code: MET-case-study
+    label: Case study
+    group: MET-G-qualitative-social-science
+    definition: In-depth qualitative or mixed-methods investigation of specific instances, locations,
+      or events to understand complex phenomena in their real-world context.
+    includes:
+    - case study analysis
+    - case studies
+    - case study review
+    - case study synthesis
+    - case study compilation
+    - in-depth case studies
+    source: seed
+  - code: MET-comparative-case-study
+    label: Comparative case study
+    group: MET-G-qualitative-social-science
+    definition: Research designs that compare two or more cases, systems, or policies to identify similarities,
+      differences, and causal mechanisms across contexts.
+    source: candidate
+  - code: MET-discourse-and-narrative-analysis
+    label: Discourse and narrative analysis
+    group: MET-G-qualitative-social-science
+    definition: Qualitative methods analyzing language, texts, and narratives to understand social meanings,
+      power relations, and communicative practices.
+    includes:
+    - discourse analysis
+    - discourse linguistic analysis
+    - international discourse analysis
+    source: seed
+  - code: MET-document-and-policy-analysis
+    label: Document and policy analysis
+    group: MET-G-qualitative-social-science
+    definition: Systematic examination of public policies, regulatory frameworks, and policy mixes to
+      assess their design, implementation, and effectiveness.
+    includes:
+    - document analysis
+    - document review
+    - Policy analysis
+    - policy mix analysis
+    source: seed
+  - code: MET-ethnography-and-participant-observation
+    label: Ethnography and participant observation
+    group: MET-G-qualitative-social-science
+    definition: null
+    source: seed
+  - code: MET-expert-interviews
+    label: Expert interviews
+    group: MET-G-qualitative-social-science
+    definition: Semi-structured or structured interviews conducted with specialists, practitioners, or
+      decision-makers to gather specific knowledge or insights.
+    source: candidate
+  - code: MET-historical-analysis
+    label: Historical analysis
+    group: MET-G-qualitative-social-science
+    definition: Research methods that examine past events, trends, or developments to understand current
+      contexts, including historical reviews and diachronic linguistic or conceptual analysis.
+    source: candidate
+  - code: MET-interviews-and-focus-groups
+    label: Interviews and focus groups
+    group: MET-G-qualitative-social-science
+    definition: Qualitative data collection methods involving one-on-one or group discussions, including
+      semi-structured, in-depth, and household interviews.
+    includes:
+    - semi-structured interviews
+    - qualitative interviews
+    - in-depth qualitative interviews
+    - semi-structured household interviews
+    - focus group discussions
+    - group discussions
+    - interviews
+    - personal interviews
+    source: seed
+  - code: MET-legal-analysis
+    label: Legal analysis
+    group: MET-G-qualitative-social-science
+    definition: Systematic examination of laws, regulations, treaties, and case law to assess legal frameworks,
+      compliance, and governance structures.
+    source: seed
+  - code: MET-mixed-methods-research
+    label: Mixed-methods research
+    group: MET-G-qualitative-social-science
+    definition: Research designs that combine qualitative and quantitative methods, such as surveys and
+      interviews, to provide a more complete understanding of the research problem.
+    source: candidate
+  - code: MET-qualitative-content-analysis
+    label: Qualitative content analysis
+    group: MET-G-qualitative-social-science
+    definition: Systematic interpretation of textual data, such as interviews or documents, using structured
+      coding schemes to identify categories and themes.
+    source: candidate
+  - code: MET-econometrics
+    label: Econometrics
+    group: MET-G-quantitative-social-science
+    definition: null
+    source: seed
+  - code: MET-expert-surveys-and-assessments
+    label: Expert surveys and assessments
+    group: MET-G-quantitative-social-science
+    definition: Structured collection of data or judgments from specialists via questionnaires, Delphi
+      methods, or targeted assessments, distinct from general population surveys.
+    source: candidate
+  - code: MET-household-and-other-surveys
+    label: Household and other surveys
+    group: MET-G-quantitative-social-science
+    definition: Quantitative or qualitative data collection from households, including surveys and structured
+      interviews, to assess conditions, behaviors, or perceptions.
+    includes:
+    - household survey
+    - household surveys
+    - household-level interviews
+    - questionnaire survey
+    - structured questionnaire
+    - questionnaire administration
+    - questionnaires
+    - standardized questionnaire
+    source: seed
+  - code: MET-pilots-and-field-experiments
+    label: Pilots and field experiments
+    group: MET-G-quantitative-social-science
+    definition: null
+    source: seed
+  - code: MET-poverty-and-well-being-measurement
+    label: Poverty and well-being measurement
+    group: MET-G-quantitative-social-science
+    definition: null
+    source: seed
+  - code: MET-statistical-analysis
+    label: Statistical analysis
+    group: MET-G-quantitative-social-science
+    definition: Quantitative examination of data using descriptive or inferential statistics to identify
+      patterns, trends, or relationships, excluding complex econometric modelling or simulation.
+    source: candidate
+  - code: MET-conceptual-and-theoretical-work
+    label: Conceptual and theoretical work
+    group: MET-G-synthesis-and-theory
+    definition: Development, formulation, or application of conceptual, analytical, or theoretical frameworks
+      to structure research questions or interpret findings.
+    includes:
+    - conceptual framework development
+    - analytical framework development
+    - conceptual framework application
+    - conceptual framework formulation
+    - conceptual framework synthesis
+    - conceptual analysis
+    - conceptual synthesis
+    source: seed
+  - code: MET-conceptual-modelling
+    label: Conceptual modelling
+    group: MET-G-synthesis-and-theory
+    definition: The development of abstract frameworks or models to represent complex systems, relationships,
+      or processes, often integrating expert knowledge without necessarily involving quantitative simulation.
+    source: candidate
+  - code: MET-literature-and-systematic-review
+    label: Literature and systematic review
+    group: MET-G-synthesis-and-theory
+    definition: Systematic or narrative synthesis of existing academic literature, bibliographic data,
+      or evidence bases to identify trends, gaps, or state-of-the-art knowledge.
+    includes:
+    - literature review
+    - literature synthesis
+    - bibliographic review
+    - bibliographic synthesis
+    source: seed
+  - code: MET-policy-brief-and-recommendation
+    label: Policy brief and recommendation
+    group: MET-G-synthesis-and-theory
+    definition: Concise documents summarizing research findings to inform decision-making, including policy
+      reviews and specific actionable recommendations for policymakers.
+    source: candidate
+  - code: MET-scientific-assessment-contributions
+    label: Scientific assessment contributions (IPCC, IPBES, GEO)
+    group: MET-G-synthesis-and-theory
+    definition: null
+    source: seed
+  - code: MET-scoping-review
+    label: Scoping review
+    group: MET-G-synthesis-and-theory
+    definition: A systematic mapping of the existing literature to identify key concepts, sources of evidence,
+      and gaps in research, distinct from full systematic reviews.
+    source: candidate
+  - code: MET-synthesis-workshops
+    label: Synthesis workshops
+    group: MET-G-synthesis-and-theory
+    definition: Structured events or processes designed to integrate, summarize, or consolidate findings,
+      data, or outcomes from multiple sources, studies, or stakeholder groups.
+    source: candidate
+  - code: MET-hydrological-modelling
+    label: Hydrological modelling
+    group: MET-G-systems-assessment-and-evaluation
+    definition: Simulation and analysis of water cycles, river flows, and sediment transport using models
+      such as SWAT or HBV. Excludes general spatial analysis or field-based soil assessment.
+    source: candidate
+  - code: MET-impact-and-sustainability-assessment
+    label: Impact and sustainability assessment
+    group: MET-G-systems-assessment-and-evaluation
+    definition: null
+    includes:
     - Impact evaluation
-    - Poverty and well-being measurement
-    - Pilots and field experiments
-  institutional_political_analysis:
-    - Power-sensitive institutional analysis
-    - Stakeholder and actor analysis
-    - Value chain analysis
-  geospatial_land:
-    - Remote sensing
-    - GIS and spatial analysis
-    - Land-use and land-cover change mapping
-    - Database development
-  biophysical:
-    - Soil and water assessment
-    - Biodiversity field survey
-    - Ecosystem service assessment and valuation
-  systems_assessment_evaluation:
-    - Systems analysis
-    - Modelling and simulation
-    - Impact and sustainability assessment
-    - Monitoring, evaluation and learning
-  synthesis_theory:
-    - Literature and systematic review
-    - Scientific assessment contributions (IPCC, IPBES, GEO)
-    - Conceptual and theoretical work
+    source: seed
+  - code: MET-modelling-and-simulation
+    label: Modelling and simulation
+    group: MET-G-systems-assessment-and-evaluation
+    definition: null
+    source: seed
+  - code: MET-monitoring-evaluation-and-learning
+    label: Monitoring, evaluation and learning
+    group: MET-G-systems-assessment-and-evaluation
+    definition: Systematic processes for tracking progress, assessing outcomes and impacts, and facilitating
+      learning, including impact evaluation and monitoring.
+    includes:
+    - impact evaluation
+    - impact monitoring and assessment
+    - monitoring and evaluation
+    source: seed
+  - code: MET-systems-analysis
+    label: Systems analysis
+    group: MET-G-systems-assessment-and-evaluation
+    definition: null
+    source: seed
+  - code: MET-telecoupling-analysis
+    label: Telecoupling analysis
+    group: MET-G-systems-assessment-and-evaluation
+    definition: Analytical frameworks examining interactions and dependencies between distant social and
+      ecological systems, including pericoupling and long-distance linkages.
+    source: candidate
+  retired:
+  - code: MET-futures-methods
+    label: Futures methods (visioning, scenarios, futures workshops)
+    replaced_by: null
+  - code: MET-impact-evaluation
+    label: Impact evaluation
+    replaced_by: MET-impact-and-sustainability-assessment
 
-data_type:  # proposed
-  - Primary qualitative
-  - Primary quantitative
-  - Primary geospatial
-  - Secondary statistics
-  - Secondary geospatial
-  - Documents and policies
-  - Curated databases
-  - None (conceptual)
+data_type:
+  groups:
+  - code: DAT-G-documents-texts-and-media
+    label: Documents, texts and media
+  - code: DAT-G-environmental-measurements
+    label: Environmental measurements
+  - code: DAT-G-geospatial-and-remote-sensing
+    label: Geospatial and remote sensing
+  - code: DAT-G-no-empirical-data
+    label: No empirical data
+  - code: DAT-G-primary-social-data
+    label: Primary social data
+  - code: DAT-G-statistics-and-databases
+    label: Statistics and databases
+  terms:
+  - code: DAT-academic-literature
+    label: Academic literature
+    group: DAT-G-documents-texts-and-media
+    definition: Peer-reviewed articles, books, and other scholarly publications used as sources for review,
+      synthesis, or theoretical grounding.
+    source: candidate
+    note: Too generic
+  - code: DAT-conference-documents
+    label: Conference documents
+    group: DAT-G-documents-texts-and-media
+    definition: Proceedings, programs, and reports from academic conferences or symposia. Excludes general
+      policy documents or primary research data.
+    source: candidate
+  - code: DAT-documents-and-policies
+    label: Documents and policies
+    group: DAT-G-documents-texts-and-media
+    definition: Official government reports, strategies, agendas, and regulatory texts used as data sources
+      or objects of analysis.
+    source: seed
+  - code: DAT-international-legal-instruments
+    label: International legal instruments
+    group: DAT-G-documents-texts-and-media
+    definition: Treaties, conventions, and binding or non-binding international legal frameworks and norms.
+      Excludes national legislation and general policy documents without legal status.
+    source: candidate
+  - code: DAT-legal-frameworks
+    label: Legal frameworks
+    group: DAT-G-documents-texts-and-media
+    definition: Statutory laws, regulations, constitutions, and binding legal texts governing environmental
+      or development policy.
+    source: candidate
+  - code: DAT-media-articles
+    label: Media articles
+    group: DAT-G-documents-texts-and-media
+    definition: Newspaper, press, or online news articles used as primary data for content analysis or
+      discourse studies.
+    source: candidate
+  - code: DAT-policy-documents
+    label: Policy documents
+    group: DAT-G-documents-texts-and-media
+    definition: Official government reports, strategies, agendas, and regulatory texts used as data sources
+      or objects of analysis.
+    related:
+    - DAT-documents-and-policies
+    source: candidate
+  - code: DAT-project-documentation
+    label: Project documentation
+    group: DAT-G-documents-texts-and-media
+    definition: Internal records, reports, and case studies generated during specific research projects
+      or fieldwork, distinct from public policy documents or statistical datasets.
+    source: candidate
+  - code: DAT-project-reports
+    label: Project reports
+    group: DAT-G-documents-texts-and-media
+    definition: Internal or external documents detailing the progress, status, or outcomes of specific
+      research or development projects.
+    source: candidate
+  - code: DAT-secondary-qualitative
+    label: Secondary qualitative
+    group: DAT-G-documents-texts-and-media
+    definition: null
+    source: candidate
+  - code: DAT-visual-data
+    label: Visual data
+    group: DAT-G-documents-texts-and-media
+    definition: Images, maps, diagrams, or other graphical representations used to present or analyze
+      information.
+    source: candidate
+  - code: DAT-workshop-documentation
+    label: Workshop documentation
+    group: DAT-G-documents-texts-and-media
+    definition: Records, reports, evaluations, and findings generated from workshops, including participant
+      feedback and process documentation.
+    source: candidate
+  - code: DAT-climate-and-meteorological-data
+    label: Climate and meteorological data
+    group: DAT-G-environmental-measurements
+    definition: Observations and records of atmospheric conditions, including temperature, precipitation,
+      and weather variables, used for analysis or modeling.
+    source: candidate
+  - code: DAT-climate-scenarios
+    label: Climate scenarios
+    group: DAT-G-environmental-measurements
+    definition: Hypothetical future climate states or projections derived from climate models, used for
+      impact assessment or adaptation planning.
+    source: candidate
+  - code: DAT-hydrological-data
+    label: Hydrological data
+    group: DAT-G-environmental-measurements
+    definition: Quantitative measurements and records of water movement, including river flow, runoff,
+      and related hydrological variables.
+    includes:
+    - Hydrological time series
+    - hydrological statistics
+    source: candidate
+  - code: DAT-precipitation-data
+    label: Precipitation data
+    group: DAT-G-environmental-measurements
+    definition: Quantitative records, measurements, or spatial representations of rainfall and precipitation,
+      including gauge data and maps.
+    source: candidate
+  - code: DAT-sediment-data
+    label: Sediment data
+    group: DAT-G-environmental-measurements
+    definition: Quantitative measurements of sediment load, yield, or physical samples collected from
+      rivers or catchments.
+    source: candidate
+  - code: DAT-soil-data
+    label: Soil data
+    group: DAT-G-environmental-measurements
+    definition: Measurements, properties, or spectral libraries of soil characteristics, including organic
+      carbon, physiochemical parameters, and physical attributes.
+    source: candidate
+  - code: DAT-soil-samples
+    label: Soil samples
+    group: DAT-G-environmental-measurements
+    definition: Physical soil specimens, including depth samples and profiles, collected for laboratory
+      analysis or field characterization.
+    source: candidate
+  - code: DAT-aerial-and-drone-imagery
+    label: Aerial and drone imagery
+    group: DAT-G-geospatial-and-remote-sensing
+    definition: Visual data captured from airborne platforms, including helicopters, fixed-wing aircraft,
+      and unmanned aerial vehicles (drones).
+    source: candidate
+  - code: DAT-elevation-data
+    label: Elevation data
+    group: DAT-G-geospatial-and-remote-sensing
+    definition: Digital datasets representing terrain height, including digital elevation models (DEMs)
+      and topographic maps. Excludes general geographic coordinates or land cover data.
+    source: candidate
+  - code: DAT-forest-change-data
+    label: Forest change data
+    group: DAT-G-geospatial-and-remote-sensing
+    definition: Quantitative data or statistics regarding deforestation, forest loss, or changes in forest
+      cover over time and space.
+    source: candidate
+  - code: DAT-land-cover-and-use-data
+    label: Land cover and use data
+    group: DAT-G-geospatial-and-remote-sensing
+    definition: Geospatial datasets and maps depicting land cover, land use, and related landscape features,
+      including historical and change data.
+    source: candidate
+  - code: DAT-primary-geospatial
+    label: Primary geospatial
+    group: DAT-G-geospatial-and-remote-sensing
+    definition: null
+    source: seed
+  - code: DAT-satellite-imagery
+    label: Satellite imagery
+    group: DAT-G-geospatial-and-remote-sensing
+    definition: Data derived from optical or radar sensors on satellites, including Landsat, MODIS, and
+      high-resolution commercial imagery.
+    source: candidate
+  - code: DAT-secondary-geospatial
+    label: Secondary geospatial
+    group: DAT-G-geospatial-and-remote-sensing
+    definition: Geographic information including maps, distribution data, and spatial databases used to
+      analyze location, extent, or spatial patterns.
+    includes:
+    - Spatial data
+    - spatial databases
+    - spatial distribution data
+    - spatial distribution maps
+    source: seed
+  - code: DAT-soil-maps
+    label: Soil maps
+    group: DAT-G-geospatial-and-remote-sensing
+    definition: Geospatial datasets or visualizations depicting soil properties, types, or erosion risks
+      at various scales, including global and local maps.
+    source: candidate
+  - code: DAT-species-distribution-data
+    label: Species distribution data
+    group: DAT-G-geospatial-and-remote-sensing
+    definition: Data describing the geographic occurrence, range, or distribution of specific species
+      or biodiversity components.
+    source: candidate
+  - code: DAT-vegetation-data
+    label: Vegetation data
+    group: DAT-G-geospatial-and-remote-sensing
+    definition: Data describing plant cover, including indices like EVI, maps, and community classifications.
+      Excludes soil or general land cover data.
+    source: candidate
+  - code: DAT-none
+    label: None (conceptual)
+    group: DAT-G-no-empirical-data
+    definition: null
+    source: seed
+  - code: DAT-case-studies
+    label: Case studies
+    group: DAT-G-primary-social-data
+    definition: In-depth investigations of specific instances, sites, or events used to illustrate broader
+      concepts or test hypotheses.
+    source: candidate
+  - code: DAT-experiences
+    label: Experiences
+    group: DAT-G-primary-social-data
+    definition: First-hand accounts, narratives, or lived realities of individuals or groups, typically
+      gathered through qualitative methods.
+    source: candidate
+  - code: DAT-expert-knowledge
+    label: Expert knowledge
+    group: DAT-G-primary-social-data
+    definition: Information derived from interviews, consultations, or elicitation of specialized professional
+      or local expertise, distinct from general public opinion or statistical data.
+    source: candidate
+  - code: DAT-interview-data
+    label: Interview data
+    group: DAT-G-primary-social-data
+    definition: Data derived from recorded or transcribed conversations with individuals, including expert,
+      stakeholder, or participant interviews.
+    source: candidate
+  - code: DAT-field-data
+    label: Observation and field visits
+    group: DAT-G-primary-social-data
+    definition: Data collected directly through on-site observation, measurement, or interaction in natural
+      or social settings, excluding remote sensing or secondary sources.
+    source: candidate
+  - code: DAT-primary-qualitative
+    label: Primary qualitative
+    group: DAT-G-primary-social-data
+    definition: null
+    source: seed
+  - code: DAT-primary-quantitative
+    label: Primary quantitative
+    group: DAT-G-primary-social-data
+    definition: null
+    source: seed
+  - code: DAT-survey-data
+    label: Survey data
+    group: DAT-G-primary-social-data
+    definition: Data collected via structured questionnaires or interviews, including responses and results
+      from primary or secondary survey instruments.
+    includes:
+    - Household survey data
+    - household characteristics
+    - household counts
+    - household data
+    - household statistics
+    source: candidate
+  - code: DAT-agricultural-statistics
+    label: Agricultural statistics
+    group: DAT-G-statistics-and-databases
+    definition: Statistical data on crop production, land use, and agricultural censuses, typically derived
+      from national surveys or international organizations.
+    related:
+    - DAT-secondary-statistics
+    source: candidate
+  - code: DAT-curated-databases
+    label: Curated databases
+    group: DAT-G-statistics-and-databases
+    definition: null
+    source: seed
+  - code: DAT-demographic-statistics
+    label: Demographic statistics
+    group: DAT-G-statistics-and-databases
+    definition: Statistical data on population size, structure, distribution, and changes, including census
+      results and estimates.
+    source: candidate
+  - code: DAT-land-deal-records
+    label: Land deal records
+    group: DAT-G-statistics-and-databases
+    definition: Structured data or databases documenting specific land transactions, acquisitions, or
+      large-scale land acquisitions (LSLAs), including deal terms and status.
+    source: candidate
+  - code: DAT-secondary-statistics
+    label: Secondary statistics
+    group: DAT-G-statistics-and-databases
+    definition: Statistical data on crop production, land use, and agricultural censuses, typically derived
+      from national surveys or international organizations.
+    includes:
+    - global statistics
+    - global production statistics
+    - national statistics
+    - official statistics
+    source: seed
+  - code: DAT-socioeconomic-data
+    label: Socioeconomic data
+    group: DAT-G-statistics-and-databases
+    definition: Quantitative or qualitative data describing social and economic conditions, such as income,
+      education, and demographics. Excludes purely biophysical or environmental measurements.
+    source: candidate
 
 country: {standard: ISO 3166-1 alpha-3, extra_flag: global_or_multi_country}
 
@@ -163,49 +1455,1266 @@ region:
     CDE-EUR: {label: Europe and Switzerland, m49: "150"}
   cde_partner_countries: [KEN, ETH, LAO, MMR, NPL, BOL, MDG]  # main partner institutions (0017)
 
-setting:  # proposed
-  - Mountains
-  - Drylands and rangelands
-  - Humid tropics and forest frontiers
-  - Coastal and marine
-  - Rural lowlands
-  - Peri-urban
-  - Urban
+setting:
+  groups:
+  - code: SET-G-agricultural-and-rural-landscapes
+    label: Agricultural and rural landscapes
+  - code: SET-G-biomes-and-ecosystems
+    label: Biomes and ecosystems
+  - code: SET-G-mountains-and-highlands
+    label: Mountains and highlands
+  - code: SET-G-protected-and-governed-areas
+    label: Protected and governed areas
+  - code: SET-G-urban-settings-and-institutions
+    label: Urban settings and institutions
+  terms:
+  - code: SET-agricultural-landscapes
+    label: Agricultural landscapes
+    group: SET-G-agricultural-and-rural-landscapes
+    definition: Landscapes dominated by agricultural activities, including arable land, pastures, and
+      other managed rural environments.
+    source: candidate
+  - code: SET-heterogeneous-landscapes
+    label: Heterogeneous landscapes
+    group: SET-G-agricultural-and-rural-landscapes
+    definition: Landscapes characterized by a complex mix of different land cover types, land uses, or
+      ecological zones, often described as mosaics.
+    source: candidate
+  - code: SET-rainfed-agricultural-areas
+    label: Rainfed agricultural areas
+    group: SET-G-agricultural-and-rural-landscapes
+    definition: Land used for crop production relying on natural rainfall, including uplands and subsistence
+      farming systems, excluding irrigated or pasture lands.
+    source: candidate
+  - code: SET-rural-areas
+    label: Rural areas
+    group: SET-G-agricultural-and-rural-landscapes
+    definition: Settlements and landscapes characterized by low population density, agricultural land
+      use, and distance from urban centers, including remote and dispersed communities.
+    source: candidate
+  - code: SET-rural-lowlands
+    label: Rural lowlands
+    group: SET-G-agricultural-and-rural-landscapes
+    definition: null
+    source: seed
+  - code: SET-smallholder-farms
+    label: Smallholder farms
+    group: SET-G-agricultural-and-rural-landscapes
+    definition: Agricultural production units characterized by small landholdings and labor-intensive
+      management, typically in developing regions. Excludes large-scale commercial plantations or industrial
+      agriculture.
+    source: candidate
+  - code: SET-amazon-biome
+    label: Amazon biome
+    group: SET-G-biomes-and-ecosystems
+    definition: The Amazon rainforest and its surrounding regions, including specific national areas like
+      Peruvian Amazonia, characterized by tropical forest ecosystems.
+    source: candidate
+  - code: SET-coastal-and-marine
+    label: Coastal and marine
+    group: SET-G-biomes-and-ecosystems
+    definition: Environments including coastlines, littoral zones, and adjacent marine areas. Excludes
+      purely inland water bodies or terrestrial zones far from the sea.
+    includes:
+    - coastal and inland areas
+    - coastal and marine zones
+    - coastal region
+    - coastal zone
+    source: seed
+  - code: SET-drylands-and-rangelands
+    label: Drylands and rangelands
+    group: SET-G-biomes-and-ecosystems
+    definition: Arid, semi-arid, and dryland environments, including rangelands and associated agricultural
+      zones, excluding humid tropical forests.
+    includes:
+    - drylands
+    - semi-arid regions
+    - arid agricultural zones
+    - arid and semi-arid lands
+    - arid and semi-arid regions
+    - arid environments
+    - arid region
+    - arid regions
+    - dryland environments
+    - dryland forest region
+    - dryland landscapes
+    - semi-arid conditions
+    source: seed
+  - code: SET-forest-landscapes
+    label: Forest landscapes
+    group: SET-G-biomes-and-ecosystems
+    definition: Environments dominated by trees or forests, including forest frontiers, boreal forests,
+      and multi-use forest areas. Excludes non-forested rural lowlands or drylands.
+    source: candidate
+  - code: SET-grasslands-and-steppes
+    label: Grasslands and steppes
+    group: SET-G-biomes-and-ecosystems
+    definition: Open vegetation communities dominated by grasses and herbs, including agricultural grasslands,
+      rangelands, and steppe ecosystems.
+    source: candidate
+  - code: SET-humid-tropics-and-forest-frontiers
+    label: Humid tropics and forest frontiers
+    group: SET-G-biomes-and-ecosystems
+    definition: Tropical regions characterized by high rainfall, including forests, agricultural landscapes,
+      and forest-frontier zones. Excludes arid or semi-arid tropical areas.
+    includes:
+    - tropical regions
+    - humid tropics
+    - tropical forest region
+    - tropical forests
+    - tropical rainforest
+    - humid tropical region
+    - tropical agricultural region
+    - tropical areas
+    - tropical coastal forest
+    - tropical forest
+    - tropical forest environments
+    - tropical forest landscape
+    source: seed
+  - code: SET-lowlands
+    label: Lowlands
+    group: SET-G-biomes-and-ecosystems
+    definition: Low-elevation terrestrial areas, including floodplains, swamps, and irrigated zones, excluding
+      coastal marine environments and high-altitude regions.
+    source: candidate
+  - code: SET-rivers-and-wetlands
+    label: Rivers and wetlands
+    group: SET-G-biomes-and-ecosystems
+    definition: Fluvial environments including river channels, floodplains, deltas, and associated wetland
+      ecosystems. Excludes coastal marine zones and upland forests.
+    includes:
+    - River basins and watersheds
+    - river basin
+    - river catchment
+    - mountain river basins
+    - river basins
+    - transboundary river basin
+    - tropical watershed
+    - watershed
+    - watersheds
+    source: candidate
+  - code: SET-alpine-and-glacial-landscapes
+    label: Alpine and glacial landscapes
+    group: SET-G-mountains-and-highlands
+    definition: High-altitude environments characterized by permanent or seasonal ice, snow, and associated
+      mountainous terrain, including glacial features and alpine zones.
+    source: candidate
+  - code: SET-andean-highlands
+    label: Andean highlands
+    group: SET-G-mountains-and-highlands
+    definition: Mountainous regions in South America, including the Andes, interandean valleys, and highland
+      ecosystems, excluding lowland tropical forests.
+    source: candidate
+  - code: SET-high-altitude-drylands
+    label: High-altitude drylands
+    group: SET-G-mountains-and-highlands
+    definition: Arid or semi-arid environments located at high elevations, such as alpine deserts, puna,
+      or high-altitude grasslands.
+    source: candidate
+  - code: SET-highlands
+    label: Highlands
+    group: SET-G-mountains-and-highlands
+    definition: Elevated landforms characterized by mountainous or hilly terrain, including associated
+      catchments and river basins, distinct from lowlands or coastal areas.
+    includes:
+    - Highlands and uplands
+    - highland-lowland systems
+    - highland agricultural areas
+    - highland-lowland interaction zones
+    - upland areas
+    source: candidate
+    note: Higher-level category of high-altitude-drylands?
+  - code: SET-mountains
+    label: Mountains
+    group: SET-G-mountains-and-highlands
+    definition: High-altitude environments including alpine, highland, and high mountain areas, excluding
+      lowland or coastal zones.
+    includes:
+    - Mountain regions
+    - mountain region
+    - highland region
+    - alpine mountain region
+    - alpine region
+    - highlands
+    - mountain environments
+    - alpine mountain regions
+    - arctic mountains
+    - european mountain regions
+    - high alpine region
+    - high mountain plateau
+    source: seed
+  - code: SET-steep-and-hilly-terrain
+    label: Steep and hilly terrain
+    group: SET-G-mountains-and-highlands
+    definition: Landscapes characterized by significant slope gradients, including mountains, hills, and
+      scree slopes, distinct from flat lowlands or specific biomes.
+    source: candidate
+  - code: SET-indigenous-territories
+    label: Indigenous territories
+    group: SET-G-protected-and-governed-areas
+    definition: Geographic areas defined by indigenous governance, traditional land rights, or cultural
+      boundaries, including specific districts or communities.
+    source: candidate
+  - code: SET-protected-and-conserved-areas
+    label: Protected and conserved areas
+    group: SET-G-protected-and-governed-areas
+    definition: Designated zones for nature conservation, including biosphere reserves, biodiversity hotspots,
+      and other protected areas, regardless of specific biome.
+    includes:
+    - Protected areas
+    - protected area buffer zone
+    - Alpine protected areas
+    - large protected areas
+    - protected and recreation areas
+    - protected area periphery
+    - protected landscape regions
+    - mountain national park
+    - national park
+    - national parks
+    source: candidate
+  - code: SET-regional-nature-parks
+    label: Regional nature parks
+    group: SET-G-protected-and-governed-areas
+    definition: Designated protected or semi-protected areas focused on regional conservation, sustainable
+      development, and landscape management, distinct from national parks or urban zones.
+    source: candidate
+  - code: SET-world-heritage-sites
+    label: World heritage sites
+    group: SET-G-protected-and-governed-areas
+    definition: Areas designated by UNESCO as World Heritage Sites, recognized for their outstanding universal
+      value to humanity.
+    source: candidate
+  - code: SET-higher-education-institutions
+    label: Higher education institutions
+    group: SET-G-urban-settings-and-institutions
+    definition: Universities, colleges, and other tertiary education establishments, including specific
+      programs or curricula within them.
+    includes:
+    - University campus
+    - university environment
+    source: candidate
+  - code: SET-peri-urban
+    label: Peri-urban
+    group: SET-G-urban-settings-and-institutions
+    definition: Urban peripheries and the transition zones between urban and rural landscapes.
+    source: seed
+  - code: SET-urban
+    label: Urban
+    group: SET-G-urban-settings-and-institutions
+    definition: Settled areas, especially city centers
+    source: seed
 
-scale:  # proposed
-  - Household or individual
-  - Community or village
-  - Landscape or watershed
-  - Subnational
-  - National
-  - Transboundary or regional
-  - Global
-  - Cross-scale (incl. telecoupling)
+scale:
+  terms:
+  - code: SCA-community-or-village
+    label: Community or village
+    definition: null
+    source: seed
+  - code: SCA-cross-scale
+    label: Cross-scale (incl. telecoupling)
+    definition: null
+    source: seed
+  - code: SCA-global
+    label: Global
+    definition: null
+    source: seed
+  - code: SCA-household-or-individual
+    label: Household or individual
+    definition: null
+    source: seed
+  - code: SCA-landscape-or-watershed
+    label: Landscape or watershed
+    definition: null
+    source: seed
+  - code: SCA-national
+    label: National
+    definition: null
+    source: seed
+  - code: SCA-subnational
+    label: Subnational
+    definition: null
+    source: seed
+  - code: SCA-transboundary-or-regional
+    label: Transboundary or regional
+    definition: null
+    source: seed
 
 system:
-  land_and_ecosystems: [Cropland, Grazing land and rangelands, Forests, Wetlands, Freshwater and waterbodies, Protected areas]
-  food_and_commodities: [Food systems and agriculture, Commodity value chains, Large-scale land investments]
-  economy_and_finance: [Trade, Finance and investment, Extractives and mining, Energy, Infrastructure]
-  settlements_and_society: [Urban areas and housing, Livelihoods and labour, Social security and care]
-  knowledge_and_education: [Higher education, Science systems and funding, Science-policy interfaces]
+  groups:
+  - code: SYS-G-economy-and-finance
+    label: Economy and finance
+  - code: SYS-G-food-and-commodities
+    label: Food and commodities
+  - code: SYS-G-governance-and-institutions
+    label: Governance and institutions
+  - code: SYS-G-knowledge-and-education
+    label: Knowledge and education
+  - code: SYS-G-land-and-ecosystems
+    label: Land and ecosystems
+  - code: SYS-G-settlements-and-society
+    label: Settlements and society
+  terms:
+  - code: SYS-energy
+    label: Energy
+    group: SYS-G-economy-and-finance
+    definition: Social-technical systems for the production, distribution, and consumption of energy,
+      including renewable and residential sectors.
+    includes:
+    - Energy systems
+    - renewable energy system
+    - residential energy system
+    source: seed
+  - code: SYS-extractives-and-mining
+    label: Extractives and mining
+    group: SYS-G-economy-and-finance
+    definition: Social-ecological systems focused on the extraction of natural resources, including mining,
+      oil, gas, and other extractive industries.
+    includes:
+    - extractive activities
+    - extractive industries
+    - mining industry
+    - mining sector
+    source: seed
+  - code: SYS-finance-and-investment
+    label: Finance and investment
+    group: SYS-G-economy-and-finance
+    definition: null
+    source: seed
+  - code: SYS-hydropower
+    label: Hydropower
+    group: SYS-G-economy-and-finance
+    definition: The generation, management, and infrastructure of electricity from water flow, including
+      dams and power stations. Excludes other renewable energy sources.
+    source: candidate
+  - code: SYS-infrastructure
+    label: Infrastructure
+    group: SYS-G-economy-and-finance
+    definition: null
+    source: seed
+  - code: SYS-tourism
+    label: Tourism
+    group: SYS-G-economy-and-finance
+    definition: Economic activities and sectors related to travel, hospitality, and visitor services,
+      including ecotourism and mountain tourism.
+    source: candidate
+  - code: SYS-trade
+    label: Trade
+    group: SYS-G-economy-and-finance
+    definition: The global and multilateral institutional frameworks governing international commerce,
+      including rules, agreements, and the structure of the trading system.
+    includes:
+    - international trade system
+    - multilateral trade system
+    - multilateral trading system
+    source: seed
+  - code: SYS-agri-food-value-chains
+    label: Agri-food value chains
+    group: SYS-G-food-and-commodities
+    definition: The network of actors and activities involved in the production, processing, distribution,
+      and consumption of agricultural products and food.
+    source: candidate
+  - code: SYS-agricultural-and-commodity-trade
+    label: Agricultural and commodity trade
+    group: SYS-G-food-and-commodities
+    definition: International exchange of agricultural products and raw commodities, including food crops,
+      cash crops, and their associated trade systems and governance.
+    source: candidate
+  - code: SYS-agricultural-systems
+    label: Agricultural systems
+    group: SYS-G-food-and-commodities
+    definition: Social-ecological systems focused on crop and livestock production, including land management,
+      agroforestry, and integrated farming practices.
+    source: candidate
+  - code: SYS-agriculture-and-food-sector
+    label: Agriculture and food sector
+    group: SYS-G-food-and-commodities
+    definition: The economic and social system encompassing agricultural production, agribusiness, and
+      the broader food supply chain, excluding specific land cover types.
+    related:
+    - SYS-food-systems-and-agriculture
+    source: candidate
+  - code: SYS-commodity-value-chains
+    label: Commodity value chains
+    group: SYS-G-food-and-commodities
+    definition: Supply and value chains for specific agricultural or natural resource commodities, including
+      production, processing, and trade.
+    includes:
+    - coffee value chain
+    - cocoa value chain
+    source: seed
+  - code: SYS-food-systems
+    label: Food systems
+    group: SYS-G-food-and-commodities
+    definition: Social-ecological systems encompassing the production, processing, distribution, consumption,
+      and disposal of food, including interactions with water and energy.
+    source: candidate
+  - code: SYS-food-systems-and-agriculture
+    label: Food systems and agriculture
+    group: SYS-G-food-and-commodities
+    definition: The economic and social system encompassing agricultural production, agribusiness, and
+      the broader food supply chain, excluding specific land cover types.
+    source: seed
+  - code: SYS-irrigation-systems
+    label: Irrigation systems
+    group: SYS-G-food-and-commodities
+    definition: Infrastructure and management systems for supplying water to agricultural land, including
+      groundwater extraction and surface water schemes.
+    source: candidate
+  - code: SYS-large-scale-land-investments
+    label: Large-scale land investments
+    group: SYS-G-food-and-commodities
+    definition: null
+    source: seed
+  - code: SYS-livestock-systems
+    label: Livestock systems
+    group: SYS-G-food-and-commodities
+    definition: Social-ecological systems centered on the rearing, management, and production of livestock,
+      including associated land use and husbandry practices.
+    source: candidate
+  - code: SYS-mountain-agriculture
+    label: Mountain agriculture
+    group: SYS-G-food-and-commodities
+    definition: Agricultural systems and farming practices specifically located in mountain or alpine
+      regions, including alpine pasture management.
+    source: candidate
+  - code: SYS-public-catering
+    label: Public catering
+    group: SYS-G-food-and-commodities
+    definition: Institutional food service systems, including public procurement and collective meal provision
+      in schools, hospitals, and other public facilities.
+    source: candidate
+  - code: SYS-rubber-commodity-system
+    label: Rubber commodity system
+    group: SYS-G-food-and-commodities
+    definition: Social-ecological systems focused on the production, processing, and trade of natural
+      rubber, including plantations and smallholder farming.
+    source: candidate
+  - code: SYS-shifting-cultivation-systems
+    label: Shifting cultivation systems
+    group: SYS-G-food-and-commodities
+    definition: Agricultural land-use systems involving the rotation of forest clearing, cropping, and
+      fallow periods, often for subsistence rice production.
+    source: candidate
+  - code: SYS-smallholder-farming-systems
+    label: Smallholder farming systems
+    group: SYS-G-food-and-commodities
+    definition: Agricultural production units characterized by small landholdings, family labor, and subsistence
+      or local market orientation, excluding large-scale commercial plantations.
+    source: candidate
+  - code: SYS-urban-food-systems
+    label: Urban food systems
+    group: SYS-G-food-and-commodities
+    definition: Social-ecological systems focused on food production, distribution, and consumption within
+      urban contexts, including urban agriculture.
+    source: candidate
+  - code: SYS-biodiversity-governance
+    label: Biodiversity governance
+    group: SYS-G-governance-and-institutions
+    definition: Institutions, policies, and social systems managing biological diversity, including conservation
+      frameworks and stewardship arrangements.
+    source: candidate
+  - code: SYS-commons
+    label: Commons
+    group: SYS-G-governance-and-institutions
+    definition: Social-ecological systems and governance arrangements where communities collectively manage
+      shared resources, excluding state-owned or purely private property regimes.
+    source: candidate
+  - code: SYS-environmental-governance
+    label: Environmental governance
+    group: SYS-G-governance-and-institutions
+    definition: Institutions, rules, and processes for managing environmental resources and sustainability,
+      including global and local levels. Excludes specific sectoral systems like energy or trade.
+    source: candidate
+  - code: SYS-governance-systems
+    label: Governance systems
+    group: SYS-G-governance-and-institutions
+    definition: Institutional frameworks, decision-making processes, and regulatory structures governing
+      social-ecological or economic systems, including land and local contexts.
+    source: candidate
+  - code: SYS-land-tenure-and-access
+    label: Land tenure and access
+    group: SYS-G-governance-and-institutions
+    definition: Institutions, rights, and processes governing the ownership, control, use, and acquisition
+      of land, including formal and informal tenure arrangements.
+    source: candidate
+  - code: SYS-natural-resource-management
+    label: Natural resource management
+    group: SYS-G-governance-and-institutions
+    definition: The governance, stewardship, and sustainable use of renewable natural resources such as
+      forests, water, and agricultural land.
+    source: candidate
+  - code: SYS-protected-area-governance
+    label: Protected area governance
+    group: SYS-G-governance-and-institutions
+    definition: The institutional arrangements, management practices, and policy frameworks governing
+      the establishment, administration, and effectiveness of protected areas.
+    source: candidate
+  - code: SYS-spatial-planning-systems
+    label: Spatial planning systems
+    group: SYS-G-governance-and-institutions
+    definition: Institutional frameworks and processes for organizing land use, settlement, and regional
+      development at local, regional, or national scales.
+    source: candidate
+  - code: SYS-sustainable-development-frameworks
+    label: Sustainable development frameworks
+    group: SYS-G-governance-and-institutions
+    definition: International policy agendas, goals, and conceptual frameworks guiding sustainability
+      transitions and development, such as the 2030 Agenda.
+    source: candidate
+  - code: SYS-water-resource-management
+    label: Water resource management
+    group: SYS-G-governance-and-institutions
+    definition: Social-ecological systems and governance institutions focused on the allocation, use,
+      and protection of freshwater resources, including river basins and watersheds.
+    source: candidate
+  - code: SYS-academic-publishing
+    label: Academic publishing
+    group: SYS-G-knowledge-and-education
+    definition: The infrastructure, processes, and institutions of scholarly communication, including
+      journals, peer review, and open access policies.
+    source: candidate
+  - code: SYS-agricultural-knowledge-systems
+    label: Agricultural knowledge systems
+    group: SYS-G-knowledge-and-education
+    definition: Institutions and services for agricultural education, research, and extension that facilitate
+      the generation, transfer, and exchange of agricultural knowledge.
+    source: candidate
+  - code: SYS-higher-education
+    label: Higher education
+    group: SYS-G-knowledge-and-education
+    definition: Academic institutions, curricula, and educational systems focused on tertiary learning,
+      including sustainability integration and institutional governance.
+    includes:
+    - higher education system
+    - higher education curricula
+    - higher education institution
+    - university curriculum
+    - university education system
+    source: seed
+  - code: SYS-knowledge-systems
+    label: Knowledge systems
+    group: SYS-G-knowledge-and-education
+    definition: Structures and processes for creating, sharing, and managing scientific, indigenous, or
+      local knowledge, including interfaces between different knowledge traditions.
+    source: candidate
+  - code: SYS-mountain-research-networks
+    label: Mountain research networks
+    group: SYS-G-knowledge-and-education
+    definition: Organized communities, initiatives, and observation networks dedicated to mountain research,
+      development, and information sharing.
+    source: candidate
+  - code: SYS-research-networks-and-partnerships
+    label: Research networks and partnerships
+    group: SYS-G-knowledge-and-education
+    definition: Collaborative structures and alliances among academic institutions, researchers, and stakeholders
+      dedicated to scientific inquiry and knowledge production.
+    source: candidate
+  - code: SYS-science-systems-and-funding
+    label: Science systems and funding
+    group: SYS-G-knowledge-and-education
+    definition: The organizational, institutional, and financial structures of scientific research, including
+      universities, research centers, and funding mechanisms.
+    includes:
+    - research system
+    - university research center
+    - university research system
+    source: seed
+  - code: SYS-science-policy-interfaces
+    label: Science-policy interfaces
+    group: SYS-G-knowledge-and-education
+    definition: Structures and processes facilitating interaction and knowledge exchange between scientific
+      research, policy-making, and society.
+    includes:
+    - policy-science-society interface
+    - science and policy system
+    - science-policy interface
+    - science-society interface
+    - science policy
+    - science-policy exchange
+    - science-policy-practice dialogue
+    - science-policy-society interface
+    source: seed
+  - code: SYS-transdisciplinary-research
+    label: Transdisciplinary research
+    group: SYS-G-knowledge-and-education
+    definition: Collaborative research approaches involving multiple stakeholders and disciplines to address
+      complex societal and environmental challenges.
+    source: candidate
+  - code: SYS-cropland
+    label: Cropland
+    group: SYS-G-land-and-ecosystems
+    definition: null
+    source: seed
+  - code: SYS-ecosystem-services
+    label: Ecosystem services
+    group: SYS-G-land-and-ecosystems
+    definition: The benefits people obtain from ecosystems, including the delivery of these services and
+      the ecological infrastructure networks that support them.
+    source: candidate
+  - code: SYS-ecosystems
+    label: Ecosystems
+    group: SYS-G-land-and-ecosystems
+    definition: General ecological systems including terrestrial, freshwater, and marine environments,
+      excluding specific land-use types like cropland or forests.
+    source: candidate
+  - code: SYS-forests
+    label: Forests
+    group: SYS-G-land-and-ecosystems
+    definition: Social-ecological systems involving forest ecosystems, their management, governance, and
+      associated land use or resource dynamics.
+    includes:
+    - forest ecosystems
+    - forest ecosystem
+    - forest management
+    - forest cover
+    - forest cover system
+    - forest governance
+    - forest land
+    - forest landscape system
+    - forest resource system
+    - forestry sector
+    - forestry systems
+    source: seed
+  - code: SYS-freshwater-and-waterbodies
+    label: Freshwater and waterbodies
+    group: SYS-G-land-and-ecosystems
+    definition: null
+    source: seed
+  - code: SYS-glaciers-and-cryosphere
+    label: Glaciers and cryosphere
+    group: SYS-G-land-and-ecosystems
+    definition: Natural systems comprising glaciers, ice caps, snowpacks, and permafrost, focusing on
+      their physical state, dynamics, and environmental impacts.
+    source: candidate
+  - code: SYS-grasslands
+    label: Grasslands
+    group: SYS-G-land-and-ecosystems
+    definition: Terrestrial ecosystems dominated by grasses and other herbaceous plants, including natural
+      and managed grassland plant communities.
+    source: candidate
+  - code: SYS-grazing-land-and-rangelands
+    label: Grazing land and rangelands
+    group: SYS-G-land-and-ecosystems
+    definition: Terrestrial ecosystems dominated by natural vegetation grazed by livestock or wildlife,
+      including drylands and pastoral systems.
+    includes:
+    - rangelands
+    - dryland ecosystems
+    source: seed
+  - code: SYS-hydrological-systems
+    label: Hydrological systems
+    group: SYS-G-land-and-ecosystems
+    definition: Water cycles, fluxes, and dynamics within watersheds, basins, and related freshwater environments.
+    source: candidate
+  - code: SYS-land-use-and-management-systems
+    label: Land use and management systems
+    group: SYS-G-land-and-ecosystems
+    definition: Social-ecological systems defined by the spatial arrangement and governance of land resources,
+      including agricultural, urban, and rural land use patterns and practices.
+    source: candidate
+  - code: SYS-landscape-systems
+    label: Landscape systems
+    group: SYS-G-land-and-ecosystems
+    definition: Integrated socio-ecological systems focusing on the structure, function, and management
+      of landscapes, including their diversity and resilience to change.
+    source: candidate
+  - code: SYS-mountain-ecosystems
+    label: Mountain ecosystems
+    group: SYS-G-land-and-ecosystems
+    definition: Social-ecological systems located in mountainous regions, including alpine zones, focusing
+      on their environmental functions, vegetation, and associated livelihoods.
+    source: candidate
+  - code: SYS-protected-areas
+    label: Protected areas
+    group: SYS-G-land-and-ecosystems
+    definition: Governance, management, and social-ecological dynamics of legally designated conservation
+      areas, including national and regional parks.
+    includes:
+    - park governance
+    - regional park governance
+    source: seed
+  - code: SYS-social-ecological-systems
+    label: Social-ecological systems
+    group: SYS-G-land-and-ecosystems
+    definition: Integrated frameworks analyzing the interactions, feedbacks, and dynamics between social
+      and ecological components, including coupled human-environment and global change contexts.
+    source: candidate
+  - code: SYS-soil-systems
+    label: Soil systems
+    group: SYS-G-land-and-ecosystems
+    definition: Soil resources, soil ecosystems, and interactions between soil, water, and vegetation.
+      Excludes broader land-use categories like cropland or forests.
+    source: candidate
+  - code: SYS-telecoupled-systems
+    label: Telecoupled systems
+    group: SYS-G-land-and-ecosystems
+    definition: Social-ecological systems characterized by long-distance interactions between distant
+      places, including flows of resources, information, and impacts.
+    source: candidate
+  - code: SYS-wetlands
+    label: Wetlands
+    group: SYS-G-land-and-ecosystems
+    definition: null
+    source: seed
+  - code: SYS-labour-markets
+    label: Labour markets
+    group: SYS-G-settlements-and-society
+    definition: Structures and dynamics of employment, wages, and workforce mobility, including transitions
+      between education and work.
+    source: candidate
+  - code: SYS-livelihoods-and-labour
+    label: Livelihoods and labour
+    group: SYS-G-settlements-and-society
+    definition: Social-ecological systems focused on how households and communities secure their means
+      of living, including subsistence, pastoral, and local economic activities.
+    includes:
+    - local livelihood systems
+    - family livelihood system
+    - household livelihoods
+    - pastoral livelihoods
+    - livelihood assets
+    - livelihood benefits
+    - livelihood impacts
+    - livelihood improvement
+    - sustainable livelihoods
+    - women's livelihoods
+    source: seed
+  - code: SYS-local-communities
+    label: Local communities
+    group: SYS-G-settlements-and-society
+    definition: Social structures, governance arrangements, and populations of local or self-organized
+      groups, including commoners and residents in specific settlements or areas.
+    source: candidate
+  - code: SYS-regional-development-systems
+    label: Regional development systems
+    group: SYS-G-settlements-and-society
+    definition: Social-ecological and economic systems focused on regional planning, spatial development,
+      and local economic transformations.
+    source: candidate
+  - code: SYS-rural-development
+    label: Rural development
+    group: SYS-G-settlements-and-society
+    definition: Social-ecological systems and economic activities in rural areas, including development
+      programs, projects, and local economies.
+    source: candidate
+  - code: SYS-social-security-and-care
+    label: Social security and care
+    group: SYS-G-settlements-and-society
+    definition: null
+    source: seed
+  - code: SYS-urban-areas-and-housing
+    label: Urban areas and housing
+    group: SYS-G-settlements-and-society
+    definition: null
+    source: seed
 
 actors:
-  roles: [studied, co_producer, audience]
+  roles:
+  - studied
+  - co_producer
+  - audience
   groups:
-    land_users_and_communities: [Smallholders and land users, Pastoralists, Indigenous peoples and local communities, Grassroots and urban-commons initiatives]
-    justice_groups: [Women, Displaced persons, Human rights and environmental defenders, Youth and students]
-    state_and_international: [National and local government, Extension services, International organisations and UN conventions]
-    private_sector: [Companies and investors, Social enterprises and cooperatives, Standard-setters, Financial sector]
-    civil_society_and_science: [NGOs and civil society, Researchers and universities]
+  - code: ACT-G-civil-society-and-science
+    label: Civil society and science
+  - code: ACT-G-justice-groups
+    label: Justice groups
+  - code: ACT-G-land-users-and-communities
+    label: Land users and communities
+  - code: ACT-G-private-sector
+    label: Private sector
+  - code: ACT-G-public-and-households
+    label: Public and households
+  - code: ACT-G-state-and-international
+    label: State and international
+  terms:
+  - code: ACT-conservation-ngos
+    label: Conservation NGOs
+    group: ACT-G-civil-society-and-science
+    definition: Non-governmental organizations dedicated to the protection of biodiversity, ecosystems,
+      and wildlife, including international and local conservation bodies.
+    source: candidate
+  - code: ACT-conservation-professionals
+    label: Conservation professionals
+    group: ACT-G-civil-society-and-science
+    definition: Individuals or groups engaged in the practice, science, or management of nature conservation,
+      including protected area managers and conservation NGOs.
+    source: candidate
+  - code: ACT-development-practitioners
+    label: Development practitioners
+    group: ACT-G-civil-society-and-science
+    definition: Professionals and specialists working in development or conservation sectors, including
+      those in NGOs, government, or international organizations, excluding academic researchers.
+    source: candidate
+  - code: ACT-educators-and-lecturers
+    label: Educators and lecturers
+    group: ACT-G-civil-society-and-science
+    definition: Individuals responsible for teaching or training, including university lecturers, school
+      teachers, and educators in formal or informal settings.
+    source: candidate
+  - code: ACT-legal-professionals-and-scholars
+    label: Legal professionals and scholars
+    group: ACT-G-civil-society-and-science
+    definition: Individuals engaged in the practice, study, or development of law, including lawyers,
+      judges, and legal academics.
+    source: candidate
+  - code: ACT-mountain-research-initiative
+    label: Mountain Research Initiative
+    group: ACT-G-civil-society-and-science
+    definition: The specific international research network and its associated scholars involved in coordinating
+      mountain research activities.
+    source: candidate
+  - code: ACT-ngos-and-civil-society
+    label: NGOs and civil society
+    group: ACT-G-civil-society-and-science
+    definition: Non-governmental organizations, civil society networks, and representatives involved in
+      advocacy, implementation, or knowledge exchange, excluding government bodies and private sector
+      entities.
+    includes:
+    - civil society organisations
+    - non-governmental organizations
+    - civil society networks
+    - civil society representatives
+    - ngos
+    - non-governmental organisations
+    source: seed
+  - code: ACT-research-and-education-partners
+    label: Research and education partners
+    group: ACT-G-civil-society-and-science
+    definition: Institutions and organisations, including non-academic entities, that collaborate with
+      researchers on research, education, or practice-oriented projects.
+    source: candidate
+  - code: ACT-research-funders
+    label: Research funders
+    group: ACT-G-civil-society-and-science
+    definition: Organisations and bodies that provide financial support for scientific research, including
+      government research councils and private foundations.
+    source: candidate
+  - code: ACT-research-institutions
+    label: Research institutions
+    group: ACT-G-civil-society-and-science
+    definition: Organisations primarily engaged in scientific research, including universities, national
+      institutes, and R&D bodies. Excludes general government ministries or NGOs.
+    source: candidate
+  - code: ACT-research-networks
+    label: Research networks
+    group: ACT-G-civil-society-and-science
+    definition: Collaborative structures of researchers, institutions, or stakeholders organized to conduct
+      joint scientific work or share knowledge.
+    source: candidate
+  - code: ACT-researchers-and-universities
+    label: Researchers and universities
+    group: ACT-G-civil-society-and-science
+    definition: Academic staff, scientists, and university-based research groups involved in knowledge
+      production, co-production, or analysis.
+    includes:
+    - researchers
+    - academic researchers
+    - scientists
+    - university researchers
+    - research assistants
+    - research scientists
+    - centre for development and environment
+    - united nations environment programme
+    - academia
+    - academics
+    - commons scholars
+    - scholars
+    source: seed
+  - code: ACT-soil-and-water-conservation-specialists
+    label: Soil and water conservation specialists
+    group: ACT-G-civil-society-and-science
+    definition: Experts, researchers, and professionals specifically engaged in the study, management,
+      or practice of soil and water conservation.
+    source: candidate
+  - code: ACT-sustainability-practitioners-and-initiatives
+    label: Sustainability practitioners and initiatives
+    group: ACT-G-civil-society-and-science
+    definition: Individuals, groups, or organizations actively engaged in implementing, promoting, or
+      steering sustainability efforts, including civil society initiatives and institutional champions.
+    source: candidate
+  - code: ACT-swiss-national-science-foundation
+    label: Swiss National Science Foundation
+    group: ACT-G-civil-society-and-science
+    definition: The Swiss National Science Foundation (SNSF) and its funding programs. Excludes general
+      Swiss government bodies or other international funding agencies.
+    source: candidate
+  - code: ACT-wocat
+    label: WOCAT
+    group: ACT-G-civil-society-and-science
+    definition: The World Overview of Conservation Approaches and Systems, including its network, secretariat,
+      and associated documentation efforts on sustainable land management.
+    source: candidate
+  - code: ACT-displaced-persons
+    label: Displaced persons
+    group: ACT-G-justice-groups
+    definition: Individuals or households forced to move due to conflict, disaster, or environmental change,
+      including migrants and resettled groups.
+    includes:
+    - displaced populations
+    - migrant families
+    - migrants
+    - resettled households
+    source: seed
+  - code: ACT-human-rights-and-environmental-defenders
+    label: Human rights and environmental defenders
+    group: ACT-G-justice-groups
+    definition: null
+    source: seed
+  - code: ACT-marginalized-and-vulnerable-groups
+    label: Marginalized and vulnerable groups
+    group: ACT-G-justice-groups
+    definition: Populations facing systemic disadvantage, exclusion, or heightened risk due to social,
+      economic, or political factors, including ethnic minorities and the poor.
+    source: candidate
+  - code: ACT-poor-populations
+    label: Poor populations
+    group: ACT-G-justice-groups
+    definition: Individuals, households, or communities characterized by low income, resource scarcity,
+      or poverty status.
+    source: candidate
+  - code: ACT-women
+    label: Women
+    group: ACT-G-justice-groups
+    definition: null
+    source: seed
+  - code: ACT-youth-and-students
+    label: Youth and students
+    group: ACT-G-justice-groups
+    definition: Individuals enrolled in educational institutions, including primary, secondary, and higher
+      education levels, as well as recent graduates.
+    includes:
+    - university students
+    - students
+    - graduates
+    source: seed
+  - code: ACT-agricultural-practitioners-and-extension-agents
+    label: Agricultural practitioners and extension agents
+    group: ACT-G-land-users-and-communities
+    definition: Individuals directly involved in farming or providing professional agricultural advice,
+      including farmers, agronomists, and planners.
+    source: candidate
+  - code: ACT-commoners
+    label: Commoners
+    group: ACT-G-land-users-and-communities
+    definition: Members of communities that collectively manage and use shared resources, including both
+      active participants and non-participants in the commons.
+    source: candidate
+  - code: ACT-farmer-and-producer-organizations
+    label: Farmer and producer organizations
+    group: ACT-G-land-users-and-communities
+    definition: Associations, unions, or cooperatives representing farmers, producers, or specific agricultural
+      sectors such as organic farming.
+    source: candidate
+  - code: ACT-forest-and-land-managers
+    label: Forest and land managers
+    group: ACT-G-land-users-and-communities
+    definition: Individuals or entities responsible for the stewardship, operation, or ownership of forest
+      and land resources, including private owners and professional managers.
+    source: candidate
+  - code: ACT-grassroots-and-urban-commons-initiatives
+    label: Grassroots and urban-commons initiatives
+    group: ACT-G-land-users-and-communities
+    definition: null
+    source: seed
+  - code: ACT-indigenous-peoples-and-local-communities
+    label: Indigenous peoples and local communities
+    group: ACT-G-land-users-and-communities
+    definition: Indigenous groups, nations, and local communities, including those with specific land
+      or territorial rights.
+    includes:
+    - indigenous communities
+    - indigenous peoples
+    - indigenous people
+    - indigenous nations
+    source: seed
+  - code: ACT-local-communities
+    label: Local communities
+    group: ACT-G-land-users-and-communities
+    definition: Groups of people living in a specific geographic area, including rural, mountain, or lowland
+      populations, involved in local resource management or development.
+    source: candidate
+  - code: ACT-local-institutions-and-organizations
+    label: Local institutions and organizations
+    group: ACT-G-land-users-and-communities
+    definition: Formal or informal local bodies, organizations, and social groups involved in governance,
+      service delivery, or community organization at the sub-national level.
+    source: candidate
+  - code: ACT-local-populations
+    label: Local populations
+    group: ACT-G-land-users-and-communities
+    definition: General resident communities in a specific area, distinct from indigenous groups or specific
+      livelihood-based actors like smallholders.
+    includes:
+    - Local residents and community members
+    - local residents
+    - community members
+    - local community members
+    - local community representatives
+    - neighbourhood residents
+    - park residents
+    source: candidate
+  - code: ACT-pastoralists
+    label: Pastoralists
+    group: ACT-G-land-users-and-communities
+    definition: Communities whose livelihoods depend on the herding of livestock, including nomadic, semi-nomadic,
+      and settled herders.
+    includes:
+    - herders
+    - livestock herders
+    source: seed
+  - code: ACT-producers-and-producer-organizations
+    label: Producers and producer organizations
+    group: ACT-G-land-users-and-communities
+    definition: Individual agricultural producers and their collective organizations, including cooperatives
+      and associations, involved in production and market relations.
+    source: candidate
+  - code: ACT-smallholders-and-land-users
+    label: Smallholders and land users
+    group: ACT-G-land-users-and-communities
+    definition: Individuals or households engaged in small-scale agriculture, including subsistence, swidden,
+      and local farming practices, excluding large-scale commercial operations.
+    includes:
+    - farmers
+    - smallholder farmers
+    - small-scale farmers
+    - local farmers
+    - small farmers
+    - swidden farmers
+    - farming households
+    - peasants
+    - rural households
+    - rural people
+    - rural residents
+    - small private farmers
+    source: seed
+  - code: ACT-villagers-and-village-communities
+    label: Villagers and village communities
+    group: ACT-G-land-users-and-communities
+    definition: Residents of rural settlements and their collective social units, distinct from broader
+      local community or indigenous groupings.
+    source: candidate
+  - code: ACT-water-users-and-managers
+    label: Water users and managers
+    group: ACT-G-land-users-and-communities
+    definition: Individuals, associations, or authorities involved in the use, management, or governance
+      of water resources at local, regional, or basin levels.
+    source: candidate
+  - code: ACT-agribusinesses
+    label: Agribusinesses
+    group: ACT-G-private-sector
+    definition: Large-scale commercial agricultural enterprises and agro-industrial corporations involved
+      in production, processing, or trade, excluding smallholder farms and cooperatives.
+    source: candidate
+  - code: ACT-companies-and-investors
+    label: Companies and investors
+    group: ACT-G-private-sector
+    definition: Private sector entities including corporations, businesses, and firms, excluding public
+      sector bodies and non-profit organizations.
+    includes:
+    - business people
+    - businesses
+    - companies
+    - corporate companies
+    - corporates
+    - corporations
+    - large companies
+    - private companies
+    source: seed
+  - code: ACT-financial-sector
+    label: Financial sector
+    group: ACT-G-private-sector
+    definition: null
+    source: seed
+  - code: ACT-private-sector
+    label: Private sector
+    group: ACT-G-private-sector
+    definition: Business entities, corporations, and commercial actors involved in economic activities,
+      excluding public government bodies and non-profit civil society organizations.
+    related:
+    - ACT-companies-and-investors
+    source: candidate
+  - code: ACT-social-enterprises-and-cooperatives
+    label: Social enterprises and cooperatives
+    group: ACT-G-private-sector
+    definition: null
+    source: seed
+  - code: ACT-standard-setters
+    label: Standard-setters
+    group: ACT-G-private-sector
+    definition: null
+    source: seed
+  - code: ACT-swiss-companies
+    label: Swiss companies
+    group: ACT-G-private-sector
+    definition: Private enterprises and business entities operating within Switzerland, including specific
+      sectors or national business groups.
+    source: candidate
+  - code: ACT-consumers
+    label: Consumers
+    group: ACT-G-public-and-households
+    definition: Individuals or groups purchasing and using goods and services, including their role in
+      supply chains and market dynamics.
+    source: candidate
+  - code: ACT-general-public
+    label: General public
+    group: ACT-G-public-and-households
+    definition: The general population or citizens, distinct from specific professional groups, government
+      officials, or organized civil society actors.
+    includes:
+    - Society
+    - civil society
+    - civic society
+    source: candidate
+  - code: ACT-households
+    label: Households
+    group: ACT-G-public-and-households
+    definition: Individual families or domestic units acting as decision-makers, consumers, or residents
+      in development and environmental contexts.
+    source: candidate
+  - code: ACT-decision-makers
+    label: Decision-makers
+    group: ACT-G-state-and-international
+    definition: Individuals or bodies with authority to make policy, regulatory, or management decisions,
+      including public sector and regional officials.
+    source: candidate
+  - code: ACT-development-agencies
+    label: Development agencies
+    group: ACT-G-state-and-international
+    definition: Governmental or intergovernmental bodies specifically dedicated to international development
+      cooperation, aid, and technical assistance.
+    source: candidate
+  - code: ACT-donors-and-funders
+    label: Donors and funders
+    group: ACT-G-state-and-international
+    definition: Entities providing financial resources, including international development agencies,
+      foundations, and private philanthropists, distinct from implementing partners or governments.
+    source: candidate
+  - code: ACT-european-institutions-and-policymakers
+    label: European institutions and policymakers
+    group: ACT-G-state-and-international
+    definition: Supranational bodies of the European Union, including the European Commission, and policy-makers
+      at the European level.
+    source: candidate
+  - code: ACT-extension-services
+    label: Extension services
+    group: ACT-G-state-and-international
+    definition: null
+    source: seed
+  - code: ACT-international-donors-and-aid-agencies
+    label: International donors and aid agencies
+    group: ACT-G-state-and-international
+    definition: Multilateral and bilateral institutions providing financial or technical assistance for
+      development projects, excluding general international organisations without specific donor mandates.
+    source: candidate
+  - code: ACT-international-organisations-and-un-conventions
+    label: International organisations and UN conventions
+    group: ACT-G-state-and-international
+    definition: Multilateral bodies, intergovernmental organizations, and global institutional frameworks
+      involved in policy, governance, or research coordination.
+    includes:
+    - international organizations
+    - international community
+    - international organisations
+    - international agencies
+    - international consortium
+    - international institutions
+    - united nations
+    source: seed
+  - code: ACT-international-trade-organisations
+    label: International trade organisations
+    group: ACT-G-state-and-international
+    definition: Multilateral or regional bodies governing international trade rules and agreements, such
+      as the WTO. Excludes national trade ministries or private trade associations.
+    source: candidate
+  - code: ACT-municipal-and-local-governments
+    label: Municipal and local governments
+    group: ACT-G-state-and-international
+    definition: City administrations, municipal authorities, and local public bodies involved in governance,
+      planning, or service delivery at the sub-national level.
+    source: candidate
+  - code: ACT-national-and-local-government
+    label: National and local government
+    group: ACT-G-state-and-international
+    definition: State authorities, ministries, and public agencies at national, regional, or local levels
+      involved in policy, regulation, or service delivery.
+    includes:
+    - governments
+    - government agencies
+    - government ministries
+    - national governments
+    - government
+    - government institutions
+    - government ministry
+    - authorities
+    - enforcement authorities
+    - public authorities
+    - african governments
+    - Horn of Africa countries
+    source: seed
+  - code: ACT-national-environmental-agencies
+    label: National environmental agencies
+    group: ACT-G-state-and-international
+    definition: Government departments or offices specifically responsible for environmental policy, regulation,
+      and protection at the national level.
+    source: candidate
+  - code: ACT-nature-park-management
+    label: Nature park management
+    group: ACT-G-state-and-international
+    definition: Organisations, staff, and managers responsible for the administration and operation of
+      nature parks and biosphere reserves.
+    source: candidate
+  - code: ACT-policy-makers
+    label: Policy makers
+    group: ACT-G-state-and-international
+    definition: Individuals or bodies with authority to formulate, adopt, or implement public policies,
+      including national and local government officials.
+    source: candidate
+  - code: ACT-regional-and-state-authorities
+    label: Regional and state authorities
+    group: ACT-G-state-and-international
+    definition: Government bodies and administrative institutions operating at the sub-national, regional,
+      or state level, excluding national central government and local municipal authorities.
+    source: candidate
+  - code: ACT-swiss-government-and-development-agencies
+    label: Swiss government and development agencies
+    group: ACT-G-state-and-international
+    definition: Swiss federal authorities, the Swiss Agency for Development and Cooperation (SDC), and
+      other Swiss public bodies involved in policy or funding.
+    source: candidate
 
 justice_lens:
-  - Distributive
-  - Procedural
-  - Recognition
-  - Gender
-  - Power
-  - Decolonial
-  - None explicit
+  terms:
+  - code: JUS-decolonial
+    label: Decolonial
+    definition: null
+    source: seed
+  - code: JUS-distributive
+    label: Distributive
+    definition: null
+    source: seed
+  - code: JUS-gender
+    label: Gender
+    definition: null
+    source: seed
+  - code: JUS-none-explicit
+    label: None explicit
+    definition: null
+    source: seed
+  - code: JUS-power
+    label: Power
+    definition: null
+    includes:
+    - Power dynamics
+    - power asymmetries
+    source: seed
+  - code: JUS-procedural
+    label: Procedural
+    definition: null
+    source: seed
+  - code: JUS-recognition
+    label: Recognition
+    definition: null
+    source: seed
 
 sdg: {standard: UN SDGs 1-17, max_per_record: 3}
 

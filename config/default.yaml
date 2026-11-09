@@ -96,7 +96,9 @@ parse:
 # --- Vocabulary and prompts ---------------------------------------------
 vocab:
   file: "vocab/draft_vocabulary.yaml"
-  version: "0.2"
+  version: "0.3"                 # curated in vocab/curation/v0.3.xlsx (decision 0026)
+  curation_dir: "vocab/curation" # workbooks (v<version>.xlsx) and code maps
+  terms_per_dimension: [15, 40]  # target range of live terms per curated dimension
 prompts:
   dir: "src/chatcde/prompts"
 

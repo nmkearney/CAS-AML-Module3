@@ -193,7 +193,7 @@ These commands count tags in the catalogue and need no model. They call the tool
 `list_vocabulary`, `count_by` and `find_gaps`.
 
 ```bash
-chatcde schema                                  # the 17 dimensions: terms, records tagged
+chatcde schema                                  # the 18 dimensions: terms, records tagged
 chatcde vocab -d method                         # one dimension's terms with record counts
 chatcde count sub_area                          # records per sub-area
 chatcde count impact_area method --year-from 2015 --lang de
@@ -239,8 +239,34 @@ chatcde vocab extract --step propose          # cluster labels -> vocab/candidat
   compares it with the draft terms. The result is `vocab/candidates.yaml`, with counts
   taken from the catalogue.
 
-`--force` redoes the chosen step. The candidates are curated by hand into
-`vocab/draft_vocabulary.yaml`. See `docs/decisions/0019-open-extraction.md`.
+`--force` redoes the chosen step. See `docs/decisions/0019-open-extraction.md`.
+
+### Curating the vocabulary
+
+Decisions are made in Excel, and code writes the YAML:
+
+```bash
+chatcde vocab review                 # candidates + vocabulary -> vocab/curation/v0.3.xlsx
+#   ... decide in Excel (white columns), save ...
+chatcde vocab apply --dry-run        # list every problem; write nothing
+chatcde vocab apply                  # write vocab/draft_vocabulary.yaml
+chatcde vocab review --force --carry-from vocab/curation/v0.3.xlsx   # re-export, keep decisions
+```
+
+- **The workbook** has one sheet per curated dimension.
+  - Rows: current terms start as `keep`; candidates are decided `accept`, `merge`,
+    `reject` or `defer`. Current terms can also be `merge`d or `retire`d.
+  - Grey columns show the model's evidence.
+- **Every term gets a stable code** such as `MET-remote-sensing`, and tags store the
+  code. Merged or retired codes move to a `retired:` list.
+- **`merge_into` on a kept or accepted row** records related terms instead of a merge
+  (codes separated by `;`); the term gets a `related` list.
+- **`vocab apply`** works like this:
+  - It writes nothing if any row is invalid.
+  - It rewrites only the curated sections.
+  - It gives the same file every time for the same workbook.
+- See `docs/decisions/0026-vocabulary-codes-and-curation.md` and
+  `docs/decisions/0027-additional-sub-areas.md`.
 
 ## Ask the assistant
 
@@ -333,9 +359,6 @@ tokens. It exits 1 if a model's pass rate is below
 `evaluation.min_question_pass_rate` (0.8). Answers are saved as JSON lines in
 `evaluation.results_dir`. The question format is in
 `docs/decisions/0025-evaluate-questions.md`.
-```
-
-See `docs/decisions/0022-agent-loop.md` and `docs/decisions/0023-ask-and-chat.md`.
 
 ## Configuration
 

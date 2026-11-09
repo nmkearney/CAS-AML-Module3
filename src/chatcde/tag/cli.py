@@ -7,6 +7,7 @@
 from __future__ import annotations
 
 from enum import StrEnum
+from pathlib import Path
 from typing import Annotated, Any
 
 import typer
@@ -203,3 +204,101 @@ def _propose_table(s: Any) -> Any:
 def evaluate_tagging() -> None:
     """Score LLM tags against the hand-tagged reference set."""
     not_implemented("evaluate tagging", 16)
+
+
+def vocab_review(
+    ctx: typer.Context,
+    force: Annotated[
+        bool, typer.Option(help="Overwrite an existing workbook (loses its decisions).")
+    ] = False,
+    carry_from: Annotated[
+        Path | None,
+        typer.Option(
+            dir_okay=False, exists=True, help="Copy decisions from an older workbook."
+        ),
+    ] = None,
+) -> None:
+    """Write the curation workbook (Excel) from the vocabulary and the candidates.
+
+    One sheet per curated dimension: current terms (decision 'keep') and the
+    candidates from `vocab extract` (decide each). Edit the white columns in
+    Excel, then run `chatcde vocab apply`. See decision 0026.
+    """
+    from chatcde.tag.curation import export_workbook
+
+    cfg = ctx.obj
+    out = cfg.vocab.workbook()
+    try:
+        counts = export_workbook(
+            cfg.vocab.file,
+            cfg.vocab_extract.output,
+            out,
+            force=force,
+            carry_from=carry_from,
+        )
+    except (FileExistsError, FileNotFoundError, ValueError) as exc:
+        typer.echo(f"vocab review failed: {exc}", err=True)
+        raise typer.Exit(code=1) from exc
+    t = _table("vocab review")
+    for sheet, n in counts.items():
+        t.add_row(sheet, f"{n} rows")
+    t.add_row("Written to", str(out))
+    from rich.console import Console
+
+    Console().print(t)
+
+
+def vocab_apply(
+    ctx: typer.Context,
+    dry_run: Annotated[
+        bool, typer.Option(help="Check the workbook and summarise; write nothing.")
+    ] = False,
+) -> None:
+    """Check the curation workbook and write draft_vocabulary.yaml from it.
+
+    Lists every problem and writes nothing if any row is invalid. Rewrites only
+    the curated dimensions (and sub-area scope notes); other blocks are kept as
+    they are. Running it twice on the same workbook gives the same file.
+    """
+    from rich.console import Console
+
+    from chatcde.tag.curation import CurationError, apply_workbook
+
+    cfg = ctx.obj
+    workbook = cfg.vocab.workbook()
+    if not workbook.is_file():
+        typer.echo(f"No workbook at {workbook}; run `chatcde vocab review`.", err=True)
+        raise typer.Exit(code=1)
+    try:
+        s = apply_workbook(
+            workbook,
+            cfg.vocab.file,
+            version=cfg.vocab.version,
+            terms_range=cfg.vocab.terms_per_dimension,
+            code_map_path=cfg.vocab.code_map(),
+            dry_run=dry_run,
+        )
+    except ValueError as exc:  # workbook without a base sheet
+        typer.echo(f"vocab apply failed: {exc}", err=True)
+        raise typer.Exit(code=1) from exc
+    except CurationError as exc:
+        typer.echo(f"The workbook has {len(exc.problems)} problem(s):", err=True)
+        for p in exc.problems:
+            typer.echo(f"  - {p}", err=True)
+        typer.echo("Nothing was written.", err=True)
+        raise typer.Exit(code=1) from exc
+    t = _table("vocab apply" + (" (dry run)" if dry_run else ""))
+    for dim, n in s.terms.items():
+        parts = [
+            f"{name} {getattr(s, name).get(dim)}"
+            for name in ("added", "renamed", "merged", "retired", "deferred")
+            if getattr(s, name).get(dim)
+        ]
+        t.add_row(dim, f"{n} terms" + (f" ({', '.join(parts)})" if parts else ""))
+    t.add_row("Sub-area scope notes changed", str(s.scope_notes_changed))
+    t.add_row("Written to", "nothing (dry run)" if dry_run else s.output)
+    Console().print(t)
+    if s.warnings:
+        typer.echo(f"{len(s.warnings)} warning(s):", err=True)
+        for w in s.warnings:
+            typer.echo(f"  - {w}", err=True)

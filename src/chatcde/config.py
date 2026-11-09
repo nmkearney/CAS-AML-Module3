@@ -243,6 +243,16 @@ class VocabConfig(_Section):
 
     file: ProjectPath
     version: str
+    curation_dir: ProjectPath
+    terms_per_dimension: tuple[int, int]
+
+    def workbook(self) -> Path:
+        """The curation workbook for this version, e.g. ``vocab/curation/v0.3.xlsx``."""
+        return self.curation_dir / f"v{self.version}.xlsx"
+
+    def code_map(self) -> Path:
+        """Old label -> code map written by ``vocab apply`` for this version."""
+        return self.curation_dir / f"v{self.version}_codes.csv"
 
 
 class PromptsConfig(_Section):

@@ -400,7 +400,7 @@ class DimensionSummary:
 
 
 def dimension_overview(ctx: ToolContext) -> tuple[list[DimensionSummary], int]:
-    """Summarise all 17 dimensions (for ``chatcde schema`` and ``chatcde vocab``).
+    """Summarise all 18 dimensions (for ``chatcde schema`` and ``chatcde vocab``).
 
     Returns:
         One summary per dimension, in schema order, and the number of records in

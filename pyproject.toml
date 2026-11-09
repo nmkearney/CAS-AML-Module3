@@ -22,6 +22,7 @@ dependencies = [
     "numpy>=1.26",    # label clustering in `vocab extract` (decision 0019)
     "pymupdf>=1.24",  # PDF text and page rendering (chatcde parse, decision 0014)
     "lingua-language-detector>=2.0",  # offline language per page (decision 0014)
+    "openpyxl>=3.1",  # vocabulary curation workbook (decision 0026)
 ]
 
 [project.optional-dependencies]

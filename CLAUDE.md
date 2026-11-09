@@ -18,7 +18,7 @@ Details live in:
 - `docs/planning.md`: architecture, interface, each tool's inputs and outputs,
   use cases with tool chains, workflows, build steps. Read it before designing or
   changing any tool or command.
-- `docs/schema_draft.md`: the 17-dimension schema with scope notes and the
+- `docs/schema_draft.md`: the 18-dimension schema with scope notes and the
   design decisions still to record. `vocab/draft_vocabulary.yaml` is its
   machine-readable twin; keep them in sync.
 - `docs/decisions/`: one short markdown file per design decision (context,
@@ -156,7 +156,17 @@ Two developers work in parallel; see `CONTRIBUTING.md` for the full workflow.
   definitions to ~18 words and notes to the 15 cases that need action (315 KB).
 - Counts in candidates.yaml describe the oversampled sample, not corpus shares.
 - The model still puts some country names under settings ("Switzerland", "Global South").
-- 
+
+## Vocabulary v0.3 (`chatcde vocab apply`, 2026-11-08)
+
+- Curated in `vocab/curation/v0.3.xlsx` (decisions 0026, 0027): setting 27, data_type 44,
+  method 60, system 66, actors 61, scale 8, justice_lens 7, additional_sub_area 77 terms.
+- Terms have codes (`MET-case-study`); `Tag.term` stores the code, and the fixtures were
+  remapped with `scripts/remap_fixture_tags.py` and the code map `v0.3_codes.csv`.
+- Open for v0.4: 52 terms lack a definition; most
+  dimensions exceed the 15–40 target; some additional sub-areas overlap sub-area scopes.
+- `chatcde` on the PATH (python.org 3.14) lacks openpyxl; use `.venv/bin/chatcde`.
+
 ## Coverage (`chatcde coverage`, 2026-11-07)
 
 - Of 3,003 records: **1,542 full text (51%)**, 606 abstract only (20%), 855 metadata
@@ -231,32 +241,37 @@ counts, checksums); `chatcde info` and `coverage_report` report the edition.
 | `chatcde search`, `show`, `read`, `count`, `vocab`, `schema`, `coverage`, `info` | Direct tool calls, no LLM (`search` uses the embedding and reranker models) |
 | `chatcde harvest`, `parse`, `tag`, `index`, `evaluate` | Pipeline stages |
 | `chatcde vocab extract` | Open extraction on the sample, for vocabulary drafting |
+| `chatcde vocab review` / `vocab apply` | Curation workbook (Excel) from the candidates; write the vocabulary YAML from its decisions (decision 0026) |
 | `chatcde fetch-data [--edition full\|open] [--top-up]` | Download a prebuilt data bundle (full on VPN, else open) |
 | `chatcde export --edition full\|open` | Build a distributable bundle from the local index |
 
-## Schema (17 dimensions, draft)
+## Schema (18 dimensions, draft)
 
 Full definitions and scope notes are in `docs/schema_draft.md` and `vocab/draft_vocabulary.yaml`.
 
 | # | Dimension | Source |
 |---|---|---|
-| 1 | impact_area | Strategy 2025–2028, Table 1 (JE, SL, SG, TE) |
+| 1 | impact_area | Strategy 2025–2028, Table 1 (JE, SL, SG, TE); derived from sub-area parents (#49) |
 | 2 | sub_area | Strategy Table 1 (16 sub-areas, e.g. SL-d) |
-| 3 | objective | Strategy 1.4 (O1–O5) |
-| 4 | pathway | Strategy 2.2 (P1–P5), only when explicit |
-| 5 | research_mode | Strategy 1.3 (M1–M4) |
-| 6 | transformative_aspiration | Westerink et al. 2026 |
-| 7 | method | proposed 34 terms in 8 groups |
-| 8 | data_type | proposed |
-| 9 | country | ISO 3166-1 alpha-3 |
-| 10 | region | derived: UN M49 + 4 CDE partner regions (decision 0017) |
-| 11 | setting | proposed (mountains, drylands, …) |
-| 12 | scale | proposed |
-| 13 | system | proposed + strategy terms |
-| 14 | actors | proposed + strategy terms, each with a role: studied / co-producer / audience |
-| 15 | justice_lens | strategy-derived |
-| 16 | sdg | UN 17 goals, max 3 |
-| 17 | output_type | BORIS type + audience |
+| 3 | additional_sub_area | curated from open extraction: 77 topics outside the sub-areas, each with an impact_area, cross_cutting or outside (decision 0027) |
+| 4 | objective | Strategy 1.4 (O1–O5) |
+| 5 | pathway | Strategy 2.2 (P1–P5), only when explicit |
+| 6 | research_mode | Strategy 1.3 (M1–M4) |
+| 7 | transformative_aspiration | Westerink et al. 2026 |
+| 8 | method | curated v0.3: 60 terms in 8 groups |
+| 9 | data_type | curated v0.3: 44 terms in 6 groups |
+| 10 | country | ISO 3166-1 alpha-3 |
+| 11 | region | derived: UN M49 + 4 CDE partner regions (decision 0017) |
+| 12 | setting | curated v0.3: 27 terms in 5 groups (mountains, drylands, …) |
+| 13 | scale | 8 terms |
+| 14 | system | curated v0.3: 66 terms in 6 groups |
+| 15 | actors | curated v0.3: 61 terms in 6 groups, each with a role: studied / co-producer / audience |
+| 16 | justice_lens | strategy-derived, 7 terms |
+| 17 | sdg | UN 17 goals, max 3 |
+| 18 | output_type | BORIS type + audience |
+
+From v0.3, closed-list terms have stable codes (`MET-case-study`, `ASA-food-security`) and
+`Tag.term` stores the code (decision 0026).
 
 Vocabulary process (no workshops): seed from the YAML; the local LLM does open
 extraction on a stratified sample of 200–300 records (by unit, decade and language); the developer
