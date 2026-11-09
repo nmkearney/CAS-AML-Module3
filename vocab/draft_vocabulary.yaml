@@ -2816,7 +2816,7 @@ justice_lens:
       marginalised groups.
     source: seed
 
-sdg: {standard: UN SDGs 1-17, max_per_record: 3}
+sdg: {standard: UN SDGs 1-17, max_per_record: 5}  # raised from 3 (decision 0030)
 
 output_type:
   boris_type: from metadata (dc.type)

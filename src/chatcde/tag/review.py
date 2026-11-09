@@ -180,11 +180,15 @@ def export_review(
     out: Path | None = None,
     force: bool = False,
     carry_from: Path | None = None,
+    also_from: list[Path] | None = None,
 ) -> tuple[Path, int, int]:
     """Write the review workbook; return (path, records, tags).
 
     With ``carry_from`` (an earlier, filled-in workbook), the same records are
     reviewed and earlier decisions are carried (see module docstring).
+    ``also_from`` adds decisions from further judged workbooks (review or recall
+    sheets, sheet ``tags`` or ``candidates``) for tags ``carry_from`` lacks; the
+    records, dropped tags and missing tags still come from ``carry_from``.
 
     Raises:
         FileExistsError: The workbook exists and ``force`` is not set (it may hold
@@ -283,8 +287,20 @@ def export_review(
         for row in _sheet_rows(old_wb, "tags"):
             term = forward.get(str(row["term"]), str(row["term"]))
             carried[_key(row["record_id"], row["dimension"], term, row["role"])] = row
+        own = set(carried)  # tags of the earlier run itself (for 'dropped')
+        for extra in also_from or []:
+            wb_x = load_workbook(extra, read_only=True)
+            for sheet in ("tags", "candidates"):
+                for row in _sheet_rows(wb_x, sheet):
+                    if not row.get("decision"):
+                        continue
+                    term = forward.get(str(row["term"]), str(row["term"]))
+                    k = _key(row["record_id"], row["dimension"], term, row["role"])
+                    carried.setdefault(k, row)
+            wb_x.close()
         now = {_key(r[0], r[1], r[2], r[4]) for r in found}
-        for key, row in carried.items():
+        for key in own:
+            row = carried[key]
             if key not in now:
                 dropped_rows.append(
                     {c: row.get(c) for c in DROPPED_COLUMNS if c != "now_term"}

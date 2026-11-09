@@ -196,9 +196,9 @@ def test_batch_model_offers_only_live_codes(
             **ok,
             "sdg": [
                 {"term": str(n), "evidence": "q", "strength": "weak"}
-                for n in (1, 2, 3, 4)
+                for n in (1, 2, 3, 4, 5, 6)
             ],
-        },  # more than 3
+        },  # more than 5 (tagging.max_per_dimension.sdg)
         {**ok, "extra": []},
     ):
         with pytest.raises(ValidationError):
@@ -683,6 +683,15 @@ def test_review_sheet(db: Path, tmp_path: Path):
     change = rows[0].index("change")
     assert sorted({r[change] for r in rows[1:]}) == ["new", "same"]
     assert sum(r[change] == "new" for r in rows[1:]) == 1
+    # A decision on the new tag in a further workbook is carried with also_from.
+    new_row = next(i for i, r in enumerate(rows) if r[change] == "new")
+    wb2["tags"].cell(row=new_row + 1, column=1).value = "ok"
+    judged = tmp_path / "judged.xlsx"
+    wb2.save(judged)
+    third = tmp_path / "third.xlsx"
+    export_review(con, cfg, out=third, carry_from=path, also_from=[judged])
+    rows3 = list(load_workbook(third)["tags"].iter_rows(values_only=True))
+    assert rows3[new_row][0] == "ok" and rows3[new_row][change] == "same"
     missing = list(wb2["missing"].iter_rows(min_row=2, max_row=2, values_only=True))
     assert missing[0][:3] == (first["record_no"], "sdg", "13") and missing[0][-1] in (
         "yes",

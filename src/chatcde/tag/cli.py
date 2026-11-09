@@ -410,6 +410,15 @@ def review_sheet(
             "only new tags need a look.",
         ),
     ] = None,
+    also_from: Annotated[
+        list[Path] | None,
+        typer.Option(
+            dir_okay=False,
+            exists=True,
+            help="Further judged workbooks (review or recall sheets) whose decisions "
+            "are carried too (repeatable; needs --carry-from).",
+        ),
+    ] = None,
 ) -> None:
     """Write a hand-check workbook for pilot records of a tagging run (Excel).
 
@@ -424,7 +433,13 @@ def review_sheet(
     con = catalogue.connect(cfg.data.catalogue)
     try:
         path, n_records, n_tags = export_review(
-            con, cfg, run=run, out=out, force=force, carry_from=carry_from
+            con,
+            cfg,
+            run=run,
+            out=out,
+            force=force,
+            carry_from=carry_from,
+            also_from=also_from,
         )
     except (FileExistsError, RuntimeError) as exc:
         typer.echo(f"review-sheet failed: {exc}", err=True)

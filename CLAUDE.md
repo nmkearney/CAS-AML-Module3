@@ -282,7 +282,7 @@ Full definitions and scope notes are in `docs/schema_draft.md` and `vocab/draft_
 | 14 | system | curated v0.3: 66 terms in 6 groups |
 | 15 | actors | curated v0.3: 61 terms in 6 groups, each with a role: studied / co-producer / audience |
 | 16 | justice_lens | strategy-derived, 7 terms |
-| 17 | sdg | UN 17 goals, max 3 |
+| 17 | sdg | UN 17 goals, max 5 (decision 0030) |
 | 18 | output_type | BORIS type + audience |
 
 From v0.3, closed-list terms have stable codes (`MET-case-study`, `ASA-food-security`) and
