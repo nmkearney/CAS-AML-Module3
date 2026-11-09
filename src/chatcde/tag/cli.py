@@ -434,6 +434,49 @@ def review_sheet(
     typer.echo(f"{n_records} records, {n_tags} tags -> {path}")
 
 
+def recall_sheet(
+    ctx: typer.Context,
+    review: Annotated[
+        Path,
+        typer.Option(
+            dir_okay=False,
+            exists=True,
+            help="Filled-in review workbook of the main run (its records are checked).",
+        ),
+    ],
+    alt_run: Annotated[str, typer.Option(help="The second model's run.")] = "alt",
+    out: Annotated[
+        Path | None, typer.Option(help="Workbook path (default tagging.review.dir).")
+    ] = None,
+    force: Annotated[
+        bool, typer.Option(help="Overwrite an existing workbook (and its decisions).")
+    ] = False,
+) -> None:
+    """Write a recall-check workbook: tags a second model gives, the main run not.
+
+    Only those candidates need judging; an agreement sheet compares both runs per
+    dimension over all records. See decision 0029.
+    """
+    from chatcde import catalogue
+    from chatcde.tag.recall import export_recall
+
+    cfg = ctx.obj
+    con = catalogue.connect(cfg.data.catalogue)
+    try:
+        path, n, per_dim = export_recall(
+            con, cfg, review=review, alt_run=alt_run, out=out, force=force
+        )
+    except (FileExistsError, RuntimeError) as exc:
+        typer.echo(f"recall-sheet failed: {exc}", err=True)
+        raise typer.Exit(code=1) from exc
+    finally:
+        con.close()
+    detail = ", ".join(
+        f"{d} {k}" for d, k in sorted(per_dim.items(), key=lambda x: -x[1])
+    )
+    typer.echo(f"{n} candidates ({detail}) -> {path}")
+
+
 def evaluate_tagging() -> None:
     """Score LLM tags against the hand-tagged reference set."""
     not_implemented("evaluate tagging", 16)

@@ -304,6 +304,7 @@ chatcde tag --publish-only                 # rebuild the tags table from run "ma
 chatcde evaluate review-sheet              # Excel workbook to hand-check 20 pilot records
 chatcde evaluate review-sheet --carry-from data/reference/review_main.xlsx \
     --out data/reference/review_pilot3.xlsx  # after a rerun: earlier decisions kept, only new tags to judge
+chatcde evaluate recall-sheet --review data/reference/review_pilot3.xlsx  # tags a 2nd run (alt) gives, main misses
 ```
 
 - **One request per record and batch.** The three batches are strategy, how and where,

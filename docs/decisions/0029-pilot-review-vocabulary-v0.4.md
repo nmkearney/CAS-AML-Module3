@@ -117,6 +117,26 @@ The curator hand-checked pilot 2 (decision 0028) in `data/reference/review_main.
 - Recall: the 5 missing tags (4 SDGs, Procedural on #12) are still missing. Recall is
   measured with the #16 reference set.
 
+## Recall check with a second model (2026-11-09)
+- The curator has no time to check recall by hand. Instead, a second model tags the
+  pilot, and the curator judges only the tags it gives that the main run does not
+  (`chatcde evaluate recall-sheet`, `data/reference/recall_alt.xlsx`).
+- **Second model:** the configured alternative, lfm2.5-24b-a2b, wrote explanations
+  instead of quotes (100% not found), so it cannot serve as a check. gpt-oss-120b
+  (the agent model, another model family) was used instead, with tag.v3,
+  `reasoning_effort: low` and 8,192 answer tokens: 300 requests, 0 failures, 15% of
+  quotes not found.
+- **Agreement on counted tags** across the 100 records (overlap = both / union):
+  - country 0.76, research_mode 0.50;
+  - most dimensions 0.31-0.44;
+  - actors 0.21, transformative_aspiration 0.19.
+- The models agree on countries but not on most closed-list dimensions. Counts per
+  term therefore depend on the model. Gap claims need either more agreement or
+  counts at group level (#57/#58), where small disagreements cancel out.
+- The recall sheet lists 119 candidates on the 20 reviewed records. 10 are already
+  judged ok: the main run gave them below 0.5. The second model found none of the 5
+  tags the curator had listed as missing.
+
 ## Researchers as co-producers (curator's rule, 2026-11-09)
 - In pilot 2 the curator marked researchers as co-producers ok on some records and wrong
   on others. The rule is now: **only researchers outside the author team count as

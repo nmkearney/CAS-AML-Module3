@@ -689,3 +689,51 @@ def test_review_sheet(db: Path, tmp_path: Path):
         "no",
     )
     con.close()
+
+
+def test_recall_sheet(db: Path, tmp_path: Path):
+    from openpyxl import load_workbook
+
+    from chatcde.tag.recall import export_recall
+    from chatcde.tag.review import export_review
+
+    cfg, _ = make_cfg(
+        tmp_path,
+        db,
+        review={
+            "records": {"fulltext": 2, "abstract": 2, "metadata": 2},
+            "seed": 1,
+            "dir": str(tmp_path / "reference"),
+            "text_chars": 500,
+        },
+    )
+    con = duckdb.connect(str(db))
+    draw_pilot(con, cfg)
+    tag_records(con, cfg, make_client(FakeLLM()), scope="pilot")
+    review, _, _ = export_review(con, cfg)
+    with pytest.raises(RuntimeError, match="no tags"):
+        export_recall(con, cfg, review=review)
+    # The second run: a copy of main, with one extra counted tag on a reviewed record.
+    for table in ("tag_runs", "tag_state"):
+        cols = [r[0] for r in con.execute(f"DESCRIBE {table}").fetchall()]
+        sel = ", ".join("'alt'" if c == "run" else c for c in cols)
+        con.execute(f"INSERT INTO {table} SELECT {sel} FROM {table} WHERE run = 'main'")
+    rid = load_workbook(review)["records"]["B2"].value
+    con.execute(
+        "INSERT INTO tag_runs SELECT * REPLACE ('SL-b' AS term, 0.9 AS confidence) "
+        "FROM tag_runs WHERE run = 'alt' AND record_id = ? AND dimension = 'sub_area' "
+        "LIMIT 1",
+        [rid],
+    )
+    path, n, per_dim = export_recall(con, cfg, review=review)
+    assert path == tmp_path / "reference" / "recall_alt.xlsx"
+    assert n == 1 and per_dim == {"sub_area": 1}
+    wb = load_workbook(path)
+    assert wb.sheetnames == ["README", "candidates", "agreement", "records"]
+    cand = list(wb["candidates"].iter_rows(min_row=2, values_only=True))
+    assert cand[0][4:6] == ("sub_area", "SL-b")
+    agree = {r[0]: r for r in wb["agreement"].iter_rows(min_row=2, values_only=True)}
+    assert agree["sub_area"][-1] < 1 and agree["method"][-1] == 1
+    with pytest.raises(FileExistsError):
+        export_recall(con, cfg, review=review)
+    con.close()
