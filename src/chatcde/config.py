@@ -303,6 +303,18 @@ class TaggingReviewConfig(_Section):
     text_chars: int = Field(ge=200)
 
 
+class TaggingAlternativeConfig(_Section):
+    """Request settings for ``model_alternatives.tagging`` (``tag --alternative``).
+
+    The alternative is a reasoning model (decision 0029): it spends part of the answer
+    budget on reasoning and takes its own extra request fields, so it does not share
+    the main model's ``max_tokens`` and ``extra_body``.
+    """
+
+    max_tokens: int = Field(ge=256)
+    extra_body: dict[str, Any] = Field(default_factory=dict)
+
+
 class TaggingConfig(_Section):
     """Closed-list tagging of the corpus (``chatcde tag``, decision 0028)."""
 
@@ -324,6 +336,7 @@ class TaggingConfig(_Section):
     pilot: TaggingPilotConfig
     review: TaggingReviewConfig
     extra_body: dict[str, Any] = Field(default_factory=dict)
+    alternative: TaggingAlternativeConfig | None = None
 
     @field_validator("batches")
     @classmethod

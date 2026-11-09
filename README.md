@@ -299,7 +299,7 @@ chatcde tag --pilot                        # a fresh stratified draw of 100 reco
 chatcde tag --pilot --limit 3 --no-publish # try a few requests first
 chatcde tag --ids <record_id> --batch how_where --force
 chatcde tag --all                          # every record; resumable, runs for hours
-chatcde tag --pilot --alternative          # model_alternatives.tagging, run "alt"
+chatcde tag --pilot --alternative          # model_alternatives.tagging (gpt-oss-120b), run "alt"
 chatcde tag --publish-only                 # rebuild the tags table from run "main"
 chatcde evaluate review-sheet              # Excel workbook to hand-check 20 pilot records
 chatcde evaluate review-sheet --carry-from data/reference/review_main.xlsx \

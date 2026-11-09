@@ -227,7 +227,8 @@ Set by role in `config/default.yaml`; see `docs/decisions/0003-models-by-role.md
 Endpoint `https://gpustack.unibe.ch/v1`, about 4 parallel requests per model
 (verified 2026-11-06 with `scripts/check_gpustack.py`; minimax-m2.7 is not served).
 Agent: gpt-oss-120b (alt. qwen3.8-27b). Tagging: qwen3.8-27b with thinking off
-(alt. lfm2.5-24b-a2b).
+(alt. gpt-oss-120b, reasoning low, own settings in `tagging.alternative`; lfm2.5 gave
+no verbatim quotes, decision 0029).
 Embeddings: qwen3-embedding-4b (alt. granite-embedding-107m-multilingual).
 Reranker: jina-reranker-v2-base-multilingual (1K context → ~500-token chunks).
 Vision for scans/figures: qwen3-vl-30b-a3b-instruct. Optional speech: faster-whisper-large-v3.

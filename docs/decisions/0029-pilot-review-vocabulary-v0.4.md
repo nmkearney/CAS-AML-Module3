@@ -126,6 +126,8 @@ The curator hand-checked pilot 2 (decision 0028) in `data/reference/review_main.
   (the agent model, another model family) was used instead, with tag.v3,
   `reasoning_effort: low` and 8,192 answer tokens: 300 requests, 0 failures, 15% of
   quotes not found.
+- **The configured alternative is now gpt-oss-120b** (`model_alternatives.tagging`),
+  with its own `tagging.alternative` settings (decision 0003 updated).
 - **Agreement on counted tags** across the 100 records (overlap = both / union):
   - country 0.76, research_mode 0.50;
   - most dimensions 0.31-0.44;

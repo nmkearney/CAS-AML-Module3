@@ -25,7 +25,7 @@ models:
 # Second choice for each role (null = none), compared with the first choice.
 model_alternatives:
   agent: "qwen3.8-27b"           # minimax-m2.7 is not served on GPUStack (2026-11-06)
-  tagging: "lfm2.5-24b-a2b"
+  tagging: "gpt-oss-120b"        # check model for tagging; lfm2.5 gave no verbatim quotes (0029)
   embedding: "granite-embedding-107m-multilingual"
   reranker: null
   vision: "internvl3-8b-instruct"
@@ -172,6 +172,9 @@ tagging:
     floor: 1
   extra_body:
     chat_template_kwargs: {enable_thinking: false}
+  alternative:                   # `chatcde tag --alternative` (gpt-oss reasons first; 0029)
+    max_tokens: 8192             # reasoning uses part of the budget
+    extra_body: {reasoning_effort: low}
 
 # --- Retrieval ------------------------------------------------------------
 retrieval:

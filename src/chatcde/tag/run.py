@@ -279,6 +279,10 @@ def tag_records(
         model = cfg.model_alternatives.tagging
     else:
         model = cfg.models.tagging
+    # The alternative model has its own answer budget and request fields (0029).
+    max_tokens, extra_body = s.max_tokens, s.extra_body
+    if alternative and s.alternative is not None:
+        max_tokens, extra_body = s.alternative.max_tokens, s.alternative.extra_body
     run = run or ("alt" if alternative else s.run)
     vocab = load_vocabulary(cfg.vocab.file)
     vocab_version = str(cfg.vocab.version)
@@ -327,8 +331,8 @@ def tag_records(
             system=systems[job.batch],
             user=job.record.text,
             schema=schemas[job.batch],
-            max_tokens=s.max_tokens,
-            extra_body=s.extra_body,
+            max_tokens=max_tokens,
+            extra_body=extra_body,
         )
 
     counts = Counter[str]()

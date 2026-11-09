@@ -737,3 +737,27 @@ def test_recall_sheet(db: Path, tmp_path: Path):
     with pytest.raises(FileExistsError):
         export_recall(con, cfg, review=review)
     con.close()
+
+
+def test_alternative_model_uses_its_own_request_settings(db: Path, tmp_path: Path):
+    cfg, _ = make_cfg(tmp_path, db)
+    con = duckdb.connect(str(db))
+    ids = _ids(con, 1)
+    fake = FakeLLM()
+    tag_records(con, cfg, make_client(fake), scope="ids", ids=ids, batches=["strategy"])
+    tag_records(
+        con,
+        cfg,
+        make_client(fake),
+        scope="ids",
+        ids=ids,
+        batches=["strategy"],
+        alternative=True,
+    )
+    main, alt = fake.chat
+    assert main["model"] == cfg.models.tagging
+    assert main["chat_template_kwargs"] == {"enable_thinking": False}
+    assert alt["model"] == cfg.model_alternatives.tagging == "gpt-oss-120b"
+    assert alt["max_tokens"] == 8192 and alt["reasoning_effort"] == "low"
+    assert "chat_template_kwargs" not in alt
+    con.close()
