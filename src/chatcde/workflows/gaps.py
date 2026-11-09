@@ -42,18 +42,13 @@ from typing import Any, Literal
 from pydantic import BaseModel, Field, ValidationError
 
 from chatcde.agent import AgentError, load_prompt
-from chatcde.config import Config
 from chatcde.harvest.common import code_version, now
-from chatcde.schemas import Citation, Dimension, Filters, GapCell, Passage
+from chatcde.schemas import Citation, Dimension, Filters, GapCell, Level, Passage
 from chatcde.store.endpoint import EndpointError
 from chatcde.tools.context import ToolContext, ToolError
-from chatcde.tools.counts import gap_report
+from chatcde.tools.counts import count_matrix, gap_report, level_groups
 from chatcde.tools.publications import citation, records_by_id, search_publications
-from chatcde.tools.vocabulary import (
-    VocabularyError,
-    dimension_entries,
-    load_vocabulary,
-)
+from chatcde.tools.vocabulary import dimension_entries, group_entries
 from chatcde.workflows.answer import data_note
 
 log = logging.getLogger(__name__)
@@ -97,6 +92,14 @@ class NearbyRecord(BaseModel):
     )
 
 
+class TermCount(BaseModel):
+    """A term inside a group cell, with the records of the matrix base tagged."""
+
+    code: str
+    label: str
+    count: int
+
+
 class CellEvidence(BaseModel):
     """One gap cell with its counts (from code) and what a search found nearby."""
 
@@ -113,6 +116,14 @@ class CellEvidence(BaseModel):
     )
     nearby: list[NearbyRecord]
     search_error: str | None = None
+    row_breakdown: list[TermCount] = Field(
+        default_factory=list,
+        description="At group level: the row group's terms, records tagged (base)",
+    )
+    col_breakdown: list[TermCount] = Field(
+        default_factory=list,
+        description="At group level: the column group's terms, records tagged (base)",
+    )
 
     def evidence_ids(self) -> set[str]:
         """Record IDs the model may cite for this cell."""
@@ -180,6 +191,9 @@ class GapsResult(BaseModel):
     excluded_records: int
     max_ratio: float
     min_expected: float
+    level: Level = "group"
+    row_level: Level = "term"
+    col_level: Level = "term"
     gaps_found: int = Field(description="All gap cells, before max_cells")
     cells: list[CellEvidence]
     caveats: list[str] = Field(description="Caveats computed by code")
@@ -218,14 +232,15 @@ def parse_dims(text: str) -> tuple[Dimension, Dimension]:
     return row, col
 
 
-def _labels(cfg: Config, dimension: Dimension) -> dict[str, str]:
-    """Code -> label for one dimension (empty if the vocabulary can't be read)."""
+def _labels(ctx: ToolContext, dimension: Dimension) -> dict[str, str]:
+    """Code -> label for a dimension's terms and groups (empty without vocabulary)."""
     try:
-        vocab = load_vocabulary(cfg.vocab.file)
-    except VocabularyError as exc:
+        vocab = ctx.vocabulary()
+    except ToolError as exc:
         log.warning("vocabulary not readable, using codes as labels: %s", exc)
         return {}
-    return {e.code: e.label for e in dimension_entries(vocab, dimension)}
+    entries = [*dimension_entries(vocab, dimension), *group_entries(vocab, dimension)]
+    return {e.code: e.label for e in entries}
 
 
 def _tags_of(
@@ -268,15 +283,23 @@ def collect_evidence(
     *,
     passages: int,
     search: Search | None = None,
+    groups: dict[Dimension, dict[str, str]] | None = None,
 ) -> list[CellEvidence]:
     """Step 2 of the chain: search each gap cell's two terms within the scope.
 
     The search may return several passages of one record; each record is kept
     once, with its best passage. A failing search (no index, endpoint down) is
     recorded on the cell, not raised, so the counts are still shown.
+
+    With ``groups`` (the group maps the counts used), the nearby records' tags
+    are shown as group codes, and each cell gets the terms of its row and
+    column group with their record counts (``row_breakdown``,
+    ``col_breakdown``), from one term-level count on the same filters.
     """
     search = search or _default_search
-    row_labels, col_labels = _labels(ctx.cfg, row), _labels(ctx.cfg, col)
+    groups = groups or {}
+    row_labels, col_labels = _labels(ctx, row), _labels(ctx, col)
+    totals = _term_totals(ctx, row, col, filters, groups)
     out = []
     for g in cells:
         c = g.col or ""
@@ -300,8 +323,8 @@ def collect_evidence(
                 citation=p.citation,
                 snippet=" ".join(p.chunk.text.split())[:SNIPPET_CHARS],
                 score=round(p.score, 4),
-                row_terms=r_tags.get(p.citation.record_id, []),
-                col_terms=c_tags.get(p.citation.record_id, []),
+                row_terms=_as_groups(r_tags.get(p.citation.record_id, []), row, groups),
+                col_terms=_as_groups(c_tags.get(p.citation.record_id, []), col, groups),
             )
             for p in chosen
         ]
@@ -320,9 +343,63 @@ def collect_evidence(
                 records=[citation(found[r]) for r in g.record_ids if r in found],
                 nearby=nearby,
                 search_error=error,
+                row_breakdown=_breakdown(g.row, row, groups, totals[0], row_labels),
+                col_breakdown=_breakdown(c, col, groups, totals[1], col_labels),
             )
         )
     return out
+
+
+#: Terms listed per group in a cell's breakdown.
+BREAKDOWN_TERMS = 8
+
+
+def _as_groups(
+    terms: list[str], dimension: Dimension, groups: dict[Dimension, dict[str, str]]
+) -> list[str]:
+    """Terms as group codes when the dimension is counted by group."""
+    mapping = groups.get(dimension)
+    if not mapping:
+        return terms
+    return list(dict.fromkeys(mapping.get(t, t) for t in terms))
+
+
+def _term_totals(
+    ctx: ToolContext,
+    row: Dimension,
+    col: Dimension,
+    filters: Filters,
+    groups: dict[Dimension, dict[str, str]],
+) -> tuple[dict[str, int], dict[str, int]]:
+    """Term-level row and column totals on the same base (only if grouped)."""
+    if not groups:
+        return {}, {}
+    try:
+        with ctx.catalogue() as con:
+            m = count_matrix(con, row, col, filters)
+    except ToolError as exc:
+        log.warning("gaps: term breakdown failed: %s", exc)
+        return {}, {}
+    return m.row_totals, m.col_totals
+
+
+def _breakdown(
+    code: str,
+    dimension: Dimension,
+    groups: dict[Dimension, dict[str, str]],
+    totals: dict[str, int],
+    labels: dict[str, str],
+) -> list[TermCount]:
+    """The terms of group ``code`` with their record counts, most used first."""
+    mapping = groups.get(dimension)
+    if not mapping:
+        return []
+    members = [t for t, g in mapping.items() if g == code]
+    ranked = sorted(members, key=lambda t: (-totals.get(t, 0), t))
+    return [
+        TermCount(code=t, label=labels.get(t, t), count=totals.get(t, 0))
+        for t in ranked[:BREAKDOWN_TERMS]
+    ]
 
 
 def code_caveats(result: GapsResult, min_confidence: float) -> list[str]:
@@ -369,7 +446,12 @@ def code_caveats(result: GapsResult, min_confidence: float) -> list[str]:
 def _evidence_payload(result: GapsResult) -> dict[str, Any]:
     """The JSON the model reads: scope, denominators, cells, caveats."""
     return {
-        "dimensions": {"row": result.row.value, "col": result.col.value},
+        "dimensions": {
+            "row": result.row.value,
+            "row_level": result.row_level,
+            "col": result.col.value,
+            "col_level": result.col_level,
+        },
         "scope": result.filters.model_dump(exclude_defaults=True),
         "matching_records": result.total_records,
         "tagged_on_both": result.tagged_on_both,
@@ -401,6 +483,14 @@ def _evidence_payload(result: GapsResult) -> dict[str, Any]:
                     for n in c.nearby
                 ],
                 **({"search_error": c.search_error} if c.search_error else {}),
+                **(
+                    {
+                        "row_group_terms": [b.model_dump() for b in c.row_breakdown],
+                        "col_group_terms": [b.model_dump() for b in c.col_breakdown],
+                    }
+                    if c.row_breakdown or c.col_breakdown
+                    else {}
+                ),
             }
             for c in result.cells
         ],
@@ -519,6 +609,7 @@ def run_gaps(
     use_llm: bool = True,
     model: str | None = None,
     search: Search | None = None,
+    level: Level = "group",
 ) -> GapsResult:
     """Run the whole gap workflow (steps 1-4 above).
 
@@ -535,6 +626,8 @@ def run_gaps(
         model: Override for ``models.agent``.
         search: Search function; default :func:`search_publications` (tests
             replace it).
+        level: ``group`` (default) compares grouped dimensions by group, with
+            each cell's terms listed; ``term`` compares terms (decision 0030).
 
     Raises:
         GapsError: Same dimension twice, no records or no tags (from step 1).
@@ -546,8 +639,15 @@ def run_gaps(
     limit = s.max_cells if max_cells is None else max_cells
     try:
         report = gap_report(
-            ctx, row, col, filters, ratio, exclude_types=[] if all_types else None
+            ctx,
+            row,
+            col,
+            filters,
+            ratio,
+            level=level,
+            exclude_types=[] if all_types else None,
         )
+        groups = level_groups(ctx, level, row, col)
     except ToolError as exc:
         raise GapsError(str(exc)) from exc
     m, basis = report.matrix, report.basis
@@ -560,6 +660,7 @@ def run_gaps(
         basis.filters,
         passages=s.passages_per_cell,
         search=search,
+        groups=groups,
     )
     note = data_note(cfg)
     result = GapsResult(
@@ -572,6 +673,9 @@ def run_gaps(
         excluded_records=basis.excluded_records,
         max_ratio=ratio,
         min_expected=report.min_expected,
+        level=level,
+        row_level=m.row_level,
+        col_level=m.col_level,
         gaps_found=len(report.gaps),
         cells=cells,
         caveats=[],
@@ -665,6 +769,11 @@ def render_gaps(console: Any, result: GapsResult) -> None:
         f"{result.tagged_on_both:,}).",
         highlight=False,
     )
+    console.print(
+        f"Counted by: {r} {result.row_level}, {c} {result.col_level} "
+        "(--level group|term).",
+        highlight=False,
+    )
     if not result.cells:
         console.print("No gaps found.")
         for line in result.caveats:
@@ -736,6 +845,12 @@ def render_gaps(console: Any, result: GapsResult) -> None:
                 f"   [yellow]Search failed: {escape(cell.search_error)}[/yellow]",
                 highlight=False,
             )
+        for name, parts in ((r, cell.row_breakdown), (c, cell.col_breakdown)):
+            if parts:
+                terms = ", ".join(f"{b.label} ({b.count})" for b in parts)
+                console.print(
+                    f"   [dim]{name} terms: {escape(terms)}[/dim]", highlight=False
+                )
         for n in cell.nearby:
             tags = (
                 f"{r}: {', '.join(n.row_terms) or '-'}; {c}: "

@@ -20,11 +20,13 @@ import logging
 import threading
 from collections.abc import Iterator
 from contextlib import contextmanager
+from typing import Any
 
 import duckdb
 
 from chatcde import catalogue
 from chatcde.config import Config, load_config
+from chatcde.schemas import Filters
 from chatcde.store.endpoint import EndpointClient
 
 log = logging.getLogger(__name__)
@@ -54,6 +56,23 @@ class ToolContext:
         self._client = client
         self._owns_client = client is None
         self._lock = threading.Lock()
+        self._vocab: dict[str, Any] | None = None
+
+    def vocabulary(self) -> dict[str, Any]:
+        """The vocabulary (``vocab.file``), read once per context.
+
+        Raises:
+            ToolError: If the file is missing or not a YAML mapping.
+        """
+        from chatcde.tools.vocabulary import VocabularyError, load_vocabulary
+
+        with self._lock:
+            if self._vocab is None:
+                try:
+                    self._vocab = load_vocabulary(self.cfg.vocab.file)
+                except VocabularyError as exc:
+                    raise ToolError(str(exc)) from exc
+            return self._vocab
 
     def endpoint(self) -> EndpointClient:
         """The endpoint client (query embeddings, reranking), created once."""
@@ -61,6 +80,18 @@ class ToolContext:
             if self._client is None:
                 self._client = EndpointClient.from_config(self.cfg)
             return self._client
+
+    def expand(self, filters: Filters | None) -> Filters | None:
+        """``filters`` with group codes replaced by their terms (decision 0030).
+
+        The vocabulary is read only if a tag filter is set.
+        """
+        from chatcde.store.filters import TAG_FIELDS
+        from chatcde.tools.vocabulary import expand_filters
+
+        if filters is None or not any(getattr(filters, f) for f in TAG_FIELDS):
+            return filters
+        return expand_filters(filters, self.vocabulary())
 
     @contextmanager
     def catalogue(self) -> Iterator[duckdb.DuckDBPyConnection]:

@@ -30,6 +30,7 @@ from __future__ import annotations
 
 from datetime import datetime
 from enum import Enum
+from typing import Literal
 
 from pydantic import BaseModel, Field
 
@@ -309,6 +310,10 @@ class PublicationDetail(BaseModel):
     download: ManifestEntry | None
 
 
+#: How terms are counted: by their vocabulary group, or one by one (decision 0030).
+Level = Literal["group", "term"]
+
+
 class VocabTerm(BaseModel):
     """A term in a controlled vocabulary, with its current usage."""
 
@@ -316,6 +321,9 @@ class VocabTerm(BaseModel):
     code: str
     label: str
     definition: str | None = None
+    group: str | None = Field(
+        default=None, description="Code of the term's group (None for groups)"
+    )
     record_count: int
 
 
@@ -340,6 +348,12 @@ class CountMatrix(BaseModel):
     total_records: int = Field(description="Records matching the filters")
     untagged_records: int = Field(
         description="Matching records with no tag on these dimensions"
+    )
+    row_level: Level = Field(
+        default="term", description="Level the rows were counted at"
+    )
+    col_level: Level = Field(
+        default="term", description="Level the columns were counted at"
     )
 
 

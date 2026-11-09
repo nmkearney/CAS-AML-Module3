@@ -169,6 +169,7 @@ def search_publications(
     if k > cfg.tools.max_k:
         log.info("k=%d capped at tools.max_k=%d", k, cfg.tools.max_k)
         k = cfg.tools.max_k
+    filters = ctx.expand(filters)
     settings = SearchSettings.from_config(
         cfg, top_n=k, candidates=max(cfg.retrieval.top_k, k)
     )

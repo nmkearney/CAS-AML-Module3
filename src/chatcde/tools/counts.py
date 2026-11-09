@@ -37,14 +37,15 @@ from chatcde.schemas import (
     Dimension,
     Filters,
     GapCell,
+    Level,
     VocabTerm,
 )
 from chatcde.store.filters import FilterError, filter_record_ids
 from chatcde.tools.context import ToolContext, ToolError
 from chatcde.tools.vocabulary import (
-    VocabularyError,
     dimension_entries,
-    load_vocabulary,
+    group_entries,
+    group_map,
 )
 
 log = logging.getLogger(__name__)
@@ -105,24 +106,40 @@ def _sorted_totals(counts: dict[str, int]) -> dict[str, int]:
     return dict(sorted(counts.items(), key=lambda t: (-t[1], t[0])))
 
 
+def _grouped(
+    tagged: dict[str, set[str]], mapping: dict[str, str]
+) -> dict[str, set[str]]:
+    """Map each record's terms to their groups; a term without a group stays."""
+    return {rid: {mapping.get(t, t) for t in terms} for rid, terms in tagged.items()}
+
+
 def count_matrix(
     con: duckdb.DuckDBPyConnection,
     row: Dimension,
     col: Dimension | None = None,
     filters: Filters | None = None,
+    *,
+    groups: dict[Dimension, dict[str, str]] | None = None,
 ) -> CountMatrix:
     """Count matching records by one or two dimensions (rules in the module doc).
 
-    Cells are ordered by count (descending), then row and column term; their
-    ``record_ids`` are sorted.
+    With ``groups`` (dimension -> term code -> group code, from
+    :func:`chatcde.tools.vocabulary.group_map`), a dimension in it is counted by
+    group: a record counts once per group, however many of the group's terms
+    it has. Terms without a group (``other``, codes not in the vocabulary) are
+    counted under their own code. Cells are ordered by count (descending), then
+    row and column code; their ``record_ids`` are sorted.
 
     Raises:
         ToolError: No records or no tags, or tag filters without tags.
     """
     f = filters or Filters()
+    groups = groups or {}
     ids = _base_ids(con, f)
     _require_tags(con)
     rows = _tagged(con, row, ids, f.min_confidence)
+    if row in groups:
+        rows = _grouped(rows, groups[row])
     cells: dict[tuple[str, str | None], list[str]] = {}
     row_totals: dict[str, int] = {}
     col_totals: dict[str, int] = {}
@@ -133,6 +150,8 @@ def count_matrix(
                 cells.setdefault((t, None), []).append(rid)
     else:
         cols = _tagged(con, col, ids, f.min_confidence)
+        if col in groups:
+            cols = _grouped(cols, groups[col])
         base = {rid: rows[rid] for rid in rows.keys() & cols.keys()}
         for rid in base:
             for c in cols[rid]:
@@ -157,7 +176,33 @@ def count_matrix(
         col_totals=_sorted_totals(col_totals),
         total_records=len(ids),
         untagged_records=len(ids) - len(base),
+        row_level="group" if row in groups else "term",
+        col_level="group" if col is not None and col in groups else "term",
     )
+
+
+def level_groups(
+    ctx: ToolContext, level: Level, *dimensions: Dimension | None
+) -> dict[Dimension, dict[str, str]]:
+    """The group maps to count ``dimensions`` at ``level`` (empty for ``term``).
+
+    Dimensions without groups are left out, so they are counted by term.
+
+    Raises:
+        ToolError: An unknown level, or an unreadable vocabulary.
+    """
+    if level == "term":
+        return {}
+    if level != "group":
+        raise ToolError(f"level must be 'group' or 'term', not {level!r}")
+    vocab = ctx.vocabulary()
+    out = {}
+    for d in dimensions:
+        if d is not None:
+            mapping = group_map(vocab, d)
+            if mapping:
+                out[d] = mapping
+    return out
 
 
 @dataclass(frozen=True)
@@ -244,22 +289,32 @@ def gap_cells(
 # ---------------------------------------------------------------------------
 
 
-def list_vocabulary(ctx: ToolContext, dimension: Dimension) -> list[VocabTerm]:
-    """Vocabulary terms of ``dimension`` with the records tagged with each.
+def list_vocabulary(
+    ctx: ToolContext, dimension: Dimension, level: Level = "term"
+) -> list[VocabTerm]:
+    """Vocabulary terms (or groups) of ``dimension`` with the records tagged.
 
-    Terms come in vocabulary order. Codes that occur in the tags but not in the
-    vocabulary (``other``, codes derived from a standard such as countries and
-    M49 sub-regions, or terms renamed since tagging) follow, by count; their
-    definition says so. ``record_count`` counts records with a tag of at least
-    the default ``Filters.min_confidence`` (0.5), over all records and types.
+    **Term level:** terms in vocabulary order, each with its ``group``. Codes
+    that occur in the tags but not in the vocabulary (``other``, codes derived
+    from a standard such as countries and M49 sub-regions, or terms renamed since
+    tagging) follow, by count; their definition says so.
+
+    **Group level:** the dimension's groups, each counting the records tagged
+    with any of its terms (once per record). A dimension without groups is
+    listed by term.
+
+    ``record_count`` counts records with a tag of at least the default
+    ``Filters.min_confidence`` (0.5), over all records and types.
 
     Raises:
-        ToolError: If the vocabulary file is missing or invalid.
+        ToolError: An unknown level, or a missing or invalid vocabulary file.
     """
-    try:
-        vocab = load_vocabulary(ctx.cfg.vocab.file)
-    except VocabularyError as exc:
-        raise ToolError(str(exc)) from exc
+    if level not in ("group", "term"):
+        raise ToolError(f"level must be 'group' or 'term', not {level!r}")
+    vocab = ctx.vocabulary()
+    mapping = group_map(vocab, dimension) if level == "group" else None
+    if mapping:
+        return _group_terms(ctx, dimension, vocab, mapping)
     entries = dimension_entries(vocab, dimension)
     counts: dict[str, int] = {}
     with ctx.catalogue() as con:
@@ -277,6 +332,7 @@ def list_vocabulary(ctx: ToolContext, dimension: Dimension) -> list[VocabTerm]:
             code=e.code,
             label=e.label,
             definition=e.definition,
+            group=e.group,
             record_count=int(counts.get(e.code, 0)),
         )
         for e in entries
@@ -308,15 +364,70 @@ def list_vocabulary(ctx: ToolContext, dimension: Dimension) -> list[VocabTerm]:
     return terms
 
 
+def _group_terms(
+    ctx: ToolContext,
+    dimension: Dimension,
+    vocab: dict,
+    mapping: dict[str, str],
+) -> list[VocabTerm]:
+    """``list_vocabulary`` at group level: groups with distinct record counts."""
+    tagged: dict[str, set[str]] = {}
+    with ctx.catalogue() as con:
+        if _has_table(con, "tags"):
+            rows = con.execute(
+                "SELECT DISTINCT record_id, term FROM tags "
+                "WHERE dimension = ? AND confidence >= ?",
+                [dimension.value, Filters().min_confidence],
+            ).fetchall()
+            for rid, term in rows:
+                tagged.setdefault(rid, set()).add(mapping.get(term, term))
+    counts: dict[str, int] = {}
+    for codes in tagged.values():
+        for c in codes:
+            counts[c] = counts.get(c, 0) + 1
+    members: dict[str, int] = {}
+    for g in mapping.values():
+        members[g] = members.get(g, 0) + 1
+    out = [
+        VocabTerm(
+            dimension=dimension,
+            code=e.code,
+            label=e.label,
+            definition=f"Group of {members.get(e.code, 0)} terms",
+            record_count=counts.get(e.code, 0),
+        )
+        for e in group_entries(vocab, dimension)
+    ]
+    listed = {t.code for t in out}
+    for code, n in sorted(counts.items(), key=lambda t: (-t[1], t[0])):
+        if code not in listed:
+            out.append(
+                VocabTerm(
+                    dimension=dimension,
+                    code=code,
+                    label="Other" if code == "other" else code,
+                    definition="Tag code without a group",
+                    record_count=n,
+                )
+            )
+    return out
+
+
 def count_by(
     ctx: ToolContext,
     row: Dimension,
     col: Dimension | None = None,
     filters: Filters | None = None,
+    level: Level = "group",
 ) -> CountMatrix:
-    """Count records by one or two dimensions; see :func:`count_matrix`."""
+    """Count records by one or two dimensions; see :func:`count_matrix`.
+
+    Group codes in the filters are expanded to their terms first.
+    """
+    groups = level_groups(ctx, level, row, col)
+    filters = ctx.expand(filters)
     with ctx.catalogue() as con:
-        return count_matrix(con, row, col, filters)
+        return count_matrix(con, row, col, filters, groups=groups)
 
 
 @dataclass(frozen=True)
@@ -336,6 +447,7 @@ def gap_report(
     filters: Filters | None = None,
     max_ratio: float = 0.25,
     *,
+    level: Level = "group",
     exclude_types: Sequence[str] | None = None,
 ) -> GapReport:
     """Run a gap analysis of ``row`` x ``col`` and keep its basis and matrix.
@@ -346,6 +458,7 @@ def gap_report(
         col: Second dimension (must differ from ``row``).
         filters: Optional restrictions.
         max_ratio: Largest ``count / expected`` that counts as a gap.
+        level: ``group`` counts grouped dimensions by group, ``term`` by term.
         exclude_types: Publication types to leave out; ``None`` uses
             ``gaps.exclude_types`` from the config, ``[]`` keeps all types.
 
@@ -358,9 +471,11 @@ def gap_report(
         raise ToolError("max_ratio must be 0 or more")
     cfg = ctx.cfg.gaps
     types = cfg.exclude_types if exclude_types is None else exclude_types
+    groups = level_groups(ctx, level, row, col)
+    filters = ctx.expand(filters)
     with ctx.catalogue() as con:
         basis = gap_basis(con, filters, types)
-        matrix = count_matrix(con, row, col, basis.filters)
+        matrix = count_matrix(con, row, col, basis.filters, groups=groups)
     gaps = gap_cells(matrix, max_ratio=max_ratio, min_expected=cfg.min_expected)
     return GapReport(basis, matrix, gaps, cfg.min_expected)
 
@@ -371,9 +486,10 @@ def find_gaps(
     col: Dimension,
     filters: Filters | None = None,
     max_ratio: float = 0.25,
+    level: Level = "group",
 ) -> list[GapCell]:
     """The gap cells of :func:`gap_report`, as the agent's tool returns them."""
-    report = gap_report(ctx, row, col, filters, max_ratio)
+    report = gap_report(ctx, row, col, filters, max_ratio, level=level)
     gaps, matrix, basis = report.gaps, report.matrix, report.basis
     log.info(
         "find_gaps %s x %s: %d gaps among %d tagged of %d records "

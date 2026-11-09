@@ -165,14 +165,14 @@ gaps:
   dims: "sub_area,method"        # default --dims (row,col)
   max_cells: 8                   # gap cells searched and judged, most extreme first
   passages_per_cell: 3           # nearby records shown per cell
-  prompt: "gaps.v1"              # file <prompts.dir>/<name>.md
+  prompt: "gaps.v2"              # file <prompts.dir>/<name>.md; v2: group cells (0030)
   structured_output: true        # send the JSON schema as response_format
   temperature: 0.1
   max_tokens: 6144               # gpt-oss spends part of it on reasoning
 
 # --- Agent (see docs/decisions/0022-agent-loop.md) -------------------------
 agent:
-  system_prompt: "agent_system.v1"   # file <prompts.dir>/<name>.md
+  system_prompt: "agent_system.v2"   # file <prompts.dir>/<name>.md; v2: group level (0030)
   tools: [search_publications, get_publication, read_section, list_vocabulary,
           count_by, find_gaps, coverage_report]
   max_tool_calls: 12             # per question; then the model must answer

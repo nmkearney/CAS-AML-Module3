@@ -178,7 +178,7 @@ def test_judgement_is_checked(toy_db: Path, tmp_path: Path):  # noqa: F811
     assert by[("A", "y")].evidence == ["a01"]  # the made-up ID is dropped ...
     assert r.dropped_ids == ["made-up"]  # ... and reported
     assert by[("B", "x")].verdict == "unclear"  # left out by the model
-    assert r.model == ctx.cfg.models.agent and r.prompt_version == "gaps.v1"
+    assert r.model == ctx.cfg.models.agent and r.prompt_version == "gaps.v2"
     assert r.usage["total_tokens"] == 110
 
     request = llm.requests[0]
