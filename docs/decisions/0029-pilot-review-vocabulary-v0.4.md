@@ -74,6 +74,31 @@ The curator hand-checked pilot 2 (decision 0028) in `data/reference/review_main.
 - **The output_type → audience_type rename** is proposed in #60 (`schemas`). It
   changes the shared contract, so Track B must agree.
 
+## Pilot 3 (tag.v3, vocabulary 0.4, 2026-11-09)
+- **Run:** the same 100 records, 300 requests in 12 minutes, 0 failures, 2% of quotes not
+  found. Pilot 2 is kept as run `pilot_v2`. Impact areas still match BORIS units 19 of 26.
+- **Across the 100 records, compared with pilot 2:**
+  - actors: researchers tagged as co-producers fell from 28 to 9; funders are no longer
+    co-producers.
+  - research_mode: 58 → 44 tags; the model now leaves it empty for some works.
+  - justice_lens: model tags fell from 110 to 61, while counted lenses rose from 50 to
+    54; 24 "None explicit" tags were filled in by code.
+  - scale: subnational 18 → 25, transboundary or regional 3 → 9, landscape 14 → 9.
+  - objective: rose from 43 to 67 tags. The new definitions may make objectives too
+    easy to tag, so check them in the re-review.
+- **Re-review** (`chatcde evaluate review-sheet --carry-from`,
+  `data/reference/review_pilot3.xlsx`):
+  - The same 20 records give 412 tags. 345 had been judged before and keep their
+    decision; 67 are new.
+  - Of the earlier tags, 68 are gone: 8 marked wrong and 13 unsure, but also 47
+    marked ok (`dropped` sheet). Most of the ok ones are researchers as
+    co-producers and title-only "None explicit".
+- **Still wrong after the rerun:**
+  - scale on #8 and #13;
+  - SDG 2 on #13;
+  - "None explicit" on #1, filled in by code because the model again missed Power.
+  - None of the 5 missing tags was added.
+
 ## Consequences
 - Pilot 3 reruns the same 100 records with v0.4 and tag.v3. Only changed tags need a
   second look.

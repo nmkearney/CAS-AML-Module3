@@ -302,6 +302,8 @@ chatcde tag --all                          # every record; resumable, runs for h
 chatcde tag --pilot --alternative          # model_alternatives.tagging, run "alt"
 chatcde tag --publish-only                 # rebuild the tags table from run "main"
 chatcde evaluate review-sheet              # Excel workbook to hand-check 20 pilot records
+chatcde evaluate review-sheet --carry-from data/reference/review_main.xlsx \
+    --out data/reference/review_pilot3.xlsx  # after a rerun: earlier decisions kept, only new tags to judge
 ```
 
 - **One request per record and batch.** The three batches are strategy, how and where,

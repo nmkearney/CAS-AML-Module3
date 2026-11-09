@@ -17,6 +17,19 @@ pilot records, drawn per input kind (full text, abstract only, title only;
 
 The filled-in workbook gives a first precision per dimension and is the start of
 the #16 reference set; scoring it is ``chatcde evaluate tagging`` (#16).
+
+**Re-review after a rerun** (``--carry-from`` an earlier, filled-in workbook;
+decision 0029): the same records, with the same numbers. A tag the earlier
+workbook already judged (same record, dimension, code and role) keeps its
+decision, with ``change = same``; only ``change = new`` rows need a look. A tag
+judged under a code that has since been retired matches its replacement, but its
+meaning may have changed, so the old decision goes into ``note`` and the row is
+``new``. Tags of the earlier run that are gone are
+listed in a ``dropped`` sheet with their old decision, and the earlier missing
+tags are carried with ``now_tagged``.
+
+"None" terms filled in by code (``tagging.none_terms``) are listed as tags too,
+with the evidence "(filled in by code)", since they count like the others.
 """
 
 from __future__ import annotations
@@ -26,7 +39,7 @@ from pathlib import Path
 from typing import Any
 
 import duckdb
-from openpyxl import Workbook
+from openpyxl import Workbook, load_workbook
 from openpyxl.styles import Alignment
 
 from chatcde.config import Config
@@ -34,6 +47,7 @@ from chatcde.schemas import ActorRole, Dimension
 from chatcde.tag import tables
 from chatcde.tag.answer import OTHER, codes_for
 from chatcde.tag.curation import _write_sheet
+from chatcde.tag.derive import derived_provenance, none_tags, read_sources, run_tags
 from chatcde.tag.extract import build_texts
 from chatcde.tag.regions import load_countries
 from chatcde.tag.vocabulary import load_vocabulary
@@ -42,6 +56,11 @@ from chatcde.tools.vocabulary import dimension_entries
 KINDS = ("fulltext", "abstract", "metadata")
 DECISIONS = ["ok", "wrong", "unsure"]
 MISSING_ROWS = 120
+#: Columns of the ``dropped`` sheet (earlier tags the rerun no longer gives).
+DROPPED_COLUMNS = [
+    "decision", "correct_term", "note", "record_no", "title", "dimension", "term",
+    "now_term", "label", "role", "confidence", "evidence",
+]  # fmt: skip
 
 README = [
     "Tagging review workbook (chatcde evaluate review-sheet; decision 0028).",
@@ -55,6 +74,10 @@ README = [
     "  tag, counted or not: uncounted ones show what the caps removed.",
     "missing: add a row for each tag the model should have given (record_no,",
     "  dimension, code; role for actors). Codes are listed in sheet 'codes'.",
+    "",
+    "change (re-review only): same = judged in the earlier workbook (decision",
+    "  carried); new = judge it. Sheet 'dropped' lists earlier tags the rerun no",
+    "  longer gives, with their old decision; 'missing' marks now_tagged.",
     "",
     "input: what the model saw. fulltext = abstract and/or first pages;",
     "  abstract = abstract only; metadata = title, keywords and venue only.",
@@ -119,6 +142,36 @@ def label_lookup(cfg: Config) -> dict[str, dict[str, str]]:
     return out
 
 
+def _sheet_rows(wb: Any, name: str) -> list[dict[str, Any]]:
+    """Rows of one sheet of a review workbook as dicts (empty rows skipped)."""
+    if name not in wb.sheetnames:
+        return []
+    it = wb[name].iter_rows(values_only=True)
+    header = [str(h) if h is not None else "" for h in next(it, [])]
+    rows = []
+    for values in it:
+        row = dict(zip(header, values, strict=False))
+        if any(v not in (None, "") for v in row.values()):
+            rows.append(row)
+    return rows
+
+
+def replacements(vocab: dict[str, Any]) -> dict[str, str]:
+    """Retired code -> its replacement, over every curated dimension."""
+    out: dict[str, str] = {}
+    for node in vocab.values():
+        if isinstance(node, dict):
+            for item in node.get("retired") or []:
+                if isinstance(item, dict) and item.get("replaced_by"):
+                    out[str(item["code"])] = str(item["replaced_by"])
+    return out
+
+
+def _key(rid: Any, dim: Any, term: Any, role: Any) -> tuple[str, str, str, str]:
+    """Matching key of a tag across workbooks (role empty for non-actors)."""
+    return (str(rid), str(dim), str(term), str(role or ""))
+
+
 def export_review(
     con: duckdb.DuckDBPyConnection,
     cfg: Config,
@@ -126,8 +179,12 @@ def export_review(
     run: str | None = None,
     out: Path | None = None,
     force: bool = False,
+    carry_from: Path | None = None,
 ) -> tuple[Path, int, int]:
     """Write the review workbook; return (path, records, tags).
+
+    With ``carry_from`` (an earlier, filled-in workbook), the same records are
+    reviewed and earlier decisions are carried (see module docstring).
 
     Raises:
         FileExistsError: The workbook exists and ``force`` is not set (it may hold
@@ -139,10 +196,19 @@ def export_review(
     path = out or r.dir / f"review_{run}.xlsx"
     if path.exists() and not force:
         raise FileExistsError(f"{path} exists; use --force to overwrite it")
-    picked = pick_records(con, cfg, run)
-    ids = [rid for rid, _ in picked]
-    kinds = dict(picked)
-    number = {rid: n for n, rid in enumerate(ids, start=1)}
+    old_wb = load_workbook(carry_from, read_only=True) if carry_from else None
+    if old_wb is not None:
+        old_records = sorted(
+            _sheet_rows(old_wb, "records"), key=lambda x: int(x["record_no"])
+        )
+        ids = [str(x["record_id"]) for x in old_records]
+        kinds = {str(x["record_id"]): str(x["input"]) for x in old_records}
+        number = {str(x["record_id"]): int(x["record_no"]) for x in old_records}
+    else:
+        picked = pick_records(con, cfg, run)
+        ids = [rid for rid, _ in picked]
+        kinds = dict(picked)
+        number = {rid: n for n, rid in enumerate(ids, start=1)}
     texts = build_texts(
         con,
         ids,
@@ -182,17 +248,72 @@ def export_review(
             }
         )
 
-    tag_rows: list[dict[str, Any]] = []
-    for rid, dim, term, other, role, conf, source, evidence in con.execute(
+    found = con.execute(
         "SELECT record_id, dimension, term, other_label, role, confidence, source, "
         "evidence FROM tag_runs WHERE run = ? AND list_contains(?, record_id)",
         [run, ids],
-    ).fetchall():
+    ).fetchall()
+    none_codes = cfg.tagging.none_terms
+    if none_codes:  # "none" terms count like tags, so they are reviewed too
+        vocab = load_vocabulary(cfg.vocab.file)
+        llm = [
+            t
+            for t in run_tags(con, run)
+            if t.record_id in number and t.term not in none_codes.values()
+        ]
+        found = [r for r in found if r[2] not in none_codes.values()]
+        read = {
+            d: {rid: src for rid, src in by.items() if rid in number}
+            for d, by in read_sources(con, run, cfg.tagging.batches).items()
+        }
+        for t in none_tags(
+            llm, read, none_codes, cfg.tagging.confidence["inferred"],
+            derived_provenance(vocab),
+        ):  # fmt: skip
+            found.append(
+                (t.record_id, t.dimension.value, t.term, None, None, t.confidence,
+                 t.source.value, "(filled in by code)")
+            )  # fmt: skip
+
+    carried: dict[tuple[str, str, str, str], dict[str, Any]] = {}
+    dropped_rows: list[dict[str, Any]] = []
+    missing_rows: list[dict[str, Any]] = [{} for _ in range(MISSING_ROWS)]
+    if old_wb is not None:
+        forward = replacements(load_vocabulary(cfg.vocab.file))
+        for row in _sheet_rows(old_wb, "tags"):
+            term = forward.get(str(row["term"]), str(row["term"]))
+            carried[_key(row["record_id"], row["dimension"], term, row["role"])] = row
+        now = {_key(r[0], r[1], r[2], r[4]) for r in found}
+        for key, row in carried.items():
+            if key not in now:
+                dropped_rows.append(
+                    {c: row.get(c) for c in DROPPED_COLUMNS if c != "now_term"}
+                    | {"now_term": key[2] if key[2] != row["term"] else ""}
+                )
+        now_terms = {(str(number[r[0]]), r[1], str(r[2])) for r in found}
+        missing_rows = []
+        for row in _sheet_rows(old_wb, "missing"):
+            key3 = (str(row.get("record_no")), str(row.get("dimension")),
+                    str(row.get("term")))  # fmt: skip
+            missing_rows.append(
+                {**row, "now_tagged": "yes" if key3 in now_terms else "no"}
+            )
+        missing_rows += [{} for _ in range(MISSING_ROWS - len(missing_rows))]
+        old_wb.close()
+
+    tag_rows: list[dict[str, Any]] = []
+    for rid, dim, term, other, role, conf, source, evidence in found:
+        prev = carried.get(_key(rid, dim, term, role))
+        note = (prev or {}).get("note") or ""
+        if prev and str(prev["term"]) != str(term):  # judged under a retired code
+            note = f"was {prev['term']}: {prev.get('decision') or ''} {note}".strip()
+            prev = None
         tag_rows.append(
             {
-                "decision": "",
-                "correct_term": "",
-                "note": "",
+                "decision": (prev or {}).get("decision") or "",
+                "correct_term": (prev or {}).get("correct_term") or "",
+                "note": note,
+                **({"change": "same" if prev else "new"} if old_wb else {}),
                 "record_no": number[rid],
                 "title": (meta[rid][0] or "")[:80],
                 "dimension": dim,
@@ -232,6 +353,8 @@ def export_review(
         "decision", "correct_term", "note", "record_no", "title", "dimension", "term",
         "label", "role", "confidence", "counted", "source", "evidence", "record_id",
     ]  # fmt: skip
+    if carry_from:
+        columns.insert(3, "change")
     _write_sheet(
         wb,
         "tags",
@@ -244,11 +367,24 @@ def export_review(
     )  # fmt: skip
     dims = sorted(order, key=order.get)  # type: ignore[arg-type]
     missing_cols = ["record_no", "dimension", "term", "role", "note"]
+    if carry_from:
+        missing_cols.append("now_tagged")
+        dropped_rows.sort(key=lambda x: (int(x["record_no"]), str(x["dimension"])))
+        _write_sheet(
+            wb,
+            "dropped",
+            DROPPED_COLUMNS,
+            dropped_rows,
+            grey=set(DROPPED_COLUMNS),
+            widths={"title": 30, "term": 30, "label": 30, "evidence": 60,
+                    "note": 30, "dimension": 18},
+            validations={},
+        )  # fmt: skip
     _write_sheet(
         wb,
         "missing",
         missing_cols,
-        [{} for _ in range(MISSING_ROWS)],
+        missing_rows,
         grey=set(),
         widths={"dimension": 22, "term": 32, "note": 40},
         validations={

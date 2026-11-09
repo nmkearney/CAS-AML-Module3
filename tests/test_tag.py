@@ -658,4 +658,34 @@ def test_review_sheet(db: Path, tmp_path: Path):
     with pytest.raises(FileExistsError):
         export_review(con, cfg)
     assert export_review(con, cfg, force=True)[0] == path
+
+    # Re-review: judge the first tag, drop it from the run, add a new one.
+    wb = load_workbook(path)
+    ws = wb["tags"]
+    header = [c.value for c in ws[1]]
+    first = {h: c.value for h, c in zip(header, ws[2], strict=True)}
+    ws.cell(row=2, column=1).value = "wrong"
+    wb["missing"].append([first["record_no"], "sdg", "13", None, None])
+    wb.save(path)
+    con.execute(
+        "UPDATE tag_runs SET term = 'MOVED' WHERE run = 'main' AND record_id = ? "
+        "AND dimension = ? AND term = ?",
+        [first["record_id"], first["dimension"], first["term"]],
+    )
+    again = tmp_path / "again.xlsx"
+    _, n2, t2 = export_review(con, cfg, out=again, carry_from=path)
+    assert n2 == n_records and t2 == n_tags
+    wb2 = load_workbook(again)
+    assert "dropped" in wb2.sheetnames
+    dropped = list(wb2["dropped"].iter_rows(min_row=2, values_only=True))
+    assert len(dropped) == 1 and dropped[0][0] == "wrong"
+    rows = list(wb2["tags"].iter_rows(values_only=True))
+    change = rows[0].index("change")
+    assert sorted({r[change] for r in rows[1:]}) == ["new", "same"]
+    assert sum(r[change] == "new" for r in rows[1:]) == 1
+    missing = list(wb2["missing"].iter_rows(min_row=2, max_row=2, values_only=True))
+    assert missing[0][:3] == (first["record_no"], "sdg", "13") and missing[0][-1] in (
+        "yes",
+        "no",
+    )
     con.close()

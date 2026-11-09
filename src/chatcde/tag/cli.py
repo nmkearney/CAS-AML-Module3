@@ -401,6 +401,15 @@ def review_sheet(
     force: Annotated[
         bool, typer.Option(help="Overwrite an existing workbook (and its decisions).")
     ] = False,
+    carry_from: Annotated[
+        Path | None,
+        typer.Option(
+            dir_okay=False,
+            exists=True,
+            help="Earlier filled-in workbook: same records, its decisions carried; "
+            "only new tags need a look.",
+        ),
+    ] = None,
 ) -> None:
     """Write a hand-check workbook for pilot records of a tagging run (Excel).
 
@@ -414,7 +423,9 @@ def review_sheet(
     cfg = ctx.obj
     con = catalogue.connect(cfg.data.catalogue)
     try:
-        path, n_records, n_tags = export_review(con, cfg, run=run, out=out, force=force)
+        path, n_records, n_tags = export_review(
+            con, cfg, run=run, out=out, force=force, carry_from=carry_from
+        )
     except (FileExistsError, RuntimeError) as exc:
         typer.echo(f"review-sheet failed: {exc}", err=True)
         raise typer.Exit(code=1) from exc
