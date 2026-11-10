@@ -423,6 +423,31 @@ tokens. It exits 1 if a model's pass rate is below
 `evaluation.results_dir`. The question format is in
 `docs/decisions/0025-evaluate-questions.md`.
 
+## Export the data bundles
+
+`chatcde export` packs the local catalogue and search index into data bundles that
+others download with `chatcde fetch-data`, so they do not have to run the pipeline.
+It needs the full index (`chatcde index chunk`, `embed`, `bm25`).
+
+```bash
+chatcde export                        # both editions, version = today (YYYY.MM.DD)
+chatcde export --edition open --version 2026.11.10
+chatcde export --force                # rebuild a version that already exists
+```
+
+Each edition becomes three files in `data.bundles_dir` (`data/bundles`):
+
+- `chatcde-<edition>-<version>.tar.gz`: holds `catalogue.duckdb` (records, authors,
+  tags, pages, chunks, vectors, BM25 index and provenance tables),
+  `vocabulary.yaml` and `manifest.json` (edition, versions, models, counts, sha256
+  checksums).
+- `chatcde-<edition>-<version>.manifest.json`: a copy of the manifest.
+- `chatcde-<edition>-<version>.tar.gz.sha256`: the archive's checksum.
+
+The **open** edition keeps full text only for open-access records. Every other record
+keeps its metadata, abstract and tags. A check fails the export if any restricted full
+text slips through. Details: `docs/decisions/0032-data-bundles.md`.
+
 ## Configuration
 
 Settings are merged from these files, later ones winning:

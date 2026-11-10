@@ -213,6 +213,7 @@ class DataConfig(_Section):
     files_dir: ProjectPath
     text_dir: ProjectPath
     catalogue: ProjectPath
+    bundles_dir: ProjectPath
     editions: dict[Literal["full", "open"], EditionLocation]
     default_edition: Literal["auto", "full", "open"]
 
