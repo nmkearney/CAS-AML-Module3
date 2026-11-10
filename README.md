@@ -259,12 +259,15 @@ chatcde vocab extract --step propose          # cluster labels -> vocab/candidat
 Decisions are made in Excel, and code writes the YAML:
 
 ```bash
-chatcde vocab review                 # candidates + vocabulary -> vocab/curation/v0.3.xlsx
+chatcde vocab review                 # candidates + vocabulary -> vocab/curation/v<version>.xlsx
 #   ... decide in Excel (white columns), save ...
 chatcde vocab apply --dry-run        # list every problem; write nothing
 chatcde vocab apply                  # write vocab/draft_vocabulary.yaml
 chatcde vocab review --force --carry-from vocab/curation/v0.3.xlsx   # re-export, keep decisions
 ```
+
+A new round (e.g. v0.4) is exported after raising `vocab.version`; `--carry-from` the
+previous round's workbook then carries only deferred candidates.
 
 - **The workbook** has one sheet per curated dimension.
   - Rows: current terms start as `keep`; candidates are decided `accept`, `merge`,
@@ -272,6 +275,11 @@ chatcde vocab review --force --carry-from vocab/curation/v0.3.xlsx   # re-export
   - Grey columns show the model's evidence.
 - **Every term gets a stable code** such as `MET-remote-sensing`, and tags store the
   code. Merged or retired codes move to a `retired:` list.
+- **`includes`** (synonyms shown to the tagging model, `;`-separated) can be edited.
+  A row added at the bottom with decision `accept` is a new term (`source: curator`).
+- **`strategy_terms`** holds the fixed strategy lists (objective, pathway, research
+  mode, transformative aspiration). Their codes never change, but their labels and
+  definitions can be edited (decision 0029).
 - **`merge_into` on a kept or accepted row** records related terms instead of a merge
   (codes separated by `;`); the term gets a `related` list.
 - **`vocab apply`** works like this:
@@ -280,6 +288,45 @@ chatcde vocab review --force --carry-from vocab/curation/v0.3.xlsx   # re-export
   - It gives the same file every time for the same workbook.
 - See `docs/decisions/0026-vocabulary-codes-and-curation.md` and
   `docs/decisions/0027-additional-sub-areas.md`.
+
+## Tag the corpus
+
+The tagging model (`models.tagging`) tags each record against the closed vocabulary. It
+needs `CHATCDE_LLM_API_KEY` and the UniBe network or VPN.
+
+```bash
+chatcde tag --pilot                        # a fresh stratified draw of 100 records
+chatcde tag --pilot --limit 3 --no-publish # try a few requests first
+chatcde tag --ids <record_id> --batch how_where --force
+chatcde tag --all                          # every record; resumable, runs for hours
+chatcde tag --pilot --alternative          # model_alternatives.tagging (gpt-oss-120b), run "alt"
+chatcde tag --publish-only                 # rebuild the tags table from run "main"
+chatcde evaluate review-sheet              # Excel workbook to hand-check 20 pilot records
+chatcde evaluate review-sheet --carry-from data/reference/review_main.xlsx \
+    --out data/reference/review_pilot3.xlsx  # after a rerun: earlier decisions kept, only new tags to judge
+chatcde evaluate recall-sheet --review data/reference/review_pilot3.xlsx  # tags a 2nd run (alt) gives, main misses
+```
+
+- **One request per record and batch.** The three batches are strategy, how and where,
+  and who and what (`tagging.batches`). The JSON schema allows only live codes, and the
+  prompt lists each dimension's terms under their groups.
+- **Code, not the model, decides the confidence and checks the evidence.**
+  - The model gives an evidence strength, which maps to a confidence (explicit 0.9,
+    inferred 0.6, weak 0.3).
+  - Every quote is looked up in the abstract, the pages and the metadata, and `source`
+    records where it was found.
+  - A tag whose quote is found nowhere is capped at 0.4, below the 0.5 that counts.
+- **Tags are terms only.** Groups come from the vocabulary at query time.
+  Publishing the `main` run writes the `tags` table and adds **region** (UN M49 region,
+  CDE partner region, partner-country flag, from `vocab/m49.csv`) and **impact_area**
+  (from the sub-areas' parents), both derived in code. It also fills in the "none"
+  terms of `tagging.none_terms` (e.g. `JUS-none-explicit` for a record whose abstract
+  or full text names no justice lens; decision 0029).
+- **Runs are kept in `tag_runs`, and their state in `tag_state`.** Work already done
+  with the same model, prompt and vocabulary version is skipped; errors are retried on
+  the next run.
+
+See `docs/decisions/0028-tagging.md`.
 
 ## Ask the assistant
 

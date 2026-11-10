@@ -22,7 +22,7 @@ Each role has a first choice and an alternative, set in `config/default.yaml`
 | Role | First choice | Alternative |
 |---|---|---|
 | Agent (tool calling, answers) | gpt-oss-120b | qwen3.8-27b (was minimax-m2.7, not served) |
-| Bulk tagging (JSON output) | qwen3.8-27b, thinking off | lfm2.5-24b-a2b |
+| Bulk tagging (JSON output) | qwen3.8-27b, thinking off | gpt-oss-120b, reasoning low (was lfm2.5-24b-a2b; decision 0029) |
 | Embeddings | qwen3-embedding-4b | granite-embedding-107m-multilingual |
 | Reranking | jina-reranker-v2-base-multilingual | none |
 | Scanned pages, figures | qwen3-vl-30b-a3b-instruct | internvl3-8b-instruct |
@@ -71,5 +71,11 @@ parallel requests per model, so `max_concurrency: 4`.
   run agent comparisons during a tagging run.
 - Vision and speech were not probed (`--vision` exists for later).
 - Rerun `scripts/check_gpustack.py` after any GPUStack change.
+- **Tagging alternative changed to gpt-oss-120b (2026-11-09, decision 0029).** On the
+  pilot, lfm2.5-24b-a2b wrote explanations where verbatim quotes belong (100% not
+  found), so it cannot check the main tagger. gpt-oss-120b, from another model
+  family, worked: 0 failures and 15% of quotes not found. It needs its own request
+  settings (`tagging.alternative`: `max_tokens` 8192, `reasoning_effort: low`).
+  It is also the agent model, so don't run it for tagging while comparing agents.
 - `chatcde evaluate` compares first choice and alternative on the reference set
   (tagging) and `tests/questions.yaml` (agent); update this record with results.

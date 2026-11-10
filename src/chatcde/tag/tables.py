@@ -1,7 +1,9 @@
-"""Catalogue tables private to the vocabulary-drafting stage (``vocab extract``).
+"""Catalogue tables private to Track A's vocabulary and tagging stages.
 
-They are working tables, not part of the shared contract in
-:mod:`chatcde.schemas`: no tool or Track B code reads them. The column layout
+``vocab extract`` uses the ``vocab_*`` tables; ``chatcde tag`` uses ``tag_pilot``,
+``tag_runs`` and ``tag_state`` (decision 0028). They are working tables, not part
+of the shared contract in :mod:`chatcde.schemas`: no tool or Track B code reads
+them. ``chatcde tag`` publishes one run to the shared ``tags`` table. The column layout
 still comes from pydantic models through :func:`chatcde.catalogue.create_table_sql`,
 so they follow the same type mapping as the shared tables.
 """
@@ -15,6 +17,7 @@ import duckdb
 from pydantic import BaseModel
 
 from chatcde.catalogue import create_table_sql, to_row
+from chatcde.schemas import Tag
 
 
 class SampleRow(BaseModel):
@@ -85,12 +88,41 @@ class ProposalRow(BaseModel):
     created_at: datetime
 
 
+class TagRunRow(Tag):
+    """One tag from a tagging run (``tag_runs``): a :class:`Tag` plus run and batch."""
+
+    run: str  # e.g. "main", "alt"; "main" is published to ``tags``
+    batch: str  # name in ``tagging.batches``
+
+
+class TagStateRow(BaseModel):
+    """Outcome of tagging one record in one batch of one run (``tag_state``)."""
+
+    record_id: str
+    run: str
+    batch: str
+    model: str
+    prompt_version: str
+    vocab_version: str
+    status: str  # ok | error
+    n_tags: int
+    n_unverified: int  # tags whose quote was not found in the input
+    sources: str  # e.g. "abstract,fulltext" or "metadata"
+    input_chars: int
+    error: str | None = None
+    code_version: str
+    created_at: datetime
+
+
 TABLES: dict[str, type[BaseModel]] = {
     "vocab_sample": SampleRow,
     "vocab_labels": LabelRow,
     "vocab_label_state": LabelStateRow,
     "vocab_label_vectors": LabelVectorRow,
     "vocab_proposals": ProposalRow,
+    "tag_pilot": SampleRow,  # same columns as vocab_sample; seed = tagging.pilot.seed
+    "tag_runs": TagRunRow,
+    "tag_state": TagStateRow,
 }
 
 

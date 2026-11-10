@@ -167,6 +167,34 @@ Two developers work in parallel; see `CONTRIBUTING.md` for the full workflow.
   dimensions exceed the 15–40 target; some additional sub-areas overlap sub-area scopes.
 - `chatcde` on the PATH (python.org 3.14) lacks openpyxl; use `.venv/bin/chatcde`.
 
+## Vocabulary v0.4 and tag.v3 (pilot review, 2026-11-09)
+
+- Hand check of pilot 2 (20 records, 415 tags): counted tags at 0.9 are 95% ok, at 0.6 only
+  68% ok. Recall was not checked systematically (left to #16). Decision 0029.
+- v0.4 (`vocab/curation/v0.4.xlsx`): every term has a definition, sharper
+  research_mode labels, authors/funders kept out of actors, new
+  `ASA-natural-hazards-and-disaster-risk`, three duplicate pairs merged. Retired with
+  `replaced_by`: `DAT-visual-data`, `DAT-policy-documents`, `DAT-agricultural-statistics`,
+  `SYS-agriculture-and-food-sector`.
+- Only researchers outside the author team count as co-producers (curator's rule, tag.v4).
+- `JUS-none-explicit` is filled in by code at publish (`tagging.none_terms`), never by the model.
+- Curation workbook gained an `includes` column, curator-added rows and a `strategy_terms` sheet.
+- Rename output_type → audience_type proposed in #60 (`schemas`).
+- v0.4 counts: additional_sub_area 78, data_type 42, system 65 (others as in v0.3); 386 active
+  terms across the 14 list dimensions, plus 17 SDGs and 4 audiences.
+
+## Tagging results (`chatcde tag --all`, run `main`, 2026-11-10)
+
+- tag.v5 (every substantial term, SDG cap 5; decision 0031), vocab 0.4, qwen3.8-27b.
+  **9,005 of 9,009 batches ok** (3,003 records x 3 batches); 4 `how_where` batches fail
+  because the model writes country codes outside ISO alpha-3 (records 96e0d3ed, 08a38880,
+  7c70fb4e, dc7e1ef8); rerun them with `chatcde tag --all` later.
+- Published to `tags`: 68,851 model tags on 2,999 records (62,793 at confidence >= 0.6)
+  plus 10,354 derived region/impact_area rows; 3 records have no tags.
+- Pilot runs kept in `tag_state`: pilot_v1–v3, pilot_v5, alt (gpt-oss-120b recall check).
+- Expect precision ~89% and recall <= ~79% at tag.v3 (decision 0029); v5 trades a little
+  precision for recall. A systematic evaluation is #16.
+
 ## Coverage (`chatcde coverage`, 2026-11-07)
 
 - Of 3,003 records: **1,542 full text (51%)**, 606 abstract only (20%), 855 metadata
@@ -213,7 +241,8 @@ Set by role in `config/default.yaml`; see `docs/decisions/0003-models-by-role.md
 Endpoint `https://gpustack.unibe.ch/v1`, about 4 parallel requests per model
 (verified 2026-11-06 with `scripts/check_gpustack.py`; minimax-m2.7 is not served).
 Agent: gpt-oss-120b (alt. qwen3.8-27b). Tagging: qwen3.8-27b with thinking off
-(alt. lfm2.5-24b-a2b).
+(alt. gpt-oss-120b, reasoning low, own settings in `tagging.alternative`; lfm2.5 gave
+no verbatim quotes, decision 0029).
 Embeddings: qwen3-embedding-4b (alt. granite-embedding-107m-multilingual).
 Reranker: jina-reranker-v2-base-multilingual (1K context → ~500-token chunks).
 Vision for scans/figures: qwen3-vl-30b-a3b-instruct. Optional speech: faster-whisper-large-v3.
@@ -253,21 +282,21 @@ Full definitions and scope notes are in `docs/schema_draft.md` and `vocab/draft_
 |---|---|---|
 | 1 | impact_area | Strategy 2025–2028, Table 1 (JE, SL, SG, TE); derived from sub-area parents (#49) |
 | 2 | sub_area | Strategy Table 1 (16 sub-areas, e.g. SL-d) |
-| 3 | additional_sub_area | curated from open extraction: 77 topics outside the sub-areas, each with an impact_area, cross_cutting or outside (decision 0027) |
+| 3 | additional_sub_area | curated from open extraction: 78 topics (v0.4) outside the sub-areas, each with an impact_area, cross_cutting or outside (decision 0027) |
 | 4 | objective | Strategy 1.4 (O1–O5) |
 | 5 | pathway | Strategy 2.2 (P1–P5), only when explicit |
 | 6 | research_mode | Strategy 1.3 (M1–M4) |
 | 7 | transformative_aspiration | Westerink et al. 2026 |
-| 8 | method | curated v0.3: 60 terms in 8 groups |
-| 9 | data_type | curated v0.3: 44 terms in 6 groups |
+| 8 | method | curated v0.4: 60 terms in 8 groups |
+| 9 | data_type | curated v0.4: 42 terms in 6 groups |
 | 10 | country | ISO 3166-1 alpha-3 |
 | 11 | region | derived: UN M49 + 4 CDE partner regions (decision 0017) |
-| 12 | setting | curated v0.3: 27 terms in 5 groups (mountains, drylands, …) |
+| 12 | setting | curated v0.4: 27 terms in 5 groups (mountains, drylands, …) |
 | 13 | scale | 8 terms |
-| 14 | system | curated v0.3: 66 terms in 6 groups |
-| 15 | actors | curated v0.3: 61 terms in 6 groups, each with a role: studied / co-producer / audience |
+| 14 | system | curated v0.4: 65 terms in 6 groups |
+| 15 | actors | curated v0.4: 61 terms in 6 groups, each with a role: studied / co-producer / audience |
 | 16 | justice_lens | strategy-derived, 7 terms |
-| 17 | sdg | UN 17 goals, max 3 |
+| 17 | sdg | UN 17 goals, max 5 (decision 0031) |
 | 18 | output_type | BORIS type + audience |
 
 From v0.3, closed-list terms have stable codes (`MET-case-study`, `ASA-food-security`) and

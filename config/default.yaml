@@ -25,7 +25,7 @@ models:
 # Second choice for each role (null = none), compared with the first choice.
 model_alternatives:
   agent: "qwen3.8-27b"           # minimax-m2.7 is not served on GPUStack (2026-11-06)
-  tagging: "lfm2.5-24b-a2b"
+  tagging: "gpt-oss-120b"        # check model for tagging; lfm2.5 gave no verbatim quotes (0029)
   embedding: "granite-embedding-107m-multilingual"
   reranker: null
   vision: "internvl3-8b-instruct"
@@ -96,7 +96,7 @@ parse:
 # --- Vocabulary and prompts ---------------------------------------------
 vocab:
   file: "vocab/draft_vocabulary.yaml"
-  version: "0.3"                 # curated in vocab/curation/v0.3.xlsx (decision 0026)
+  version: "0.4"                 # curated in vocab/curation/v0.4.xlsx (decisions 0026, 0029)
   curation_dir: "vocab/curation" # workbooks (v<version>.xlsx) and code maps
   terms_per_dimension: [15, 40]  # target range of live terms per curated dimension
 prompts:
@@ -127,6 +127,54 @@ vocab_extract:
   # Extra request fields for models.tagging; qwen3 thinks unless told not to (0003).
   extra_body:
     chat_template_kwargs: {enable_thinking: false}
+
+# --- Tagging (docs/decisions/0028-tagging.md) ------------------------------
+# `chatcde tag`: the tagging model tags terms (never groups) against the closed
+# lists in vocab.file, in batches of dimensions; region and impact_area are
+# derived in code when the run is published to the `tags` table.
+tagging:
+  prompt: "tag.v5"               # file <prompts.dir>/<name>.md; v5: every substantial term (0031)
+  run: "main"                    # run name in tag_runs; `main` is published to tags
+  batches:                       # one request per record and batch
+    strategy: [sub_area, additional_sub_area, objective, pathway, research_mode,
+               transformative_aspiration]
+    how_where: [method, data_type, setting, scale, country]
+    who_what: [system, actors, justice_lens, sdg, output_type]
+  max_per_dimension:             # most tags kept per record and dimension
+    default: 4
+    method: 5
+    actors: 6                    # a group may appear with two roles
+    country: 8
+    sdg: 5                       # also vocab: sdg.max_per_record (raised from 3, 0031)
+  confidence:                    # evidence strength reported by the model -> confidence
+    explicit: 0.9                # the text states it
+    inferred: 0.6                # clearly implied
+    weak: 0.3                    # plausible only
+  unverified_cap: 0.4            # quote not found in the input: confidence capped (< 0.5 counts)
+  metadata_only_cap: 0.4         # title/keywords only: non-explicit tags capped (pilot, 0028)
+  metadata_inferable: [sub_area, additional_sub_area, country, setting]  # ...except these
+  none_terms:                    # "none" terms filled in by code, never offered to the model:
+    justice_lens: JUS-none-explicit  # abstract/full text read, no counted lens (0028)
+  max_fulltext_chars: 12000      # characters of parsed page text given to the model
+  max_input_chars: 20000         # cap on the whole input (title + abstract + pages)
+  max_tokens: 3072               # answer budget per record and batch
+  max_consecutive_failures: 5    # stop if the endpoint keeps failing
+  includes_shown: 6              # synonyms shown per term in the prompt
+  m49_file: "vocab/m49.csv"      # UN M49 countries and regions (scripts/fetch_m49.py)
+  review:                        # `chatcde evaluate review-sheet`: hand-check workbook
+    records: {fulltext: 7, abstract: 7, metadata: 6}  # pilot records per input kind
+    seed: 31
+    dir: "data/reference"         # review_<run>.xlsx; local only (data/ is gitignored)
+    text_chars: 3000              # text shown per record in the records sheet
+  pilot:                         # `chatcde tag --pilot`: a fresh stratified draw
+    size: 100
+    seed: 29                     # differs from vocab_extract.seed; the #13 sample is excluded
+    floor: 1
+  extra_body:
+    chat_template_kwargs: {enable_thinking: false}
+  alternative:                   # `chatcde tag --alternative` (gpt-oss reasons first; 0029)
+    max_tokens: 8192             # reasoning uses part of the budget
+    extra_body: {reasoning_effort: low}
 
 # --- Retrieval ------------------------------------------------------------
 retrieval:

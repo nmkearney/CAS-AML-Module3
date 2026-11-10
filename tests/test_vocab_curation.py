@@ -44,6 +44,13 @@ method:  # proposed seed list
 
 country: {standard: ISO 3166-1 alpha-3}  # untouched block
 
+pathway:  # tag only when explicit
+  - {code: P1, label: Informed decisions, rule: "Evidence for decisions"}
+
+research_mode:
+  - {code: M1, label: Transformative research, definition: "Co-creates solutions"}
+  - {code: M2, label: Transformation research, definition: "Analyses change"}
+
 setting:  # proposed
   - Mountains
   - Urban
@@ -435,6 +442,7 @@ def test_cli_review_and_apply(files: dict[str, Path], tmp_path: Path):
                 "logging": {"file": None},
                 "vocab": {
                     "file": str(files["vocab"]),
+                    "version": "0.3",
                     "curation_dir": str(files["wb"].parent),
                     "terms_per_dimension": [1, 40],
                 },
@@ -463,3 +471,128 @@ def test_cli_review_and_apply(files: dict[str, Path], tmp_path: Path):
     assert "additional_sub_area" in files["vocab"].read_text()
     r = runner.invoke(app, ["--config", str(override), "vocab", "review"])
     assert r.exit_code == 1 and "--force" in r.output
+
+
+def _append_row(path: Path, sheet: str, values: dict[str, str]) -> None:
+    """Add a row at the bottom of a sheet, as a curator would."""
+    wb = load_workbook(path)
+    ws = wb[sheet]
+    header = [c.value for c in ws[1]]
+    ws.append([values.get(h, None) for h in header])
+    wb.save(path)
+
+
+def test_includes_column_replaces_synonyms_and_curator_rows(files: dict[str, Path]):
+    export_workbook(files["vocab"], files["cands"], files["wb"])
+    fill(files["wb"], DECISIONS)
+    fill(files["wb"], {"term:Pastoralists": {"includes": "herders; ; nomads"}})
+    _append_row(
+        files["wb"],
+        "method",
+        {
+            "decision": "accept",
+            "code": "MET-sound-recording",
+            "label": "Sound recording",
+            "definition": "Recording sounds as data.",
+            "includes": "audio recording",
+        },
+    )
+    s = apply(files)
+    assert s.added["method"] == 2
+    vocab = yaml.safe_load(files["vocab"].read_text(encoding="utf-8"))
+    actors = {t["code"]: t for t in vocab["actors"]["terms"]}
+    assert actors["ACT-pastoralists"]["includes"] == ["herders", "nomads"]
+    method = {t["code"]: t for t in vocab["method"]["terms"]}
+    assert method["MET-sound-recording"]["source"] == "curator"
+    assert method["MET-sound-recording"]["includes"] == ["audio recording"]
+    # merged labels are still added on top of the edited list
+    assert "Case studies" in method["MET-case-study"]["includes"]
+
+
+def test_strategy_terms_sheet_edits_labels_and_definitions(files: dict[str, Path]):
+    counts = export_workbook(files["vocab"], files["cands"], files["wb"])
+    assert counts["strategy_terms"] == 3
+    rows = {r["code"]: r for r in read_workbook(files["wb"])["strategy_terms"]}
+    assert rows["P1"]["definition"] == "Evidence for decisions"  # pathway: rule
+    fill(files["wb"], DECISIONS)
+    wb = load_workbook(files["wb"])
+    ws = wb["strategy_terms"]
+    header = [c.value for c in ws[1]]
+    for row in ws.iter_rows(min_row=2):
+        if row[header.index("code")].value == "M2":
+            row[header.index("label")].value = "Research on transformations"
+            row[header.index("definition")].value = "Analyses societal change."
+    wb.save(files["wb"])
+    s = apply(files)
+    assert s.strategy_terms_changed == 1
+    text = files["vocab"].read_text(encoding="utf-8")
+    vocab = yaml.safe_load(text)
+    assert vocab["research_mode"][1] == {
+        "code": "M2",
+        "label": "Research on transformations",
+        "definition": "Analyses societal change.",
+    }
+    assert "pathway:  # tag only when explicit" in text  # unchanged block kept
+
+
+def test_strategy_terms_unknown_code_is_a_problem(files: dict[str, Path]):
+    export_workbook(files["vocab"], files["cands"], files["wb"])
+    fill(files["wb"], DECISIONS)
+    _append_row(
+        files["wb"],
+        "strategy_terms",
+        {"dimension": "research_mode", "code": "M9", "label": "X"},
+    )
+    with pytest.raises(CurationError, match="unknown code M9"):
+        apply(files)
+
+
+def test_carry_into_a_later_round_keeps_only_open_candidates(
+    files: dict[str, Path], tmp_path: Path
+):
+    export_workbook(files["vocab"], files["cands"], files["wb"])
+    decisions = {
+        **DECISIONS,
+        "cand:cccccccccc": {"decision": "defer", "comment": "later"},
+    }
+    fill(files["wb"], decisions)
+    apply(files)  # the vocabulary is now v0.3, the workbook's base v0.2
+    newer = tmp_path / "v0.4.xlsx"
+    export_workbook(files["vocab"], files["cands"], newer, carry_from=files["wb"])
+    rows = read_workbook(newer)
+    keys = {r["key"]: r for sheet in rows.values() for r in sheet if "key" in r}
+    assert "cand:aaaaaaaaaa" not in keys and "cand:bbbbbbbbbb" not in keys
+    assert keys["cand:cccccccccc"]["decision"] == "defer"
+    assert keys["cand:cccccccccc"]["comment"] == "later"
+    # terms come from the new vocabulary, preset to keep
+    assert keys["term:Interviews and focus group discussions"]["decision"] == "keep"
+    assert "term:Transdisciplinary research" in keys
+    assert keys["term:Transdisciplinary research"]["comment"] == ""
+    assert keys["term:Interviews and focus group discussions"]["comment"] == ""
+
+
+def test_new_code_for_a_kept_term_retires_the_old_one(
+    files: dict[str, Path], tmp_path: Path
+):
+    export_workbook(files["vocab"], files["cands"], files["wb"])
+    fill(files["wb"], DECISIONS)
+    apply(files)  # v0.3: every term has a code
+    newer = tmp_path / "v0.4.xlsx"
+    export_workbook(files["vocab"], files["cands"], newer, carry_from=files["wb"])
+    fill(newer, {"term:Pastoralists": {"code": "ACT-herders"}})
+    apply_workbook(
+        newer,
+        files["vocab"],
+        version="0.4",
+        terms_range=(1, 40),
+        code_map_path=tmp_path / "map.csv",
+    )
+    actors = yaml.safe_load(files["vocab"].read_text(encoding="utf-8"))["actors"]
+    assert [t["code"] for t in actors["terms"]] == ["ACT-herders"]
+    assert actors["retired"] == [
+        {
+            "code": "ACT-pastoralists",
+            "label": "Pastoralists",
+            "replaced_by": "ACT-herders",
+        }
+    ]

@@ -25,7 +25,7 @@ All dimensions except output type allow several values per record. Free-text key
 | 13 | System | Land, resource, sector or institutional system studied | Strategy terms plus proposals | LLM, closed list |
 | 14 | Actors | Actor groups, and whether they were studied or engaged as co-producers | Strategy terms plus proposals | LLM, closed list |
 | 15 | Justice lens | Which justice, equity or power dimensions are addressed | Strategy, sections 1.4, 3.1 and 3.3 | LLM, closed list |
-| 16 | SDG | Up to three Sustainable Development Goals | UN, 17 goals | LLM, closed list |
+| 16 | SDG | Up to five Sustainable Development Goals (three until decision 0031) | UN, 17 goals | LLM, closed list |
 | 17 | Output type | Publication type and main audience | BORIS type; proposed audiences | Metadata; audience by LLM |
 | 18 | Transformative aspiration | The stance the work takes towards existing systems: collaborate, challenge or disrupt | Westerink et al. 2026; see decision 0005 | LLM, closed list |
 
@@ -95,14 +95,14 @@ Pathways describe how a piece of work aims to create change. Publications often 
 
 ## Research mode and methods
 
-Research mode uses the strategy's four definitions. Methods started as a seed list of 34 terms in eight groups, drawn mostly from the methods the strategy names. Curation of the open-extraction candidates (v0.3) gives 60 terms in the same eight groups.
+Research mode uses the strategy's four modes. In v0.4 their labels and definitions were sharpened after the pilot review, with the codes unchanged (decision 0029), and the tagger may leave research mode empty for work that fits none of them. Methods started as a seed list of 34 terms in eight groups, drawn mostly from the methods the strategy names. Curation of the open-extraction candidates (v0.3) gives 60 terms in the same eight groups.
 
 | Code | Research mode (strategy, section 1.3) | Definition |
 | --- | --- | --- |
-| M1 | Transformative research | Researchers take part in the processes they study and co-create solutions in specific contexts |
-| M2 | Transformation research | Analyses the conditions, characteristics and drivers of societal and environmental change; contributes to theory |
-| M3 | Transformative education | Reshapes education systems and curricula to build competencies for transformation |
-| M4 | Transformation education | Investigates how sustainability competencies can be fostered and assessed |
+| M1 | Transformative research (co-creating change) | Researchers take part in the processes they study and co-create solutions with societal actors in specific contexts |
+| M2 | Research on transformations (analytical) | Analyses the conditions, drivers and dynamics of societal change; theory development. Not for studies that do not address societal change |
+| M3 | Transformative education (changing teaching) | Develops or reshapes curricula, courses and education systems to build competencies for transformation |
+| M4 | Research on sustainability education | Studies how sustainability competencies can be fostered and assessed |
 
 | Dimension | Group | Terms |
 | --- | --- | --- |
@@ -182,7 +182,7 @@ Each item becomes a file in `docs/decisions/` once decided.
 - [x] **Partner regions.** Are there four or five, and which countries belong to each? Decided in [0017](decisions/0017-partner-regions.md): four regions plus a partner-country flag.
 - [ ] **Objectives and pathways.** Can these be tagged reliably from publication text, or are they better recorded at project level from BORIS project records?
 - [x] **Method granularity.** Settled in curation (v0.3, decision 0026): 60 terms in eight groups; groups have codes (`MET-G-…`), so gap counts can roll up to groups. System gained a sixth group (governance and institutions) and actors a sixth (public and households). Data type got six groups and setting five in v0.3; scale and justice lens are short enough to stay flat. Every other dimension has groups or a fixed parent (sub-area and additional sub-area → impact area; country → region).
-- [ ] **SDGs.** Cap at three per record, or tag all that apply?
+- [x] **SDGs.** Cap raised from three to five per record: four of the five tags the pilot reviewer found missing were SDGs (decision 0031).
 - [x] **Mountains and setting.** Settled in curation (v0.3): setting stays a dimension of its own, with 27 terms in five groups, including *Mountains and highlands*.
 - [ ] **Actor roles.** Is studied, engaged or audience a distinction CDE wants to measure, given how sensitive a "transdisciplinarity gap" could be?
 - [ ] **Output audience.** Add academic, policy, practitioner and public as audiences next to the BORIS publication type?

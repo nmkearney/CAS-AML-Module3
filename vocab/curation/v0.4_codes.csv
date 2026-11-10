@@ -1,0 +1,334 @@
+dimension,old_label,code,how
+actors,Agribusinesses,ACT-agribusinesses,kept
+actors,Agricultural practitioners and extension agents,ACT-agricultural-practitioners-and-extension-agents,kept
+actors,Commoners,ACT-commoners,kept
+actors,Companies and investors,ACT-companies-and-investors,kept
+actors,Conservation NGOs,ACT-conservation-ngos,kept
+actors,Conservation professionals,ACT-conservation-professionals,kept
+actors,Consumers,ACT-consumers,kept
+actors,Decision-makers,ACT-decision-makers,kept
+actors,Development agencies,ACT-development-agencies,kept
+actors,Development practitioners,ACT-development-practitioners,kept
+actors,Displaced persons,ACT-displaced-persons,kept
+actors,Donors and funders,ACT-donors-and-funders,kept
+actors,Educators and lecturers,ACT-educators-and-lecturers,kept
+actors,European institutions and policymakers,ACT-european-institutions-and-policymakers,kept
+actors,Extension services,ACT-extension-services,kept
+actors,Farmer and producer organizations,ACT-farmer-and-producer-organizations,kept
+actors,Financial sector,ACT-financial-sector,kept
+actors,Forest and land managers,ACT-forest-and-land-managers,kept
+actors,General public,ACT-general-public,kept
+actors,Grassroots and urban-commons initiatives,ACT-grassroots-and-urban-commons-initiatives,kept
+actors,Households,ACT-households,kept
+actors,Human rights and environmental defenders,ACT-human-rights-and-environmental-defenders,kept
+actors,Indigenous peoples and local communities,ACT-indigenous-peoples-and-local-communities,kept
+actors,International donors and aid agencies,ACT-international-donors-and-aid-agencies,kept
+actors,International organisations and UN conventions,ACT-international-organisations-and-un-conventions,kept
+actors,International trade organisations,ACT-international-trade-organisations,kept
+actors,Legal professionals and scholars,ACT-legal-professionals-and-scholars,kept
+actors,Local communities,ACT-local-communities,kept
+actors,Local institutions and organizations,ACT-local-institutions-and-organizations,kept
+actors,Local populations,ACT-local-populations,kept
+actors,Marginalized and vulnerable groups,ACT-marginalized-and-vulnerable-groups,kept
+actors,Mountain Research Initiative,ACT-mountain-research-initiative,kept
+actors,Municipal and local governments,ACT-municipal-and-local-governments,kept
+actors,NGOs and civil society,ACT-ngos-and-civil-society,kept
+actors,National and local government,ACT-national-and-local-government,kept
+actors,National environmental agencies,ACT-national-environmental-agencies,kept
+actors,Nature park management,ACT-nature-park-management,kept
+actors,Pastoralists,ACT-pastoralists,kept
+actors,Policy makers,ACT-policy-makers,kept
+actors,Poor populations,ACT-poor-populations,kept
+actors,Producers and producer organizations,ACT-producers-and-producer-organizations,kept
+actors,Regional and state authorities,ACT-regional-and-state-authorities,kept
+actors,Research and education partners,ACT-research-and-education-partners,kept
+actors,Research funders,ACT-research-funders,kept
+actors,Research institutions,ACT-research-institutions,kept
+actors,Research networks,ACT-research-networks,kept
+actors,Researchers and universities,ACT-researchers-and-universities,kept
+actors,Smallholders and land users,ACT-smallholders-and-land-users,kept
+actors,Social enterprises and cooperatives,ACT-social-enterprises-and-cooperatives,kept
+actors,Soil and water conservation specialists,ACT-soil-and-water-conservation-specialists,kept
+actors,Standard-setters,ACT-standard-setters,kept
+actors,Sustainability practitioners and initiatives,ACT-sustainability-practitioners-and-initiatives,kept
+actors,Swiss National Science Foundation,ACT-swiss-national-science-foundation,kept
+actors,Swiss companies,ACT-swiss-companies,kept
+actors,Swiss government and development agencies,ACT-swiss-government-and-development-agencies,kept
+actors,Villagers and village communities,ACT-villagers-and-village-communities,kept
+actors,WOCAT,ACT-wocat,kept
+actors,Water users and managers,ACT-water-users-and-managers,kept
+actors,Women,ACT-women,kept
+actors,Youth and students,ACT-youth-and-students,kept
+additional_sub_area,Adaptive and transformative capacity,ASA-adaptive-and-transformative-capacity,kept
+additional_sub_area,Agricultural development and planning,ASA-agricultural-development-and-planning,kept
+additional_sub_area,Agricultural expansion,ASA-agricultural-expansion,kept
+additional_sub_area,Agrobiodiversity and agroecology,ASA-agrobiodiversity-and-agroecology,kept
+additional_sub_area,Carbon sequestration,ASA-carbon-sequestration,kept
+additional_sub_area,Cash crop dynamics,ASA-cash-crop-dynamics,kept
+additional_sub_area,Climate and environmental justice,ASA-climate-and-environmental-justice,kept
+additional_sub_area,Climate change,ASA-climate-change,kept
+additional_sub_area,Climate change adaptation,ASA-climate-change-adaptation,kept
+additional_sub_area,Climate change mitigation,ASA-climate-change-mitigation,kept
+additional_sub_area,Conservation policy and interventions,ASA-conservation-policy-and-interventions,kept
+additional_sub_area,Conservation-development trade-offs,ASA-conservation-development-trade-offs,kept
+additional_sub_area,Deforestation and forest degradation,ASA-deforestation-and-forest-degradation,kept
+additional_sub_area,Environmental degradation and impacts,ASA-environmental-degradation-and-impacts,kept
+additional_sub_area,Environmental policy design and implementation,ASA-environmental-policy-design-and-implementation,kept
+additional_sub_area,Food security,ASA-food-security,kept
+additional_sub_area,Food waste,ASA-food-waste,kept
+additional_sub_area,Forest governance and policy,ASA-forest-governance-and-policy,kept
+additional_sub_area,Gender and labor,ASA-gender-and-labor,kept
+additional_sub_area,Glaciers and snow cover,ASA-glaciers-and-snow-cover,kept
+additional_sub_area,Global change syndromes,ASA-global-change-syndromes,kept
+additional_sub_area,Governance structures and processes,ASA-governance-structures-and-processes,kept
+additional_sub_area,Greenhouse gas emissions,ASA-greenhouse-gas-emissions,kept
+additional_sub_area,Human-environment interactions,ASA-human-environment-interactions,kept
+additional_sub_area,Hydrological processes,ASA-hydrological-processes,kept
+additional_sub_area,Indigenous rights and identity,ASA-indigenous-rights-and-identity,kept
+additional_sub_area,Invasive species,ASA-invasive-species,kept
+additional_sub_area,Irrigation,ASA-irrigation,kept
+additional_sub_area,Knowledge exchange and communication,ASA-knowledge-exchange-and-communication,kept
+additional_sub_area,Land and natural resource governance,ASA-land-and-natural-resource-governance,kept
+additional_sub_area,Land restoration,ASA-land-restoration,kept
+additional_sub_area,Land tenure and rights,ASA-land-tenure-and-rights,kept
+additional_sub_area,Land use competition,ASA-land-use-competition,kept
+additional_sub_area,Land use intensification,ASA-land-use-intensification,kept
+additional_sub_area,Local and indigenous knowledge,ASA-local-and-indigenous-knowledge,kept
+additional_sub_area,Natural resource governance,ASA-natural-resource-governance,kept
+additional_sub_area,Policy coherence and synergies,ASA-policy-coherence-and-synergies,kept
+additional_sub_area,Population mobility,ASA-population-mobility,kept
+additional_sub_area,Poverty reduction,ASA-poverty-reduction,kept
+additional_sub_area,Protected area governance,ASA-protected-area-governance,kept
+additional_sub_area,Public procurement,ASA-public-procurement,kept
+additional_sub_area,Regional development,ASA-regional-development,kept
+additional_sub_area,Resource consumption,ASA-resource-consumption,kept
+additional_sub_area,Sediment dynamics,ASA-sediment-dynamics,kept
+additional_sub_area,Shifting cultivation,ASA-shifting-cultivation,kept
+additional_sub_area,Smallholder agriculture,ASA-smallholder-agriculture,kept
+additional_sub_area,Social norms and institutions,ASA-social-norms-and-institutions,kept
+additional_sub_area,Societal transformation,ASA-societal-transformation,kept
+additional_sub_area,Socioeconomic drivers and marginality,ASA-socioeconomic-drivers-and-marginality,kept
+additional_sub_area,Soil erosion,ASA-soil-erosion,kept
+additional_sub_area,Spatial and land use planning,ASA-spatial-and-land-use-planning,kept
+additional_sub_area,Stakeholder engagement,ASA-stakeholder-engagement,kept
+additional_sub_area,Sustainability standards and certification,ASA-sustainability-standards-and-certification,kept
+additional_sub_area,Sustainable development,ASA-sustainable-development,kept
+additional_sub_area,Sustainable mobility,ASA-sustainable-mobility,kept
+additional_sub_area,Sustainable mountain development,ASA-sustainable-mountain-development,kept
+additional_sub_area,Sustainable natural resource management,ASA-sustainable-natural-resource-management,kept
+additional_sub_area,Telecoupling,ASA-telecoupling,kept
+additional_sub_area,Trade-offs and co-benefits,ASA-trade-offs-and-co-benefits,kept
+additional_sub_area,Urban food systems,ASA-urban-food-systems,kept
+additional_sub_area,Water resources management,ASA-water-resources-management,kept
+data_type,Academic literature,DAT-academic-literature,kept
+data_type,Aerial and drone imagery,DAT-aerial-and-drone-imagery,kept
+data_type,Agricultural statistics,DAT-secondary-statistics,merged
+data_type,Case studies,DAT-case-studies,kept
+data_type,Climate and meteorological data,DAT-climate-and-meteorological-data,kept
+data_type,Climate scenarios,DAT-climate-scenarios,kept
+data_type,Conference documents,DAT-conference-documents,kept
+data_type,Curated databases,DAT-curated-databases,kept
+data_type,Demographic statistics,DAT-demographic-statistics,kept
+data_type,Documents and policies,DAT-documents-and-policies,kept
+data_type,Elevation data,DAT-elevation-data,kept
+data_type,Experiences,DAT-experiences,kept
+data_type,Expert knowledge,DAT-expert-knowledge,kept
+data_type,Forest change data,DAT-forest-change-data,kept
+data_type,Hydrological data,DAT-hydrological-data,kept
+data_type,International legal instruments,DAT-international-legal-instruments,kept
+data_type,Interview data,DAT-interview-data,kept
+data_type,Land cover and use data,DAT-land-cover-and-use-data,kept
+data_type,Land deal records,DAT-land-deal-records,kept
+data_type,Legal frameworks,DAT-legal-frameworks,kept
+data_type,Media articles,DAT-media-articles,kept
+data_type,None (conceptual),DAT-none,kept
+data_type,Observation and field visits,DAT-field-data,kept
+data_type,Policy documents,DAT-documents-and-policies,merged
+data_type,Precipitation data,DAT-precipitation-data,kept
+data_type,Primary geospatial,DAT-primary-geospatial,kept
+data_type,Primary qualitative,DAT-primary-qualitative,kept
+data_type,Primary quantitative,DAT-primary-quantitative,kept
+data_type,Project documentation,DAT-project-documentation,kept
+data_type,Project reports,DAT-project-reports,kept
+data_type,Satellite imagery,DAT-satellite-imagery,kept
+data_type,Secondary geospatial,DAT-secondary-geospatial,kept
+data_type,Secondary qualitative,DAT-secondary-qualitative,kept
+data_type,Secondary statistics,DAT-secondary-statistics,kept
+data_type,Sediment data,DAT-sediment-data,kept
+data_type,Socioeconomic data,DAT-socioeconomic-data,kept
+data_type,Soil data,DAT-soil-data,kept
+data_type,Soil maps,DAT-soil-maps,kept
+data_type,Soil samples,DAT-soil-samples,kept
+data_type,Species distribution data,DAT-species-distribution-data,kept
+data_type,Survey data,DAT-survey-data,kept
+data_type,Vegetation data,DAT-vegetation-data,kept
+data_type,Visual data,DAT-visual-audio-data,kept
+data_type,Workshop documentation,DAT-workshop-documentation,kept
+justice_lens,Decolonial,JUS-decolonial,kept
+justice_lens,Distributive,JUS-distributive,kept
+justice_lens,Gender,JUS-gender,kept
+justice_lens,None explicit,JUS-none-explicit,kept
+justice_lens,Power,JUS-power,kept
+justice_lens,Procedural,JUS-procedural,kept
+justice_lens,Recognition,JUS-recognition,kept
+method,Academic and professional events,MET-conferences-and-workshops,kept
+method,Biodiversity field survey,MET-biodiversity-field-survey,kept
+method,Case study,MET-case-study,kept
+method,Collaborative learning,MET-collaborative-learning,kept
+method,Comparative case study,MET-comparative-case-study,kept
+method,Conceptual and theoretical work,MET-conceptual-and-theoretical-work,kept
+method,Conceptual modelling,MET-conceptual-modelling,kept
+method,Database development,MET-database-development,kept
+method,Deliberative formats,MET-deliberative-formats,kept
+method,Discourse and narrative analysis,MET-discourse-and-narrative-analysis,kept
+method,Document and policy analysis,MET-document-and-policy-analysis,kept
+method,Econometrics,MET-econometrics,kept
+method,Ecosystem service assessment and valuation,MET-ecosystem-service-assessment-and-valuation,kept
+method,Ethnography and participant observation,MET-ethnography-and-participant-observation,kept
+method,Expert interviews,MET-expert-interviews,kept
+method,Expert surveys and assessments,MET-expert-surveys-and-assessments,kept
+method,Field survey,MET-field-survey,kept
+method,Field visits and site inspections,MET-field-visits-and-site-inspections,kept
+method,GIS and spatial analysis,MET-gis-and-spatial-analysis,kept
+method,Historical analysis,MET-historical-analysis,kept
+method,Household and other surveys,MET-household-and-other-surveys,kept
+method,Hydrological modelling,MET-hydrological-modelling,kept
+method,Impact and sustainability assessment,MET-impact-and-sustainability-assessment,kept
+method,Interviews and focus groups,MET-interviews-and-focus-groups,kept
+method,Knowledge co-production,MET-knowledge-co-production,kept
+method,Land degradation and resource assessment,MET-land-degradation-and-resource-assessment,kept
+method,Land-use and land-cover change mapping,MET-land-use-and-land-cover,kept
+method,Landscape visualization and appraisal,MET-landscape-visualization-and-appraisal,kept
+method,Legal analysis,MET-legal-analysis,kept
+method,Literature and systematic review,MET-literature-and-systematic-review,kept
+method,Living labs and real-world labs,MET-living-labs-and-real-world,kept
+method,Mixed-methods research,MET-mixed-methods-research,kept
+method,Modelling and simulation,MET-modelling-and-simulation,kept
+method,"Monitoring, evaluation and learning",MET-monitoring-evaluation-and-learning,kept
+method,Multi-stakeholder processes,MET-multi-stakeholder-processes,kept
+method,Participatory action research,MET-participatory-action-research,kept
+method,Participatory mapping and appraisal,MET-participatory-mapping-and-appraisal,kept
+method,Participatory methods,MET-participatory-methods,kept
+method,Participatory workshops,MET-participatory-workshops,kept
+method,Pilots and field experiments,MET-pilots-and-field-experiments,kept
+method,Policy brief and recommendation,MET-policy-brief-and-recommendation,kept
+method,Poverty and well-being measurement,MET-poverty-and-well-being-measurement,kept
+method,Power-sensitive institutional analysis,MET-power-sensitive-institutional-analysis,kept
+method,Qualitative content analysis,MET-qualitative-content-analysis,kept
+method,Remote sensing,MET-remote-sensing,kept
+method,Scenario development and analysis,MET-scenario-development-and-analysis,kept
+method,"Scientific assessment contributions (IPCC, IPBES, GEO)",MET-scientific-assessment-contributions,kept
+method,Scoping review,MET-scoping-review,kept
+method,Social network analysis,MET-social-network-analysis,kept
+method,Soil and water assessment,MET-soil-and-water-assessment,kept
+method,Soil spectroscopy,MET-soil-spectroscopy,kept
+method,Spatially explicit assessment,MET-spatially-explicit-assessment,kept
+method,Stakeholder and actor analysis,MET-stakeholder-and-actor-analysis,kept
+method,Statistical analysis,MET-statistical-analysis,kept
+method,Synthesis workshops,MET-synthesis-workshops,kept
+method,Systems analysis,MET-systems-analysis,kept
+method,Telecoupling analysis,MET-telecoupling-analysis,kept
+method,Transdisciplinary research,MET-transdisciplinary-research,kept
+method,Value chain analysis,MET-value-chain-analysis,kept
+method,WOCAT methodology,MET-wocat-methodology,kept
+scale,Community or village,SCA-community-or-village,kept
+scale,Cross-scale (incl. telecoupling),SCA-cross-scale,kept
+scale,Global,SCA-global,kept
+scale,Household or individual,SCA-household-or-individual,kept
+scale,Landscape or watershed,SCA-landscape-or-watershed,kept
+scale,National,SCA-national,kept
+scale,Subnational,SCA-subnational,kept
+scale,Transboundary or regional,SCA-transboundary-or-regional,kept
+setting,Agricultural landscapes,SET-agricultural-landscapes,kept
+setting,Alpine and glacial landscapes,SET-alpine-and-glacial-landscapes,kept
+setting,Amazon biome,SET-amazon-biome,kept
+setting,Andean highlands,SET-andean-highlands,kept
+setting,Coastal and marine,SET-coastal-and-marine,kept
+setting,Drylands and rangelands,SET-drylands-and-rangelands,kept
+setting,Forest landscapes,SET-forest-landscapes,kept
+setting,Grasslands and steppes,SET-grasslands-and-steppes,kept
+setting,Heterogeneous landscapes,SET-heterogeneous-landscapes,kept
+setting,High-altitude drylands,SET-high-altitude-drylands,kept
+setting,Higher education institutions,SET-higher-education-institutions,kept
+setting,Highlands,SET-highlands,kept
+setting,Humid tropics and forest frontiers,SET-humid-tropics-and-forest-frontiers,kept
+setting,Indigenous territories,SET-indigenous-territories,kept
+setting,Lowlands,SET-lowlands,kept
+setting,Mountains,SET-mountains,kept
+setting,Peri-urban,SET-peri-urban,kept
+setting,Protected and conserved areas,SET-protected-and-conserved-areas,kept
+setting,Rainfed agricultural areas,SET-rainfed-agricultural-areas,kept
+setting,Regional nature parks,SET-regional-nature-parks,kept
+setting,Rivers and wetlands,SET-rivers-and-wetlands,kept
+setting,Rural areas,SET-rural-areas,kept
+setting,Rural lowlands,SET-rural-lowlands,kept
+setting,Smallholder farms,SET-smallholder-farms,kept
+setting,Steep and hilly terrain,SET-steep-and-hilly-terrain,kept
+setting,Urban,SET-urban,kept
+setting,World heritage sites,SET-world-heritage-sites,kept
+system,Academic publishing,SYS-academic-publishing,kept
+system,Agri-food value chains,SYS-agri-food-value-chains,kept
+system,Agricultural and commodity trade,SYS-agricultural-and-commodity-trade,kept
+system,Agricultural knowledge systems,SYS-agricultural-knowledge-systems,kept
+system,Agricultural systems,SYS-agricultural-systems,kept
+system,Agriculture and food sector,SYS-food-systems-and-agriculture,merged
+system,Biodiversity governance,SYS-biodiversity-governance,kept
+system,Commodity value chains,SYS-commodity-value-chains,kept
+system,Commons,SYS-commons,kept
+system,Cropland,SYS-cropland,kept
+system,Ecosystem services,SYS-ecosystem-services,kept
+system,Ecosystems,SYS-ecosystems,kept
+system,Energy,SYS-energy,kept
+system,Environmental governance,SYS-environmental-governance,kept
+system,Extractives and mining,SYS-extractives-and-mining,kept
+system,Finance and investment,SYS-finance-and-investment,kept
+system,Food systems,SYS-food-systems,kept
+system,Food systems and agriculture,SYS-food-systems-and-agriculture,kept
+system,Forests,SYS-forests,kept
+system,Freshwater and waterbodies,SYS-freshwater-and-waterbodies,kept
+system,Glaciers and cryosphere,SYS-glaciers-and-cryosphere,kept
+system,Governance systems,SYS-governance-systems,kept
+system,Grasslands,SYS-grasslands,kept
+system,Grazing land and rangelands,SYS-grazing-land-and-rangelands,kept
+system,Higher education,SYS-higher-education,kept
+system,Hydrological systems,SYS-hydrological-systems,kept
+system,Hydropower,SYS-hydropower,kept
+system,Infrastructure,SYS-infrastructure,kept
+system,Irrigation systems,SYS-irrigation-systems,kept
+system,Knowledge systems,SYS-knowledge-systems,kept
+system,Labour markets,SYS-labour-markets,kept
+system,Land tenure and access,SYS-land-tenure-and-access,kept
+system,Land use and management systems,SYS-land-use-and-management-systems,kept
+system,Landscape systems,SYS-landscape-systems,kept
+system,Large-scale land investments,SYS-large-scale-land-investments,kept
+system,Livelihoods and labour,SYS-livelihoods-and-labour,kept
+system,Livestock systems,SYS-livestock-systems,kept
+system,Local communities,SYS-local-communities,kept
+system,Mountain agriculture,SYS-mountain-agriculture,kept
+system,Mountain ecosystems,SYS-mountain-ecosystems,kept
+system,Mountain research networks,SYS-mountain-research-networks,kept
+system,Natural resource management,SYS-natural-resource-management,kept
+system,Protected area governance,SYS-protected-area-governance,kept
+system,Protected areas,SYS-protected-areas,kept
+system,Public catering,SYS-public-catering,kept
+system,Regional development systems,SYS-regional-development-systems,kept
+system,Research networks and partnerships,SYS-research-networks-and-partnerships,kept
+system,Rubber commodity system,SYS-rubber-commodity-system,kept
+system,Rural development,SYS-rural-development,kept
+system,Science systems and funding,SYS-science-systems-and-funding,kept
+system,Science-policy interfaces,SYS-science-policy-interfaces,kept
+system,Shifting cultivation systems,SYS-shifting-cultivation-systems,kept
+system,Smallholder farming systems,SYS-smallholder-farming-systems,kept
+system,Social security and care,SYS-social-security-and-care,kept
+system,Social-ecological systems,SYS-social-ecological-systems,kept
+system,Soil systems,SYS-soil-systems,kept
+system,Spatial planning systems,SYS-spatial-planning-systems,kept
+system,Sustainable development frameworks,SYS-sustainable-development-frameworks,kept
+system,Telecoupled systems,SYS-telecoupled-systems,kept
+system,Tourism,SYS-tourism,kept
+system,Trade,SYS-trade,kept
+system,Transdisciplinary research,SYS-transdisciplinary-research,kept
+system,Urban areas and housing,SYS-urban-areas-and-housing,kept
+system,Urban food systems,SYS-urban-food-systems,kept
+system,Water resource management,SYS-water-resource-management,kept
+system,Wetlands,SYS-wetlands,kept

@@ -19,12 +19,201 @@ app = typer.Typer()
 
 @app.command(rich_help_panel=PANEL_PIPELINE)
 def tag(
+    ctx: typer.Context,
+    pilot: Annotated[
+        bool, typer.Option("--pilot", help="Tag the pilot draw (drawn if missing).")
+    ] = False,
+    ids: Annotated[
+        list[str] | None, typer.Option("--ids", help="Tag these record IDs.")
+    ] = None,
+    all_records: Annotated[
+        bool, typer.Option("--all", help="Tag every record in the catalogue.")
+    ] = False,
+    batch: Annotated[
+        list[str] | None,
+        typer.Option(help="Run only this batch (repeatable; see tagging.batches)."),
+    ] = None,
+    limit: Annotated[
+        int | None,
+        typer.Option(min=1, help="Send at most this many requests (record x batch)."),
+    ] = None,
     force: Annotated[
-        bool, typer.Option(help="Redo work that is already done.")
+        bool, typer.Option(help="Retag record and batch pairs already done.")
+    ] = False,
+    run: Annotated[
+        str | None, typer.Option(help="Run name (default tagging.run, 'main').")
+    ] = None,
+    alternative: Annotated[
+        bool,
+        typer.Option(help="Use model_alternatives.tagging (run 'alt' by default)."),
+    ] = False,
+    publish: Annotated[
+        bool | None,
+        typer.Option(
+            "--publish/--no-publish",
+            help="Write the run to the tags table with derived region and "
+            "impact_area (default: only for the main run).",
+        ),
+    ] = None,
+    publish_only: Annotated[
+        bool, typer.Option(help="Only publish the run; tag nothing.")
     ] = False,
 ) -> None:
-    """Tag records against the vocabulary with the local LLM."""
-    not_implemented("tag", 15)
+    """Tag records against the vocabulary with the local LLM (decision 0028).
+
+    Each record is tagged in batches of dimensions (tagging.batches); the model
+    writes codes, quotes and an evidence strength, and code checks the quotes and
+    sets the confidence. Choose what to tag with --pilot, --ids or --all. Work
+    already done with the same model, prompt and vocabulary is skipped.
+
+    Publishing replaces the tags table with the run's tags plus region (from
+    country) and impact_area (from sub-areas), all derived in code.
+    """
+    from rich.console import Console
+
+    from chatcde import catalogue
+    from chatcde.store.endpoint import EndpointClient, EndpointError
+
+    cfg = ctx.obj
+    chosen = [
+        n
+        for n, on in (("--pilot", pilot), ("--ids", bool(ids)), ("--all", all_records))
+        if on
+    ]
+    if not publish_only and len(chosen) != 1:
+        typer.echo("Choose exactly one of --pilot, --ids or --all.", err=True)
+        raise typer.Exit(code=2)
+    run_name = run or ("alt" if alternative else cfg.tagging.run)
+    do_publish = publish if publish is not None else run_name == cfg.tagging.run
+    console = Console()
+    con = catalogue.connect(cfg.data.catalogue)
+    try:
+        if not publish_only:
+            if pilot:
+                from chatcde.tag.sample import draw_pilot
+
+                console.print(_pilot_table(draw_pilot(con, cfg)))
+            scope = "pilot" if pilot else "ids" if ids else "all"
+            with EndpointClient.from_config(cfg) as client:
+                summary = _run_tag(
+                    con,
+                    cfg,
+                    client,
+                    scope,
+                    ids,
+                    batch,
+                    run_name,
+                    alternative,
+                    force,
+                    limit,
+                )
+            console.print(_tag_table(summary))
+        if do_publish or publish_only:
+            from chatcde.tag.derive import publish as publish_run
+
+            console.print(_publish_table(publish_run(con, cfg, run_name)))
+    except (RuntimeError, ValueError, EndpointError, FileNotFoundError) as exc:
+        typer.echo(f"tag failed: {exc}", err=True)
+        raise typer.Exit(code=1) from exc
+    finally:
+        con.close()
+    typer.echo(f"Catalogue: {cfg.data.catalogue}")
+
+
+def _run_tag(
+    con: Any,
+    cfg: Any,
+    client: Any,
+    scope: str,
+    ids: list[str] | None,
+    batches: list[str] | None,
+    run: str,
+    alternative: bool,
+    force: bool,
+    limit: int | None,
+) -> Any:
+    """Run the tagging with a progress bar."""
+    from chatcde.tag.run import tag_records
+
+    with _progress() as bar:
+        task = bar.add_task(f"Tagging ({run})", total=None)
+        return tag_records(
+            con,
+            cfg,
+            client,
+            scope=scope,  # type: ignore[arg-type]
+            ids=ids,
+            batches=batches,
+            run=run,
+            alternative=alternative,
+            force=force,
+            limit=limit,
+            progress=lambda d, t: bar.update(task, completed=d, total=t),
+        )
+
+
+def _pilot_table(s: Any) -> Any:
+    """Summary of the pilot draw."""
+    t = _table("tag: pilot draw")
+    t.add_row("Publications in the catalogue", str(s.publications))
+    t.add_row("Eligible (vocabulary sample excluded)", str(s.eligible))
+    t.add_row(
+        "Pilot records" + (" (kept from earlier run)" if s.reused else ""),
+        str(s.sampled),
+    )
+    t.add_row("  with page text", str(s.with_pages))
+    for name, counts in (
+        ("unit", s.by_unit),
+        ("decade", s.by_decade),
+        ("language", s.by_language),
+    ):
+        t.add_row(f"By {name}", ", ".join(f"{k} {v}" for k, v in counts.items()))
+    return t
+
+
+def _tag_table(s: Any) -> Any:
+    """Summary of a tagging run."""
+    t = _table(f"tag: run {s.run} ({s.scope})")
+    t.add_row(
+        "Model / prompt / vocabulary",
+        f"{s.model} / {s.prompt_version} / {s.vocab_version}",
+    )
+    t.add_row("Records in scope", str(s.records))
+    t.add_row("Batches", ", ".join(s.batches))
+    t.add_row("Requests (record x batch)", str(s.jobs))
+    t.add_row("Done in this run", str(s.done))
+    t.add_row("Failed in this run", str(s.failed))
+    t.add_row("Already done (skipped)", str(s.skipped))
+    if s.remaining:
+        t.add_row("Left for a later run", str(s.remaining))
+    if s.stopped:
+        t.add_row("Stopped", "endpoint kept failing")
+    for dim, n in s.tags_by_dimension.items():
+        unused = s.unused_terms.get(dim)
+        note = f" ({unused} codes unused)" if unused else ""
+        t.add_row(f"  {dim}", f"{n}{note}")
+    if s.unverified_share is not None:
+        t.add_row("Quotes not found (confidence capped)", f"{s.unverified_share:.0%}")
+    if s.other_share is not None:
+        t.add_row("Tags with 'other'", f"{s.other_share:.1%}")
+    return t
+
+
+def _publish_table(s: Any) -> Any:
+    """Summary of publishing a run to the tags table."""
+    t = _table(f"tag: published run {s.run} to tags")
+    t.add_row("Records with tags", str(s.records_tagged))
+    t.add_row("LLM tags", str(s.llm_tags))
+    t.add_row("Derived region tags", str(s.region_tags))
+    t.add_row("Derived impact_area tags", str(s.impact_area_tags))
+    t.add_row("Derived 'none' tags", str(s.none_tags))
+    if s.records_with_unit:
+        t.add_row(
+            "Impact area matches BORIS unit",
+            f"{s.unit_agrees} of {s.records_with_unit} "
+            f"({s.unit_agrees / s.records_with_unit:.0%})",
+        )
+    return t
 
 
 class ExtractStep(StrEnum):
@@ -201,6 +390,108 @@ def _propose_table(s: Any) -> Any:
     return t
 
 
+def review_sheet(
+    ctx: typer.Context,
+    run: Annotated[
+        str | None, typer.Option(help="Run to review (default tagging.run).")
+    ] = None,
+    out: Annotated[
+        Path | None, typer.Option(help="Workbook path (default tagging.review.dir).")
+    ] = None,
+    force: Annotated[
+        bool, typer.Option(help="Overwrite an existing workbook (and its decisions).")
+    ] = False,
+    carry_from: Annotated[
+        Path | None,
+        typer.Option(
+            dir_okay=False,
+            exists=True,
+            help="Earlier filled-in workbook: same records, its decisions carried; "
+            "only new tags need a look.",
+        ),
+    ] = None,
+    also_from: Annotated[
+        list[Path] | None,
+        typer.Option(
+            dir_okay=False,
+            exists=True,
+            help="Further judged workbooks (review or recall sheets) whose decisions "
+            "are carried too (repeatable; needs --carry-from).",
+        ),
+    ] = None,
+) -> None:
+    """Write a hand-check workbook for pilot records of a tagging run (Excel).
+
+    Picks pilot records per input kind (tagging.review.records), lists every tag
+    with its quote for an ok / wrong / unsure decision, and has a sheet for missing
+    tags. See decision 0028.
+    """
+    from chatcde import catalogue
+    from chatcde.tag.review import export_review
+
+    cfg = ctx.obj
+    con = catalogue.connect(cfg.data.catalogue)
+    try:
+        path, n_records, n_tags = export_review(
+            con,
+            cfg,
+            run=run,
+            out=out,
+            force=force,
+            carry_from=carry_from,
+            also_from=also_from,
+        )
+    except (FileExistsError, RuntimeError) as exc:
+        typer.echo(f"review-sheet failed: {exc}", err=True)
+        raise typer.Exit(code=1) from exc
+    finally:
+        con.close()
+    typer.echo(f"{n_records} records, {n_tags} tags -> {path}")
+
+
+def recall_sheet(
+    ctx: typer.Context,
+    review: Annotated[
+        Path,
+        typer.Option(
+            dir_okay=False,
+            exists=True,
+            help="Filled-in review workbook of the main run (its records are checked).",
+        ),
+    ],
+    alt_run: Annotated[str, typer.Option(help="The second model's run.")] = "alt",
+    out: Annotated[
+        Path | None, typer.Option(help="Workbook path (default tagging.review.dir).")
+    ] = None,
+    force: Annotated[
+        bool, typer.Option(help="Overwrite an existing workbook (and its decisions).")
+    ] = False,
+) -> None:
+    """Write a recall-check workbook: tags a second model gives, the main run not.
+
+    Only those candidates need judging; an agreement sheet compares both runs per
+    dimension over all records. See decision 0029.
+    """
+    from chatcde import catalogue
+    from chatcde.tag.recall import export_recall
+
+    cfg = ctx.obj
+    con = catalogue.connect(cfg.data.catalogue)
+    try:
+        path, n, per_dim = export_recall(
+            con, cfg, review=review, alt_run=alt_run, out=out, force=force
+        )
+    except (FileExistsError, RuntimeError) as exc:
+        typer.echo(f"recall-sheet failed: {exc}", err=True)
+        raise typer.Exit(code=1) from exc
+    finally:
+        con.close()
+    detail = ", ".join(
+        f"{d} {k}" for d, k in sorted(per_dim.items(), key=lambda x: -x[1])
+    )
+    typer.echo(f"{n} candidates ({detail}) -> {path}")
+
+
 def evaluate_tagging() -> None:
     """Score LLM tags against the hand-tagged reference set."""
     not_implemented("evaluate tagging", 16)
@@ -296,6 +587,7 @@ def vocab_apply(
         ]
         t.add_row(dim, f"{n} terms" + (f" ({', '.join(parts)})" if parts else ""))
     t.add_row("Sub-area scope notes changed", str(s.scope_notes_changed))
+    t.add_row("Strategy terms changed", str(s.strategy_terms_changed))
     t.add_row("Written to", "nothing (dry run)" if dry_run else s.output)
     Console().print(t)
     if s.warnings:
