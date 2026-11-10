@@ -62,6 +62,7 @@ data:
   files_dir: "data/raw/files"    # one main PDF per record: <record_id>.pdf (0009)
   text_dir: "data/text"          # parse summary and the OCR cache (0014)
   catalogue: "data/catalogue.duckdb"
+  bundles_dir: "data/bundles"    # where `chatcde export` writes bundles (0032)
   editions:
     full:
       # Hosted on CDE's server, reachable only from the UniBe network / VPN.
