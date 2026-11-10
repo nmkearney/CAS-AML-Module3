@@ -31,7 +31,9 @@ today the two editions hold the same content.
   - `manifest.json`: a `BundleManifest` with the sha256 of the other two files.
   - Pipeline working tables (tag_runs, tag_pilot, vocab_*) and the PDFs stay out.
 - **Open filter:**
-  - pages, parse_state and chunk_state keep only records with `access = 'open'`.
+  - pages and parse_state keep only records with `access = 'open'`.
+  - chunk_state drops only the records whose full-text chunks were dropped, so a
+    later `chatcde index chunk` (after `--top-up`) redoes exactly those.
   - chunks keep abstract and metadata chunks for every record, and full-text
     chunks only for open records.
   - embeddings and the BM25 tables keep the rows whose chunk survives.

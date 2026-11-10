@@ -116,6 +116,8 @@ def test_open_edition_drops_restricted_full_text(source, tmp_path: Path):
         out, "SELECT count(*) FROM chunks"
     )
     assert r.tables["pages"][1] < r.tables["pages"][0]
+    # Only the record whose full text was dropped loses its chunk state.
+    assert r.tables["chunk_state"] == (n := r.tables["chunk_state"][0], n - 1)
     assert r.manifest.edition is Edition.OPEN
 
 

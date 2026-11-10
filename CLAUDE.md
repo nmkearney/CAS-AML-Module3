@@ -195,6 +195,15 @@ Two developers work in parallel; see `CONTRIBUTING.md` for the full workflow.
 - Expect precision ~89% and recall <= ~79% at tag.v3 (decision 0029); v5 trades a little
   precision for recall. A systematic evaluation is #16.
 
+## Index and export (`chatcde index`, `chatcde export`, 2026-11-10)
+
+- Index on the real catalogue: **94,636 chunks**, all embedded (qwen3-embedding-4b, 1024 dims,
+  2,958 requests in 11.5 min), BM25 360,296 terms / 11.4 M postings (45 s).
+- `chatcde export` (decision 0032): both editions in `data/bundles/`, ~382 MB each, about
+  35 s per edition. **Full and open hold the same content today**: all 1,542 full texts
+  are open access. The open filter only drops state rows for restricted records.
+- Not yet uploaded anywhere; check publisher licences before publishing the open edition.
+
 ## Coverage (`chatcde coverage`, 2026-11-07)
 
 - Of 3,003 records: **1,542 full text (51%)**, 606 abstract only (20%), 855 metadata

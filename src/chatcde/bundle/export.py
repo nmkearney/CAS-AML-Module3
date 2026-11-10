@@ -11,9 +11,9 @@ Two editions come from the same index, with no re-embedding:
 
 * **full**: every table in :data:`BUNDLE_TABLES`, unfiltered.
 * **open**: full text only for records with ``access = 'open'``. For the
-  others, pages and full-text chunks (and their vectors and postings) are left
-  out; abstracts, metadata and tags stay. BM25 computes its statistics at query
-  time, so dropping rows needs no re-indexing.
+  others, pages and full-text chunks (with their vectors, postings and chunk
+  state) are left out; abstracts, metadata and tags stay. BM25 computes its
+  statistics at query time, so dropping rows needs no re-indexing.
 
 The source catalogue is attached read-only and never written. The archive is
 written under a temporary name and renamed at the end, so a failed build leaves
@@ -75,7 +75,12 @@ _KEPT_CHUNKS = "SELECT chunk_id FROM main.chunks"
 OPEN_FILTERS: dict[str, str] = {
     "pages": f"record_id IN ({_OPEN_IDS})",
     "parse_state": f"record_id IN ({_OPEN_IDS})",
-    "chunk_state": f"record_id IN ({_OPEN_IDS})",
+    # Forget chunk state only where full-text chunks were dropped, so a later
+    # `chatcde index chunk` (after --top-up) redoes those records and no others.
+    "chunk_state": (
+        f"record_id IN ({_OPEN_IDS}) OR record_id NOT IN (SELECT record_id FROM "
+        f"src.chunks WHERE source = '{TextSource.FULLTEXT.value}')"
+    ),
     "chunks": (
         f"source <> '{TextSource.FULLTEXT.value}' OR record_id IN ({_OPEN_IDS})"
     ),
