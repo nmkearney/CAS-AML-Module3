@@ -133,7 +133,7 @@ vocab_extract:
 # lists in vocab.file, in batches of dimensions; region and impact_area are
 # derived in code when the run is published to the `tags` table.
 tagging:
-  prompt: "tag.v5"               # file <prompts.dir>/<name>.md; v5: every substantial term (0030)
+  prompt: "tag.v5"               # file <prompts.dir>/<name>.md; v5: every substantial term (0031)
   run: "main"                    # run name in tag_runs; `main` is published to tags
   batches:                       # one request per record and batch
     strategy: [sub_area, additional_sub_area, objective, pathway, research_mode,
@@ -145,7 +145,7 @@ tagging:
     method: 5
     actors: 6                    # a group may appear with two roles
     country: 8
-    sdg: 5                       # also vocab: sdg.max_per_record (raised from 3, 0030)
+    sdg: 5                       # also vocab: sdg.max_per_record (raised from 3, 0031)
   confidence:                    # evidence strength reported by the model -> confidence
     explicit: 0.9                # the text states it
     inferred: 0.6                # clearly implied

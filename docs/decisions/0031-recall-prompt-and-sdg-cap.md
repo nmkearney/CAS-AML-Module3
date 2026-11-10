@@ -1,6 +1,6 @@
-# 0030: A looser tagging prompt (tag.v5) and up to five SDGs
+# 0031: A looser tagging prompt (tag.v5) and up to five SDGs
 
-- Status: proposed (pilot run `pilot_v5`, then the curator decides)
+- Status: accepted (pilot `pilot_v5` spot-checked; full run `main` with tag.v5, 2026-11-10)
 - Date: 2026-11-09
 
 ## Context
