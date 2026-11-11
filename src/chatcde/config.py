@@ -420,6 +420,11 @@ class AgentConfig(_Section):
     max_tokens: int = Field(ge=64)
     max_tool_result_chars: int = Field(ge=500)
     max_ids_per_list: int = Field(ge=1)
+    max_ids_per_count_cell: int = Field(
+        default=0,
+        ge=0,
+        description="Record IDs per cell sent with counting tools; 0 = none (0036)",
+    )
     omit_fields: list[str] = Field(default_factory=list)
     extra_body: dict[str, Any] = Field(default_factory=dict)
     citation_retry: bool = Field(

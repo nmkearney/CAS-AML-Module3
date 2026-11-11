@@ -37,6 +37,9 @@ every answer can be traced to BORIS IDs and that counts never come from the LLM.
     `record_ids_omitted` giving the rest, so counts stay exact;
   - the JSON is cut at `agent.max_tool_result_chars` (16,000), with a note that asks
     for a narrower call.
+    Since decision 0036, results of counting tools carry no record IDs
+    (`agent.max_ids_per_count_cell`) and are never cut: one that is too large comes
+    back as an error asking for fewer cells.
 
   The full result stays in the code for checking citations.
 - **The loop:** the system prompt is a versioned file (`prompts/agent_system.v1.md`,
