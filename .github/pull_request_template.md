@@ -15,4 +15,4 @@ Closes #<!-- issue number -->
 - [ ] `ruff check .` and `ruff format --check .` pass
 - [ ] Settings go in `config/default.yaml`, not in code
 - [ ] Docs updated (README, `docs/`, a decision record if a non-obvious choice was made)
-- [ ] Changes `src/chatcde/schemas.py`? Then both developers approve
+- [ ] Changes `src/chatcde/schemas.py` or `tools/core.py`? Then it is its own PR, with fixtures, tests and a decision record if needed

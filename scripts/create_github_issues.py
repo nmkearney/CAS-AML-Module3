@@ -25,7 +25,7 @@ from pathlib import Path
 
 import yaml
 
-DEFAULT_REPO = "nmkearney/CAS-AML-Module3"
+DEFAULT_REPO = "nmkearney/chatcde"
 SPEC = Path(__file__).with_name("issues.yaml")
 
 

@@ -69,7 +69,7 @@ data:
       url: "https://cde-server.example.unibe.ch/chatcde/bundles/"  # TODO: real location
       probe_timeout_s: 5
     open:
-      url: "https://github.com/nmkearney/CAS-AML-Module3/releases/download/"  # TODO: confirm
+      url: "https://github.com/nmkearney/chatcde/releases/download/"  # TODO: confirm
   default_edition: "auto"        # auto = try full, fall back to open
 
 # --- Parsing PDFs (see docs/decisions/0014-parsing.md) ---------------------

@@ -29,22 +29,19 @@ These repo files are the reference for the build. The original planning doc
 (https://claude.ai/artifact/93ZrZB6GgHHQDUUsyCtKvi) is for discussion and is
 re-exported here when it changes in substance.
 
-## Team and tracks
+## Team and workflow
 
-Two developers work in parallel; see `CONTRIBUTING.md` for the full workflow.
-- **Track A (Data), Norman Kearney:** `harvest/`, `parse/`, `tag/`, `vocab/`,
-  `bundle/` (`chatcde export` / `fetch-data` / `info`). Writes the `records`,
-  `authors`, `tags`, `pages` and `downloads` tables.
-- **Track B (Assistant), Simon Bader:** `store/`, `tools/`, `agent.py`,
-  `workflows/`, `prompts/`, query commands. Writes `chunks` and the search index.
+Built for the CAS AML Module 3 coursework by two developers (tag `coursework-final`):
+Norman Kearney (data: `harvest/`, `parse/`, `tag/`, `vocab/`, `bundle/`) and Simon Bader
+(assistant: `store/`, `tools/`, `agent.py`, `workflows/`, `prompts/`). Since 2026-11-11
+Norman Kearney develops it alone (decision 0033); there are no tracks. Repo:
+`nmkearney/chatcde` (renamed from `CAS-AML-Module3`). See `CONTRIBUTING.md`.
 - **Shared contract:** `src/chatcde/schemas.py` and the tool signatures in
-  `src/chatcde/tools/core.py` (drafts, to be agreed on day 1). Do not change them
-  as a side effect; propose changes in an issue labelled `schemas`.
-- At the start of a session the developer says which track they work on.
-  Stay within that track's folders; suggest an issue for anything outside them.
-- Work on a branch `a/<issue>-name` or `b/<issue>-name`, never on `main`;
-  PR descriptions say `Closes #<issue>`.
-- Build and test Track B against `tests/fixtures/` until Track A's real catalogue exists.
+  `src/chatcde/tools/core.py`. Do not change them as a side effect: change them in
+  their own PR, with fixtures and tests updated and a decision record if needed.
+- Work on a branch `<issue>-short-name`, never on `main`; PR descriptions say
+  `Closes #<issue>`. `main` needs a PR with green CI, no approval.
+- Unit tests run against `tests/fixtures/`, never the real catalogue or the network.
 
 ## Hard rules
 
@@ -210,7 +207,7 @@ Two developers work in parallel; see `CONTRIBUTING.md` for the full workflow.
   only (28%). Full text = at least one parsed page with text (decision 0015).
 - Restricted (531) and metadata-only (899) records never have full text; 98% of the
   1,573 open records do. Conference items are 50% metadata only.
-- `coverage_report()` is written by Track A and reused by Track B (#11, #24; pending
+- `coverage_report()` lives in the data code and is reused by the tools (#11, #24; pending
   agreement). `CoverageReport` gained `by_type` and `by_access` (#43).
 ## Parse results (`chatcde parse`, 2026-11-07)
 
@@ -330,7 +327,7 @@ between two LLM runs.
 ## Layout
 
 ```
-CONTRIBUTING.md       tracks, git/GitHub workflow, setup how-tos
+CONTRIBUTING.md       git/GitHub workflow, code standards
 .github/              CODEOWNERS, PR template, CI (ruff + pytest)
 pyproject.toml
 config/default.yaml   all settings; placeholders marked TODO
@@ -339,7 +336,7 @@ src/chatcde/
   cli_common.py   help panels and the stub helper shared by the sub-apps
   config.py       loads and validates config (pydantic); see decision 0006
   log.py          logging setup (Rich console on stderr + rotating file)
-  schemas.py      shared data formats: the contract between tracks (DRAFT)
+  schemas.py      shared data formats: the contract between pipeline and tools
   harvest/        BORIS REST client, OpenAlex enrichment, PDF download, manifest
   parse/          PDF → text (+ OCR), chunking
   tag/            LLM extraction against the vocabulary; vocab drafting
@@ -380,4 +377,4 @@ data/             local only; gitignored (raw/, text/, index/, catalogue.duckdb)
 - ~~Can files marked "restricted" in BORIS be downloaded on the VPN?~~ No (decision 0009).
 - ~~Older work: tag with 2025–2028 categories?~~ Yes, keeping the BORIS unit as recorded (decision 0016).
 - ~~Are there four or five CDE partner regions, and which countries belong to each?~~ Four, plus a partner-country flag (decision 0017).
-- Conference items are left out of gap counts by default (decision 0018; Track B implements).
+- Conference items are left out of gap counts by default (decision 0018).

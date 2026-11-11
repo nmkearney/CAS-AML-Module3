@@ -12,7 +12,7 @@ Python 3.12 or newer. Install from a clone, in editable mode (the default config
 read from `config/default.yaml` in the clone):
 
 ```bash
-git clone https://github.com/nmkearney/CAS-AML-Module3.git ChatCDE
+git clone https://github.com/nmkearney/chatcde.git ChatCDE
 cd ChatCDE
 python -m venv .venv && source .venv/bin/activate
 pip install -e ".[dev]"
@@ -493,3 +493,10 @@ messages and `-q` only warnings. A full log is kept in `data/logs/chatcde.log`
 ruff check . && ruff format --check .
 pytest
 ```
+
+## Authors
+
+ChatCDE began as coursework for CAS AML Module 3 (tagged `coursework-final`), built by
+Norman Kearney (data: harvest, parse, vocabulary, tagging, bundles) and Simon Bader
+(assistant: store, search, tools, agent, workflows). Norman Kearney continues its
+development. Licensed under the GNU GPL v3 (`LICENSE`).
