@@ -201,7 +201,18 @@ chatcde count impact_area method --year-from 2015 --lang de
 chatcde count sub_area method --gaps            # combinations far rarer than expected
 chatcde count sub_area method --level term      # single methods instead of method groups
 chatcde count region sub_area --gaps --max-ratio 0.5 --all-types --json
+chatcde count method --tag impact_area:SG       # filter on any tagged dimension
+chatcde coverage --tag impact_area:SG --tag setting:SET-mountains
 ```
+
+**Filters.** `search`, `count`, `coverage` and `gaps` have options for the common filters
+(`--year-from`, `--type`, `--lang`, `--country`, `--sub-area`, `--method`, `--sdg`, …)
+and `--tag dimension:CODE` for any of the 18 tagged dimensions. Values of one dimension
+combine with OR, different dimensions with AND. Codes are checked against the
+vocabulary (and ISO / UN M49 for countries and regions): a label, a misspelt or a
+retired code is an error that suggests the right code, never a silent zero. The
+agent's tools reject unknown filter fields the same way. See
+`docs/decisions/0034-filters-every-dimension.md`.
 
 Counts are of records, not tags: a record with two methods counts under both. Only tags
 with confidence of at least `--min-confidence` (0.5) count. Every result states its

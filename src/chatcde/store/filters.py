@@ -12,9 +12,14 @@ Semantics (docs/decisions/0013-hybrid-search.md):
 * ``year_from`` / ``year_to`` are inclusive; records without a year fail them.
 * ``pub_types``, ``languages`` and ``cde_units`` match the ``records`` columns,
   ignoring case.
-* ``countries``, ``regions``, ``sub_areas``, ``methods`` and ``sdgs`` match tags of
-  the dimensions ``country``, ``region``, ``sub_area``, ``method`` and ``sdg`` with
-  ``confidence >= min_confidence``, ignoring case.
+* Every other list field matches the tags of one dimension (``TAG_FIELDS``:
+  ``impact_areas`` -> ``impact_area``, ``methods`` -> ``method``, …) with
+  ``confidence >= min_confidence``, ignoring case. Every tagged dimension has a
+  field (decision 0034).
+
+Codes are checked against the vocabulary before they reach this module
+(:func:`chatcde.tools.vocabulary.check_filter_codes`), so a misspelt code fails
+instead of matching nothing.
 """
 
 from __future__ import annotations
@@ -30,11 +35,24 @@ class FilterError(Exception):
 
 #: Filters fields that are answered from the ``tags`` table, by dimension.
 TAG_FIELDS: dict[str, Dimension] = {
+    "impact_areas": Dimension.IMPACT_AREA,
+    "sub_areas": Dimension.SUB_AREA,
+    "additional_sub_areas": Dimension.ADDITIONAL_SUB_AREA,
+    "objectives": Dimension.OBJECTIVE,
+    "pathways": Dimension.PATHWAY,
+    "research_modes": Dimension.RESEARCH_MODE,
+    "transformative_aspirations": Dimension.TRANSFORMATIVE_ASPIRATION,
+    "methods": Dimension.METHOD,
+    "data_types": Dimension.DATA_TYPE,
     "countries": Dimension.COUNTRY,
     "regions": Dimension.REGION,
-    "sub_areas": Dimension.SUB_AREA,
-    "methods": Dimension.METHOD,
+    "settings": Dimension.SETTING,
+    "scales": Dimension.SCALE,
+    "systems": Dimension.SYSTEM,
+    "actors": Dimension.ACTORS,
+    "justice_lenses": Dimension.JUSTICE_LENS,
     "sdgs": Dimension.SDG,
+    "output_types": Dimension.OUTPUT_TYPE,
 }
 
 

@@ -265,3 +265,141 @@ def expand_filters(filters: Filters | None, vocab: dict[str, Any]) -> Filters | 
             expanded += members.get(str(v), [v])
         update[field] = list(dict.fromkeys(expanded))
     return filters.model_copy(update=update) if update else filters
+
+
+#: A term every dimension's tags may hold besides the vocabulary (free text).
+OTHER = "other"
+
+
+def _retired(vocab: dict[str, Any], dimension: Dimension) -> dict[str, str | None]:
+    """Retired code -> its replacement (or ``None``), for curated dimensions."""
+    node = vocab.get(dimension.value)
+    if not isinstance(node, dict):
+        return {}
+    return {
+        str(r["code"]).lower(): (
+            str(r["replaced_by"]) if r.get("replaced_by") else None
+        )
+        for r in node.get("retired") or []
+        if isinstance(r, dict) and r.get("code")
+    }
+
+
+def filter_codes(
+    vocab: dict[str, Any], dimension: Dimension, world: WorldCodes | None
+) -> dict[str, str] | None:
+    """The codes a filter on ``dimension`` may name, as lower-case -> code.
+
+    Term and group codes from the vocabulary, plus ``other``. Countries and
+    regions come from standards: ISO alpha-3 codes and the finest UN M49 region
+    names, from ``world`` (``tagging.m49_file``), plus the vocabulary's flag and
+    partner-region codes. Returns ``None`` when the codes cannot be known
+    (country or region without ``world``), so the caller does not check them.
+    """
+    codes = {e.code for e in dimension_entries(vocab, dimension)}
+    codes |= {e.code for e in group_entries(vocab, dimension)}
+    if dimension in (Dimension.COUNTRY, Dimension.REGION):
+        if world is None:
+            return None
+        codes |= world.countries if dimension is Dimension.COUNTRY else world.regions
+    codes.add(OTHER)
+    return {c.lower(): c for c in codes}
+
+
+@dataclass(frozen=True)
+class WorldCodes:
+    """Country and region codes from the UN M49 table, for checking filters."""
+
+    countries: set[str]
+    regions: set[str]
+    names: dict[str, str]
+    """Lower-case country name -> alpha-3 code, for suggestions."""
+
+    @classmethod
+    def from_m49(cls, path: Path) -> WorldCodes:
+        """Read ISO alpha-3 codes and region names from ``vocab/m49.csv``.
+
+        Regions are the finest M49 grouping per country (what the tags store,
+        see :mod:`chatcde.tag.regions`) plus the partner-country flag.
+        """
+        from chatcde.tag.regions import GLOBAL_FLAG, PARTNER_COUNTRY, load_countries
+
+        countries = load_countries(path)
+        regions = {c.world_region for c in countries.values() if c.world_region}
+        names = {c.name.lower(): code for code, c in countries.items()}
+        return cls(set(countries) | {GLOBAL_FLAG}, regions | {PARTNER_COUNTRY}, names)
+
+
+def _suggest(value: str, labels: dict[str, str], known: dict[str, str]) -> list[str]:
+    """Up to three codes whose label or code is close to ``value`` (difflib)."""
+    from difflib import get_close_matches
+
+    v = value.lower()
+    hits = [labels[m] for m in get_close_matches(v, list(labels), n=3, cutoff=0.6)]
+    hits += [known[m] for m in get_close_matches(v, list(known), n=3, cutoff=0.6)]
+    return list(dict.fromkeys(hits))[:3]
+
+
+def check_filter_codes(
+    filters: Filters, vocab: dict[str, Any], world: WorldCodes | None = None
+) -> None:
+    """Reject tag filter values that are not codes of their dimension.
+
+    A filter matches tags by code, so a label ("Sustainable Governance"), a
+    misspelt or a retired code would silently match no record, and a count or
+    gap built on it would look like a real zero. This raises instead, naming
+    the bad values and what to use (decision 0034). Matching ignores case, as
+    the filter itself does.
+
+    Raises:
+        ToolError: Some values are unknown; the message suggests the code for a
+            matching label, the replacement of a retired code, or where to look.
+    """
+    from chatcde.store.filters import TAG_FIELDS
+    from chatcde.tools.context import ToolError
+
+    problems: list[str] = []
+    for field, dimension in TAG_FIELDS.items():
+        values = [str(v).strip() for v in getattr(filters, field)]
+        if not values:
+            continue
+        known = filter_codes(vocab, dimension, world)
+        if known is None:
+            continue
+        bad = [v for v in values if v.lower() not in known]
+        if not bad:
+            continue
+        labels = {e.label.lower(): e.code for e in dimension_entries(vocab, dimension)}
+        labels |= {e.label.lower(): e.code for e in group_entries(vocab, dimension)}
+        if dimension is Dimension.COUNTRY and world is not None:
+            labels |= world.names
+        retired = _retired(vocab, dimension)
+        notes = []
+        for v in bad:
+            if v.lower() in labels:
+                notes.append(f"{v!r} is a label; use the code {labels[v.lower()]!r}")
+            elif v.lower() in retired:
+                new = retired[v.lower()]
+                notes.append(
+                    f"{v!r} is retired"
+                    + (f"; use {new!r}" if new else " (no replacement)")
+                )
+            else:
+                near = _suggest(v, labels, known)
+                notes.append(
+                    f"{v!r} is not a code of {dimension.value}"
+                    + (
+                        f"; did you mean {' or '.join(map(repr, near))}?"
+                        if near
+                        else ""
+                    )
+                )
+        if len(known) <= 12:
+            hint = "codes: " + ", ".join(
+                sorted(c for c in known.values() if c != OTHER)
+            )
+        else:
+            hint = f'see list_vocabulary("{dimension.value}")'
+        problems.append(f"filters.{field}: " + "; ".join(notes) + f" ({hint})")
+    if problems:
+        raise ToolError("unknown filter codes. " + " | ".join(problems))

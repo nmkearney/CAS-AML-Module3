@@ -16,7 +16,7 @@ from typing import TYPE_CHECKING, Annotated
 
 import typer
 
-from chatcde.cli_common import PANEL_QUERY
+from chatcde.cli_common import PANEL_QUERY, TagOption, build_filters
 from chatcde.schemas import CountMatrix, Dimension, Level
 
 if TYPE_CHECKING:
@@ -108,6 +108,7 @@ def search(
     sdg: Annotated[
         list[int] | None, typer.Option(help="SDG number (repeatable).")
     ] = None,
+    tag: TagOption = None,
     min_confidence: Annotated[
         float, typer.Option(min=0.0, max=1.0, help="Lowest tag confidence counted.")
     ] = 0.5,
@@ -122,10 +123,10 @@ def search(
     and embeddings, reranked. Needs the endpoint for the query embedding and
     the reranker (key in the variable named by llm.api_key_env).
     """
-    from chatcde.schemas import Filters
     from chatcde.tools import core
 
-    filters = Filters(
+    filters = build_filters(
+        tag,
         year_from=year_from,
         year_to=year_to,
         cde_units=unit or [],
@@ -304,6 +305,7 @@ def count(
     sdg: Annotated[
         list[int] | None, typer.Option(help="SDG number (repeatable).")
     ] = None,
+    tag: TagOption = None,
     min_confidence: Annotated[
         float, typer.Option(min=0.0, max=1.0, help="Lowest tag confidence counted.")
     ] = 0.5,
@@ -323,11 +325,11 @@ def count(
     from rich.console import Console
     from rich.table import Table
 
-    from chatcde.schemas import Filters
     from chatcde.tools import core, counts
     from chatcde.tools.context import get_context
 
-    filters = Filters(
+    filters = build_filters(
+        tag,
         year_from=year_from,
         year_to=year_to,
         cde_units=unit or [],
@@ -508,6 +510,7 @@ def coverage(
     lang: Annotated[
         list[str] | None, typer.Option(help="Language code (repeatable).")
     ] = None,
+    tag: TagOption = None,
     as_json: Annotated[
         bool, typer.Option("--json", help="Print the CoverageReport as JSON.")
     ] = False,
@@ -522,9 +525,9 @@ def coverage(
     from rich.table import Table
 
     from chatcde import catalogue
-    from chatcde.schemas import Filters
     from chatcde.store.filters import FilterError
     from chatcde.tools import coverage as cov
+    from chatcde.tools.context import ToolContext
 
     cfg = ctx.obj
     keys = by or list(cov.BREAKDOWNS)
@@ -536,13 +539,15 @@ def coverage(
             err=True,
         )
         raise typer.Exit(code=2)
-    filters = Filters(
+    filters = build_filters(
+        tag,
         year_from=year_from,
         year_to=year_to,
         cde_units=unit or [],
         pub_types=pub_type or [],
         languages=lang or [],
     )
+    filters = _call(cfg, lambda: ToolContext(cfg).expand(filters)) or filters
     if not cfg.data.catalogue.is_file():
         typer.echo(
             f"No catalogue at {cfg.data.catalogue}; run `chatcde harvest metadata` "

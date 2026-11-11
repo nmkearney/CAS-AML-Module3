@@ -11,7 +11,12 @@ from typing import TYPE_CHECKING, Annotated
 
 import typer
 
-from chatcde.cli_common import PANEL_ASSISTANT, not_implemented
+from chatcde.cli_common import (
+    PANEL_ASSISTANT,
+    TagOption,
+    build_filters,
+    not_implemented,
+)
 
 if TYPE_CHECKING:
     from pydantic import BaseModel
@@ -223,6 +228,7 @@ def gaps(
     sdg: Annotated[
         list[int] | None, typer.Option(help="Scope: SDG number (repeatable).")
     ] = None,
+    tag: TagOption = None,
     min_confidence: Annotated[
         float, typer.Option(min=0.0, max=1.0, help="Lowest tag confidence counted.")
     ] = 0.5,
@@ -273,7 +279,6 @@ def gaps(
     """
     from rich.console import Console
 
-    from chatcde.schemas import Filters
     from chatcde.tools.context import ToolContext
     from chatcde.workflows.gaps import GapsError, parse_dims, render_gaps, run_gaps
 
@@ -295,7 +300,8 @@ def gaps(
     if alternative and not model:
         typer.echo("No alternative agent model is set in the config.", err=True)
         raise typer.Exit(code=2)
-    filters = Filters(
+    filters = build_filters(
+        tag,
         year_from=year_from,
         year_to=year_to,
         cde_units=unit or [],

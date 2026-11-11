@@ -88,7 +88,7 @@ The tools do the counting and the model does the interpreting.
 
 ## Tool catalogue
 
-The catalogue has 19 tools in six groups, seven of them needed for the first prototype. Each tool is a typed, documented Python function in `chatcde.tools`. The command line exposes it as a subcommand, and the LLM agent receives it as a function definition generated from its signature and docstring. All filters share one set: year range, CDE unit, publication type, language, region, theme, method and SDG.
+The catalogue has 19 tools in six groups, seven of them needed for the first prototype. Each tool is a typed, documented Python function in `chatcde.tools`. The command line exposes it as a subcommand, and the LLM agent receives it as a function definition generated from its signature and docstring. All filters share one set: year range, CDE unit, publication type, language, and every tagged dimension (impact area, sub-area, method, country, region, setting, SDG, …); unknown filter fields and codes are errors (decision 0034).
 
 ### Search and reading
 
