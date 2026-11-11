@@ -20,7 +20,9 @@ Issue #25; see docs/decisions/0022-agent-loop.md. One question runs like this:
    :attr:`AgentResult.unknown_ids` (decision 0035).
 6. Counts are not cited as records: every successful call of a counting tool
    (:data:`COUNT_TOOLS`) is kept as a :class:`CountQuery`, with its filters and
-   denominator, and listed under the answer.
+   denominator, and listed under the answer. Their results carry only a few
+   example IDs per cell and are never cut: one too large to send whole comes
+   back as an error asking for fewer cells (decision 0036).
 
 The :class:`AgentResult` records the model, prompt version, vocabulary version
 and code version, plus every tool call, so answers can be reproduced and
@@ -74,7 +76,8 @@ CITATION_NOTE = (
     "its denominator; the count queries are listed under the answer automatically."
 )
 
-#: Tools whose results are counts; their queries are listed under the answer.
+#: Tools whose results are counts; their queries are listed under the answer,
+#: and their results are sent whole or not at all (decision 0036).
 COUNT_TOOLS = ("count_by", "find_gaps", "coverage_report", "trend")
 
 StopReason = Literal["answered", "budget", "length"]
@@ -417,13 +420,15 @@ class Agent:
                 seconds=0.0, result_chars=len(content),
             )  # fmt: skip
         s = self.settings
+        counting = name in COUNT_TOOLS  # few example IDs, never cut (0036)
         with use_context(self.tool_ctx):
             outcome = run_tool(
                 spec,
                 fn.get("arguments"),
                 max_chars=s.max_tool_result_chars,
                 omit_fields=s.omit_fields,
-                max_ids=s.max_ids_per_list,
+                max_ids=s.max_ids_per_count_cell if counting else s.max_ids_per_list,
+                cut=not counting,
             )
         if outcome.ok:
             self._seen |= record_ids_in(outcome.data)

@@ -219,6 +219,8 @@ def compact(
     Drops keys named in ``omit_fields`` (e.g. ``provenance``) at any depth, and
     cuts every ``record_ids`` list to ``max_ids`` entries, adding
     ``record_ids_omitted`` with the number left out, so counts stay exact.
+    With ``max_ids=0`` the ``record_ids`` lists are dropped altogether (count
+    cells already carry their ``count``; decision 0036).
     """
     omit = set(omit_fields)
 
@@ -226,7 +228,7 @@ def compact(
         if isinstance(node, dict):
             out: dict[str, Any] = {}
             for k, v in node.items():
-                if k in omit:
+                if k in omit or (k == "record_ids" and max_ids == 0):
                     continue
                 if (
                     k == "record_ids"
@@ -246,14 +248,37 @@ def compact(
     return walk(data)
 
 
+class ResultTooLarge(Exception):
+    """A result that may not be cut is longer than the limit (decision 0036)."""
+
+    def __init__(self, chars: int, max_chars: int) -> None:
+        """Keep the result's length and the limit it went over."""
+        super().__init__(f"{chars} characters, over the limit of {max_chars}")
+        self.chars = chars
+        self.max_chars = max_chars
+
+
 def render(
     data: Any,
     *,
     max_chars: int,
     omit_fields: Sequence[str] = (),
     max_ids: int | None = None,
+    cut: bool = True,
 ) -> str:
-    """JSON text of a result for the model, compacted and cut to ``max_chars``."""
+    """JSON text of a result for the model, compacted and cut to ``max_chars``.
+
+    Args:
+        data: The JSON-ready result.
+        max_chars: Longest text sent to the model.
+        omit_fields: Keys dropped at any depth.
+        max_ids: Longest ``record_ids`` list kept (see :func:`compact`).
+        cut: Whether a longer text may be cut, with a note. Counts must not be:
+            a model reads the missing cells of a cut table as zeros (#81).
+
+    Raises:
+        ResultTooLarge: If ``cut`` is false and the text is over ``max_chars``.
+    """
     text = json.dumps(
         compact(data, omit_fields=omit_fields, max_ids=max_ids),
         ensure_ascii=False,
@@ -261,10 +286,27 @@ def render(
     )
     if len(text) <= max_chars:
         return text
+    if not cut:
+        raise ResultTooLarge(len(text), max_chars)
     return (
         text[:max_chars]
         + f" ... [cut: the result had {len(text)} characters; ask for less, "
         "e.g. a smaller k, a narrower page range or more filters]"
+    )
+
+
+def too_large_message(name: str, data: Any, exc: ResultTooLarge) -> str:
+    """Error for a count result that is too large to send whole.
+
+    Names the number of cells, if any, and the ways to ask for fewer.
+    """
+    cells = data.get("cells") if isinstance(data, dict) else None
+    size = f"{len(cells)} cells, " if isinstance(cells, list) else ""
+    return (
+        f"the {name} result is too large to send whole ({size}{exc}). Counts are "
+        "never sent cut, so nothing was returned. Ask for fewer cells: "
+        "level='group', one dimension instead of two, or filters that narrow "
+        "the rows or columns; then drill into the groups you need"
     )
 
 
@@ -275,12 +317,15 @@ def run_tool(
     max_chars: int,
     omit_fields: Sequence[str] = (),
     max_ids: int | None = None,
+    cut: bool = True,
 ) -> ToolOutcome:
     """Validate the model's arguments, call the tool and render the outcome.
 
     Never raises for the model's mistakes or the tool's refusals: they come back
     as ``ok=False`` with an error the model can read and act on. Unexpected
-    exceptions are logged with their traceback and reported briefly.
+    exceptions are logged with their traceback and reported briefly. With
+    ``cut=False`` (counting tools), a result over ``max_chars`` is an error
+    asking for fewer cells, never a partial table (decision 0036).
     """
     started = time.monotonic()
     args: dict[str, Any] = {}
@@ -324,9 +369,17 @@ def run_tool(
         log.exception("tool %s failed", spec.name)
         return failed(f"{spec.name} failed unexpectedly ({type(exc).__name__})")
     data = to_jsonable_python(result)
-    content = render(
-        data, max_chars=max_chars, omit_fields=omit_fields, max_ids=max_ids
-    )
+    try:
+        content = render(
+            data,
+            max_chars=max_chars,
+            omit_fields=omit_fields,
+            max_ids=max_ids,
+            cut=cut,
+        )
+    except ResultTooLarge as exc:
+        log.warning("tool %s: result not sent (%s)", spec.name, exc)
+        return failed(too_large_message(spec.name, data, exc))
     return ToolOutcome(
         spec.name,
         args,

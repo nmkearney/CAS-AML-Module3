@@ -31,6 +31,7 @@ from chatcde.store.endpoint import EndpointClient
 from chatcde.tools.context import ToolError
 from chatcde.tools.specs import (
     CORE_TOOLS,
+    ResultTooLarge,
     build_spec,
     compact,
     parse_docstring,
@@ -193,8 +194,47 @@ def test_compact_and_render():
     assert small["cells"][0]["record_ids"] == ["r0", "r1", "r2", "r3", "r4"]
     assert small["cells"][0]["record_ids_omitted"] == 25
     assert "provenance" not in small and small["nested"] == [{"keep": 2}]
+    assert compact(data, max_ids=0)["cells"] == [{"row": "A"}]
     text = render({"text": "x" * 5000}, max_chars=600)
     assert len(text) < 800 and "cut: the result had" in text
+
+
+def test_render_without_cut_raises():
+    data = {"cells": [{"row": f"r{i}", "count": i} for i in range(200)]}
+    with pytest.raises(ResultTooLarge, match="over the limit of 600"):
+        render(data, max_chars=600, cut=False)
+    assert render({"cells": []}, max_chars=600, cut=False) == '{"cells":[]}'
+
+
+def test_a_count_over_the_limit_never_reaches_the_model_cut():
+    """#81: a cut matrix was read as zeros; now it is an error or sent whole."""
+
+    def big_count(n: int) -> dict:
+        """Count.
+
+        Args:
+            n: Cells.
+        """
+        return {
+            "cells": [
+                {"row": f"MET-{i}", "count": 100 + i, "record_ids": ["x" * 36] * 20}
+                for i in range(n)
+            ]
+        }
+
+    spec = _spec_of(big_count)
+    whole = run_tool(spec, '{"n": 36}', max_chars=16000, max_ids=3, cut=False)
+    assert whole.ok
+    cells = json.loads(whole.content)["cells"]  # valid JSON: nothing cut
+    assert len(cells) == 36 and cells[-1]["count"] == 135
+    assert cells[0]["record_ids_omitted"] == 17
+    refused = run_tool(spec, '{"n": 400}', max_chars=16000, max_ids=3, cut=False)
+    assert not refused.ok and refused.data is None
+    error = json.loads(refused.content)["error"]
+    assert "400 cells" in error and "never sent cut" in error
+    assert "level='group'" in error
+    cut = run_tool(spec, '{"n": 400}', max_chars=16000, max_ids=3)  # other tools
+    assert cut.ok and "[cut: the result had" in cut.content
 
 
 # --- agent loop -----------------------------------------------------------------------
@@ -417,6 +457,27 @@ def test_ids_from_counts_count_as_seen(fixture_db: Path, tmp_path: Path):
     )
     result = make_agent(make_config(tmp_path, fixture_db), llm).ask("?")
     assert result.citations[0].from_tools
+
+
+def test_count_results_carry_few_ids_and_are_never_cut(
+    fixture_db: Path, tmp_path: Path
+):
+    extra = "agent:\n  max_tool_result_chars: 2000\n  max_ids_per_count_cell: 1\n"
+    cfg = make_config(tmp_path, fixture_db, extra)
+    llm = ScriptedLLM(
+        [
+            reply(calls=[call("count_by", {"row": "sub_area", "col": "method"})]),
+            reply(calls=[call("count_by", {"row": "impact_area"}, "c2")]),
+            reply("Done."),
+        ]
+    )
+    result = make_agent(cfg, llm).ask("?")
+    big, small = (json.loads(m["content"]) for m in llm.requests[2]["messages"]
+                  if m["role"] == "tool")  # fmt: skip
+    assert "never sent cut" in big["error"]
+    assert all(len(c["record_ids"]) <= 1 for c in small["cells"])
+    assert [t.ok for t in result.tool_calls] == [False, True]
+    assert [q.arguments["row"] for q in result.counts] == ["impact_area"]
 
 
 def test_conversation_keeps_history_and_reset(fixture_db: Path, tmp_path: Path):
