@@ -137,7 +137,7 @@ def test_render_result_lists_sources_and_warnings():
         "[2] Title [b] (2020). BORIS: https://boris.test/b (not returned by any tool)"
         in out
     )
-    assert "not in the catalogue" in out and "zzz" in out
+    assert "not catalogue records" in out and "zzz" in out
     assert "budget" in out
     assert "m | agent_system.v1 | 0 tool calls | 1.5 s | 1,234 tokens" in out
 
@@ -173,6 +173,28 @@ def test_data_note(fixture_db: Path, tmp_path: Path):
 
     cfg = load_config(write_config(tmp_path / "o2", tmp_path / "none.duckdb"))
     assert data_note(cfg) is None
+
+
+def test_render_result_lists_count_queries_and_a_rewrite():
+    from chatcde.agent import CountQuery
+
+    query = CountQuery(
+        tool="count_by",
+        arguments={"row": "method", "filters": {"impact_areas": ["SG"], "sdgs": []}},
+        summary="1,275 records match, 3 of them have no method tag",
+    )
+    r = _result("Few [BORIS:a].", [("a", True)]).model_copy(
+        update={"counts": [query], "retried_ids": ["count_by"]}
+    )
+    console = Console(record=True, width=200)
+    render_result(console, r)
+    out = console.export_text()
+    assert "Counts (the queries behind the numbers)" in out
+    assert (
+        "- count_by(row=method, impact_areas=[SG]): 1,275 records match, "
+        "3 of them have no method tag" in out
+    )
+    assert "it was rewritten" in out and "count_by" in out
 
 
 # --- chatcde ask ----------------------------------------------------------------------

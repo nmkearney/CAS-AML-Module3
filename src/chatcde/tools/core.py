@@ -222,18 +222,14 @@ def coverage_report(filters: Filters | None = None) -> CoverageReport:
     Returns:
         Counts with their denominator, ``total_records``.
     """
-    # Implemented by Track A (issue #11); the logic is in chatcde.tools.coverage.
-    from chatcde import catalogue
-    from chatcde.config import load_config
+    # The logic is in chatcde.tools.coverage (issue #11).
     from chatcde.tools import coverage
-    from chatcde.tools.context import ToolContext
+    from chatcde.tools.context import get_context
 
-    cfg = load_config()
+    ctx = get_context()  # the agent's or caller's config, not the default (#66)
+    cfg = ctx.cfg
     if not cfg.data.catalogue.is_file():
         raise FileNotFoundError(f"no catalogue at {cfg.data.catalogue}")
-    filters = ToolContext(cfg).expand(filters)  # group codes -> terms (0030)
-    con = catalogue.connect(cfg.data.catalogue, read_only=True)
-    try:
+    filters = ctx.expand(filters)  # check codes, group codes -> terms (0030, 0034)
+    with ctx.catalogue() as con:
         return coverage.build_report(con, filters, coverage.local_edition(cfg.data.dir))
-    finally:
-        con.close()

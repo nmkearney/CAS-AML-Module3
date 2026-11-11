@@ -16,10 +16,14 @@ import pytest
 
 from chatcde.agent import (
     BUDGET_NOTE,
+    CITATION_NOTE,
     Agent,
     AgentError,
+    format_arguments,
+    normalise_references,
     parse_citations,
     record_ids_in,
+    strip_references,
 )
 from chatcde.config import Config, load_config
 from chatcde.schemas import Dimension, Filters
@@ -332,14 +336,11 @@ def test_budget_stops_tool_calls(fixture_db: Path, tmp_path: Path):
 
 
 def test_citations_are_checked(fixture_db: Path, tmp_path: Path):
-    llm = ScriptedLLM(
-        [
-            reply(
-                f"Two sources [BORIS:{MRD}; BORIS:fixture-synthetic-04] and an "
-                "invented one [BORIS:00000000-dead-beef]."
-            )
-        ]
+    bad = (
+        f"Two sources [BORIS:{MRD}; BORIS:fixture-synthetic-04] and an "
+        "invented one [BORIS:00000000-dead-beef]."
     )
+    llm = ScriptedLLM([reply(bad), reply(bad)])  # the rewrite repeats the mistake
     result = make_agent(make_config(tmp_path, fixture_db), llm).ask("?")
     assert [c.citation.record_id for c in result.citations] == [
         MRD,
@@ -347,6 +348,64 @@ def test_citations_are_checked(fixture_db: Path, tmp_path: Path):
     ]
     assert not any(c.from_tools for c in result.citations)  # no tool was called
     assert result.unknown_ids == ["00000000-dead-beef"]
+    assert result.retried_ids == ["00000000-dead-beef"]
+    assert result.answer == (
+        f"Two sources [BORIS:{MRD}; BORIS:fixture-synthetic-04] and an invented one."
+    )
+
+
+def test_unknown_references_are_sent_back_once(fixture_db: Path, tmp_path: Path):
+    # 2026-11-11: the agent cited the tool it counted with as a record.
+    llm = ScriptedLLM(
+        [
+            reply(calls=[call("count_by", {"row": "impact_area"})]),
+            reply("SG leads [BORIS:count_by]."),
+            reply(f"SG leads; for example [BORIS:{MRD}]."),
+        ]
+    )
+    agent = make_agent(make_config(tmp_path, fixture_db), llm)
+    result = agent.ask("?")
+    assert result.answer == f"SG leads; for example [BORIS:{MRD}]."
+    assert result.retried_ids == ["count_by"] and result.unknown_ids == []
+    assert result.citations[0].from_tools and result.rounds == 3
+    retry = llm.requests[-1]
+    assert "tools" not in retry
+    assert retry["messages"][-1] == {
+        "role": "user",
+        "content": CITATION_NOTE.format(ids="count_by"),
+    }
+    assert retry["messages"][-2]["content"] == "SG leads [BORIS:count_by]."
+    # Only the corrected answer stays in the conversation.
+    assert [m["role"] for m in agent.messages][-2:] == ["tool", "assistant"]
+    assert agent.messages[-1]["content"] == result.answer
+
+
+def test_without_retry_unknown_references_are_removed(fixture_db: Path, tmp_path: Path):
+    cfg = make_config(tmp_path, fixture_db, "agent:\n  citation_retry: false\n")
+    llm = ScriptedLLM([reply("Counted [BORIS:coverage_report]; see [BORIS:count_by].")])
+    result = make_agent(cfg, llm).ask("?")
+    assert len(llm.requests) == 1
+    assert result.answer == "Counted; see."
+    assert result.unknown_ids == ["coverage_report", "count_by"]
+    assert result.retried_ids == []
+
+
+def test_count_queries_are_kept_with_their_denominator(
+    fixture_db: Path, tmp_path: Path
+):
+    count = call("count_by", {"row": "method", "filters": {"impact_areas": ["SL"]}})
+    llm = ScriptedLLM(
+        [
+            reply(calls=[count, {**count, "id": "c2"}]),  # the same query twice
+            reply(calls=[call("coverage_report", {}, "c3")]),
+            reply("Done."),
+        ]
+    )
+    result = make_agent(make_config(tmp_path, fixture_db), llm).ask("?")
+    first, second = result.counts
+    assert first.text().startswith("count_by(row=method, impact_areas=[SL]): ")
+    assert "records match" in first.summary and "no method tag" in first.summary
+    assert second.tool == "coverage_report" and "full text" in second.summary
 
 
 def test_ids_from_counts_count_as_seen(fixture_db: Path, tmp_path: Path):
@@ -414,3 +473,28 @@ def test_record_ids_in():
         {"citation": {"record_id": "d"}},
     ]
     assert record_ids_in(data) == {"a", "b", "c", "d"}
+
+
+def test_strip_references():
+    text = "A [BORIS:x; BORIS:count_by, p. 2]. B [BORIS:count_by]. C [BORIS:y]."
+    assert strip_references(text, {"count_by"}) == "A [BORIS:x]. B. C [BORIS:y]."
+    assert strip_references(text, set()) == text
+
+
+def test_format_arguments():
+    args = {"row": "method", "filters": {"impact_areas": ["SG", "TE"], "sdgs": []}}
+    assert format_arguments(args) == "row=method, impact_areas=[SG, TE]"
+
+
+def test_typographic_references_are_recognised():
+    # gpt-oss, 2026-11-11: narrow no-break spaces and non-breaking hyphens.
+    text = "Total [BORIS:\u202fSG\u2011d,\u202fSG\u2011a], pp. 2\u20133 \u2011 kept."
+    fixed = normalise_references(text)
+    assert fixed == "Total [BORIS: SG-d, SG-a], pp. 2\u20133 \u2011 kept."
+    assert parse_citations(fixed) == [("SG-d", None)]
+
+
+def test_a_typographic_reference_is_sent_back(fixture_db: Path, tmp_path: Path):
+    llm = ScriptedLLM([reply("Total [BORIS:\u202fSG\u2011d]."), reply("Total 12.")])
+    result = make_agent(make_config(tmp_path, fixture_db), llm).ask("?")
+    assert result.retried_ids == ["SG-d"] and result.answer == "Total 12."

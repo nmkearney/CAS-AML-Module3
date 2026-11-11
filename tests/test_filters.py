@@ -32,10 +32,8 @@ def _config(tmp_path: Path, db: Path) -> Path:
 
 
 @pytest.fixture
-def cfg(tmp_path: Path, fixture_db: Path, monkeypatch: pytest.MonkeyPatch) -> Config:
-    path = _config(tmp_path, fixture_db)
-    monkeypatch.setenv("CHATCDE_CONFIG", str(path))  # core.coverage_report
-    return load_config(path)
+def cfg(tmp_path: Path, fixture_db: Path) -> Config:
+    return load_config(_config(tmp_path, fixture_db))
 
 
 @pytest.fixture
@@ -106,7 +104,8 @@ def test_impact_area_filter_narrows_count_by(cfg: Config, fixture_db: Path):
 
 
 def test_coverage_report_honours_tag_filters(cfg: Config, fixture_db: Path):
-    report = core.coverage_report(Filters(impact_areas=["sl"]))  # case ignored
+    with use_context(ToolContext(cfg)):
+        report = core.coverage_report(Filters(impact_areas=["sl"]))  # case ignored
     assert report.total_records == _records_with(fixture_db, "impact_area", "SL")
 
 

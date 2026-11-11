@@ -18,10 +18,12 @@ from typer.testing import CliRunner
 
 from chatcde import catalogue
 from chatcde.cli import app
+from chatcde.config import load_config
 from chatcde.schemas import CoverageReport, Edition, Filters, Record
 from chatcde.store.filters import FilterError
 from chatcde.tools import core
 from chatcde.tools import coverage as cov
+from chatcde.tools.context import ToolContext, use_context
 
 FIX = Path(__file__).parent / "fixtures"
 runner = CliRunner()
@@ -185,11 +187,11 @@ def config_for(tmp_path: Path, db: Path) -> Path:
     return path
 
 
-def test_tool_reads_the_configured_catalogue(
-    fixture_db: Path, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
-):
-    monkeypatch.setenv("CHATCDE_CONFIG", str(config_for(tmp_path, fixture_db)))
-    r = core.coverage_report(Filters(languages=["de"]))
+def test_tool_reads_the_context_catalogue(fixture_db: Path, tmp_path: Path):
+    # It used to load the default config, ignoring the agent's context (#66).
+    cfg = load_config(config_for(tmp_path, fixture_db))
+    with use_context(ToolContext(cfg)):
+        r = core.coverage_report(Filters(languages=["de"]))
     assert r.edition == Edition.FULL
     de = [r for r in jsonl("records.jsonl") if "de" in r["languages"]]
     assert r.total_records == len(de) > 0
