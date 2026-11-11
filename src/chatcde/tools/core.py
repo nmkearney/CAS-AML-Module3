@@ -185,6 +185,11 @@ def find_gaps(
     gap real, check ``coverage_report`` for the same filters and read a few
     records with ``search_publications``.
 
+    To compare one area with the rest of CDE, make its dimension the ``row``
+    and do not filter by it (e.g. ``row="impact_area"`` and read the SG cells):
+    a filter on the area leaves nothing to compare it with. An empty list means
+    no cell is at or below ``max_ratio``.
+
     Args:
         row: First dimension, e.g. ``sub_area``.
         col: Second dimension, e.g. ``method``.

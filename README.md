@@ -376,7 +376,7 @@ against the catalogue and the conversation's tool results. If the answer cites a
 that is not a record (such as a tool name), the model is asked once to rewrite it
 (`agent.citation_retry`); references still unknown are removed and reported
 (`docs/decisions/0035-citations-and-count-queries.md`). The system prompt is
-`src/chatcde/prompts/agent_system.v3.md`. From Python:
+`src/chatcde/prompts/agent_system.v4.md`. From Python:
 
 ```python
 from chatcde.agent import Agent

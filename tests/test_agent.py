@@ -553,9 +553,65 @@ def test_typographic_references_are_recognised():
     fixed = normalise_references(text)
     assert fixed == "Total [BORIS: SG-d, SG-a], pp. 2\u20133 \u2011 kept."
     assert parse_citations(fixed) == [("SG-d", None)]
+    # gpt-oss, 2026-11-11: lenticular and full-width brackets.
+    wide = "None 【BORIS:find_gaps, level=group】 and ［BORIS:x］, 【note】."
+    assert normalise_references(wide) == (
+        "None [BORIS:find_gaps, level=group] and [BORIS:x], 【note】."
+    )
 
 
 def test_a_typographic_reference_is_sent_back(fixture_db: Path, tmp_path: Path):
     llm = ScriptedLLM([reply("Total [BORIS:\u202fSG\u2011d]."), reply("Total 12.")])
     result = make_agent(make_config(tmp_path, fixture_db), llm).ask("?")
     assert result.retried_ids == ["SG-d"] and result.answer == "Total 12."
+
+
+def test_gap_questions_are_routed_to_find_gaps(fixture_db: Path, tmp_path: Path):
+    """#67: the prompt and the tool description send gap questions to find_gaps."""
+    cfg = make_config(tmp_path, fixture_db)
+    llm = ScriptedLLM([reply("No gaps.")])
+    make_agent(cfg, llm).ask("Which methods has CDE rarely used in SG?")
+    first = llm.requests[0]
+    system = first["messages"][0]["content"]
+    assert "are gap questions" in system and "no filter on it" in system
+    [gaps] = [t for t in first["tools"] if t["function"]["name"] == "find_gaps"]
+    assert "do not filter by it" in gaps["function"]["description"]
+
+
+def test_run_tool_accepts_filters_sent_as_json_text():
+    """#67: qwen3.8 sends filters as a JSON string; it is parsed, not refused."""
+
+    def tool(query: str, filters: Filters | None = None) -> dict:
+        """Echo.
+
+        Args:
+            query: Text, which may look like JSON and stays a string.
+            filters: Restrictions.
+        """
+        return {"query": query, "areas": filters.impact_areas if filters else None}
+
+    spec = _spec_of(tool)
+    raw = {"query": '{"not": "parsed"}', "filters": '{"impact_areas": ["SG"]}'}
+    out = run_tool(spec, raw, max_chars=1000)
+    assert out.ok and out.data == {"query": '{"not": "parsed"}', "areas": ["SG"]}
+    bad = run_tool(spec, {"query": "x", "filters": "{nope"}, max_chars=1000)
+    assert not bad.ok and "filters" in (bad.error or "")
+
+
+def test_misspelt_fields_get_a_suggestion():
+    """#67: gpt-oss writes filters.impact_area for impact_areas."""
+
+    def tool(filters: Filters | None = None, k: int = 3) -> dict:
+        """Echo.
+
+        Args:
+            filters: Restrictions.
+            k: How many.
+        """
+        return {}
+
+    spec = _spec_of(tool)
+    out = run_tool(spec, {"filters": {"impact_area": ["SG"]}, "kk": 2}, max_chars=500)
+    assert "filters.impact_area" in (out.error or "")
+    assert "did you mean 'impact_areas'?" in (out.error or "")
+    assert "did you mean 'k'?" not in (out.error or "")  # too short to guess

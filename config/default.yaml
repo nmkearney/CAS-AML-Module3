@@ -221,7 +221,7 @@ gaps:
 
 # --- Agent (see docs/decisions/0022-agent-loop.md) -------------------------
 agent:
-  system_prompt: "agent_system.v3"   # file <prompts.dir>/<name>.md; v3: counts not cited as records (0035)
+  system_prompt: "agent_system.v4"   # file <prompts.dir>/<name>.md; v4: gap questions via find_gaps (0037)
   tools: [search_publications, get_publication, read_section, list_vocabulary,
           count_by, find_gaps, coverage_report]
   max_tool_calls: 12             # per question; then the model must answer

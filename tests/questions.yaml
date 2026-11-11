@@ -1,0 +1,19 @@
+# Test questions with known answers (#19), format: docs/decisions/0025-evaluate-questions.md.
+# Expected values come from the real catalogue; `notes` says how to recompute them
+# when the data or the tags change. Run with `chatcde evaluate questions`.
+version: 1
+questions:
+  - id: gaps-sg-methods
+    question: "Which methods has CDE rarely used in Sustainable Governance?"
+    kind: gaps
+    expect:
+      tools: [find_gaps]
+      mentions_any: ["geospatial", "biophysical"]
+    notes: >
+      Issue #67 (decision 0037). Seen on 2026-11-11 answered with the smallest group
+      share (14%), which is not rare. Known answer (2026-11-11, tag.v5, vocab 0.4,
+      2,331 records without conference items): find_gaps(impact_area, method) has no
+      SG cell at ratio <= 0.25, at group or term level. Within SG,
+      find_gaps(sub_area, method) flags SG-b x MET-G-geospatial-and-land (2 records,
+      14.3 expected) and SG-a x MET-G-biophysical (7, 32.8 expected). Recompute with
+      `chatcde gaps --dims impact_area,method` and `--dims sub_area,method`.

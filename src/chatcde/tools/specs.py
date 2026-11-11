@@ -18,6 +18,7 @@ the code, so the two cannot drift apart (decision 0022):
 
 from __future__ import annotations
 
+import difflib
 import inspect
 import json
 import logging
@@ -25,11 +26,12 @@ import re
 import time
 from collections.abc import Callable, Iterable, Sequence
 from dataclasses import dataclass, field
-from typing import Any, get_type_hints
+from typing import Any, get_args, get_type_hints
 
 from pydantic import BaseModel, ConfigDict, Field, ValidationError, create_model
 from pydantic_core import to_jsonable_python
 
+from chatcde.schemas import Filters
 from chatcde.tools import core
 from chatcde.tools.context import ToolError
 
@@ -310,6 +312,53 @@ def too_large_message(name: str, data: Any, exc: ResultTooLarge) -> str:
     )
 
 
+def _accepts_str(annotation: Any) -> bool:
+    """Whether a type hint admits a plain ``str`` (``str``, ``str | None``, ...)."""
+    if annotation is str:
+        return True
+    return any(_accepts_str(a) for a in get_args(annotation))
+
+
+def unwrap_json_strings(model: type[BaseModel], args: dict[str, Any]) -> dict[str, Any]:
+    """Parse object arguments that the model sent as JSON text.
+
+    qwen3.8 sends ``filters`` as a string holding a JSON object (2026-11-11,
+    #67), which fails validation on every call. A string that starts with ``{``
+    and parses to an object is replaced by that object, but only for parameters
+    that do not take a string anyway.
+    """
+    out = dict(args)
+    for name, value in args.items():
+        info = model.model_fields.get(name)
+        if not (isinstance(value, str) and value.lstrip().startswith("{")):
+            continue
+        if info is None or _accepts_str(info.annotation):
+            continue
+        try:
+            parsed = json.loads(value)
+        except json.JSONDecodeError:
+            continue
+        if isinstance(parsed, dict):
+            out[name] = parsed
+    return out
+
+
+def _problem(model: type[BaseModel], error: Any) -> str:
+    """One validation error as text, with a suggestion for a misspelt field.
+
+    gpt-oss writes ``filters.impact_area`` for ``impact_areas``; naming the
+    right field saves the model a call (#67).
+    """
+    loc = [str(p) for p in error["loc"]]
+    text = f"{'.'.join(loc) or 'arguments'}: {error['msg']}"
+    if error.get("type") == "extra_forbidden" and loc:
+        fields = Filters.model_fields if loc[0] == "filters" else model.model_fields
+        close = difflib.get_close_matches(loc[-1], list(fields), n=1, cutoff=0.75)
+        if close:
+            text += f" (did you mean {close[0]!r}?)"
+    return text
+
+
 def run_tool(
     spec: ToolSpec,
     raw_arguments: str | dict[str, Any] | None,
@@ -351,12 +400,11 @@ def run_tool(
     except json.JSONDecodeError as exc:
         return failed(f"arguments are not valid JSON: {exc}")
     try:
-        validated = spec.args_model.model_validate(args)
-    except ValidationError as exc:
-        problems = "; ".join(
-            f"{'.'.join(str(p) for p in e['loc']) or 'arguments'}: {e['msg']}"
-            for e in exc.errors()
+        validated = spec.args_model.model_validate(
+            unwrap_json_strings(spec.args_model, args)
         )
+    except ValidationError as exc:
+        problems = "; ".join(_problem(spec.args_model, e) for e in exc.errors())
         return failed(f"invalid arguments for {spec.name}: {problems}")
     kwargs = {name: getattr(validated, name) for name in spec.args_model.model_fields}
     try:
