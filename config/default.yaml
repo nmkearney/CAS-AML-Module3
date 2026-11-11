@@ -221,7 +221,7 @@ gaps:
 
 # --- Agent (see docs/decisions/0022-agent-loop.md) -------------------------
 agent:
-  system_prompt: "agent_system.v2"   # file <prompts.dir>/<name>.md; v2: group level (0030)
+  system_prompt: "agent_system.v3"   # file <prompts.dir>/<name>.md; v3: counts not cited as records (0035)
   tools: [search_publications, get_publication, read_section, list_vocabulary,
           count_by, find_gaps, coverage_report]
   max_tool_calls: 12             # per question; then the model must answer
@@ -231,6 +231,7 @@ agent:
   max_ids_per_list: 20           # record_ids lists are cut, the count kept
   omit_fields: [provenance, harvested_at]   # not sent to the model
   extra_body: {}                 # extra request fields for models.agent
+  citation_retry: true           # unknown IDs cited: ask once for a corrected answer (0035)
 
 # --- Evaluation -----------------------------------------------------------
 evaluation:

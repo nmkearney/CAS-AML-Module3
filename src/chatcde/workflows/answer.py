@@ -6,8 +6,9 @@ Used by ``chatcde ask`` and ``chatcde chat`` (issue #26, decision 0023):
   into short numbered ones (``[1, p. 4]``), numbered in order of first use.
 * :func:`render_result` prints the answer as Markdown, then the sources with
   title, year, DOI and BORIS links (clickable in terminals that support it),
-  then warnings: cited IDs that are not in the catalogue, records no tool
-  returned, a used-up tool budget or a cut-off answer.
+  then the count queries behind the numbers (decision 0035), then warnings:
+  references removed because they are not records, records no tool returned,
+  a used-up tool budget or a cut-off answer.
 * :func:`data_note` says which data edition answered and how much of it has
   full text, so readers know what the evidence could have covered.
 """
@@ -166,10 +167,22 @@ def render_result(
                 f"[{i}] {escape(cit.title)}{year}.{pages} {' | '.join(links)}{flag}",
                 highlight=False,
             )
+    if result.counts:
+        console.print()
+        console.print("[bold]Counts[/bold] (the queries behind the numbers)")
+        for q in result.counts:
+            console.print(f"- {escape(q.text())}", highlight=False)
     if result.unknown_ids:
         console.print(
-            "[red]Cited IDs not in the catalogue (treat those claims as "
-            f"unsupported): {escape(', '.join(result.unknown_ids))}[/red]",
+            "[red]References removed because they are not catalogue records "
+            "(treat the claims they backed as unsupported): "
+            f"{escape(', '.join(result.unknown_ids))}[/red]",
+            highlight=False,
+        )
+    elif result.retried_ids:
+        console.print(
+            "[dim]The first answer cited references that are not records "
+            f"({escape(', '.join(result.retried_ids))}); it was rewritten.[/dim]",
             highlight=False,
         )
     if result.stop_reason == "budget":

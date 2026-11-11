@@ -355,8 +355,12 @@ chatcde chat                                    # follow-up questions; /reset, /
 Each tool call is shown as it runs (on stderr; `--hide-tools` turns this off). The
 answer is followed by:
 - its **sources**: number, title, year, cited pages, DOI and BORIS links;
-- **warnings** for anything unsupported: a record no tool returned, an ID not in the
-  catalogue, a used-up tool budget, or a cut-off answer;
+- its **counts**: each count query the agent ran (`count_by`, `find_gaps`,
+  `coverage_report`), with its filters and denominator, e.g.
+  `count_by(row=method, impact_areas=[SG]): 1,275 records match, ...`;
+- **warnings** for anything unsupported: a record no tool returned, a reference
+  removed because it is not a catalogue record, a used-up tool budget, or a cut-off
+  answer;
 - a **data note**: which edition answered, and how many publications have full text,
   only an abstract, or only metadata.
 
@@ -368,8 +372,11 @@ How the agent works: the tool definitions are generated from the tool functions'
 hints and docstrings (`chatcde.tools.specs`). The model may make at most
 `agent.max_tool_calls` (12) calls per question; then it has to answer. It cites records
 as `[BORIS:<record_id>]` or `[BORIS:<record_id>, p. 4]`, and each cited ID is checked
-against the catalogue and the conversation's tool results. The system prompt is
-`src/chatcde/prompts/agent_system.v1.md`. From Python:
+against the catalogue and the conversation's tool results. If the answer cites an ID
+that is not a record (such as a tool name), the model is asked once to rewrite it
+(`agent.citation_retry`); references still unknown are removed and reported
+(`docs/decisions/0035-citations-and-count-queries.md`). The system prompt is
+`src/chatcde/prompts/agent_system.v3.md`. From Python:
 
 ```python
 from chatcde.agent import Agent

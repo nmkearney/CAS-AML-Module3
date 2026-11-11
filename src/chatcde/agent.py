@@ -14,6 +14,13 @@ Issue #25; see docs/decisions/0022-agent-loop.md. One question runs like this:
 4. The answer cites records as ``[BORIS:<record_id>]`` or
    ``[BORIS:<record_id>, p. <n>]``. :func:`extract_citations` finds them, looks
    them up in the catalogue and flags any ID the tools never returned.
+5. References to IDs that are not records (the model has cited tool names such
+   as ``[BORIS:count_by]``) are sent back once with :data:`CITATION_NOTE`
+   (``agent.citation_retry``); any left are removed from the answer and kept in
+   :attr:`AgentResult.unknown_ids` (decision 0035).
+6. Counts are not cited as records: every successful call of a counting tool
+   (:data:`COUNT_TOOLS`) is kept as a :class:`CountQuery`, with its filters and
+   denominator, and listed under the answer.
 
 The :class:`AgentResult` records the model, prompt version, vocabulary version
 and code version, plus every tool call, so answers can be reproduced and
@@ -59,6 +66,17 @@ BUDGET_NOTE = (
     "evidence you have, cite it as instructed, and say what is missing."
 )
 
+#: Message sent once when the answer cites IDs that are not records.
+CITATION_NOTE = (
+    "[Your answer cites references that are not records: {ids}.] Rewrite the "
+    "whole answer. Use [BORIS:<record_id>] only for record_ids that appeared in "
+    "tool results. Do not cite tools or counts: give each number in the text with "
+    "its denominator; the count queries are listed under the answer automatically."
+)
+
+#: Tools whose results are counts; their queries are listed under the answer.
+COUNT_TOOLS = ("count_by", "find_gaps", "coverage_report", "trend")
+
 StopReason = Literal["answered", "budget", "length"]
 
 
@@ -87,6 +105,62 @@ class AnswerCitation(BaseModel):
     )
 
 
+class CountQuery(BaseModel):
+    """A count an answer may rest on: the tool call and its denominator."""
+
+    tool: str
+    arguments: dict[str, Any]
+    summary: str = Field(description="Denominator and size of the result")
+
+    def text(self) -> str:
+        """One line, e.g. ``count_by(row=method, impact_areas=[SG]): 1,275 ...``."""
+        return f"{self.tool}({format_arguments(self.arguments)}): {self.summary}"
+
+
+def format_arguments(args: dict[str, Any]) -> str:
+    """Tool arguments as short ``key=value`` text; filters are flattened.
+
+    Empty values are left out, lists print without quotes (``[SG, TE]``).
+    """
+
+    def show(v: Any) -> str:
+        if isinstance(v, list):
+            return "[" + ", ".join(show(x) for x in v) + "]"
+        return str(v)
+
+    flat: dict[str, Any] = {}
+    for key, value in args.items():
+        if key == "filters" and isinstance(value, dict):
+            flat.update(value)
+        else:
+            flat[key] = value
+    return ", ".join(
+        f"{k}={show(v)}" for k, v in flat.items() if v not in (None, [], {}, "")
+    )
+
+
+def summarise_count(tool: str, data: Any) -> str:
+    """What a counting tool's result says about its denominator, in a few words."""
+    if isinstance(data, dict) and tool == "count_by":
+        dims = data.get("row_dimension") or "?"
+        if data.get("col_dimension"):
+            dims += f" or {data['col_dimension']}"
+        return (
+            f"{data.get('total_records', 0):,} records match, "
+            f"{data.get('untagged_records', 0):,} of them have no {dims} tag"
+        )
+    if isinstance(data, dict) and tool == "coverage_report":
+        return (
+            f"{data.get('total_records', 0):,} records: "
+            f"{data.get('with_fulltext', 0):,} full text, "
+            f"{data.get('abstract_only', 0):,} abstract only, "
+            f"{data.get('metadata_only', 0):,} metadata only"
+        )
+    if isinstance(data, list) and tool == "find_gaps":
+        return f"{len(data)} thin cells (count at most max_ratio x expected)"
+    return "see the tool result"
+
+
 class AgentResult(BaseModel):
     """The answer to one question, with its evidence trail and provenance."""
 
@@ -94,7 +168,14 @@ class AgentResult(BaseModel):
     answer: str
     citations: list[AnswerCitation]
     unknown_ids: list[str] = Field(
-        description="Cited IDs that are not in the catalogue"
+        description="Cited IDs that are not in the catalogue (removed from answer)"
+    )
+    retried_ids: list[str] = Field(
+        default_factory=list,
+        description="Unknown IDs in the first answer that made the agent ask again",
+    )
+    counts: list[CountQuery] = Field(
+        default_factory=list, description="Count queries run for this answer"
     )
     tool_calls: list[ToolCallRecord]
     stop_reason: StopReason
@@ -125,6 +206,32 @@ def parse_citations(answer: str) -> list[tuple[str, int | None]]:
                 (m.group(1).rstrip(".,;"), int(m.group(2)) if m.group(2) else None)
             )
     return found
+
+
+def _ref_id(m: re.Match[str]) -> str:
+    """The record ID of one :data:`CITE_RE` match, without trailing punctuation."""
+    return m.group(1).rstrip(".,;")
+
+
+#: A citation group with the whitespace before it (removed with the group).
+_GROUP_WITH_SPACE_RE = re.compile(r"(\s*)" + CITE_GROUP_RE.pattern)
+
+
+def strip_references(answer: str, drop: set[str]) -> str:
+    """Remove references to the IDs in ``drop``; drop groups left empty.
+
+    ``"A [BORIS:x; BORIS:count_by]."`` with ``drop={"count_by"}`` becomes
+    ``"A [BORIS:x]."``; ``"B [BORIS:count_by]."`` becomes ``"B."``.
+    """
+
+    def replace(group: re.Match[str]) -> str:
+        refs = list(CITE_RE.finditer(group.group(2)))
+        kept = [m.group(0).strip(" ,;") for m in refs if _ref_id(m) not in drop]
+        if len(kept) == len(refs):
+            return group.group(0)  # nothing to drop here: leave it as written
+        return f"{group.group(1)}[{'; '.join(kept)}]" if kept else ""
+
+    return _GROUP_WITH_SPACE_RE.sub(replace, answer) if drop else answer
 
 
 def record_ids_in(data: Any) -> set[str]:
@@ -219,6 +326,7 @@ class Agent:
         )
         self.messages: list[dict[str, Any]] = [{"role": "system", "content": system}]
         self._seen: set[str] = set()
+        self._counts: list[CountQuery] = []  # this turn's count queries
 
     def __enter__(self) -> Agent:
         """Use the agent in a ``with`` block."""
@@ -293,6 +401,14 @@ class Agent:
             )
         if outcome.ok:
             self._seen |= record_ids_in(outcome.data)
+            if name in COUNT_TOOLS:
+                query = CountQuery(
+                    tool=name,
+                    arguments=outcome.arguments,
+                    summary=summarise_count(name, outcome.data),
+                )
+                if query not in self._counts:
+                    self._counts.append(query)
         log.info(
             "tool %s(%s): %s in %.2f s",
             name,
@@ -318,19 +434,25 @@ class Agent:
         """
         started = time.monotonic()
         self.messages.append({"role": "user", "content": question})
+        self._counts = []
         budget = self.settings.max_tool_calls
         records: list[ToolCallRecord] = []
         usage: dict[str, int] = {}
         stop: StopReason = "answered"
         answer = ""
         rounds = 0
-        while True:
-            rounds += 1
-            offer_tools = len(records) < budget
-            message, finish, used = self._complete(offer_tools)
+
+        def complete(with_tools: bool) -> tuple[dict[str, Any], str | None]:
+            message, finish, used = self._complete(with_tools)
             for k, v in used.items():
                 if isinstance(v, int):
                     usage[k] = usage.get(k, 0) + v
+            return message, finish
+
+        while True:
+            rounds += 1
+            offer_tools = len(records) < budget
+            message, finish = complete(offer_tools)
             calls = message.get("tool_calls") or []
             if calls and offer_tools:
                 self.messages.append(
@@ -370,8 +492,26 @@ class Agent:
             if finish == "length":
                 stop = "length"
             break
-        self.messages.append({"role": "assistant", "content": answer})
         cites, unknown = extract_citations(self.tool_ctx, answer, self._seen)
+        retried: list[str] = []
+        if unknown and self.settings.citation_retry:
+            retried = unknown
+            log.info("answer cites unknown IDs %s; asking once more", unknown)
+            note = CITATION_NOTE.format(ids=", ".join(unknown))
+            self.messages += [
+                {"role": "assistant", "content": answer},
+                {"role": "user", "content": note},
+            ]
+            rounds += 1
+            message, finish = complete(False)
+            del self.messages[-2:]  # keep only the corrected answer in the history
+            fixed = (message.get("content") or "").strip()
+            if fixed:
+                answer = fixed
+                stop = "length" if finish == "length" else stop
+                cites, unknown = extract_citations(self.tool_ctx, answer, self._seen)
+        answer = strip_references(answer, set(unknown))
+        self.messages.append({"role": "assistant", "content": answer})
         if unknown or any(not c.from_tools for c in cites):
             log.warning(
                 "answer cites %d unknown IDs and %d records no tool returned",
@@ -383,6 +523,8 @@ class Agent:
             answer=answer,
             citations=cites,
             unknown_ids=unknown,
+            retried_ids=retried,
+            counts=list(self._counts),
             tool_calls=records,
             stop_reason=stop,
             rounds=rounds,

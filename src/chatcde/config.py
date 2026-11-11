@@ -422,6 +422,10 @@ class AgentConfig(_Section):
     max_ids_per_list: int = Field(ge=1)
     omit_fields: list[str] = Field(default_factory=list)
     extra_body: dict[str, Any] = Field(default_factory=dict)
+    citation_retry: bool = Field(
+        default=True,
+        description="Ask the model once to rewrite an answer that cites unknown IDs",
+    )
 
 
 class EvaluationConfig(_Section):
