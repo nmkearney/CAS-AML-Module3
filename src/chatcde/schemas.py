@@ -32,7 +32,7 @@ from datetime import datetime
 from enum import Enum
 from typing import Literal
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 # ---------------------------------------------------------------------------
 # Shared enums
@@ -265,20 +265,45 @@ class Chunk(BaseModel):
 # ---------------------------------------------------------------------------
 
 
+def _codes(example: str) -> object:
+    """A tag filter field: a list of vocabulary codes (see ``list_vocabulary``)."""
+    return Field(default_factory=list, description=f"Codes, e.g. {example}")
+
+
 class Filters(BaseModel):
-    """Filters shared by all tools. Empty fields mean 'no restriction'."""
+    """Filters shared by all tools. Empty fields mean 'no restriction'.
+
+    Fields combine with AND; the values in one list combine with OR. Every
+    tagged dimension has a filter field, named as the dimension's plural
+    (decision 0034). Unknown fields are rejected, so a misspelt filter fails
+    instead of being dropped; unknown codes are rejected when a tool runs.
+    """
+
+    model_config = ConfigDict(extra="forbid")
 
     year_from: int | None = None
     year_to: int | None = None
     cde_units: list[str] = Field(default_factory=list)
     pub_types: list[str] = Field(default_factory=list)
     languages: list[str] = Field(default_factory=list)
-    countries: list[str] = Field(
-        default_factory=list, description="ISO alpha-3")
-    regions: list[str] = Field(default_factory=list)
-    sub_areas: list[str] = Field(default_factory=list)
-    methods: list[str] = Field(default_factory=list)
+    impact_areas: list[str] = _codes("['SG'] (JE, SL, SG, TE)")
+    sub_areas: list[str] = _codes("['SL-d']")
+    additional_sub_areas: list[str] = _codes("['ASA-food-security']")
+    objectives: list[str] = _codes("['O2']")
+    pathways: list[str] = _codes("['P1']")
+    research_modes: list[str] = _codes("['M1']")
+    transformative_aspirations: list[str] = _codes("['TA1']")
+    methods: list[str] = _codes("['MET-case-study'] or a group 'MET-G-biophysical'")
+    data_types: list[str] = _codes("['DAT-hydrological-data']")
+    countries: list[str] = Field(default_factory=list, description="ISO alpha-3")
+    regions: list[str] = _codes("['CDE-EAF'] or an M49 region 'Eastern Africa'")
+    settings: list[str] = _codes("['SET-mountains']")
+    scales: list[str] = _codes("['SCA-national']")
+    systems: list[str] = _codes("['SYS-energy']")
+    actors: list[str] = _codes("['ACT-pastoralists']")
+    justice_lenses: list[str] = _codes("['JUS-gender']")
     sdgs: list[int] = Field(default_factory=list)
+    output_types: list[str] = _codes("['Policy'] (Academic, Policy, Practitioner, Public)")
     min_confidence: float = Field(default=0.5, ge=0.0, le=1.0)
 
 

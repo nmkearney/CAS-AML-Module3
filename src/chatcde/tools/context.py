@@ -20,7 +20,7 @@ import logging
 import threading
 from collections.abc import Iterator
 from contextlib import contextmanager
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 import duckdb
 
@@ -28,6 +28,9 @@ from chatcde import catalogue
 from chatcde.config import Config, load_config
 from chatcde.schemas import Filters
 from chatcde.store.endpoint import EndpointClient
+
+if TYPE_CHECKING:
+    from chatcde.tools.vocabulary import WorldCodes
 
 log = logging.getLogger(__name__)
 
@@ -57,6 +60,8 @@ class ToolContext:
         self._owns_client = client is None
         self._lock = threading.Lock()
         self._vocab: dict[str, Any] | None = None
+        self._world: WorldCodes | None = None
+        self._world_read = False
 
     def vocabulary(self) -> dict[str, Any]:
         """The vocabulary (``vocab.file``), read once per context.
@@ -81,17 +86,42 @@ class ToolContext:
                 self._client = EndpointClient.from_config(self.cfg)
             return self._client
 
-    def expand(self, filters: Filters | None) -> Filters | None:
-        """``filters`` with group codes replaced by their terms (decision 0030).
+    def world(self) -> WorldCodes | None:
+        """ISO country and M49 region codes (``tagging.m49_file``), read once.
 
-        The vocabulary is read only if a tag filter is set.
+        ``None`` if the file is missing; country and region filters are then
+        not checked (logged once).
+        """
+        from chatcde.tools.vocabulary import WorldCodes
+
+        with self._lock:
+            if not self._world_read:
+                self._world_read = True
+                path = self.cfg.tagging.m49_file
+                try:
+                    self._world = WorldCodes.from_m49(path)
+                except FileNotFoundError:
+                    log.warning("no %s: country and region filters not checked", path)
+            return self._world
+
+    def expand(self, filters: Filters | None) -> Filters | None:
+        """Check the codes in ``filters``, then replace group codes by their terms.
+
+        Every tool resolves its filters here, so an unknown code fails in one
+        place for all of them (decision 0034); group codes stand for their terms
+        (decision 0030). The vocabulary is read only if a tag filter is set.
+
+        Raises:
+            ToolError: A tag filter names a code its dimension does not have.
         """
         from chatcde.store.filters import TAG_FIELDS
-        from chatcde.tools.vocabulary import expand_filters
+        from chatcde.tools.vocabulary import check_filter_codes, expand_filters
 
         if filters is None or not any(getattr(filters, f) for f in TAG_FIELDS):
             return filters
-        return expand_filters(filters, self.vocabulary())
+        vocab = self.vocabulary()
+        check_filter_codes(filters, vocab, self.world())
+        return expand_filters(filters, vocab)
 
     @contextmanager
     def catalogue(self) -> Iterator[duckdb.DuckDBPyConnection]:
