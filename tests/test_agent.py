@@ -20,6 +20,7 @@ from chatcde.agent import (
     Agent,
     AgentError,
     format_arguments,
+    normalise_references,
     parse_citations,
     record_ids_in,
     strip_references,
@@ -483,3 +484,17 @@ def test_strip_references():
 def test_format_arguments():
     args = {"row": "method", "filters": {"impact_areas": ["SG", "TE"], "sdgs": []}}
     assert format_arguments(args) == "row=method, impact_areas=[SG, TE]"
+
+
+def test_typographic_references_are_recognised():
+    # gpt-oss, 2026-11-11: narrow no-break spaces and non-breaking hyphens.
+    text = "Total [BORIS:\u202fSG\u2011d,\u202fSG\u2011a], pp. 2\u20133 \u2011 kept."
+    fixed = normalise_references(text)
+    assert fixed == "Total [BORIS: SG-d, SG-a], pp. 2\u20133 \u2011 kept."
+    assert parse_citations(fixed) == [("SG-d", None)]
+
+
+def test_a_typographic_reference_is_sent_back(fixture_db: Path, tmp_path: Path):
+    llm = ScriptedLLM([reply("Total [BORIS:\u202fSG\u2011d]."), reply("Total 12.")])
+    result = make_agent(make_config(tmp_path, fixture_db), llm).ask("?")
+    assert result.retried_ids == ["SG-d"] and result.answer == "Total 12."

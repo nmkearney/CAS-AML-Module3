@@ -208,6 +208,32 @@ def parse_citations(answer: str) -> list[tuple[str, int | None]]:
     return found
 
 
+#: Typographic characters models put in references, mapped to plain ones.
+#: gpt-oss writes U+2011 (non-breaking hyphen) and U+202F (narrow no-break
+#: space) inside references; en dashes are kept (page ranges).
+_REFERENCE_CHARS = str.maketrans(
+    {
+        "‐": "-",
+        "‑": "-",
+        "‒": "-",
+        "−": "-",
+        " ": " ",
+        " ": " ",
+        " ": " ",
+        " ": " ",
+    }
+)
+
+
+def normalise_references(answer: str) -> str:
+    """Replace typographic hyphens and spaces inside ``[BORIS:...]`` groups.
+
+    Without this, ``[BORIS: ab12‑cd]`` is not recognised as a reference
+    at all, so it is neither resolved nor checked.
+    """
+    return CITE_GROUP_RE.sub(lambda g: g.group(0).translate(_REFERENCE_CHARS), answer)
+
+
 def _ref_id(m: re.Match[str]) -> str:
     """The record ID of one :data:`CITE_RE` match, without trailing punctuation."""
     return m.group(1).rstrip(".,;")
@@ -492,6 +518,7 @@ class Agent:
             if finish == "length":
                 stop = "length"
             break
+        answer = normalise_references(answer)
         cites, unknown = extract_citations(self.tool_ctx, answer, self._seen)
         retried: list[str] = []
         if unknown and self.settings.citation_retry:
@@ -505,7 +532,7 @@ class Agent:
             rounds += 1
             message, finish = complete(False)
             del self.messages[-2:]  # keep only the corrected answer in the history
-            fixed = (message.get("content") or "").strip()
+            fixed = normalise_references((message.get("content") or "").strip())
             if fixed:
                 answer = fixed
                 stop = "length" if finish == "length" else stop

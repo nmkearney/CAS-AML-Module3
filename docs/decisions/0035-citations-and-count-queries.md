@@ -16,6 +16,10 @@ BORIS IDs or DOIs, and every count to a catalogue query with its denominator.
   gets the answer back with a short note (`agent.CITATION_NOTE`) and rewrites it,
   without tools (`agent.citation_retry`, default on). Only the corrected answer stays
   in the conversation; `AgentResult.retried_ids` records what triggered the rewrite.
+- **Typographic characters are normalised first.** gpt-oss writes non-breaking
+  hyphens (U+2011) and narrow no-break spaces (U+202F) inside references, which the
+  pattern did not recognise, so `[BORIS:\u202fSG\u2011d]` escaped the check. Inside
+  `[BORIS:…]` groups they become plain hyphens and spaces (en dashes are kept).
 - **What is still unknown is removed** from the answer text (an emptied bracket goes
   with the space before it) and kept in `AgentResult.unknown_ids`, which the terminal
   shows as a warning and `chatcde evaluate questions` counts as a failure.
