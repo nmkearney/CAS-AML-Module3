@@ -228,12 +228,22 @@ _REFERENCE_CHARS = str.maketrans(
 )
 
 
-def normalise_references(answer: str) -> str:
-    """Replace typographic hyphens and spaces inside ``[BORIS:...]`` groups.
+#: A ``BORIS:`` group in full-width or lenticular brackets, which gpt-oss also
+#: writes (``【BORIS:find_gaps, row=impact_area】``, 2026-11-11).
+_WIDE_GROUP_RE = re.compile(
+    r"[【［〔]([^【】［］〔〕\[\]]*BORIS:[^【】［］〔〕\[\]]*)[】］〕]"
+)
 
-    Without this, ``[BORIS: ab12‑cd]`` is not recognised as a reference
-    at all, so it is neither resolved nor checked.
+
+def normalise_references(answer: str) -> str:
+    """Make typographic ``BORIS:`` references plain, so they are checked.
+
+    Full-width and lenticular brackets around a ``BORIS:`` group become ``[]``,
+    and typographic hyphens and spaces inside ``[BORIS:...]`` groups become
+    plain ones. Without this, ``【BORIS:x】`` or ``[BORIS: ab12‑cd]`` is not
+    recognised as a reference at all, so it is neither resolved nor checked.
     """
+    answer = _WIDE_GROUP_RE.sub(r"[\1]", answer)
     return CITE_GROUP_RE.sub(lambda g: g.group(0).translate(_REFERENCE_CHARS), answer)
 
 

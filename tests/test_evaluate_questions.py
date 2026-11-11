@@ -317,3 +317,12 @@ def test_cli_bad_file(cli, tmp_path: Path):
     assert res.exit_code == 2 and "#19" in res.stderr
     res = cli([], "--file", str(write(tmp_path, "version: 1\nquestions: [{id: x}]\n")))
     assert res.exit_code == 2
+
+
+def test_repo_questions_file_is_valid():
+    """``tests/questions.yaml`` (#19) loads with the format of decision 0025."""
+    path = Path(__file__).parent / "questions.yaml"
+    qs = load_questions(path)
+    assert qs.questions and all(q.notes for q in qs.questions)
+    gap = next(q for q in qs.questions if q.id == "gaps-sg-methods")
+    assert gap.kind == "gaps" and gap.expect.tools == ["find_gaps"]  # #67
