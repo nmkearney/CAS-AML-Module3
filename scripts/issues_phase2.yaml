@@ -1,0 +1,246 @@
+# GitHub labels, milestones and issues for ChatCDE after the coursework (decision 0033).
+# Built from the stock-take of 2026-11-11 (main at a655e41).
+# Check:  python scripts/create_github_issues.py --spec scripts/issues_phase2.yaml --dry-run
+# Create: python scripts/create_github_issues.py --spec scripts/issues_phase2.yaml --assign @me
+#
+# Sections:
+#   labels            created or updated in place
+#   milestones        created if missing, in the order they should be worked on
+#   update            changes to existing issues (milestone, labels, title, body, comment)
+#   issues            new issues, skipped if an issue with the same title exists
+#   close_milestones  coursework milestones, closed once their issues have moved
+
+labels:
+  - {name: "bug", color: "d73a4a", description: "Wrong or untraceable results"}
+  - {name: "data", color: "1f6feb", description: "Harvest, parse, vocabulary, tagging, bundles"}
+  - {name: "assistant", color: "8957e5", description: "Index, search, tools, agent, workflows"}
+  - {name: "eval", color: "2da44e", description: "Reference sets, test questions, evaluation"}
+  - {name: "docs", color: "0e8a16", description: "README, walkthrough, demo"}
+  - {name: "schemas", color: "cf222e", description: "Changes schemas.py or tools/core.py; own PR, fixtures updated"}
+  - {name: "decision", color: "57606a", description: "Needs a record in docs/decisions/"}
+
+milestones:
+  - "M1: Correct, traceable answers"
+  - "M2: More workflows"
+  - "M3: Tagging quality"
+  - "M4: Distribution"
+
+update:
+  - number: 19
+    milestone: "M1: Correct, traceable answers"
+    add_labels: [eval]
+    remove_labels: [track:A-data, cross-check]
+    comment: |
+      Moved to M1 (decision 0033). No longer a cross-check: the questions are written by the
+      only developer, so the evaluation report says so. Include at least two questions per
+      problem found in the stock-take: a filtered count (e.g. by impact area), a gap question,
+      and a search whose best answer is not a reference list.
+  - number: 5
+    milestone: "M1: Correct, traceable answers"
+    title: "Run the test questions on the real catalogue and fix what breaks"
+    add_labels: [eval]
+    remove_labels: [joint]
+    body: |
+      Run `chatcde evaluate questions` with `tests/questions.yaml` (#19) on the real catalogue,
+      fix what breaks, and set `evaluation.min_question_pass_rate` (a TODO in `config/default.yaml`)
+      from the first real run, with the reasoning in a decision record (see 0025).
+
+      A first manual run on 2026-11-11 found the problems now filed in M1: filters silently
+      dropped, citations that are not records, gap answers from the smallest group share,
+      reference-list hits in search.
+  - number: 60
+    milestone: "M1: Correct, traceable answers"
+    title: "Rename dimension output_type to audience_type, with a migration of stored tags"
+    remove_labels: [joint]
+    comment: |
+      Moved to M1: the full tagging run (#15) has happened, so stored tags in `tags` and
+      `tag_state` need a migration (or a code-side alias plus a one-off UPDATE). Do it before
+      M2 adds more code and prompts that name the dimension. Rebuild the fixture DB and the
+      bundles afterwards.
+  - number: 16
+    milestone: "M3: Tagging quality"
+    add_labels: [eval]
+    remove_labels: [track:A-data]
+    comment: |
+      Moved to M3 (decision 0033). The ~50 reference records are now all hand-tagged by the
+      developer (#29 closed); the report states that. Also set `evaluation.min_precision`
+      (TODO in config) in a decision record. Until this is done, trend and frontier output
+      should say that tagging has not yet been evaluated.
+  - number: 18
+    milestone: "M4: Distribution"
+    add_labels: [data]
+    remove_labels: [track:A-data]
+  - number: 6
+    milestone: "M4: Distribution"
+    title: "README walkthrough and demo script"
+    add_labels: [docs]
+    remove_labels: [joint]
+    body: |
+      A README section from install (or `chatcde fetch-data`) to a first cited answer, and a
+      scripted demo of 5–6 questions that shows search, a filtered count with its denominator,
+      a gap question and one of the M2 workflows. Re-run it before every release.
+
+issues:
+  # ---------------- M1: Correct, traceable answers ----------------
+  - title: "Filters reject unknown keys, and cover every tagged dimension"
+    labels: [bug, schemas, decision]
+    milestone: "M1: Correct, traceable answers"
+    body: |
+      **Bug.** `Filters` (schemas.py) ignores unknown keys. On 2026-11-11 the agent called
+      `count_by(row="method", filters={"impact_areas": ["SG"]}, level="group")`; there is no
+      `impact_areas` field, so the filter was dropped and the answer on "Sustainable Governance"
+      used corpus-wide counts (3,003 records, e.g. 183 for institutional analysis). The same
+      happened to `coverage_report`.
+
+      Fix:
+      - `model_config = ConfigDict(extra="forbid")` on `Filters`; the agent loop returns the
+        validation error to the model as a tool error, so it can retry.
+      - Add filters for the tagged dimensions that are missing: `impact_areas`,
+        `additional_sub_areas`, `objectives`, `research_modes`, `settings`, `scales`,
+        `systems`, `actors`, `justice_lenses` (codes, group codes allowed as for methods).
+      - Regenerate the tool definitions from the signatures; tests with the fixture DB for each
+        new filter and for an unknown key.
+
+      Done when: the question above gives SG-only counts and a different denominator, and an
+      unknown filter key produces a visible error.
+  - title: "Answers cite only real records; counts cite the query behind them"
+    labels: [bug, assistant]
+    milestone: "M1: Correct, traceable answers"
+    body: |
+      **Bug.** The 2026-11-11 answer cited `[BORIS:count_by]` and `[BORIS:coverage_report]`.
+      `number_citations` (workflows/answer.py) only numbers record IDs it knows, so these pass
+      through as text and break the rule that every answer is traceable to BORIS IDs or DOIs.
+
+      Fix:
+      - After the agent answers, check every `[BORIS:…]` group against the record IDs returned
+        by tools in this run; unknown IDs are removed and reported (and optionally sent back to
+        the model once to correct).
+      - A number taken from `count_by` / `find_gaps` / `coverage_report` is cited as the query:
+        tool, filters and denominator, listed under the answer (e.g. "Counts: count_by(method,
+        impact_areas=[SG]): N records, M untagged").
+      - Update the agent system prompt (new version) and tests.
+  - title: "Gap questions go through find_gaps (observed vs expected), at term level"
+    labels: [assistant]
+    milestone: "M1: Correct, traceable answers"
+    body: |
+      On 2026-11-11, "Which methods has CDE rarely used in Sustainable Governance?" was
+      answered with the smallest of 8 group shares (14%), which is not rare. A gap is a
+      combination with far fewer records than expected, as `find_gaps` computes.
+
+      - Agent prompt: route "rarely", "missing", "gap", "under-represented" questions to
+        `find_gaps` (or `chatcde gaps`), and say the threshold and denominator in the answer.
+      - Start at group level, then drill into terms within the flagged groups.
+      - Add the question to `tests/questions.yaml` (#19) with its expected cells.
+      Depends on the Filters fix (impact_area filter).
+  - title: "Leave reference lists out of search by default"
+    labels: [data, assistant]
+    milestone: "M1: Correct, traceable answers"
+    body: |
+      Search for "large-scale land acquisitions in Laos" returns bibliography chunks among the
+      top hits (e.g. record 49690ed2…, pp. 13–14). Reference lists match many topics and say
+      nothing about CDE's own findings.
+
+      - At chunking, flag chunks that are mostly references (share of lines with year +
+        author/DOI patterns; heading "References", "Literatur", "Bibliographie", …), as a new
+        chunk attribute; record the rule and its threshold in config and a decision.
+      - Search drops flagged chunks unless asked (`--include-references`).
+      - Measure on a sample how many chunks are flagged and check 30 by hand; re-index.
+  - title: "Decide the confidence threshold for counts"
+    labels: [eval, decision]
+    milestone: "M1: Correct, traceable answers"
+    body: |
+      `Filters.min_confidence` defaults to 0.5, but the pilot review (decision 0029) found
+      counted tags 95% correct at 0.9 and only 68% at 0.6. Gap and count answers depend on
+      this threshold.
+
+      - Compare counts at 0.5 / 0.6 / 0.7 / 0.8 / 0.9 on the real catalogue (records tagged,
+        untagged, top gaps) and record the choice and its trade-off in a decision.
+      - Move the default into `config/default.yaml` if it is not read from there yet.
+      - Revisit with the reference set in M3 (#16).
+  - title: "Check country codes against ISO alpha-3 and rerun the failed batches"
+    labels: [data, bug]
+    milestone: "M1: Correct, traceable answers"
+    body: |
+      4 `how_where` batches failed in the full run because the model wrote country codes
+      outside ISO 3166-1 alpha-3 (records 96e0d3ed, 08a38880, 7c70fb4e, dc7e1ef8), so those
+      records lack countries, settings and scales.
+
+      - Map common non-ISO answers (alpha-2 codes, country names) to alpha-3 in code
+        before validation, and drop and log codes that cannot be mapped instead of failing
+        the batch.
+      - `chatcde tag --all` reruns the 4 batches; check that regions are derived for them.
+
+  # ---------------- M2: More workflows ----------------
+  - title: "chatcde experts and the find_expertise tool"
+    labels: [assistant]
+    milestone: "M2: More workflows"
+    body: |
+      Find CDE researchers who have worked on a topic (planning.md, use case "expertise
+      finder"). `find_expertise(topic, filters)` ranks authors by matching records (search +
+      tags), with counts, years and record IDs per person; ORCID where known.
+      `chatcde experts "…"` prints the ranked list with evidence. Only CDE-affiliated authors
+      by default. Tests on the fixture DB.
+  - title: "chatcde brief: a short literature brief with citations"
+    labels: [assistant]
+    milestone: "M2: More workflows"
+    body: |
+      Fixed workflow (planning.md): search → read the best sections → a 1-page brief with
+      numbered citations to records and pages, and a note on coverage (how many matches had
+      full text). Versioned prompt in `prompts/`. Add 2–3 brief questions to
+      `tests/questions.yaml`.
+  - title: "trend tool: records per year by a dimension, with denominators"
+    labels: [assistant]
+    milestone: "M2: More workflows"
+    body: |
+      `trend(dimension, filters, bin)` returns counts per year (or period) for terms or groups,
+      plus all records per period as the denominator, so shares can be compared over time.
+      `chatcde trend` CLI and an agent tool. Until #16 is done, output says that tagging has
+      not yet been evaluated.
+  - title: "Field corpus from OpenAlex, search_field and compare_with_field, then chatcde frontier"
+    labels: [data, assistant, decision]
+    milestone: "M2: More workflows"
+    body: |
+      Frontiers compare CDE with the wider field (planning.md).
+      1. Field corpus: OpenAlex works on CDE's main topics (query rules, years, size cap in
+         config; decision on how the field is defined). Abstracts only.
+      2. `search_field` and `compare_with_field` (topic shares in CDE vs field).
+      3. `chatcde frontier`: directions where CDE is strong and the field is moving.
+      May split into three issues when started.
+
+  # ---------------- M3: Tagging quality ----------------
+  - title: "Vocabulary v0.5: sizes, overlaps and settings"
+    labels: [data, decision]
+    milestone: "M3: Tagging quality"
+    body: |
+      Open from v0.4: most dimensions exceed the 15–40 term target; some additional
+      sub-areas overlap sub-area scopes; the model still puts countries under settings
+      ("Switzerland", "Global South"). Curate in `vocab/curation/v0.5.xlsx`, apply with
+      `chatcde vocab apply`, retire terms with `replaced_by`. Use the #16 results to choose
+      which terms to merge. Retag only the affected batches.
+  - title: "OCR leftovers: Lao pages and looping pages"
+    labels: [data]
+    milestone: "M3: Tagging quality"
+    body: |
+      73 pages stay pending after OCR: 51 Lao pages (the vision model writes Thai, so its
+      answers are rejected) and 22 where the model loops. Low priority. Options: a different
+      vision model for Lao, a prompt naming the script, or leaving them as pending with a
+      note in `coverage`.
+
+  # ---------------- M4: Distribution ----------------
+  - title: "Hosting and licences for the data editions"
+    labels: [data, decision]
+    milestone: "M4: Distribution"
+    body: |
+      Before any bundle is published:
+      - Check publisher licences for the open-access full texts in the open edition.
+      - Decide where the open edition goes (GitHub release, Zenodo, CDE server) and set
+        `data.editions.open.url`; set the real full-edition location (`data.editions.full.url`, TODO).
+      - Ask the University Library whether restricted texts may be copied to staff machines
+        (open question in CLAUDE.md); otherwise the full edition relies on `--top-up`.
+
+close_milestones:
+  - "Step 1: Package skeleton"
+  - "Step 2: Harvest and parse"
+  - "Step 3: Vocabulary and tagging"
+  - "Step 4: Tools, agent and CLI"
+  - "Step 5: Demonstration"
