@@ -54,7 +54,7 @@ Researchers use ChatCDE from the command line. The tools are plain Python functi
 
 The code and the data are distributed separately:
 
-- **Package:** installed with `pip install git+https://github.com/nmkearney/CAS-AML-Module3`, built from `pyproject.toml`, with `chatcde` as its command.
+- **Package:** installed with `pip install git+https://github.com/nmkearney/chatcde`, built from `pyproject.toml`, with `chatcde` as its command.
 - **Data bundles:** the catalogue, search index and vocabulary as a versioned archive, in two editions built from the same index:
   - **Full:** all full texts. Hosted on CDE's server, reachable only from the UniBe network or VPN (location to be confirmed).
   - **Open:** full text only for open-access records; metadata and abstracts for the rest. Hosted publicly.
@@ -204,15 +204,15 @@ The first draft of the schema and vocabularies, built from the 2025–2028 strat
 
 ## Team and workflow
 
-Two developers work in parallel, split between building the data and using it. They meet at the shared data formats in `src/chatcde/schemas.py`, agreed on day 1 together with a small set of test fixtures, so Track B can build tools before the real data exists.
+During the coursework (CAS AML Module 3, tagged `coursework-final`), two developers worked in parallel, split between building the data and using it. They met at the shared data formats in `src/chatcde/schemas.py`, agreed on day 1 together with a small set of test fixtures, so Track B could build tools before the real data existed.
 
 | | Track A: Data (Norman) | Track B: Assistant (Simon) |
 | --- | --- | --- |
-| Owns | Harvest, parsing, vocabulary, tagging, data bundles | Chunking, embeddings, search, tools, agent, workflows |
+| Owned | Harvest, parsing, vocabulary, tagging, data bundles | Chunking, embeddings, search, tools, agent, workflows |
 | Build steps | 2 and 3 | 4 |
 | Cross-check of the other track | Writes the 20–30 test questions | Hand-tags part of the reference set |
 
-Steps 1 and 5 are joint. All work goes through branches and pull requests approved by the other developer, tracked as GitHub issues by milestone (one per build step). `CONTRIBUTING.md` has the workflow and the GitHub setup steps; `scripts/create_github_issues.py` creates the labels, milestones and 29 issues from `scripts/issues.yaml`.
+Since the end of the coursework one developer continues alone (decision 0033). All work still goes through branches and pull requests with a green CI check, tracked as GitHub issues; no second approval is required. `CONTRIBUTING.md` has the workflow. `scripts/create_github_issues.py` and `scripts/issues.yaml` record the coursework's original 29 issues.
 
 ## Build order and open questions
 
